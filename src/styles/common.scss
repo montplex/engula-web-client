@@ -1,0 +1,231 @@
+/* Reset style sheet */
+html,
+body,
+ol,
+ul,
+li {
+  list-style: none;
+}
+
+p {
+  margin: 0;
+}
+
+/* 解决 h1 标签在 webkit 内核浏览器中文字大小失效问题 */
+:-webkit-any(article, aside, nav, section) h1 {
+  font-size: 2em;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* ::-webkit-scrollbar-thumb {
+  background-color: #0003;
+  border-radius: 10px;
+  transition: all .2s ease-in-out;
+} */
+::-webkit-scrollbar-track {
+  border-radius: 22px;
+}
+
+.is-link {
+  color: #1677ff;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  transition: color 0.3s;
+}
+
+.info-text {
+  font-size: 14px;
+  color: rgb(0 0 0 / 88%)
+}
+
+.br-8 {
+  border-radius: 8px;
+}
+
+
+/* 首页布局 */
+.home-container {
+  position: relative;
+  width: auto;
+  margin: 0 auto;
+}
+
+.home-container.is-fluid {
+  width: 100%;
+  max-width: none !important;
+  padding-right: 32px;
+  padding-left: 32px;
+}
+
+@media screen and (min-width: 1024px) {
+  .home-container {
+    max-width: 960px;
+  }
+}
+
+@media screen and (max-width: 1215px) {
+  .home-container.is-widescreen:not(.is-max-desktop) {
+    max-width: 1152px;
+  }
+}
+
+@media screen and (max-width: 1407px) {
+  .home-container.is-fullhd:not(.is-max-desktop):not(.is-max-widescreen) {
+    max-width: 1344px;
+  }
+}
+
+@media screen and (min-width: 1216px) {
+  .home-container:not(.is-max-desktop) {
+    max-width: 1152px;
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .home-container:not(.is-max-desktop):not(.is-max-widescreen) {
+    max-width: 1344px;
+  }
+}
+
+.bg-success {
+  background: linear-gradient(180deg, #642dff 0%, #892dff 100%);
+}
+
+.bg-info {
+  background: rgb(255 255 255 / 20%);
+}
+
+.btn-base {
+  color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+
+.choose-base {
+  background: rgb(160 178 242 / 10%);
+  border-radius: 0.5rem;
+}
+
+.text-main {
+  color: #642dff;
+}
+
+.text-6 {
+  color: rgb(255 255 255 / 60%);
+}
+
+.hover-move:hover {
+  padding-left: 8px;
+}
+
+.hover-move {
+  transition: padding .2s ease-in-out;
+}
+
+.section-page {
+  position: relative;
+  z-index: 101;
+  width: 80%;
+  font-style: normal;
+  color: #ffffff;
+
+  h1 {
+    height: 5rem;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 6rem;
+    color: #ffffff;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 2rem;
+    white-space: pre-line;
+    opacity: 0.6;
+  }
+}
+
+.fill-h1 {
+  font-size: 3rem;
+  color: transparent;
+  background: linear-gradient(180deg, #642dff 0%, #892dff 100%);
+  background-clip: text;
+}
+
+h3,
+h4 {
+  line-height: 1.75rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+b,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  font-weight: 600;
+}
+
+.dialog-label {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  margin-bottom: 0.25rem;
+  font-weight: 550;
+  color: rgb(0 0 0 / 88%);
+}
+
+.alert-base {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 1.58rem;
+  color: rgb(0 0 0 / 80%);
+  word-wrap: break-word;
+  list-style: none;
+  border-radius: 8px;
+
+  &.info {
+    background-color: #e6f4ff;
+    border: 1px solid #91caff;
+  }
+}
+
+.section-connect {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  border-color: rgb(228 228 231/var(--tw-border-opacity));
+  border-width: 1px;
+  border-radius: 0.5rem;
+
+  --tw-border-opacity: 1;
+}
+
+@media (min-width: 640px) {
+  .section-connect {
+    padding: 1.75rem 2rem
+  }
+}
+
+.is-link {
+  color: #1677ff;
+
+  &:hover {
+    color: #69b1ff;
+  }
+}
