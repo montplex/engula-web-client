@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 // import { getServiceList } from "@/api/console";
 import { getServiceList } from "@/api/cache";
-import { ICacheListItem } from "@/api/type/cache";
+import { ICacheListItem } from "@/api/types/cache";
 
 export interface useDbStore {
 	filterList: ICacheListItem[];

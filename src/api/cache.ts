@@ -11,7 +11,7 @@ import {
 	ListAccessToken,
 	addTokenParams,
 	updateTokenParams
-} from "./type/cache";
+} from "./types/cache";
 
 /**
  * Get list cache service

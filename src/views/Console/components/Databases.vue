@@ -2,7 +2,7 @@
 import { ref, reactive, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useDbStore } from "@/stores/modules/dbList";
-import { AddCacheParams } from "@/api/type/cache";
+import { AddCacheParams } from "@/api/types/cache";
 import axios from "axios";
 /* onMounted(() => {
 	getdata();

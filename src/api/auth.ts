@@ -1,12 +1,12 @@
 import { http } from "@/plugins/axios";
-import { IUserInfo } from "./type/auth";
+import { IUserInfo } from "./types/auth";
 
 /**
  * Get Login user
  */
-export const getServiceList = () => {
+export const login = () => {
 	return http.get<IUserInfo>({
-		url: "/api/dblist",
+		url: "/api/login",
 		showLoading: true
 	});
 };
