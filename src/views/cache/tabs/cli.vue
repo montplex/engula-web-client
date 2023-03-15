@@ -9,7 +9,7 @@ import "xterm/css/xterm.css";
 import { Terminal } from "xterm";
 import { FitAddon } from "xterm-addon-fit";
 import { AttachAddon } from "xterm-addon-attach";
-import { ref, reactive, onMounted, onBeforeUnmount } from "vue";
+import { reactive, onMounted, onBeforeUnmount } from "vue";
 
 const data = reactive({
 	socketUrl: "ws://127.0.0.1:4000/terminals"

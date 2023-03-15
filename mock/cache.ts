@@ -1,22 +1,13 @@
 import { Random, mock } from "mockjs";
 import { MockMethod } from "vite-plugin-mock";
-
+import { parse, stringify } from "querystring";
 export default [
 	{
 		url: "/engula/text",
 		method: "post",
-		rawResponse: async (req, res) => {
-			console.log("res", res, req);
-			let reqbody = "";
-			await new Promise((resolve) => {
-				req.on("data", (chunk) => {
-					reqbody += chunk;
-				});
-				req.on("end", () => resolve(undefined));
-			});
-			res.setHeader("Content-Type", "text/plain");
-			res.statusCode = 200;
-			res.end(`hello, ${reqbody}`);
+		response: (res: any) => {
+			const params = parse(stringify(res.query));
+			console.log(params.name, params.age);
 		}
 	},
 	{
@@ -24,24 +15,63 @@ export default [
 		method: "get",
 		response: () => {
 			return {
-				code: 200,
-				message: "请示成功",
-				status: "success",
-				data: mock({
-					"list|4-8": [
-						{
-							"name|1": ["TEST_DB-01", "TEST_DB-03", "TEST_DB-23", "TEST_DB-0234", "DB-04"],
-							"orgId|333-1007": 55,
-							"cloudProvider|1": ["ASW", "Alibaba", "Tencent"],
-							region: "@region()",
-							"status|1": ["0", "-1", "-10", "20", "100", "1"],
-							updatedDate: "@datetime",
-							createdDate: "@datetime",
-							"id|+1": 50,
-							"des|1": ["AMD", "CMD", "UMD"]
-						}
-					]
-				})
+				list: [
+					{
+						id: 12,
+						orgId: 2,
+						name: "DBTEST-001-by-liaoyi",
+						des: "desc",
+						status: 1,
+						cloudProvider: "aws",
+						region: "ap-northeast-1",
+						createdDate: 1678695874000,
+						updatedDate: 1678695875000
+					},
+					{
+						id: 13,
+						orgId: 2,
+						name: "DBTEST-002-by-mock",
+						des: "desc",
+						status: 1,
+						cloudProvider: "aws",
+						region: "ap-northeast-1",
+						createdDate: 1678695886000,
+						updatedDate: 1678695886000
+					},
+					{
+						id: 14,
+						orgId: 2,
+						name: "DBTEST-004",
+						des: "desc",
+						status: 1,
+						cloudProvider: "aws",
+						region: "ap-northeast-1",
+						createdDate: 1678695891000,
+						updatedDate: 1678695891000
+					},
+					{
+						id: 15,
+						orgId: 2,
+						name: "DBTEST-005",
+						des: "desc",
+						status: 1,
+						cloudProvider: "aws",
+						region: "ap-northeast-1",
+						createdDate: 1678695897000,
+						updatedDate: 1678695898000
+					},
+					{
+						id: 16,
+						orgId: 2,
+						name: "DBTEST-008",
+						des: "desc",
+						status: 1,
+						cloudProvider: "aws",
+						region: "ap-northeast-1",
+						createdDate: 1678695901000,
+						updatedDate: 1678695902000
+					}
+				]
 			};
 		}
 	},
@@ -49,7 +79,6 @@ export default [
 		url: "/engula/cache_service/add",
 		method: "put",
 		rawResponse: async (req, res) => {
-			console.log("--------add", req, res);
 			return {
 				id: 13,
 				accessToken: "et ut fugiat ipsum Lorem"
@@ -58,22 +87,19 @@ export default [
 	},
 	{
 		url: "/engula/cache_service/one",
-		method: "put",
+		method: "get",
 		response: () => {
 			return {
-				code: 200,
-				message: "请求成功",
-				status: "success",
-				data: {
-					name: "DBDATR+E",
-					orgId: 46,
-					cloudProvider: "45",
-					region: "officia",
-					id: 5,
-					updatedDate: 19920813,
-					des: "amet nisi adipisicing reprehenderit",
-					status: 9,
-					createdDate: 20070709
+				one: {
+					id: 21,
+					orgId: 2,
+					name: "DBTEST-004",
+					des: "desc",
+					status: 1,
+					cloudProvider: "aws",
+					region: "ap-northeast-1",
+					createdDate: 1678695891000,
+					updatedDate: 1678695891000
 				}
 			};
 		}

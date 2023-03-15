@@ -72,9 +72,7 @@
 	</div>
 </template>
 
-<script setup lang="ts">
-import {} from "vue";
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped>
 .team-card {

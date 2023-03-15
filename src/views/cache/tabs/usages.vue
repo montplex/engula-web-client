@@ -78,14 +78,14 @@
 		<div class="grid grid-cols-1 gap-8 rounded-lg border border-gray-200 p-4 sm:px-8 sm:py-7">
 			<header><h4 class="m-0 mb-1 text-base">Hits / Misses</h4></header>
 			<div style="width: 100%; height: 300px">
-				<Echarts width="100%" height="300px" />
+				<my-echarts width="100%" height="300px" />
 			</div>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-import Echarts from "@/components/Echarts/index.vue";
+import MyEcharts from "@/components/Echarts/index.vue";
 import { formatChartsData } from "@/utils/util";
 import { reactive, ref } from "vue";
 

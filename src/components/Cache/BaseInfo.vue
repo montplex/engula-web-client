@@ -5,10 +5,10 @@
 				<div class="flex items-center">
 					<div>
 						<h1 class="m-0 flex items-center text-2xl font-bold leading-none">
-							<span>DB-TEST</span>
+							<span>{{ cacheName }}</span>
 							<el-tooltip effect="dark" content="Rename Database" placement="top-start">
 								<button type="button" class="ml-3 inline-flex h-auto items-center !p-0">
-									<svgIcon @click="editDbName" icon="edit" class="text-gray-400" />
+									<svgIcon @click="editVisible = true" icon="edit" class="text-gray-400" />
 								</button>
 							</el-tooltip>
 						</h1>
@@ -37,7 +37,7 @@
 
 	<el-dialog v-model="editVisible" title="Rename Database" width="520px" style="border-radius: 8px">
 		<label class="dialog-label mb-1">Database name</label>
-		<el-input v-model="newDbName" />
+		<el-input v-model="cacheNewName" />
 		<div class="alert-base info !mt-6">Your connections and clients will not be affected by this change.</div>
 		<template #footer>
 			<span class="dialog-footer">
@@ -50,11 +50,11 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { useDbStore } from "@/stores/modules/cache";
+const store = useDbStore();
 const editVisible = ref(false);
-const newDbName = ref("DB-TEST");
-const editDbName = () => {
-	editVisible.value = true;
-};
+const cacheName = store.oneCache?.name;
+const cacheNewName = ref(cacheName);
 </script>
 
 <style lang="scss"></style>

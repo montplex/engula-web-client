@@ -1,14 +1,14 @@
 <template>
 	<div class="bander">
-		<Header />
+		<home-page-header />
 		<router-view />
-		<HomePageFooter />
+		<home-page-footer />
 	</div>
 </template>
 
 <script setup lang="ts">
-import Header from "./components/Header.vue";
-import HomePageFooter from "./components/Footer.vue";
+import HomePageHeader from "@/components/Home/HomePageHeader.vue";
+import HomePageFooter from "@/components/Home/HomePageFooter.vue";
 </script>
 
 <style lang="scss">

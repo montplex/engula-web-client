@@ -1,5 +1,3 @@
-export type ICacheList = { list: ICacheListItem[] };
-
 const Cachestatus = {
 	created: "0",
 	running: "1",
@@ -10,7 +8,6 @@ const Cachestatus = {
 } as const;
 
 type StrTest = (typeof Cachestatus)[keyof typeof Cachestatus];
-
 export interface ICacheListItem {
 	id: number;
 	name: string;
@@ -23,9 +20,10 @@ export interface ICacheListItem {
 	updatedDate: number;
 }
 
+export type ICacheList = { list: ICacheListItem[] };
+
 export interface ICacheListRes {
-	code: number;
-	data: ICacheList;
+	list: ICacheListItem[];
 }
 
 export interface AddCacheParams {
@@ -36,7 +34,7 @@ export interface AddCacheParams {
 }
 
 export interface CacheByIdParams {
-	id: number;
+	id: string;
 	opt?: "stop" | "terminate";
 }
 
@@ -46,28 +44,36 @@ export interface AddCacheRes {
 	/** added id*/
 	id: number;
 }
-
 export interface CloudProviderItem {
 	cloudProvider: string;
 	regions: string[];
 }
-
-export type ICloudProviderRes<T> = { list: T[] };
+export interface RegionListRes {
+	list: CloudProviderItem[];
+}
 
 type Mode = "ro" | "rw";
 
 export interface updateTokenParams {
-	id: number;
+	id: string | number;
 	mode: Mode;
 }
 
 /* 查看密钥-默认隐藏 */
-export interface ListAccessToken extends updateTokenParams {
+export interface ITokenListRes {
+	list: ItokenItem[];
+}
+
+export interface ItokenItem {
+	id: number;
+	cacheServiceId: number;
 	accessToken: string;
+	mode: Mode;
 	createdDate: number;
+	updatedDate: number;
 }
 
 export interface addTokenParams {
-	cacheServiceID: number;
+	cacheServiceId: number | string;
 	mode: Mode;
 }

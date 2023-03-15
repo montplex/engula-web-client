@@ -10,29 +10,28 @@
 	</div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { useAuth0 } from "@auth0/auth0-vue";
-export default {
-	name: "NavBar",
-	setup() {
-		const auth0 = useAuth0();
-		const a = 78;
-		return {
-			isAuthenticated: auth0.isAuthenticated,
-			isLoading: auth0.isLoading,
-			user: auth0.user,
-			login() {
-				auth0.loginWithRedirect();
-			},
-			logout() {
-				auth0.logout({
-					logoutParams: {
-						returnTo: window.location.origin
-					}
-				});
-			}
-		};
-	}
+import { reactive } from "vue";
+
+const auth0 = useAuth0();
+
+const loginInfo = reactive({
+	isAuthenticated: auth0.isAuthenticated,
+	isLoading: auth0.isLoading,
+	user: auth0.user
+});
+
+const login = () => {
+	auth0.loginWithRedirect();
+};
+
+const logout = () => {
+	auth0.logout({
+		logoutParams: {
+			returnTo: window.location.origin
+		}
+	});
 };
 </script>
 

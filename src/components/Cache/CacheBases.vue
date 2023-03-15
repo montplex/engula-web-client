@@ -1,37 +1,18 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { useDbStore } from "@/stores/modules/dbList";
-import { AddCacheParams } from "@/api/types/cache";
-import axios from "axios";
-/* onMounted(() => {
-	getdata();
-});
- */
-/* const getdata = () => {
-	let config = {
-		method: "get",
-		url: "https://dev.montplex.com/engula/cache_service/list",
-		headers: {
-			Cookie:
-				"Auth-Token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsYXN0TG9naW5UaW1lIjoxNjc4NjkwMTg2LCJyb2xlIjoiZW5ndWxhX3VzZXIiLCJpc3MiOiJtb250cGxleCIsIm5pY2tuYW1lIjoiYTI0MTcyNzY0NTkiLCJpZCI6Mn0.VG7dK-2iFZC2f2PAepsLiRFJxEZkopqbu9Qi_K3DReQ"
-		}
-	};
-
-	axios(config)
-		.then(function (response) {
-			console.log(JSON.stringify(response.data));
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
-};
- */
+import { useDbStore } from "@/stores/modules/cache";
+import { AddCacheParams } from "#/cache";
+import { CachestatusTo } from "#/enum";
 const store = useDbStore();
 const router = useRouter();
 
 const dbList = ["DB_1", "DB2", "DB3"];
 const dbList2 = ["NGinx", "Ecrssio", "Montplex"];
+
+const importCache = () => {
+	importVisible.value = true;
+};
 
 const formAdd = reactive<AddCacheParams>({
 	cloudProvider: "",
@@ -42,76 +23,46 @@ const formAdd = reactive<AddCacheParams>({
 
 const region = computed(() => {
 	let regionObj: any = {};
-	cloudProvider.map((item) => item.regions && (regionObj[item.cloudProvider] = item.regions));
+	store.regionList.map((item) => item.regions && (regionObj[item.cloudProvider] = item.regions));
+	console.log("regionObj", regionObj);
 	return regionObj;
 });
 
-const Cachestatus = {
-	"0": "created",
-	"1": "running",
-	"20": "limited",
-	"200": "reject",
-	"-1": "stopped",
-	"-10": "terminated"
-} as const;
+const cross = ref(false); // 控制超出创建限制 (显示弹窗)
 
-const cloudProvider = [
-	{
-		cloudProvider: "Tencent",
-		regions: ["东北一区", "广州", "上海", "深圳", "香港"]
-	},
-	{
-		cloudProvider: "Alibaba",
-		regions: ["惠东", "成都", "上海", "河北", "新加坡"]
-	},
-	{
-		cloudProvider: "Xioami",
-		regions: ["北京", "贵州", "柳州一区", "华东一区", "大亚湾开发区"]
-	},
-	{
-		cloudProvider: "Netease",
-		regions: ["北京", "贵州", "柳州一区", "华东一区", "大亚湾开发区"]
-	},
-	{
-		cloudProvider: "OPPO",
-		regions: ["华东一区", "肇庆", "北上广"]
-	}
-];
-
-const check = ref(false);
-const cross = ref(false);
-const isRefresh = ref(false);
-const serviceFormVisible = ref(false);
-const addVisible = ref(false);
+const isRefresh = ref(false); // 刷新按钮 laoding
+const importVisible = ref(false); // 导入弹窗
+const addVisible = ref(false); // 新建弹窗
 
 const searchVal = ref("");
 const selectdbVal = ref("");
 const selectdbVal2 = ref("");
 
-/* 新建  */
-const hanleCreateClick = () => {
+/* 新建 Cache  */
+const createCache = () => {
 	if (!store.serviceList) {
 		cross.value = true;
 	} else {
+		store.setCloudProviderList();
+		console.log("----add");
 		addVisible.value = true;
 	}
 };
 
 /* 去详情页 */
 const dataBaseHandle = (id: number) => {
-	console.log("45454");
 	router.push({ path: "/redis", query: { id } });
 };
 
 /* 搜索 */
 const handleSearch = (e: string) => {
-	store.filterServiceList(e);
+	store.filterCacheList(e);
 };
 
 /* 刷新按钮  */
 const handleRefresh = () => {
 	isRefresh.value = true;
-	store.setServiceList();
+	store.setCacheList();
 	setTimeout(() => {
 		isRefresh.value = false;
 	}, 1000);
@@ -141,10 +92,10 @@ const handleRefresh = () => {
 				</el-tooltip>
 
 				<!-- Import -->
-				<el-button class="hidden items-center space-x-1 sm:inline-flex base-btn-hover" @click="serviceFormVisible = true">
+				<!-- <el-button class="hidden items-center space-x-1 sm:inline-flex base-btn-hover" @click="importCache">
 					Import...
-				</el-button>
-				<el-button type="success" @click="hanleCreateClick"> Create Database </el-button>
+				</el-button> -->
+				<el-button type="success" @click="createCache"> Create Database </el-button>
 			</div>
 		</div>
 		<!-- Sraech and AddButton End -->
@@ -173,7 +124,7 @@ const handleRefresh = () => {
 
 						<div class="flex items-center justify-between">
 							<div class="text-label">Status</div>
-							<div class="text-sm">{{ Cachestatus[item.status] }}</div>
+							<div class="text-sm">{{ CachestatusTo[item.status] }}</div>
 						</div>
 					</header>
 					<!-- Buttom Chart-->
@@ -205,26 +156,57 @@ const handleRefresh = () => {
 		<!-- empty End -->
 	</div>
 
-	<!-- 超出创建数量限制 -->
-	<el-dialog v-model="cross" width="26%" :lock-scroll="false" :show-close="false" class="br-8">
-		<template #header="{ titleId }">
-			<div class="flex items-center">
-				<i-ep:warning-filled class="text-2xl text-[#faad14]" />
-				<h4 :id="titleId" class="font-semibold ml-2">You can create 1 database in free tier</h4>
-			</div>
-		</template>
-		<div class="info-text pl-9 text-start pb-0">
-			You can <a class="is-link" href="#">add a payment method</a> to upgrade your plan and create more databases.
-		</div>
+	<!-- add-dialog Start -->
+	<el-dialog v-model="addVisible" title="Create Database" width="520px" style="border-radius: 8px">
+		<el-form label-position="top" label-width="100px" :model="formAdd" style="max-width: 460px">
+			<el-form-item label="Name">
+				<el-input v-model="formAdd.name" />
+			</el-form-item>
+
+			<!-- <el-form-item label="DES">
+				<el-select v-model="selectdbVal2" filterable placeholder="Select" class="w-full">
+					<el-option v-for="item in dbList2" :key="item" :label="item" :value="item" />
+				</el-select>
+			</el-form-item> -->
+
+			<el-form-item label="Cloud Provider">
+				<el-select
+					v-model="formAdd.cloudProvider"
+					@change="formAdd.region = ''"
+					clearable
+					filterable
+					placeholder="Select cloud provider"
+					class="w-full"
+				>
+					<el-option
+						v-for="item in store.regionList"
+						:key="item.cloudProvider"
+						:label="item.cloudProvider"
+						:value="item.cloudProvider"
+					/>
+				</el-select>
+			</el-form-item>
+
+			<el-form-item label="Region" v-show="formAdd.cloudProvider">
+				<el-select v-model="formAdd.region" filterable placeholder="Select region" class="w-full">
+					<el-option v-for="item in region[formAdd.cloudProvider]" :key="item" :label="item" :value="item" />
+				</el-select>
+				<div class="mt-2 text-xs">
+					<p class="text-gray-500">For best performance, select the region that is closer to your application.</p>
+				</div>
+			</el-form-item>
+		</el-form>
 		<template #footer>
 			<span class="dialog-footer">
-				<el-button color="#67c23a" style="color: #ffffff" @click="cross = false"> OK </el-button>
+				<el-button @click="addVisible = false">Cancel</el-button>
+				<el-button type="primary" @click="addVisible = false"> Confirm </el-button>
 			</span>
 		</template>
 	</el-dialog>
+	<!-- add-dialog End -->
 
 	<!-- import-dialog Start -->
-	<el-dialog v-model="serviceFormVisible" title="Migrate Database" width="520px" style="border-radius: 8px">
+	<el-dialog v-model="importVisible" title="Migrate Database" width="520px" style="border-radius: 8px">
 		<el-steps direction="vertical" :active="1">
 			<el-step>
 				<template #title>
@@ -239,9 +221,9 @@ const handleRefresh = () => {
 							<el-option v-for="item in dbList" :key="item" :label="item" :value="item" />
 						</el-select>
 						<div>
-							<el-checkbox size="large" v-model="check">Import from backups</el-checkbox>
+							<el-checkbox size="large">Import from backups</el-checkbox>
 						</div>
-						<el-select v-model="selectdbVal2" filterable placeholder="Select" v-show="check" class="w-full">
+						<el-select v-model="selectdbVal2" filterable placeholder="Select" class="w-full">
 							<el-option v-for="item in dbList2" :key="item" :label="item" :value="item" />
 						</el-select>
 					</div>
@@ -267,54 +249,30 @@ const handleRefresh = () => {
 
 		<template #footer>
 			<span class="dialog-footer">
-				<el-button @click="serviceFormVisible = false">Cancel</el-button>
-				<el-button type="primary" @click="serviceFormVisible = false"> Confirm </el-button>
+				<el-button @click="importVisible = false">Cancel</el-button>
+				<el-button type="primary" @click="importVisible = false"> Confirm </el-button>
 			</span>
 		</template>
 	</el-dialog>
 	<!-- import-dialog End -->
 
-	<!-- add-dialog Start -->
-	<el-dialog v-model="addVisible" title="Create Database" width="520px" style="border-radius: 8px">
-		<el-form label-position="top" label-width="100px" :model="formAdd" style="max-width: 460px">
-			<el-form-item label="Name">
-				<el-input v-model="formAdd.name" />
-			</el-form-item>
-
-			<!-- <el-form-item label="DES">
-				<el-select v-model="selectdbVal2" filterable placeholder="Select" class="w-full">
-					<el-option v-for="item in dbList2" :key="item" :label="item" :value="item" />
-				</el-select>
-			</el-form-item> -->
-
-			<el-form-item label="Cloud Provider">
-				<el-select v-model="formAdd.cloudProvider" filterable placeholder="Select cloud provider" class="w-full">
-					<el-option
-						v-for="item in cloudProvider"
-						:key="item.cloudProvider"
-						:label="item.cloudProvider"
-						:value="item.cloudProvider"
-					/>
-				</el-select>
-			</el-form-item>
-
-			<el-form-item label="Region" v-show="formAdd.cloudProvider">
-				<el-select v-model="formAdd.region" filterable placeholder="Select region" class="w-full">
-					<el-option v-for="item in region[formAdd.cloudProvider]" :key="item" :label="item" :value="item" />
-				</el-select>
-				<div class="mt-2 text-xs">
-					<p class="text-gray-500">For best performance, select the region that is closer to your application.</p>
-				</div>
-			</el-form-item>
-		</el-form>
+	<!-- 超出创建数量限制 -->
+	<el-dialog v-model="cross" width="26%" :lock-scroll="false" :show-close="false" class="br-8">
+		<template #header="{ titleId }">
+			<div class="flex items-center">
+				<i-ep:warning-filled class="text-2xl text-[#faad14]" />
+				<h4 :id="titleId" class="font-semibold ml-2">You can create 1 database in free tier</h4>
+			</div>
+		</template>
+		<div class="info-text pl-9 text-start pb-0">
+			You can <a class="is-link" href="#">add a payment method</a> to upgrade your plan and create more databases.
+		</div>
 		<template #footer>
 			<span class="dialog-footer">
-				<el-button @click="addVisible = false">Cancel</el-button>
-				<el-button type="primary" @click="addVisible = false"> Confirm </el-button>
+				<el-button color="#67c23a" style="color: #ffffff" @click="cross = false"> OK </el-button>
 			</span>
 		</template>
 	</el-dialog>
-	<!-- add-dialog End -->
 </template>
 
 <style lang="scss">

@@ -1,5 +1,5 @@
 <template>
-	<Card />
+	<top-card />
 	<div class="pb-20">
 		<div class="text-white opacity-80 font-semibold text-center mb-10">
 			<h1 class="text-5xl">Plans & Pricing</h1>
@@ -18,9 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import Card from "./components/card.vue";
-import TableOnPc from "./components/TableOnPc.vue";
-import TableOnMobile from "./components/TableOnMobile.vue";
+import TopCard from "@/components/Home/TopCard.vue";
+import TableOnPc from "@/components/Home/TableOnPc.vue";
+import TableOnMobile from "@/components/Home/TableOnMobile.vue";
 </script>
 
 <style lang="scss"></style>

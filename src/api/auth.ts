@@ -1,5 +1,11 @@
 import { http } from "@/plugins/axios";
-import { IUserInfo } from "./types/auth";
+interface IUserInfo {
+	id: number;
+	nickname: string;
+	roles: string[];
+	picture: string;
+	lastLoginTime: number;
+}
 
 /**
  * Get Login user

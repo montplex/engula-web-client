@@ -1,0 +1,28 @@
+{
+  "list": [
+    {
+      "id": 20,
+      "cacheServiceId": 14,
+      "accessToken": "63246934340262050070490945954639",
+      "mode": "rw",
+      "createdDate": 1678696767000,
+      "updatedDate": 1678696767000
+    },
+    {
+      "id": 21,
+      "cacheServiceId": 14,
+      "accessToken": "03129606367344825403981911731704",
+      "mode": "rw",
+      "createdDate": 1678696771000,
+      "updatedDate": 1678696771000
+    },
+    {
+      "id": 22,
+      "cacheServiceId": 14,
+      "accessToken": "19696561575625006070158980018399",
+      "mode": "rw",
+      "createdDate": 1678696773000,
+      "updatedDate": 1678696773000
+    }
+  ]
+}

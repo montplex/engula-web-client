@@ -6,17 +6,16 @@ import {
 	AddCacheRes,
 	ICacheListItem,
 	CacheByIdParams,
-	CloudProviderItem,
-	ICloudProviderRes,
-	ListAccessToken,
+	RegionListRes,
+	ITokenListRes,
 	addTokenParams,
 	updateTokenParams
-} from "./types/cache";
+} from "#/cache";
 
 /**
  * Get list cache service
  */
-export const getServiceList = () => {
+export const getCacheList = () => {
 	return http.get<ICacheListRes>({
 		url: "/cache_service/list",
 		showLoading: true
@@ -36,8 +35,9 @@ export const addService = (params: AddCacheParams) => {
 /**
  * Get one cache service
  */
-export const getServiceById = (params: CacheByIdParams) => {
-	return http.put<ICacheListItem>({
+type ICacheOneRes = { one: ICacheListItem };
+export const getCacheById = (params: CacheByIdParams) => {
+	return http.get<ICacheOneRes>({
 		url: "/cache_service/one",
 		params
 	});
@@ -47,7 +47,7 @@ export const getServiceById = (params: CacheByIdParams) => {
  *  获取云厂商和区域列表
  */
 export const getCloudProviderList = () => {
-	return http.get<ICloudProviderRes<CloudProviderItem>>({
+	return http.get<RegionListRes>({
 		url: "/region/list"
 	});
 };
@@ -55,9 +55,9 @@ export const getCloudProviderList = () => {
 /**
  *  列表访问令牌
  */
-export const getAccessToken = (cacheServiceId?: string) => {
-	return http.get<ListAccessToken>({
-		url: "/engula/cache_service/access_token/list",
+export const getAccessTokenList = (cacheServiceId?: string) => {
+	return http.get<ITokenListRes>({
+		url: "/cache_service/access_token/list",
 		params: { cacheServiceId }
 	});
 };
@@ -71,7 +71,7 @@ type addTokenRes = { accessToken: string; id: string };
  */
 export const addAccessToken = (params: addTokenParams) => {
 	return http.put<addTokenRes>({
-		url: "/engula/cache_service/access_token/add",
+		url: "/cache_service/access_token/add",
 		params
 	});
 };
@@ -79,9 +79,10 @@ export const addAccessToken = (params: addTokenParams) => {
 /**
  * 删除访问令牌
  */
-export const deleteAccessToken = (id: string) => {
-	return http.delete<addTokenRes>({
-		url: `/engula/cache_service/access_token/delete/${id}`
+export const deleteAccessToken = (id: string | number) => {
+	return http.delete<any>({
+		url: `/cache_service/access_token/delete`,
+		params: { id }
 	});
 };
 
@@ -89,9 +90,8 @@ export const deleteAccessToken = (id: string) => {
  * 更新访问令牌
  */
 export const updateAccessTokenMode = (params: updateTokenParams) => {
-	return http.request<any>({
-		method: "update",
-		url: `/engula/cache_service/access_token/mode/update`,
+	return http.post<any>({
+		url: `/cache_service/access_token/mode/update`,
 		params
 	});
 };

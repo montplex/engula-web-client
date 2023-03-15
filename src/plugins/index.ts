@@ -8,7 +8,7 @@ import "virtual:svg-icons-register";
 import svgIcon from "@/components/SvgIcon/index.vue";
 
 import { createPinia } from "pinia";
-import { createRouter } from "@/routers";
+import { createRouter } from "@/router";
 import setupAuth0 from "./auth0";
 import setupHighlight from "./highlight";
 import error from "./error";

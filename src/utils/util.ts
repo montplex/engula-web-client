@@ -16,6 +16,11 @@ export const cloneDeep = (obj: TObject): TObject => {
 	return memo;
 };
 
+/**
+ * @param env 格式化 import.meta.env对象
+ *
+ */
+console.log();
 export function env() {
 	const env = cloneDeep(import.meta.env) as ImportMetaEnv;
 	Object.entries(import.meta.env as Record<string, any>).forEach(([key, value]) => {

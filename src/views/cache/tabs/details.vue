@@ -3,7 +3,7 @@
 	<div class="mt-8 grid grid-cols-1 gap-8">
 		<div class="rounded-lg border border-gray-200 p-4 sm:p-8">
 			<div class="grid items-center gap-4 sm:grid-flow-col">
-				<div v-for="(item, index) in baseInfo" :key="index" @mouseenter="item.show = true" @mouseleave="item.show = false">
+				<!-- <div v-for="(item, index) in baseInfo" :key="index" @mouseenter="item.show = true" @mouseleave="item.show = false">
 					<div class="text-gray-500">{{ item.name }}</div>
 					<div class="copy-text flex items-center">
 						<div class="mr-1">{{ item.info }}</div>
@@ -15,9 +15,35 @@
 							</div>
 						</el-tooltip>
 					</div>
+				</div> -->
+				<div>
+					<div class="text-gray-500">cloudProvider</div>
+					<div class="copy-text flex items-center">
+						<div class="mr-1">{{ store.oneCache!.cloudProvider }}</div>
+					</div>
+				</div>
+				<div>
+					<div class="text-gray-500">Region</div>
+					<div class="copy-text flex items-center">
+						<div class="mr-1">{{ store.oneCache!.region }}</div>
+					</div>
+				</div>
+				<div>
+					<div class="text-gray-500">Status</div>
+					<div class="copy-text flex items-center">
+						<div class="mr-1">{{ CachestatusTo[store.oneCache!.status] }}</div>
+					</div>
+				</div>
+				<div>
+					<div class="text-gray-500">CreateTime</div>
+					<div class="copy-text flex items-center">
+						<div class="mr-1">
+							{{ dayjs(store.oneCache?.createdDate).format("MMM D, YYYY") }}
+						</div>
+					</div>
 				</div>
 			</div>
-			<el-tooltip effect="dark" placement="top">
+			<!-- <el-tooltip effect="dark" placement="top">
 				<template #content>
 					<p class="!text-sm">{{ copyTips }}</p>
 				</template>
@@ -31,11 +57,13 @@
 						<svgIcon icon="copy" class="text-[#1677ff] text-sm" />
 					</div>
 				</div>
-			</el-tooltip>
+			</el-tooltip> -->
 		</div>
 
 		<div class="section-connect">
-			<div class="col-span-1"><h3 class="text-xl font-normal">Connect to your database</h3></div>
+			<div class="col-span-1">
+				<h3 class="text-xl font-normal">Connect to your database</h3>
+			</div>
 			<div class="overflow-x-auto sm:overflow-hidden">
 				<el-radio-group v-model="tabPosition" size="large" fill="#21cc93">
 					<el-radio-button label="redis">redis-cli</el-radio-button>
@@ -47,7 +75,7 @@
 					<el-radio-button label="docker">Docker</el-radio-button>
 				</el-radio-group>
 			</div>
-			<CodeView :type="tabPosition" password="70c51cb8867142a8a45b2da7516c9dd1" />
+			<code-fragment :type="tabPosition" password="70c51cb8867142a8a45b2da7516c9dd1" />
 			<!-- <div class="space-y-6">
 				<CodeHight @on-eye-click="handleEyeClick" :code="code" />
 				<div class="info-warning">
@@ -62,12 +90,16 @@
 			</div> -->
 		</div>
 		<div class="section-connect">
-			<div class="col-span-1"><h3 class="text-xl font-normal">Configuration</h3></div>
+			<div class="col-span-1">
+				<h3 class="text-xl font-normal">Configuration</h3>
+			</div>
 			<div class="overflow-x-auto sm:overflow-hidden">
 				<div class="mt-2">
 					<div class="flex items-center py-6">
 						<div class="mr-4 mt-0.5 flex w-10 justify-center self-start">
-							<div class="text-xl"><span class="mt-0.5 flex h-3 w-3 rounded-full bg-gray-300 !bg-green-500"></span></div>
+							<div class="text-xl">
+								<span class="mt-0.5 flex h-3 w-3 rounded-full bg-gray-300 !bg-green-500"></span>
+							</div>
 						</div>
 						<div class="flex-grow">
 							<h4 class="text-base text-info-8">TLS (SSL)</h4>
@@ -81,7 +113,9 @@
 					<div class="border-b border-gray-200"></div>
 					<div class="flex items-center py-6">
 						<div class="mr-4 mt-0.5 flex w-10 justify-center self-start">
-							<div class="text-xl"><span class="mt-0.5 flex h-3 w-3 rounded-full bg-gray-300 !bg-green-500"></span></div>
+							<div class="text-xl">
+								<span class="mt-0.5 flex h-3 w-3 rounded-full bg-gray-300 !bg-green-500"></span>
+							</div>
 						</div>
 						<div class="flex-grow">
 							<h4 class="text-base text-info-8">Eviction</h4>
@@ -95,7 +129,9 @@
 					<div class="border-b border-gray-200"></div>
 					<div class="flex items-center py-6">
 						<div class="mr-4 mt-0.5 flex w-10 justify-center self-start">
-							<div class="text-xl"><span class="mt-0.5 flex h-3 w-3 rounded-full bg-gray-300"></span></div>
+							<div class="text-xl">
+								<span class="mt-0.5 flex h-3 w-3 rounded-full bg-gray-300"></span>
+							</div>
 						</div>
 						<div class="flex-grow">
 							<h4 class="text-base text-info-8">Auto Scale</h4>
@@ -109,7 +145,9 @@
 					<div class="border-b border-gray-200"></div>
 					<div class="flex items-center py-6">
 						<div class="mr-4 mt-0.5 flex w-10 justify-center self-start">
-							<div class="text-xl"><span class="mt-0.5 flex h-3 w-3 rounded-full bg-gray-300 !bg-green-500"></span></div>
+							<div class="text-xl">
+								<span class="mt-0.5 flex h-3 w-3 rounded-full bg-gray-300 !bg-green-500"></span>
+							</div>
 						</div>
 						<div class="flex-grow">
 							<h4 class="text-base text-info-8">Replication</h4>
@@ -182,7 +220,7 @@
 					You can <button class="is-link">add your credit card</button> to upgrade your database to pay-as-you-go plan.
 				</p>
 			</div>
-
+			<!-- 收费标准 Start -->
 			<div class="overflow-x-auto sm:overflow-hidden">
 				<div class="min-w-[720px]">
 					<div class="mt-2 grid grid-cols-3 gap-y-[1px] bg-gray-200 bg-opacity-80">
@@ -193,7 +231,9 @@
 								<span class="whitespace-nowrap rounded-full bg-blue-500 px-2 py-0.5 text-xs text-white">Current Plan</span>
 							</p>
 						</div>
-						<div class="bg-white px-4 py-2"><h5 class="text-sm">Pay as you go</h5></div>
+						<div class="bg-white px-4 py-2">
+							<h5 class="text-sm">Pay as you go</h5>
+						</div>
 						<div class="bg-white px-4 py-2">Max Commands Per Second</div>
 						<div class="px-4 py-2 bg-blue-50">1000</div>
 						<div class="bg-white px-4 py-2">1K</div>
@@ -228,17 +268,21 @@
 						<div class="bg-white px-4 py-2">
 							<!-- <el-button type="primary" class="!border-blue-600 !bg-blue-500 hover:opacity-80">Connect</el-button> -->
 							<!-- padding: 4px 15px -->
-							<el-button size="large" class="!my-1" type="primary">Add your credit card</el-button>
+							<el-button class="!my-1" type="primary">Add your credit card</el-button>
 						</div>
 					</div>
 				</div>
 			</div>
+			<!-- 收费标准 End -->
 		</div>
 
+		<!-- CacheReset Password Start  -->
 		<div class="section-connect grid-cols-3 gap-8 !border-orange-200 bg-orange-50">
 			<div class="col-span-2">
 				<h4 class="text-lg">Reset Password</h4>
-				<div class="text-gray-600"><p>This operation will generate a new random password for the Redis database.</p></div>
+				<div class="text-gray-600">
+					<p>This operation will generate a new random password for the Redis database.</p>
+				</div>
 			</div>
 			<div class="overflow-x-auto sm:overflow-hidden">
 				<div class="flex h-full items-center justify-end">
@@ -247,11 +291,15 @@
 				</div>
 			</div>
 		</div>
+		<!-- CacheReset Password End  -->
 
+		<!-- Transfer Start -->
 		<div class="section-connect grid-cols-3 !border-orange-200 bg-orange-50">
 			<div class="col-span-2">
 				<h4 class="text-lg">Transfer Database</h4>
-				<div class="text-gray-600"><p>Move your Database to a different team with zero downtime.</p></div>
+				<div class="text-gray-600">
+					<p>Move your Database to a different team with zero downtime.</p>
+				</div>
 			</div>
 			<div class="overflow-x-auto sm:overflow-hidden">
 				<div class="flex h-full items-center justify-end">
@@ -260,11 +308,14 @@
 				</div>
 			</div>
 		</div>
+		<!-- Transfer End -->
 
 		<div class="section-connect grid-cols-3 !border-red-200 bg-red-50">
 			<div class="col-span-2">
 				<h4 class="text-lg">Delete this database</h4>
-				<div class="text-gray-600"><p>Once you delete a database, there is no going back. Please be certain.</p></div>
+				<div class="text-gray-600">
+					<p>Once you delete a database, there is no going back. Please be certain.</p>
+				</div>
 			</div>
 			<div class="overflow-x-auto sm:overflow-hidden">
 				<div class="flex h-full items-center justify-end">
@@ -276,12 +327,26 @@
 </template>
 
 <script setup lang="ts">
-import CodeView from "../../components/Codeview.vue";
+import CodeFragment from "@/components/Cache/CodeFragment.vue";
+
 import { reactive, ref } from "vue";
+import { useRoute } from "vue-router";
+import { useDbStore } from "@/stores/modules/cache";
+import { CachestatusTo } from "#/enum";
+import { dayjs } from "element-plus";
+const route = useRoute();
+const store = useDbStore();
+store.setOneCache({ id: route.query.id as string });
+const cache = ref(store.oneCache);
 
 const baseInfo = reactive([
 	{ name: "Region", info: "us-east-1" },
-	{ name: "Endpoint", info: "us1-trusty-tick-39796.upstash.io", show: false, hover: true },
+	{
+		name: "Endpoint",
+		info: "us1-trusty-tick-39796.upstash.io",
+		show: false,
+		hover: true
+	},
 	{ name: "Password", info: "•••••••••", show: false, hover: true },
 	{ name: "Port", info: "39796", show: false, hover: true },
 	{ name: "TLS/SSL", info: "Enabled" }

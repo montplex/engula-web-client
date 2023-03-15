@@ -1,6 +1,6 @@
 <template>
-	<Header />
-	<RedisInfo />
+	<base-header />
+	<base-info />
 	<div class="container mx-auto !max-w-screen-xl px-4 pt-8 pb-20">
 		<el-tabs v-model="activeName" @tab-click="tabClick">
 			<el-tab-pane v-for="item in tabs" :label="item" :name="item.toLowerCase()" :key="item" :lazy="true"> </el-tab-pane>
@@ -10,24 +10,33 @@
 </template>
 
 <script setup lang="ts">
-import Header from "../components/Header.vue";
-import RedisInfo from "../components/RedisInfo.vue";
+import BaseHeader from "@/components/Cache/BaseHeader.vue";
+import BaseInfo from "@/components/Cache/BaseInfo.vue";
 import { useRouter, useRoute } from "vue-router";
 import { ref, watch } from "vue";
 import type { TabsPaneContext } from "element-plus";
+import { useDbStore } from "@/stores/modules/cache";
+const store = useDbStore();
 
 const route = useRoute();
 const router = useRouter();
+store.setOneCache({ id: route.query.id as string });
 
 const tabs = ref(["Details", "Usage", "Cli", "Token"]);
 
 const activeName = ref("details");
 
 const tabClick = ({ paneName }: TabsPaneContext) => {
-	router.push({
-		path: paneName as string,
-		query: { id: route.query.id }
-	});
+	const toPage = (path: string) => router.push({ path, query: { id: route.query.id } });
+
+	const pagesEnum = {
+		details: "/redis/details",
+		usage: "/redis/usage",
+		cli: "/redis/cli",
+		token: "/redis/token"
+	} as const;
+
+	toPage(pagesEnum[paneName as keyof typeof pagesEnum]);
 };
 
 /* 监听路由变化,切换子路由页面时保持tab选中状态 */
