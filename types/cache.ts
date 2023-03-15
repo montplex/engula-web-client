@@ -1,11 +1,4 @@
-const Cachestatus = {
-	created: "0",
-	running: "1",
-	limited: "20",
-	reject: "200",
-	stopped: "-1",
-	terminated: "-10"
-} as const;
+import { Cachestatus } from "#/enum";
 
 type StrTest = (typeof Cachestatus)[keyof typeof Cachestatus];
 export interface ICacheListItem {

@@ -82,14 +82,14 @@
 </template>
 
 <script setup lang="ts">
-import { useAuth0 } from "@auth0/auth0-vue";
+// import { useAuth0 } from "@auth0/auth0-vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 let open = ref(false);
 
 const router = useRouter();
-const auth0 = useAuth0();
+// const auth0 = useAuth0();
 
 const toPage = (url: string) => {
 	router.push(url);
@@ -105,15 +105,16 @@ const handleCreate = () => {
 };
 
 const handleConsole = () => {
-	console.log("auth0 检测——————>");
+	router.push("/console");
+	/* console.log("auth0 检测——————>");
 	const { isAuthenticated, isLoading } = auth0;
 	console.log(auth0);
 	if (!isAuthenticated && !isLoading) {
 		auth0.loginWithRedirect();
 	} else {
 		console.log("auth0 已登入——————>");
-		router.push("/console");
-	}
+		
+	} */
 };
 </script>
 
