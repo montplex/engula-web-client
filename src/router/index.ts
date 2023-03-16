@@ -41,6 +41,11 @@ export function createRouter(app: App) {
 				// beforeEnter: createAuthGuard(app)
 			},
 			{
+				path: "/mycli",
+				name: "Mycli",
+				component: () => import("@/views/cache/cli.vue")
+			},
+			{
 				path: "/redis",
 				name: "Redis",
 				component: () => import("@/views/cache/cache.vue"),

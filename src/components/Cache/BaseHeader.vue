@@ -4,10 +4,10 @@
 			<div class="flex items-center gap-6">
 				<h3 class="flex text-white cursor-pointer h-8 text-lg font-semibold">MontPlex</h3>
 				<nav cy-id="master-nav" class="flex items-center gap-2">
-					<a
+					<RouterLink
 						class="inline-flex h-11 items-center gap-1 rounded-md px-3 hover:bg-gray-700 hover:text-white !bg-white font-semibold !text-black"
-						href="/"
-						>Redis</a
+						to="/mycli"
+						>Redis</RouterLink
 					>
 				</nav>
 				<div class="ml-auto flex items-center gap-3">

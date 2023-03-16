@@ -10,7 +10,7 @@ import svgIcon from "@/components/SvgIcon/index.vue";
 import { createPinia } from "pinia";
 import { createRouter } from "@/router";
 import setupAuth0 from "./auth0";
-import setupHighlight from "./highlight";
+// import setupHighlight from "./highlight";
 import error from "./error";
 
 export function setupPlugins(app: App) {
@@ -19,6 +19,6 @@ export function setupPlugins(app: App) {
 	app.use(createRouter(app));
 	app.use(createPinia());
 	setupTailwindcss();
-	setupHighlight(app);
+	// setupHighlight(app);
 	setupAuth0(app);
 }

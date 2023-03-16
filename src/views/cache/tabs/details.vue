@@ -98,7 +98,7 @@
 					<div class="flex items-center py-6">
 						<div class="mr-4 mt-0.5 flex w-10 justify-center self-start">
 							<div class="text-xl">
-								<span class="mt-0.5 flex h-3 w-3 rounded-full bg-gray-300 !bg-green-500"></span>
+								<span class="mt-0.5 flex h-3 w-3 rounded-full !bg-green-500"></span>
 							</div>
 						</div>
 						<div class="flex-grow">
@@ -114,7 +114,7 @@
 					<div class="flex items-center py-6">
 						<div class="mr-4 mt-0.5 flex w-10 justify-center self-start">
 							<div class="text-xl">
-								<span class="mt-0.5 flex h-3 w-3 rounded-full bg-gray-300 !bg-green-500"></span>
+								<span class="mt-0.5 flex h-3 w-3 rounded-full !bg-green-500"></span>
 							</div>
 						</div>
 						<div class="flex-grow">
@@ -146,7 +146,7 @@
 					<div class="flex items-center py-6">
 						<div class="mr-4 mt-0.5 flex w-10 justify-center self-start">
 							<div class="text-xl">
-								<span class="mt-0.5 flex h-3 w-3 rounded-full bg-gray-300 !bg-green-500"></span>
+								<span class="mt-0.5 flex h-3 w-3 rounded-full !bg-green-500"></span>
 							</div>
 						</div>
 						<div class="flex-grow">
