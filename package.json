@@ -9,6 +9,7 @@
     "serve": "vite",
     "build:dev": "vite build --mode development",
     "build:pro": "vite build --mode production",
+    "build:test": "vite build --mode test",
     "preview": "vite preview",
     "lint:eslint": "eslint --fix --ext .js,.ts,.vue ./src",
     "lint:prettier": "prettier --write --loglevel warn \"src/**/*.{js,ts,json,tsx,css,less,scss,vue,html,md}\"",

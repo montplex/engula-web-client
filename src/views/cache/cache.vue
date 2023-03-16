@@ -1,52 +1,39 @@
 <template>
 	<base-header />
-	<base-info />
+	<base-info :base="cache" />
 	<div class="container mx-auto !max-w-screen-xl px-4 pt-8 pb-20">
-		<el-tabs v-model="activeName" @tab-click="tabClick">
-			<el-tab-pane v-for="item in tabs" :label="item" :name="item.toLowerCase()" :key="item" :lazy="true"> </el-tab-pane>
+		<el-tabs v-model="cName">
+			<el-tab-pane label="Details" name="Details"><chche-details v-if="cName === 'Details'" /></el-tab-pane>
+			<el-tab-pane label="Usage" name="Usage"><chche-usage v-if="cName === 'Usage'" /></el-tab-pane>
+			<el-tab-pane label="Cli" name="Cli"><chche-cli v-if="cName === 'Cli'" /></el-tab-pane>
+			<el-tab-pane label="Token" name="Token"><chche-token v-if="cName === 'Token'" /></el-tab-pane>
 		</el-tabs>
-		<router-view />
 	</div>
 </template>
 
 <script setup lang="ts">
 import BaseHeader from "@/components/Cache/BaseHeader.vue";
 import BaseInfo from "@/components/Cache/BaseInfo.vue";
-import { useRouter, useRoute } from "vue-router";
-import { ref, watch } from "vue";
-import type { TabsPaneContext } from "element-plus";
+
+import ChcheDetails from "./tabs/details.vue";
+import ChcheUsage from "./tabs/usages.vue";
+import ChcheCli from "./tabs/cli.vue";
+import ChcheToken from "./tabs/token.vue";
+
+import { ICacheListItem } from "#/cache";
+import { getCacheById } from "@/api/cache";
+import { useRoute } from "vue-router";
+import { ref } from "vue";
 import { useDbStore } from "@/stores/modules/cache";
+
+const cName = ref("Details");
 const store = useDbStore();
-
 const route = useRoute();
-const router = useRouter();
-store.setOneCache({ id: route.query.id as string });
 
-const tabs = ref(["Details", "Usage", "Cli", "Token"]);
-
-const activeName = ref("details");
-
-const tabClick = ({ paneName }: TabsPaneContext) => {
-	const toPage = (path: string) => router.push({ path, query: { id: route.query.id } });
-
-	const pagesEnum = {
-		details: "/redis/details",
-		usage: "/redis/usage",
-		cli: "/redis/cli",
-		token: "/redis/token"
-	} as const;
-
-	toPage(pagesEnum[paneName as keyof typeof pagesEnum]);
-};
-
-/* 监听路由变化,切换子路由页面时保持tab选中状态 */
-watch(
-	() => router.currentRoute.value.path,
-	(newValue: string) => {
-		activeName.value = newValue.split("/")[2];
-	},
-	{ immediate: true }
-);
+const cache = ref({} as ICacheListItem);
+getCacheById({ id: route.query.id as string }).then((res) => {
+	cache.value = res.one;
+});
 </script>
 
 <style lang="scss"></style>

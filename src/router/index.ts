@@ -48,30 +48,7 @@ export function createRouter(app: App) {
 			{
 				path: "/redis",
 				name: "Redis",
-				component: () => import("@/views/cache/cache.vue"),
-				redirect: "/redis/details",
-				children: [
-					{
-						path: "details",
-						name: "Details",
-						component: () => import("@/views/cache/tabs/details.vue")
-					},
-					{
-						path: "usage",
-						name: "Usage",
-						component: () => import("@/views/cache/tabs/usages.vue")
-					},
-					{
-						path: "cli",
-						name: "Cli",
-						component: () => import("@/views/cache/tabs/cli.vue")
-					},
-					{
-						path: "token",
-						name: "Token",
-						component: () => import("@/views/cache/tabs/token.vue")
-					}
-				]
+				component: () => import("@/views/cache/cache.vue")
 			},
 			{
 				path: "/404",

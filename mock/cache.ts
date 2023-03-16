@@ -20,14 +20,6 @@ export default [
 		}
 	},
 	{
-		url: "/engula/text",
-		method: "post",
-		response: (res: any) => {
-			const params = parse(stringify(res.query));
-			console.log(params.name, params.age);
-		}
-	},
-	{
 		url: "/engula/cache_service/list",
 		method: "get",
 		response: () => {

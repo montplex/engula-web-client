@@ -1,5 +1,5 @@
 <template>
-	<div class="relative flex flex-col w-full p-4 font-mono text-gray-100 bg-black mt-6 rounded-lg">
+	<div class="flex flex-col w-full p-4 font-mono text-gray-100 bg-black mt-6 rounded-lg">
 		<div id="xterm" class="xterm" />
 	</div>
 </template>

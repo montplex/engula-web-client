@@ -11,5 +11,6 @@ async function init() {
 	app.use(directives);
 	app.use(Terminal);
 }
+console.log("init");
 
 init();

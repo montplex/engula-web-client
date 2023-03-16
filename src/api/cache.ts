@@ -9,7 +9,8 @@ import {
 	RegionListRes,
 	ITokenListRes,
 	addTokenParams,
-	updateTokenParams
+	updateTokenParams,
+	ICacheOneRes
 } from "#/cache";
 
 /**
@@ -35,7 +36,6 @@ export const addService = (params: AddCacheParams) => {
 /**
  * Get one cache service
  */
-type ICacheOneRes = { one: ICacheListItem };
 export const getCacheById = (params: CacheByIdParams) => {
 	return http.get<ICacheOneRes>({
 		url: "/cache_service/one",

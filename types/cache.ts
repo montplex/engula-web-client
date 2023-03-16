@@ -12,6 +12,7 @@ export interface ICacheListItem {
 	createdDate: number;
 	updatedDate: number;
 }
+export type ICacheOneRes = { one: ICacheListItem };
 
 export type ICacheList = { list: ICacheListItem[] };
 

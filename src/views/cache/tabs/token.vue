@@ -29,7 +29,7 @@
 	</div>
 
 	<!-- add-dialog Start -->
-	<el-dialog v-model="addVisible" title="Create Database" width="520px" style="border-radius: 8px">
+	<el-dialog v-model="addVisible" title="Create Database" width="520px" style="border-radius: 8px" :lock-scroll="false">
 		<el-form label-position="top" label-width="100px" :model="from" style="max-width: 460px">
 			<el-form-item label="CacheService">
 				<el-select v-model="from.cacheServiceId" filterable placeholder="Select cache Service" class="w-full">
@@ -54,7 +54,7 @@
 		</template>
 	</el-dialog>
 
-	<el-dialog v-model="update" title="Create Database" width="520px" style="border-radius: 8px">
+	<el-dialog v-model="update" title="Create Database" width="520px" style="border-radius: 8px" :lock-scroll="false">
 		<el-select v-model="fromUpdate.mode" filterable placeholder="Select" class="w-full">
 			<el-option v-for="item in ['ro', 'rw']" :key="item" :label="item" :value="item" />
 		</el-select>

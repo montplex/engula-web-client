@@ -5,7 +5,7 @@
 				<div class="flex items-center">
 					<div>
 						<h1 class="m-0 flex items-center text-2xl font-bold leading-none">
-							<span>{{ cacheName }}</span>
+							<span>{{ base.name }}</span>
 							<el-tooltip effect="dark" content="Rename Database" placement="top-start">
 								<button type="button" class="ml-3 inline-flex h-auto items-center !p-0">
 									<svgIcon @click="editVisible = true" icon="edit" class="text-gray-400" />
@@ -51,6 +51,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useDbStore } from "@/stores/modules/cache";
+import { ICacheListItem } from "#/cache";
+defineProps<{
+	base: ICacheListItem;
+}>();
+
 const store = useDbStore();
 const editVisible = ref(false);
 const cacheName = store.oneCache?.name;
