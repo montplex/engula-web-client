@@ -21,7 +21,6 @@ import ChcheCli from "./tabs/cli.vue";
 import ChcheToken from "./tabs/token.vue";
 
 import { ICacheListItem } from "#/cache";
-import { getCacheById } from "@/api/cache";
 import { useRoute } from "vue-router";
 import { ref } from "vue";
 import { useDbStore } from "@/stores/modules/cache";
@@ -31,9 +30,12 @@ const store = useDbStore();
 const route = useRoute();
 
 const cache = ref({} as ICacheListItem);
-getCacheById({ id: route.query.id as string }).then((res) => {
-	cache.value = res.one;
+
+store.setOneCache({ id: route.query.id as string }).then((res) => {
+	cache.value = res;
 });
+
+store.setCacheList();
 </script>
 
 <style lang="scss"></style>

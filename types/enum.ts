@@ -15,3 +15,8 @@ export const Cachestatus = {
 	stopped: "-1",
 	terminated: "-10"
 } as const;
+
+/* 不同用户可以创建的 Cache 数量 */
+export const hasCross = {
+	lv1: 5
+};

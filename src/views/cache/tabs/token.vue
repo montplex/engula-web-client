@@ -1,7 +1,7 @@
 <template>
 	<div class="py-6">
 		<div class="flex flex-row-reverse pb-8">
-			<el-button type="success" @click="addVisible = true"> Add AccessToken</el-button>
+			<el-button type="success" @click="addTokenBtnClick"> Add AccessToken</el-button>
 		</div>
 		<div class="rounded-lg border border-gray-200 p-4 sm:px-8 sm:py-4 mb-8" v-for="item in store.tokenList" :key="item.id">
 			<div class="flex">
@@ -15,7 +15,7 @@
 					<li class="flex items-center">
 						<h3 class="text-base">Mode:</h3>
 						<span class="pl-2 text-info-8">{{ item.mode }}</span>
-						<span @click="updateClick(item.id, item.mode)">
+						<span @click="editBtnClick(item.id, item.mode)">
 							<svg-icon icon="edit" class="inline text-lg ml-2 text-info-4 hover:opacity-70 cursor-pointer" />
 						</span>
 					</li>
@@ -29,18 +29,24 @@
 	</div>
 
 	<!-- add-dialog Start -->
-	<el-dialog v-model="addVisible" title="Create Database" width="520px" style="border-radius: 8px" :lock-scroll="false">
-		<el-form label-position="top" label-width="100px" :model="from" style="max-width: 460px">
-			<el-form-item label="CacheService">
+	<el-dialog v-model="addVisible" title="Create Database" width="520px" style="border-radius: 8px">
+		<el-form
+			label-position="top"
+			label-width="100px"
+			ref="addFormRef"
+			:model="from"
+			:rules="addTokenRules"
+			style="max-width: 460px"
+		>
+			<el-form-item label="CacheService" prop="cacheServiceId">
 				<el-select v-model="from.cacheServiceId" filterable placeholder="Select cache Service" class="w-full">
 					<el-option v-for="item in store.serviceList" :key="item.id" :label="item.name" :value="item.id" />
 				</el-select>
-				<div class="mt-2 text-xs">
-					<p class="text-gray-500">Select cache Service</p>
-				</div>
 			</el-form-item>
-
-			<el-form-item label="Mode">
+			<!-- <div class="mt-2 text-xs">
+					<p class="text-gray-500">Select cache Service</p>
+				</div> -->
+			<el-form-item label="Mode" prop="mode">
 				<el-select v-model="from.mode" filterable placeholder="Select" class="w-full">
 					<el-option v-for="item in ['ro', 'rw']" :key="item" :label="item" :value="item" />
 				</el-select>
@@ -49,12 +55,12 @@
 		<template #footer>
 			<span class="dialog-footer">
 				<el-button @click="addVisible = false">Cancel</el-button>
-				<el-button type="primary" @click="submit"> Confirm </el-button>
+				<el-button type="primary" @click="submit(addFormRef, addTokenCallback)"> Confirm </el-button>
 			</span>
 		</template>
 	</el-dialog>
 
-	<el-dialog v-model="update" title="Create Database" width="520px" style="border-radius: 8px" :lock-scroll="false">
+	<el-dialog v-model="update" title="Create Database" width="520px" style="border-radius: 8px">
 		<el-select v-model="fromUpdate.mode" filterable placeholder="Select" class="w-full">
 			<el-option v-for="item in ['ro', 'rw']" :key="item" :label="item" :value="item" />
 		</el-select>
@@ -73,11 +79,14 @@ import { computed, ref, reactive } from "vue";
 import { addAccessToken, deleteAccessToken, updateAccessTokenMode } from "@/api/cache";
 import { addTokenParams, updateTokenParams } from "#/cache";
 import { useDbStore } from "@/stores/modules/cache";
+import { resetForm, addTokenRules, submit } from "@/utils/rules";
+import type { FormInstance } from "element-plus";
 
 const store = useDbStore();
 store.setTokenList();
 
 const addVisible = ref(false);
+const addFormRef = ref<FormInstance>();
 
 const from = reactive<addTokenParams>({
 	cacheServiceId: "",
@@ -91,57 +100,40 @@ const fromUpdate = reactive<updateTokenParams>({
 	mode: "" as "ro" | "rw"
 });
 
-function updateClick(id: number, mode: "ro" | "rw") {
+const addTokenBtnClick = () => {
+	addVisible.value = true;
+	resetForm(addFormRef.value);
+};
+
+const editBtnClick = (id: number, mode: "ro" | "rw") => {
 	fromUpdate.mode = mode;
 	fromUpdate.id = id;
 	update.value = true;
-	console.log(fromUpdate);
-}
+};
 
-function updateMode() {
+const updateMode = () => {
 	updateAccessTokenMode(fromUpdate)
 		.then((res) => {
 			if (res.ok) {
-				// store.setTokenList();
-				return ElMessage({
-					type: "success",
-					message: "Delete completed"
-				});
+				store.setTokenList();
+				return ElMessage.success("Update completed");
 			}
-			ElMessage({
-				type: "error",
-				message: "Delete canceled"
-			});
+			ElMessage.error("Update failed");
 		})
 		.finally(() => {
 			update.value = false;
 		});
-}
+};
 
-function submit() {
-	if (!from.cacheServiceId) {
-		return ElMessage({
-			message: "Please select cache service",
-			type: "error",
-			duration: 2000
-		});
-	}
-
-	if (!from.mode) {
-		return ElMessage({
-			message: "Please select mode",
-			type: "error",
-			duration: 2000
-		});
-	}
+const addTokenCallback = () => {
 	addAccessToken(from).then((res) => {
 		console.log(res);
-		// store.setTokenList();
+		store.setTokenList();
 		addVisible.value = false;
 	});
-}
+};
 
-function deleteToken(id: number) {
+const deleteToken = (id: number) => {
 	ElMessageBox.confirm("Are you sure you want to delete ?", "", {
 		confirmButtonText: "Delete",
 		cancelButtonText: "Cancel",
@@ -150,20 +142,11 @@ function deleteToken(id: number) {
 	})
 		.then(() => {
 			deleteAccessToken(id).then((res) => {
-				if (res.ok) {
-					return ElMessage({
-						type: "success",
-						message: "Delete completed"
-					});
-				}
-				ElMessage({
-					type: "error",
-					message: "Delete canceled"
-				});
+				res.ok ? ElMessage.success("Delete completed") : ElMessage.error("Delete failed");
 			});
 		})
 		.catch(() => {});
-}
+};
 
 const day = computed(() => dayjs().format("MMM D, YYYY"));
 

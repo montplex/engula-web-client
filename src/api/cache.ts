@@ -26,7 +26,7 @@ export const getCacheList = () => {
 /**
  * Add cache service
  */
-export const addService = (params: AddCacheParams) => {
+export const addCache = (params: AddCacheParams) => {
 	return http.put<AddCacheRes>({
 		url: "/cache_service/add",
 		params

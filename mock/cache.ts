@@ -68,8 +68,8 @@ export default [
 						region: "ap-northeast-1",
 						createdDate: 1678695897000,
 						updatedDate: 1678695898000
-					},
-					{
+					}
+					/* {
 						id: 16,
 						orgId: 2,
 						name: "DBTEST-008",
@@ -79,7 +79,7 @@ export default [
 						region: "ap-northeast-1",
 						createdDate: 1678695901000,
 						updatedDate: 1678695902000
-					}
+					} */
 				]
 			};
 		}
@@ -170,7 +170,7 @@ export default [
 	{
 		url: "/engula/cache_service/add",
 		method: "put",
-		rawResponse: async (req, res) => {
+		response: () => {
 			return {
 				id: 13,
 				accessToken: "et ut fugiat ipsum Lorem"

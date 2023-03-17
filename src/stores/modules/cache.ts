@@ -25,6 +25,7 @@ export const useDbStore = defineStore({
 			const res = await getCacheList();
 			this.serviceList = res.list;
 			this.filterList = res.list;
+			return res.list;
 		},
 		filterCacheList(val: string) {
 			const data = this.serviceList.filter((item) => item.name.indexOf(val) !== -1);
@@ -43,6 +44,7 @@ export const useDbStore = defineStore({
 		async setOneCache(params: CacheByIdParams) {
 			const res = await getCacheById(params);
 			this.oneCache = res.one;
+			return res.one;
 		},
 		async setTokenList() {
 			const res = await getAccessTokenList("14");

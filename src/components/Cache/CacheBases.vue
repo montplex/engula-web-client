@@ -2,29 +2,25 @@
 import { ref, reactive, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useDbStore } from "@/stores/modules/cache";
+import { addCache } from "@/api/cache";
 import { AddCacheParams } from "#/cache";
 import { CachestatusTo } from "#/enum";
+import { createCacheRules, resetForm, submit } from "@/utils/rules";
+import type { FormInstance } from "element-plus";
+
 const store = useDbStore();
 const router = useRouter();
 
-const dbList = ["DB_1", "DB2", "DB3"];
-const dbList2 = ["NGinx", "Ecrssio", "Montplex"];
-
-const importCache = () => {
-	importVisible.value = true;
-};
-
-const formAdd = reactive<AddCacheParams>({
+const addForm = reactive<AddCacheParams>({
 	cloudProvider: "",
 	name: "",
-	region: "",
-	des: ""
+	region: ""
+	// des: ""
 });
 
 const region = computed(() => {
 	let regionObj: any = {};
 	store.regionList.map((item) => item.regions && (regionObj[item.cloudProvider] = item.regions));
-	console.log("regionObj", regionObj);
 	return regionObj;
 });
 
@@ -33,40 +29,50 @@ const cross = ref(false); // 控制超出创建限制 (显示弹窗)
 const isRefresh = ref(false); // 刷新按钮 laoding
 const importVisible = ref(false); // 导入弹窗
 const addVisible = ref(false); // 新建弹窗
+const searchVal = ref(""); // 搜索
 
-const searchVal = ref("");
-const selectdbVal = ref("");
-const selectdbVal2 = ref("");
+const dbList = ["DB_1", "DB2", "DB3"];
+const dbList2 = ["NGinx", "Ecrssio", "Montplex"];
+const importFrom = reactive({ first: "", second: "" });
+
+const addFormRef = ref<FormInstance>();
 
 /* 新建 Cache  */
 const createCache = () => {
-	if (!store.serviceList) {
-		cross.value = true;
-	} else {
+	resetForm(addFormRef.value);
+	if (store.serviceList.length >= 5) cross.value = true;
+	else {
 		store.setCloudProviderList();
-		console.log("----add");
 		addVisible.value = true;
 	}
 };
 
-/* 去详情页 */
-const dataBaseHandle = (id: number) => {
-	router.push({ path: "/redis", query: { id } });
+const addCallback = () => {
+	addCache(addForm).then((res) => {
+		store.setCacheList();
+		ElMessage.success("Create successfully");
+		addVisible.value = false;
+	});
 };
+
+/* 导入 */
+const importCache = () => (importVisible.value = true);
+
+/* 去详情页 */
+const goDetail = (id: number) => router.push({ path: "/redis", query: { id } });
 
 /* 搜索 */
-const handleSearch = (e: string) => {
-	store.filterCacheList(e);
-};
+const handleSearch = (e: string) => store.filterCacheList(e);
 
 /* 刷新按钮  */
-const handleRefresh = () => {
+function refresh() {
 	isRefresh.value = true;
 	store.setCacheList();
 	setTimeout(() => {
 		isRefresh.value = false;
+		ElMessage.success("Refresh successfully");
 	}, 1000);
-};
+}
 </script>
 
 <template>
@@ -82,7 +88,7 @@ const handleRefresh = () => {
 				<!-- Refresh -->
 				<el-tooltip class="box-item" effect="dark" content="Refresh databases" placement="top-start">
 					<el-button
-						@click="handleRefresh"
+						@click="refresh"
 						class="!flex w-[32px] shrink-0 items-center justify-center !py-0 text-gray-400 sm:flex base-btn-hover"
 					>
 						<el-icon :size="22">
@@ -107,7 +113,7 @@ const handleRefresh = () => {
 					v-for="item in store.filterList"
 					:key="item.id"
 					class="flex flex-col rounded-lg border border-gray-200 shadow-sm cursor-pointer"
-					@click="dataBaseHandle(item.id)"
+					@click="goDetail(item.id)"
 				>
 					<header class="p-4 sm:p-6 sm:pt-5 sm:pb-4">
 						<div class="mb-2 flex items-center justify-between">
@@ -158,21 +164,28 @@ const handleRefresh = () => {
 
 	<!-- add-dialog Start -->
 	<el-dialog v-model="addVisible" title="Create Database" width="520px" style="border-radius: 8px">
-		<el-form label-position="top" label-width="100px" :model="formAdd" style="max-width: 460px">
-			<el-form-item label="Name">
-				<el-input v-model="formAdd.name" />
+		<el-form
+			label-position="top"
+			label-width="100px"
+			ref="addFormRef"
+			:model="addForm"
+			style="max-width: 460px"
+			:rules="createCacheRules"
+		>
+			<el-form-item label="Name" prop="name">
+				<el-input v-model="addForm.name" />
 			</el-form-item>
 
 			<!-- <el-form-item label="DES">
-				<el-select v-model="selectdbVal2" filterable placeholder="Select" class="w-full">
+				<el-select v-model="addForm.des" filterable placeholder="Select" class="w-full">
 					<el-option v-for="item in dbList2" :key="item" :label="item" :value="item" />
 				</el-select>
 			</el-form-item> -->
 
-			<el-form-item label="Cloud Provider">
+			<el-form-item label="Cloud Provider" prop="cloudProvider">
 				<el-select
-					v-model="formAdd.cloudProvider"
-					@change="formAdd.region = ''"
+					v-model="addForm.cloudProvider"
+					@change="addForm.region = ''"
 					clearable
 					filterable
 					placeholder="Select cloud provider"
@@ -187,9 +200,9 @@ const handleRefresh = () => {
 				</el-select>
 			</el-form-item>
 
-			<el-form-item label="Region" v-show="formAdd.cloudProvider">
-				<el-select v-model="formAdd.region" filterable placeholder="Select region" class="w-full">
-					<el-option v-for="item in region[formAdd.cloudProvider]" :key="item" :label="item" :value="item" />
+			<el-form-item label="Region" prop="region" v-show="addForm.cloudProvider">
+				<el-select v-model="addForm.region" filterable placeholder="Select region" class="w-full">
+					<el-option v-for="item in region[addForm.cloudProvider]" :key="item" :label="item" :value="item" />
 				</el-select>
 				<div class="mt-2 text-xs">
 					<p class="text-gray-500">For best performance, select the region that is closer to your application.</p>
@@ -199,14 +212,31 @@ const handleRefresh = () => {
 		<template #footer>
 			<span class="dialog-footer">
 				<el-button @click="addVisible = false">Cancel</el-button>
-				<el-button type="primary" @click="addVisible = false"> Confirm </el-button>
+				<el-button type="primary" @click="submit(addFormRef, addCallback)"> Confirm </el-button>
 			</span>
 		</template>
 	</el-dialog>
 	<!-- add-dialog End -->
+	<!-- 超出创建数量限制 -->
+	<el-dialog v-model="cross" width="26%" :lock-scroll="false" :show-close="false" class="br-8">
+		<template #header="{ titleId }">
+			<div class="flex">
+				<i-ep:warning-filled class="text-2xl text-[#faad14]" />
+				<h4 :id="titleId" class="font-semibold ml-2">You can create 5 cache service in free tier.</h4>
+			</div>
+		</template>
+		<div class="info-text pl-9 text-start pb-0">
+			You can <a class="is-link" href="#">add a payment method</a> to upgrade your plan and create more cache services.
+		</div>
+		<template #footer>
+			<span class="dialog-footer">
+				<el-button color="#67c23a" style="color: #ffffff" @click="cross = false"> OK </el-button>
+			</span>
+		</template>
+	</el-dialog>
 
 	<!-- import-dialog Start -->
-	<el-dialog v-model="importVisible" title="Migrate Database" width="520px" style="border-radius: 8px">
+	<!-- <el-dialog v-model="importVisible" title="Migrate Database" width="520px" style="border-radius: 8px">
 		<el-steps direction="vertical" :active="1">
 			<el-step>
 				<template #title>
@@ -217,13 +247,13 @@ const handleRefresh = () => {
 				</template>
 				<template #description>
 					<div class="mt-2 mb-4 space-y-4 rounded-lg bg-[#f4f4f5] p-4">
-						<el-select v-model="selectdbVal" filterable placeholder="Select database" class="w-full">
+						<el-select v-model="importFrom.first" filterable placeholder="Select database" class="w-full">
 							<el-option v-for="item in dbList" :key="item" :label="item" :value="item" />
 						</el-select>
 						<div>
 							<el-checkbox size="large">Import from backups</el-checkbox>
 						</div>
-						<el-select v-model="selectdbVal2" filterable placeholder="Select" class="w-full">
+						<el-select v-model="importFrom.second" filterable placeholder="Select" class="w-full">
 							<el-option v-for="item in dbList2" :key="item" :label="item" :value="item" />
 						</el-select>
 					</div>
@@ -253,26 +283,8 @@ const handleRefresh = () => {
 				<el-button type="primary" @click="importVisible = false"> Confirm </el-button>
 			</span>
 		</template>
-	</el-dialog>
+	</el-dialog> -->
 	<!-- import-dialog End -->
-
-	<!-- 超出创建数量限制 -->
-	<el-dialog v-model="cross" width="26%" :lock-scroll="false" :show-close="false" class="br-8">
-		<template #header="{ titleId }">
-			<div class="flex items-center">
-				<i-ep:warning-filled class="text-2xl text-[#faad14]" />
-				<h4 :id="titleId" class="font-semibold ml-2">You can create 1 database in free tier</h4>
-			</div>
-		</template>
-		<div class="info-text pl-9 text-start pb-0">
-			You can <a class="is-link" href="#">add a payment method</a> to upgrade your plan and create more databases.
-		</div>
-		<template #footer>
-			<span class="dialog-footer">
-				<el-button color="#67c23a" style="color: #ffffff" @click="cross = false"> OK </el-button>
-			</span>
-		</template>
-	</el-dialog>
 </template>
 
 <style lang="scss">
