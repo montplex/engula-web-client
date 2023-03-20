@@ -40,7 +40,7 @@ const addFormRef = ref<FormInstance>();
 /* 新建 Cache  */
 const createCache = () => {
 	resetForm(addFormRef.value);
-	if (store.serviceList.length >= 5) cross.value = true;
+	if (store?.serviceList?.length >= 5) cross.value = true;
 	else {
 		store.setCloudProviderList();
 		addVisible.value = true;

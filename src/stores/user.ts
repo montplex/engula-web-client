@@ -26,7 +26,7 @@ export const userStore = defineStore({
 			// }
 		},
 		logout() {
-			Cookies.remove(CacheEnum.COOKIE);
+			Cookies.remove("Auth-Token");
 			Cookies.remove(CacheEnum.JSAUTH);
 			this.info = null;
 		}

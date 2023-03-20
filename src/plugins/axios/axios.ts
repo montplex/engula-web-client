@@ -60,21 +60,20 @@ class Request {
 		this.instance.interceptors.response.use(
 			(config) => {
 				console.log("--------全局响应拦截器 success--------", config);
+				if ([401, 403].includes(config.status)) {
+					Cookies.remove("Auth-Token");
+					Cookies.remove(CacheEnum.JSAUTH);
+					useRouter().replace("");
+				}
+
+				if (config.status === 404) {
+					ElMessage({ message: "404错误~", type: "error", showClose: true });
+				}
 				this.loading?.close();
 				return config;
 			},
 			(err) => {
 				console.log("--------全局响应拦截器 err--------", err);
-				if ([401, 403].includes(err.response.status)) {
-					Cookies.remove(CacheEnum.COOKIE);
-					Cookies.remove(CacheEnum.JSAUTH);
-					useRouter().replace("/login");
-				}
-
-				if (err.response.status === 404) {
-					ElMessage({ message: "404错误~", type: "error", showClose: true });
-				}
-
 				this.loading?.close();
 				return err;
 			}
