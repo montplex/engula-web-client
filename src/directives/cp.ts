@@ -1,5 +1,12 @@
+import { DirectiveBinding } from "vue";
+
+interface ElType extends HTMLElement {
+	copyData: string | number;
+	__handleClick__: any;
+}
+
 const copy = {
-	mounted(el, binding) {
+	mounted(el: ElType, binding: DirectiveBinding) {
 		// 双击触发复制
 		if (binding.modifiers.dblclick) {
 			el.addEventListener("dblclick", () => handleCopyClick(el.innerText));
@@ -9,11 +16,11 @@ const copy = {
 			el.addEventListener("click", () => handleCopyClick(el.innerText));
 		}
 	},
-	beforeUnmount(el) {
+	beforeUnmount(el: ElType) {
 		el.removeEventListener("click", el.__handleClick__);
 	}
 };
-function handleCopyClick(e) {
+function handleCopyClick(e: string) {
 	const input = document.createElement("input");
 	console.log(e);
 	input.value = e;

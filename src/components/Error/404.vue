@@ -4,7 +4,7 @@
 			<div class="space-y-2">
 				<h4 class="text-7xl">404</h4>
 				<h1 class="text-2xl">This page could not be found.</h1>
-				<button @click="router.push(HOME_URL)" class="text-sm text-blue-600 hover:text-blue-400">Back to Login Page</button>
+				<button @click="router.push('/')" class="text-sm text-blue-600 hover:text-blue-400">Back to Login Page</button>
 			</div>
 		</div>
 	</div>
@@ -12,6 +12,5 @@
 
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import { HOME_URL } from "@/config/config";
 const router = useRouter();
 </script>

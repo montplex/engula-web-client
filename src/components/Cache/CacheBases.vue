@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { useDbStore } from "@/stores/modules/cache";
+import { useDbStore } from "@/stores/cache";
 import { addCache } from "@/api/cache";
 import { AddCacheParams } from "#/cache";
 import { CachestatusTo } from "#/enum";
@@ -77,10 +77,10 @@ function refresh() {
 
 <template>
 	<div class="container mx-auto !max-w-screen-xl px-4 pt-8 pb-20">
-		<h1 class="text-3xl mt-2">Databases</h1>
+		<h1 class="text-3xl mt-2 text-[#3f3f46]">Cache Services</h1>
 		<!-- Sraech and AddButton Start -->
-		<div class="mt-4 flex grid-cols-2 items-center gap-2 sm:grid sm:gap-8">
-			<div cy-id="redis-header-search" class="w-full">
+		<div class="mt-6 flex grid-cols-2 items-center gap-2 sm:grid sm:gap-8">
+			<div class="w-full">
 				<el-input @input="handleSearch" v-model="searchVal" placeholder="Search..." />
 			</div>
 
@@ -101,7 +101,7 @@ function refresh() {
 				<!-- <el-button class="hidden items-center space-x-1 sm:inline-flex base-btn-hover" @click="importCache">
 					Import...
 				</el-button> -->
-				<el-button type="success" @click="createCache"> Create Database </el-button>
+				<el-button type="success" @click="createCache"> Create cache service </el-button>
 			</div>
 		</div>
 		<!-- Sraech and AddButton End -->
@@ -109,13 +109,14 @@ function refresh() {
 		<!-- dbList Start -->
 		<div class="mt-6 sm:mt-10" v-if="store.filterList">
 			<div cy-id="redis-db-list" class="grid gap-6 sm:grid-cols-2 sm:gap-8">
-				<div
-					v-for="item in store.filterList"
-					:key="item.id"
-					class="flex flex-col rounded-lg border border-gray-200 shadow-sm cursor-pointer"
-					@click="goDetail(item.id)"
-				>
-					<header class="p-4 sm:p-6 sm:pt-5 sm:pb-4">
+				<div v-for="item in store.filterList" :key="item.id" class="flex flex-col rounded-lg border border-gray-200 shadow-sm">
+					<header class="p-4 sm:p-6 sm:pt-6 sm:pb-6">
+						<h3 class="text-lg font-semibold text-[#3f3f46] cursor-pointer" @click="goDetail(item.id)">
+							{{ item.name }}
+						</h3>
+						<span class="mt-1.5 flex items-center gap-1.5 opacity-50"> Regional·{{ item.cloudProvider }}·{{ item.region }} </span>
+					</header>
+					<!-- <header class="p-4 sm:p-6 sm:pt-5 sm:pb-4">
 						<div class="mb-2 flex items-center justify-between">
 							<div class="text-lg font-semibold text-gray-900 line-clamp-1">
 								{{ item.name }}
@@ -132,7 +133,7 @@ function refresh() {
 							<div class="text-label">Status</div>
 							<div class="text-sm">{{ CachestatusTo[item.status] }}</div>
 						</div>
-					</header>
+					</header> -->
 					<!-- Buttom Chart-->
 					<!-- <footer class="relative hidden h-8 overflow-hidden sm:block">
 						<div class="absolute left-6 right-6 top-0 bottom-0 h-8"></div>
@@ -150,12 +151,12 @@ function refresh() {
 				</template>
 				<template #description>
 					<div class="mx-auto my-4 max-w-screen-sm text-gray-600">
-						<h3>Create a Redis Database</h3>
+						<h3>Create a Cache Service</h3>
 						<div>
-							<p>We manage the database for you and you only pay what you use.</p>
+							<p>We manage the cache service for you and you only pay what you use.</p>
 						</div>
 					</div>
-					<el-button type="success">Create database</el-button>
+					<el-button type="success">Create cache service</el-button>
 				</template>
 			</el-empty>
 		</div>

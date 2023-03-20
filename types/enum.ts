@@ -20,3 +20,8 @@ export const Cachestatus = {
 export const hasCross = {
 	lv1: 5
 };
+
+export enum CacheEnum {
+	COOKIE = "Auth-Token",
+	REDIRECT_ROUTE_NAME = "redirect_router_name"
+}

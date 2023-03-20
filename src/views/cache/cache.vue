@@ -23,7 +23,7 @@ import ChcheToken from "./tabs/token.vue";
 import { ICacheListItem } from "#/cache";
 import { useRoute } from "vue-router";
 import { ref } from "vue";
-import { useDbStore } from "@/stores/modules/cache";
+import { useDbStore } from "@/stores/cache";
 
 const cName = ref("Details");
 const store = useDbStore();

@@ -1,24 +1,31 @@
 import { App } from "vue";
 import "@/styles/common.scss";
 import "@/assets/fonts/font.scss";
-// import "element-plus/dist/index.css";
+import "element-plus/dist/index.css";
 
-import { setupTailwindcss } from "./tailwindcss";
+import tailwindCss from "./tailwindcss";
+
 import "virtual:svg-icons-register";
 import svgIcon from "@/components/SvgIcon/index.vue";
 
-import { createPinia } from "pinia";
-import { createRouter } from "@/router";
-import setupAuth0 from "./auth0";
-// import setupHighlight from "./highlight";
+import setupPinia from "./pinia";
+// import setupAuth0 from "./auth0";
+
+import setupHighlight from "./highlight";
+
+import Terminal from "vue-web-terminal";
+
 import error from "./error";
+import directives from "@/directives";
 
 export function setupPlugins(app: App) {
 	app.config.errorHandler = error;
 	app.component("SvgIcon", svgIcon);
-	app.use(createRouter(app));
-	app.use(createPinia());
-	setupTailwindcss();
-	// setupHighlight(app);
-	setupAuth0(app);
+	setupPinia(app);
+	tailwindCss();
+	app.use(Terminal);
+	setupHighlight(app);
+	app.use(directives);
+
+	// setupAuth0(app);
 }

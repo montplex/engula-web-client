@@ -27,20 +27,20 @@ export const http = new Request({
 	...defaultConfig,
 	interceptors: {
 		requestSuccessInterceptor(config) {
-			console.log("Request实例请求成功的拦截器---->");
+			// console.log("Request实例请求成功的拦截器---->");
 			return config;
 		},
 		requestErrorInterceptor(err) {
-			console.log("Request实例请求失败的拦截器---->");
+			// console.log("Request实例请求失败的拦截器---->");
 			return err;
 		},
 		responseSuccessInterceptor(res) {
 			responseLog(res);
-			console.log("Request实例响应成功的拦截器---->");
+			// console.log("Request实例响应成功的拦截器---->");
 			return res.data;
 		},
 		responseErrorInterceptor(err) {
-			console.log("Request实例响应失败的拦截器--->");
+			// console.log("Request实例响应失败的拦截器--->");
 			return err;
 		}
 	}

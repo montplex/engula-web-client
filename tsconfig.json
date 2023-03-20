@@ -32,11 +32,9 @@
 		"vite.config.ts",
 		"vite/**/*.ts",
 		"types/**/*.ts",
-		"src/main.js",
+		"src/main.ts",
 		"src/**/*.js",
-		"src/**/**/*.js",
-		"src/config/config.ts",
-		"src/plugins/error"
+		"src/**/**/*.js"
 	],
 	"exclude": ["node_modules", "dist", "**/*.js"]
 }

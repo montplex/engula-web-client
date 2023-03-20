@@ -78,7 +78,7 @@ import { dayjs } from "element-plus";
 import { computed, ref, reactive } from "vue";
 import { addAccessToken, deleteAccessToken, updateAccessTokenMode } from "@/api/cache";
 import { addTokenParams, updateTokenParams } from "#/cache";
-import { useDbStore } from "@/stores/modules/cache";
+import { useDbStore } from "@/stores/cache";
 import { resetForm, addTokenRules, submit } from "@/utils/rules";
 import type { FormInstance } from "element-plus";
 

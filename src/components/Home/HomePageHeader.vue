@@ -73,6 +73,8 @@
 						</div>
 						<div class="py-6 w-full">
 							<button @click.stop="handleConsole" class="console-btn text-base font-semibold hover:opacity-90">CONSOLE</button>
+							<!-- href="https://github.com/upstash/issues/issues/new"
+								target="_blank" -->
 						</div>
 					</div>
 				</div>
@@ -82,10 +84,21 @@
 </template>
 
 <script setup lang="ts">
-// import { useAuth0 } from "@auth0/auth0-vue";
+import { env } from "@/utils/util";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+// import cookie from "@/utils/cookie";
+// import { useAuth0 } from "@auth0/auth0-vue";
 
+/* cookie.set(
+	"Auth-Token",
+	"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsYXN0TG9naW5UaW1lIjoxNjc4NjkwMTg2LCJyb2xlIjoiZW5ndWxhX3VzZXIiLCJpc3MiOiJtb250cGxleCIsIm5pY2tuYW1lIjoiYTI0MTcyNzY0NTkiLCJpZCI6Mn0.VG7dK-2iFZC2f2PAepsLiRFJxEZkopqbu9Qi_K3DReQ",
+	1
+); */
+// cookie.get("Auth-Token"),
+// console.log(cookie.get("Auth-Token"));
+
+console.log(env().MODE, env().DEV);
 let open = ref(false);
 
 const router = useRouter();
@@ -105,7 +118,12 @@ const handleCreate = () => {
 };
 
 const handleConsole = () => {
-	router.push("/console");
+	if (env().DEV) {
+		// window.location.href = "https://dev.montplex.com/engula/auth0/login";
+		router.push("/console");
+	} else {
+		window.location.href = env().VITE_API_URL + "/engula/auth0/login";
+	}
 	/* console.log("auth0 检测——————>");
 	const { isAuthenticated, isLoading } = auth0;
 	console.log(auth0);
@@ -113,7 +131,6 @@ const handleConsole = () => {
 		auth0.loginWithRedirect();
 	} else {
 		console.log("auth0 已登入——————>");
-		
 	} */
 };
 </script>

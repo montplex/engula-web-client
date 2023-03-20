@@ -1,12 +1,11 @@
 import { onBeforeMount } from "vue";
 import { getLightColor, getDarkColor } from "./tool";
-import { DEFAULT_PRIMARY } from "@/config/config";
 
 /**
  * @description 设置主题颜色
  * */
 export const useTheme = () => {
-	const color = DEFAULT_PRIMARY || "#67c23a";
+	const color = "#67c23a";
 	const isDark = false;
 	const initPrimary = (val: string) => {
 		// 为了兼容暗黑模式下主题颜色也正常，以下方法计算主题颜色 由深到浅 的具体颜色

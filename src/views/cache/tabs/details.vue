@@ -331,7 +331,7 @@ import CodeFragment from "@/components/Cache/CodeFragment.vue";
 
 import { reactive, ref } from "vue";
 import { useRoute } from "vue-router";
-import { useDbStore } from "@/stores/modules/cache";
+import { useDbStore } from "@/stores/cache";
 import { CachestatusTo } from "#/enum";
 import { dayjs } from "element-plus";
 const route = useRoute();

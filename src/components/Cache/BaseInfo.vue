@@ -50,7 +50,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { useDbStore } from "@/stores/modules/cache";
+import { useDbStore } from "@/stores/cache";
 import { ICacheListItem } from "#/cache";
 defineProps<{
 	base: ICacheListItem;

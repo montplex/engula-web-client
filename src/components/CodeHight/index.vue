@@ -25,6 +25,8 @@
 </template>
 
 <script setup lang="ts">
+import "highlight.js/styles/atom-one-dark.css";
+import "highlight.js/lib/common";
 import { handleCopyClick } from "@/utils/util";
 import { ref } from "vue";
 const eyeVisible = ref(false);

@@ -4,17 +4,17 @@
 			<div class="flex items-center gap-6">
 				<h3 class="flex text-white cursor-pointer h-8 text-lg font-semibold">MontPlex</h3>
 				<nav cy-id="master-nav" class="flex items-center gap-2">
-					<RouterLink
+					<!-- <RouterLink
 						class="inline-flex h-11 items-center gap-1 rounded-md px-3 hover:bg-gray-700 hover:text-white !bg-white font-semibold !text-black"
 						to="/mycli"
 						>Redis</RouterLink
-					>
+					> -->
 				</nav>
 				<div class="ml-auto flex items-center gap-3">
 					<button
 						@click="question = true"
 						type="button"
-						class="flex items-center justify-center h-10 w-10 rounded-md p-0 !text-white"
+						class="flex items-center justify-center h-11 w-11 rounded-md p-0 !text-white"
 					>
 						<svgIcon icon="question" class="text-2xl" />
 					</button>
@@ -77,8 +77,8 @@
 								</div>
 								<template #dropdown>
 									<el-dropdown-menu>
-										<el-dropdown-item>YoaiL</el-dropdown-item>
-										<el-dropdown-item> 2417276459@qq.com</el-dropdown-item>
+										<el-dropdown-item>{{ info?.nickname }}</el-dropdown-item>
+										<el-dropdown-item v-if="info?.email"> {{ info?.email }}</el-dropdown-item>
 										<el-dropdown-item divided> Account</el-dropdown-item>
 										<el-dropdown-item> Integrations </el-dropdown-item>
 										<el-dropdown-item> Settings </el-dropdown-item>
@@ -94,14 +94,14 @@
 	</header>
 
 	<!-- dialog -->
-	<el-dialog v-model="question" width="36%" title="Docs & Support" :lock-scroll="false" class="br-8">
+	<el-dialog v-model="question" title="Docs & Support" class="br-8 sm:!w-[520px]">
 		<div class="grid gap-3">
 			<a
 				v-for="(item, idx) in questionPopList"
 				:key="idx"
 				href="#"
 				target="_blank"
-				class="is-link relative flex h-auto items-center rounded-md bg-white p-5 text-gray-600 shadow hover:bg-blue-50"
+				class="is-link relative flex h-auto items-center rounded-md bg-white p-5 shadow hover:bg-blue-50"
 			>
 				<svgIcon :icon="item.icon" class="!text-[20px]" />
 				<div class="ml-4 flex-grow">
@@ -117,17 +117,17 @@
 </template>
 
 <script setup lang="ts">
-// import { useAuth0 } from "@auth0/auth0-vue";
-
 import { ref } from "vue";
+import { storeToRefs } from "pinia";
+import { userStore } from "@/stores/user";
 import { useRouter } from "vue-router";
 
-// const auth0 = useAuth0();
+const { info } = storeToRefs(userStore());
 
 const router = useRouter();
 const handleMineCommand = (command: string) => {
 	if (command === "out") {
-		router.push("/login");
+		router.push("/");
 	}
 };
 const questionPopList = [
@@ -162,6 +162,9 @@ const question = ref(false);
 </script>
 
 <style lang="scss">
+.br-8 {
+	border-radius: 8px;
+}
 .el-dropdown-menu__item:not(.is-disabled):focus {
 	color: var(--el-text-color-regular);
 	background-color: #f5f5f5;

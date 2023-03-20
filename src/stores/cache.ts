@@ -19,7 +19,6 @@ export const useDbStore = defineStore({
 		oneCache: {} as ICacheListItem,
 		tokenList: []
 	}),
-	getters: {},
 	actions: {
 		async setCacheList() {
 			const res = await getCacheList();

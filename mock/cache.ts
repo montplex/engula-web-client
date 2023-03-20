@@ -6,16 +6,11 @@ export default [
 		method: "get",
 		response: () => {
 			return {
-				code: 200,
-				message: "请求成功",
-				status: "success",
-				data: {
-					id: 13,
-					nickname: "liaoyi",
-					roles: ["irure", "dolore Excepteur", "irure", "consectetur sed nostrud", "quis consequat"],
-					picture: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-					lastLoginTime: 1597001997524
-				}
+				id: 13,
+				nickname: "liaoyi",
+				roles: ["irure", "dolore Excepteur", "irure", "consectetur sed nostrud", "quis consequat"],
+				picture: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+				lastLoginTime: 1597001997524
 			};
 		}
 	},
@@ -248,6 +243,15 @@ export default [
 					[1678087413, "38"],
 					[1678087428, "38"]
 				]
+			};
+		}
+	},
+	{
+		url: "/engula/command/exe",
+		method: "get",
+		response: () => {
+			return {
+				ok: 100
 			};
 		}
 	}

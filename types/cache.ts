@@ -71,3 +71,13 @@ export interface addTokenParams {
 	cacheServiceId: number | string;
 	mode: Mode;
 }
+
+type Tcommand = "set" | "get" | "del" | "keys" | "exists" | "expire" | "ttl";
+
+// get a / set a 100
+const Fcommand = (instruct: Tcommand, params: any): string => `${instruct} ${params}`;
+
+export interface CommandParams {
+	cacheServiceId: number | string;
+	command: string;
+}

@@ -3,9 +3,13 @@ import { IRequestConfig } from "#/axios";
 import { ElLoading, ElMessage } from "element-plus";
 import store from "@/utils/store";
 import { LoadingInstance } from "element-plus/lib/components/loading/src/loading";
+import cookie from "@/utils/cookie";
+import { useRouter } from "vue-router";
+import { CacheEnum } from "#/enum";
+
 // 引入Elmessage和Elloading的css样式文件
-import "element-plus/theme-chalk/el-loading.css";
-import "element-plus/theme-chalk/el-message.css";
+/* import "element-plus/theme-chalk/el-loading.css";
+import "element-plus/theme-chalk/el-message.css"; */
 
 const DEFAULT_LOADING = true;
 class Request {
@@ -33,9 +37,9 @@ class Request {
 		this.instance.interceptors.request.use(
 			(config) => {
 				/* -------------- 全局请求拦截器 success --------- */
-				console.log("------GlobalRequest success");
+				// console.log("------GlobalRequest success");
 				if (this.showLoading) {
-					console.log("loadding.....");
+					// console.log("loadding.....");
 					// 添加加载loading
 					this.loading = ElLoading.service({
 						lock: true,
@@ -47,7 +51,7 @@ class Request {
 			},
 			(err) => {
 				/* --------------- 全局请求拦截器 err ------------ */
-				console.log("------GlobalRequest err");
+				// console.log("------GlobalRequest err");
 				this.loading?.close();
 				return err;
 			}
@@ -56,26 +60,23 @@ class Request {
 		this.instance.interceptors.response.use(
 			(config) => {
 				/* --------------- 全局响应拦截器 success ------------ */
-				console.log("------GlobalResponse success");
+				// console.log("------GlobalResponse success");
 				this.loading?.close();
 				return config;
 			},
 			(err) => {
 				/* --------------- 全局响应拦截器 err ------------ */
-				console.log("------GlobalResponse err");
-				switch (err.response.status) {
-					case 404:
-						ElMessage({
-							message: "404错误~",
-							type: "error",
-							showClose: true
-						});
-						break;
-					case 401:
-						store.remove("token");
-						// router.push({ name: "login" });
-						break;
+				// console.log("------GlobalResponse err");
+
+				if ([401, 403].includes(err.response.status)) {
+					cookie.del(CacheEnum.COOKIE);
+					useRouter().replace("/login");
 				}
+
+				if (err.response.status === 404) {
+					ElMessage({ message: "404错误~", type: "error", showClose: true });
+				}
+
 				this.loading?.close();
 				return err;
 			}
