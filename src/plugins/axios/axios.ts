@@ -1,16 +1,13 @@
 import axios, { AxiosInstance } from "axios";
 import { IRequestConfig } from "#/axios";
 import { ElLoading, ElMessage } from "element-plus";
-import store from "@/utils/store";
+
 import { LoadingInstance } from "element-plus/lib/components/loading/src/loading";
-import cookie from "@/utils/cookie";
-import { useRouter } from "vue-router";
-import { CacheEnum } from "#/enum";
-import Cookies from "js-cookie";
+import { userStore } from "@/stores/user";
 
 // 引入Elmessage和Elloading的css样式文件
-/* import "element-plus/theme-chalk/el-loading.css";
-import "element-plus/theme-chalk/el-message.css"; */
+/* import "element-plus/theme-chalk/el-loading.css"; */
+import "element-plus/theme-chalk/el-message.css";
 
 const DEFAULT_LOADING = true;
 class Request {
@@ -60,24 +57,20 @@ class Request {
 		this.instance.interceptors.response.use(
 			(config) => {
 				console.log("--------全局响应拦截器 success--------", config);
-
 				this.loading?.close();
 				return config;
 			},
 			(err) => {
 				console.log("--------全局响应拦截器 err--------", err);
 				let message = "";
+				console.log("err.response.status", err.response.status);
 				switch (err.response.status) {
 					case 400:
 						message = "请求错误(400)";
 						break;
 					case 401:
 						message = "身份已过期，请重新登录";
-						// 清空 Cookies 并跳转到指定页面
-						Cookies.remove(CacheEnum.COOKIE);
-						Cookies.remove(CacheEnum.JSAUTH);
-						window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/login");
-						useRouter().push({ path: "/", replace: true }); // 跳转到首页
+						userStore().logout();
 						break;
 					case 403:
 						message = "拒绝访问(403)";

@@ -3,6 +3,7 @@ import cookie from "@/utils/cookie";
 import { CacheEnum } from "#/enum";
 import { IUserInfo, userInfo } from "@/api/auth";
 import Cookies from "js-cookie";
+import { useRouter } from "vue-router";
 
 type User = {
 	info: null | IUserInfo;
@@ -33,6 +34,11 @@ export const userStore = defineStore({
 			Cookies.remove(CacheEnum.COOKIE);
 			Cookies.remove(CacheEnum.JSAUTH);
 			this.info = null;
+			if (import.meta.env.MODE === "development") {
+				useRouter().replace("/");
+			} else {
+				window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/login");
+			}
 		}
 	}
 });

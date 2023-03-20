@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { getCacheList, getCacheById, getAccessTokenList } from "@/api/cache";
+import { getCacheList, getCacheById, getAccessTokenList, deleteAccessToken } from "@/api/cache";
 import { ICacheListItem, CloudProviderItem, ItokenItem, CacheByIdParams } from "#/cache";
 import { getCloudProviderList } from "@/api/cache";
 
@@ -48,6 +48,13 @@ export const useDbStore = defineStore({
 		async setTokenList() {
 			const res = await getAccessTokenList("14");
 			this.tokenList = res.list;
+		},
+		deleteTokenList(id: number) {
+			// this.tokenList = this.tokenList.filter((item) => item.id !== id);
+			deleteAccessToken(id).then((res) => {
+				res.ok ? ElMessage.success("Delete completed") : ElMessage.error("Delete failed");
+				this.setTokenList();
+			});
 		}
 	}
 });

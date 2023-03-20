@@ -76,7 +76,7 @@
 <script setup lang="ts">
 import { dayjs } from "element-plus";
 import { computed, ref, reactive } from "vue";
-import { addAccessToken, deleteAccessToken, updateAccessTokenMode } from "@/api/cache";
+import { addAccessToken, updateAccessTokenMode } from "@/api/cache";
 import { addTokenParams, updateTokenParams } from "#/cache";
 import { useDbStore } from "@/stores/cache";
 import { resetForm, addTokenRules, submit } from "@/utils/rules";
@@ -127,7 +127,6 @@ const updateMode = () => {
 
 const addTokenCallback = () => {
 	addAccessToken(from).then((res) => {
-		console.log(res);
 		store.setTokenList();
 		addVisible.value = false;
 	});
@@ -141,9 +140,7 @@ const deleteToken = (id: number) => {
 		type: "error"
 	})
 		.then(() => {
-			deleteAccessToken(id).then((res) => {
-				res.ok ? ElMessage.success("Delete completed") : ElMessage.error("Delete failed");
-			});
+			store.deleteTokenList(id);
 		})
 		.catch(() => {});
 };
