@@ -4,7 +4,7 @@ import { stringify } from "qs";
 
 /* 相关配置请参考：www.axios-js.com/zh-cn/docs/#axios-request-config-1 */
 const defaultConfig = {
-	// https://dev.montplex.com/api
+	// https://dev.montplex.com
 	baseURL: "/engula",
 	timeout: 10000,
 	showLoading: true,
@@ -41,6 +41,7 @@ export const http = new Request({
 		},
 		responseErrorInterceptor(err) {
 			// console.log("Request实例响应失败的拦截器--->");
+			console.log(err);
 			return err;
 		}
 	}

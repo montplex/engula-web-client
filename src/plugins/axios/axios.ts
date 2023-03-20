@@ -6,6 +6,7 @@ import { LoadingInstance } from "element-plus/lib/components/loading/src/loading
 import cookie from "@/utils/cookie";
 import { useRouter } from "vue-router";
 import { CacheEnum } from "#/enum";
+import Cookies from "js-cookie";
 
 // 引入Elmessage和Elloading的css样式文件
 /* import "element-plus/theme-chalk/el-loading.css";
@@ -36,8 +37,8 @@ class Request {
 		// 创建全局请求拦截器
 		this.instance.interceptors.request.use(
 			(config) => {
-				/* -------------- 全局请求拦截器 success --------- */
-				// console.log("------GlobalRequest success");
+				/*    */
+				console.log("--------全局请求拦截器 success--------", config);
 				if (this.showLoading) {
 					// console.log("loadding.....");
 					// 添加加载loading
@@ -50,8 +51,7 @@ class Request {
 				return config;
 			},
 			(err) => {
-				/* --------------- 全局请求拦截器 err ------------ */
-				// console.log("------GlobalRequest err");
+				console.log("--------全局请求拦截器 err--------", err);
 				this.loading?.close();
 				return err;
 			}
@@ -59,17 +59,15 @@ class Request {
 		// 创建全局响应拦截器
 		this.instance.interceptors.response.use(
 			(config) => {
-				/* --------------- 全局响应拦截器 success ------------ */
-				// console.log("------GlobalResponse success");
+				console.log("--------全局响应拦截器 success--------", config);
 				this.loading?.close();
 				return config;
 			},
 			(err) => {
-				/* --------------- 全局响应拦截器 err ------------ */
-				// console.log("------GlobalResponse err");
-
+				console.log("--------全局响应拦截器 err--------", err);
 				if ([401, 403].includes(err.response.status)) {
-					cookie.del(CacheEnum.COOKIE);
+					Cookies.remove(CacheEnum.COOKIE);
+					Cookies.remove(CacheEnum.JSAUTH);
 					useRouter().replace("/login");
 				}
 

@@ -22,6 +22,7 @@ const cookie = {
 		let exp = new Date();
 		exp.setTime(exp.getTime() - 1);
 		let cval = cookie.get(name);
+		console.log(cval, name + "=" + cval + ";expires=" + exp.toUTCString());
 		if (cval != null) document.cookie = name + "=" + cval + ";expires=" + exp.toUTCString();
 	}
 };

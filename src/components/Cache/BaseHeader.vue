@@ -122,12 +122,14 @@ import { storeToRefs } from "pinia";
 import { userStore } from "@/stores/user";
 import { useRouter } from "vue-router";
 
-const { info } = storeToRefs(userStore());
+const store = userStore();
+const { info } = storeToRefs(store);
 
 const router = useRouter();
 const handleMineCommand = (command: string) => {
 	if (command === "out") {
-		router.push("/");
+		store.logout();
+		router.push({ path: "/", replace: true });
 	}
 };
 const questionPopList = [

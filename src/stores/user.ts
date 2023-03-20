@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import cookie from "@/utils/cookie";
 import { CacheEnum } from "#/enum";
 import { IUserInfo, userInfo } from "@/api/auth";
-import { useRouter } from "vue-router";
+import Cookies from "js-cookie";
 
 type User = {
 	info: null | IUserInfo;
@@ -26,9 +26,9 @@ export const userStore = defineStore({
 			// }
 		},
 		logout() {
-			cookie.del(CacheEnum.COOKIE);
+			Cookies.remove(CacheEnum.COOKIE);
+			Cookies.remove(CacheEnum.JSAUTH);
 			this.info = null;
-			useRouter().push("/");
 		}
 	}
 });

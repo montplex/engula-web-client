@@ -14,14 +14,15 @@ class Guard {
 	}
 
 	private async beforeEach(to: RouteLocationNormalized, from: RouteLocationNormalized) {
-		console.log("全局导航守卫--------->", to, from);
-		/* if (from.meta.auth && !this.cookie()) {
-			if (env().MODE === "development") {
+		console.log("全局导航守卫--------->", to, from, from.meta.auth, this.cookie());
+		if (to.meta.auth && !this.cookie()) {
+			window.location.href = env().VITE_API_URL + "/engula/auth0/login";
+			/* if (env().MODE === "development") {
 				window.location.href = "https://dev.montplex.com/engula/auth0/login";
 			} else {
 				window.location.href = env().VITE_API_URL + "/engula/auth0/login";
-			}
-		} */
+			} */
+		}
 	}
 
 	private cookie(): string | null {

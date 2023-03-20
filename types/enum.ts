@@ -23,5 +23,6 @@ export const hasCross = {
 
 export enum CacheEnum {
 	COOKIE = "Auth-Token",
+	JSAUTH = "JSESSIONID",
 	REDIRECT_ROUTE_NAME = "redirect_router_name"
 }

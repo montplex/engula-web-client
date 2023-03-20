@@ -119,8 +119,8 @@ const handleCreate = () => {
 
 const handleConsole = () => {
 	if (env().DEV) {
-		// window.location.href = "https://dev.montplex.com/engula/auth0/login";
-		router.push("/console");
+		window.location.href = "https://dev.montplex.com/engula/auth0/login";
+		// router.push("/console");
 	} else {
 		window.location.href = env().VITE_API_URL + "/engula/auth0/login";
 	}

@@ -15,7 +15,7 @@ export default defineConfig(({ mode, command }: ConfigEnv) => {
 		css,
 		server: getServer(env),
 		plugins: setupPlugins(isBuild, env),
-		esbuild: setEsbuild(env),
+		// esbuild: setEsbuild(env),
 		build
 	};
 });
