@@ -4,6 +4,7 @@ import { ElLoading, ElMessage } from "element-plus";
 
 import { LoadingInstance } from "element-plus/lib/components/loading/src/loading";
 import { userStore } from "@/stores/user";
+import { useRouter } from "vue-router";
 
 // 引入Elmessage和Elloading的css样式文件
 /* import "element-plus/theme-chalk/el-loading.css"; */
@@ -71,6 +72,11 @@ class Request {
 					case 401:
 						message = "身份已过期，请重新登录";
 						userStore().logout();
+						if (import.meta.env.MODE === "development") {
+							useRouter().push({ path: "/", replace: true });
+						} else {
+							window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/login");
+						}
 						break;
 					case 403:
 						message = "拒绝访问(403)";

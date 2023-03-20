@@ -121,7 +121,6 @@ import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import { userStore } from "@/stores/user";
 import { useRouter } from "vue-router";
-import { env } from "@/utils/util";
 
 const store = userStore();
 const { info } = storeToRefs(store);
@@ -130,6 +129,11 @@ const router = useRouter();
 const handleMineCommand = (command: string) => {
 	if (command === "out") {
 		store.logout();
+		if (import.meta.env.MODE === "development") {
+			useRouter().push({ path: "/", replace: true });
+		} else {
+			window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/login");
+		}
 	}
 };
 const questionPopList = [
