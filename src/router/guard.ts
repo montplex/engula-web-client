@@ -2,9 +2,7 @@ import { RouteLocationNormalized, Router } from "vue-router";
 import cookie from "@/utils/cookie";
 import { env } from "@/utils/util";
 import { CacheEnum } from "#/enum";
-
-const WHITE_LIST: string[] = ["/403", "/404", "/500", "/login", "/", "/home", "/careers", "/about"];
-// WHITE_LIST.includes(to.name as string)
+import Cookies from "js-cookie";
 
 class Guard {
 	constructor(private router: Router) {}
@@ -14,7 +12,7 @@ class Guard {
 	}
 
 	private async beforeEach(to: RouteLocationNormalized, from: RouteLocationNormalized) {
-		console.log("全局导航守卫--------->", to, from, from.meta.auth, this.cookie());
+		console.log("全局导航守卫--------->", to, from, to.meta.auth, this.cookie());
 		if (to.meta.auth && !this.cookie()) {
 			window.location.href = env().VITE_API_URL + "/engula/auth0/login";
 			/* if (env().MODE === "development") {
@@ -25,8 +23,8 @@ class Guard {
 		}
 	}
 
-	private cookie(): string | null {
-		return cookie.get(CacheEnum.COOKIE);
+	private cookie(): string | undefined {
+		return Cookies.get(CacheEnum.COOKIE);
 	}
 }
 
