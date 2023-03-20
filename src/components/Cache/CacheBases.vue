@@ -4,7 +4,6 @@ import { useRouter } from "vue-router";
 import { useDbStore } from "@/stores/cache";
 import { addCache } from "@/api/cache";
 import { AddCacheParams } from "#/cache";
-import { CachestatusTo } from "#/enum";
 import { createCacheRules, resetForm, submit } from "@/utils/rules";
 import type { FormInstance } from "element-plus";
 

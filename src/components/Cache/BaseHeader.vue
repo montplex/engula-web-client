@@ -130,7 +130,8 @@ const router = useRouter();
 const handleMineCommand = (command: string) => {
 	if (command === "out") {
 		store.logout();
-		window.location.replace(env().VITE_API_URL + "/engula/auth0/login");
+		router.push({ path: "/", replace: true }); // 跳转到首页
+		// window.location.replace(env().VITE_API_URL + "/engula/auth0/login");
 		// window.location.href = env().VITE_API_URL + "/engula/auth0/login";
 	}
 };

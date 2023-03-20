@@ -1,9 +1,8 @@
 import { RouteLocationNormalized, Router } from "vue-router";
-import cookie from "@/utils/cookie";
-import { env } from "@/utils/util";
+
 import { CacheEnum } from "#/enum";
 import Cookies from "js-cookie";
-
+import { useRouter } from "vue-router";
 class Guard {
 	constructor(private router: Router) {}
 
@@ -14,16 +13,17 @@ class Guard {
 	private async beforeEach(to: RouteLocationNormalized, from: RouteLocationNormalized) {
 		console.log("全局导航守卫--------->", to, from, to.meta.auth, this.cookie());
 		if (to.meta.auth && !this.cookie()) {
-			window.location.href = env().VITE_API_URL + "/engula/auth0/login";
-			/* if (env().MODE === "development") {
-				window.location.href = "https://dev.montplex.com/engula/auth0/login";
+			window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/login");
+			if (import.meta.env.MODE === "development") {
+				useRouter().replace("/");
 			} else {
-				window.location.href = env().VITE_API_URL + "/engula/auth0/login";
-			} */
+				window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/login");
+			}
 		}
 	}
 
 	private cookie(): string | undefined {
+		console.log("cookie-------->", Cookies.get(CacheEnum.COOKIE));
 		return Cookies.get(CacheEnum.COOKIE);
 	}
 }

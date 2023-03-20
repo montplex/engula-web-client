@@ -45,7 +45,7 @@ class Request {
 					this.loading = ElLoading.service({
 						lock: true,
 						text: "加载中...",
-						background: "rgba(255, 255, 255, 0.7)"
+						background: "rgba(255, 255, 255, 1)"
 					});
 				}
 				return config;
@@ -60,20 +60,56 @@ class Request {
 		this.instance.interceptors.response.use(
 			(config) => {
 				console.log("--------全局响应拦截器 success--------", config);
-				if ([401, 403].includes(config.status)) {
-					Cookies.remove("Auth-Token");
-					Cookies.remove(CacheEnum.JSAUTH);
-					useRouter().replace("");
-				}
 
-				if (config.status === 404) {
-					ElMessage({ message: "404错误~", type: "error", showClose: true });
-				}
 				this.loading?.close();
 				return config;
 			},
 			(err) => {
 				console.log("--------全局响应拦截器 err--------", err);
+				let message = "";
+				switch (err.response.status) {
+					case 400:
+						message = "请求错误(400)";
+						break;
+					case 401:
+						message = "身份已过期，请重新登录";
+						// 清空 Cookies 并跳转到指定页面
+						Cookies.remove(CacheEnum.COOKIE);
+						Cookies.remove(CacheEnum.JSAUTH);
+						window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/login");
+						useRouter().push({ path: "/", replace: true }); // 跳转到首页
+						break;
+					case 403:
+						message = "拒绝访问(403)";
+						break;
+					case 404:
+						message = "网络开小差了(404)";
+						break;
+					case 408:
+						message = "请求超时(408)";
+						break;
+					case 500:
+						message = "服务器错误(500)";
+						break;
+					case 501:
+						message = "服务未实现(501)";
+						break;
+					case 502:
+						message = "网络错误(502)";
+						break;
+					case 503:
+						message = "服务不可用(503)";
+						break;
+					case 504:
+						message = "网络超时(504)";
+						break;
+					case 505:
+						message = "HTTP版本不受支持(505)";
+						break;
+					default:
+						message = `连接出错(${err.response.status})!`;
+				}
+				ElMessage({ message, type: "error", showClose: true });
 				this.loading?.close();
 				return err;
 			}

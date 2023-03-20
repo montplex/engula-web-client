@@ -1,5 +1,6 @@
 import { RouteRecordRaw } from "vue-router";
 import Home from "@/views/home/index.vue";
+import Cache from "@/views/cache/cache.vue";
 const routes = [
 	{
 		path: "/",
@@ -39,7 +40,7 @@ const routes = [
 		path: "/redis",
 		name: "Redis",
 		meta: { auth: true },
-		component: () => import("@/views/cache/cache.vue")
+		component: Cache
 	},
 	{
 		path: "/404",

@@ -19,14 +19,18 @@ export const userStore = defineStore({
 	}),
 	actions: {
 		async getUserInfo() {
-			// if (cookie.get(CacheEnum.COOKIE)) {
-			const res = await userInfo();
-			this.info = res;
-			console.log("info>>>>>>>", res);
-			// }
+			if (import.meta.env.MODE === "development") {
+				const res = await userInfo();
+				this.info = res;
+			} else {
+				if (cookie.get(CacheEnum.COOKIE)) {
+					const res = await userInfo();
+					this.info = res;
+				}
+			}
 		},
 		logout() {
-			Cookies.remove("Auth-Token");
+			Cookies.remove(CacheEnum.COOKIE);
 			Cookies.remove(CacheEnum.JSAUTH);
 			this.info = null;
 		}

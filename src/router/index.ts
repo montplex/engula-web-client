@@ -1,7 +1,7 @@
 import { createRouter as createVueRouter, createWebHistory } from "vue-router";
 import { App } from "vue";
 import routes from "./router";
-// import guard from "./guard";
+import guard from "./guard";
 
 const router = createVueRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,7 +10,7 @@ const router = createVueRouter({
 
 export async function setupRouter(app: App) {
 	// await userStore().getUserInfo();
-	// guard(router);
+	guard(router);
 	app.use(router);
 }
 
