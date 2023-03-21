@@ -1,7 +1,7 @@
 import { App } from "vue";
 import "@/styles/common.scss";
 import "@/assets/fonts/font.scss";
-import "element-plus/dist/index.css";
+// import "element-plus/dist/index.css";
 
 import tailwindCss from "./tailwindcss";
 

@@ -3,33 +3,33 @@
 		<div class="container mx-auto !max-w-screen-lg px-4">
 			<div class="home-footer py-12">
 				<img class="w-44 h-10" src="@/assets/images/logo.png" alt="MontPlex" />
-				<div class="meta-walk py-14">
-					<a href="#" aria-label="Montplex on Twitter">
+				<div class="meta-walk md:py-14 py-8">
+					<a href="#">
 						<svgIcon icon="twitter" />
 					</a>
-					<a href="#" aria-label="Montplex on Blog">
+					<a href="#">
 						<svgIcon icon="blog" />
 					</a>
-					<a href="#" aria-label="Montplex on Discord">
+					<a href="#">
 						<svgIcon icon="discord" />
 					</a>
 				</div>
-				<div class="meta-walk text-main">
-					<a href="#" aria-label="Contact Us">
+				<div class="flex items-center text-main flex-col md:flex-row gap-1">
+					<a href="#" class="md:mr-16">
 						Contact Us
-						<svgIcon icon="arrow-right" />
+						<svgIcon icon="arrow-right" class="inline" />
 					</a>
-					<a href="#" aria-label="Privacy Policy">
+					<a href="#" class="md:mr-16">
 						Privacy Policy
-						<svgIcon icon="arrow-right" />
+						<svgIcon icon="arrow-right" class="inline" />
 					</a>
-					<a href="#" aria-label="Terms of Service">
+					<a href="#">
 						Terms of Service
-						<svgIcon icon="arrow-right" />
+						<svgIcon icon="arrow-right" class="inline" />
 					</a>
 				</div>
-				<div class="my-10">© 2022 Upstash, Inc. Based in California.</div>
-				<div class="px-40 text-center text-6 text-sm">
+				<div class="md:my-10 py-6 text-xs md:text-xl">© 2022 Upstash, Inc. Based in California.</div>
+				<div class="hidden px-40 text-center text-6 text-sm md:block">
 					<p>
 						Redis is a trademark of Redis Labs Ltd. Any rights therein are reserved to Redis Ltd. Any use by Upstash is for
 						referential purposes only and does not indicate any sponsorship, endorsement or affiliation between Redis and Upstash.
@@ -73,9 +73,6 @@ import {} from "vue";
 				height: 20px;
 			}
 		}
-	}
-	.text-main a:not(:last-of-type) {
-		margin-right: 4rem;
 	}
 }
 </style>

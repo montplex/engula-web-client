@@ -1,5 +1,5 @@
 <template>
-	<header class="hidden bg-black py-4 text-white shadow sm:block">
+	<header class="hidden bg-black py-5 text-white shadow sm:block">
 		<div class="container mx-auto !max-w-screen-xl px-4">
 			<div class="flex items-center gap-6">
 				<h3 class="flex text-white cursor-pointer h-8 text-lg font-semibold">MontPlex</h3>
@@ -72,7 +72,7 @@
 						<div class="flex h-11 items-center rounded-r bg-[#3f3f46] px-3 cursor-pointer">
 							<el-dropdown trigger="click" @command="handleMineCommand">
 								<div class="flex items-center">
-									<el-avatar class="mr-3" :size="30" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
+									<el-avatar class="mr-3" :size="30" :src="info?.picture" />
 									<i-ant-design:caret-down-outlined style="font-size: 10px; color: white" />
 								</div>
 								<template #dropdown>

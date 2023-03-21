@@ -1,5 +1,5 @@
 <template>
-	<el-affix>
+	<div class="sticky top-0 z-[99]">
 		<div class="bg-gray-50 py-6 shadow border-b-0">
 			<div class="container mx-auto !max-w-screen-xl px-4">
 				<div class="flex items-center">
@@ -33,7 +33,7 @@
 				</div>
 			</div>
 		</div>
-	</el-affix>
+	</div>
 
 	<el-dialog v-model="editVisible" title="Rename Database" width="520px" style="border-radius: 8px">
 		<label class="dialog-label mb-1">Database name</label>

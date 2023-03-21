@@ -1,6 +1,9 @@
 import { RouteRecordRaw } from "vue-router";
 import Home from "@/views/home/index.vue";
 import Cache from "@/views/cache/cache.vue";
+import { CacheEnum } from "#/enum";
+import Cookies from "js-cookie";
+
 const routes = [
 	{
 		path: "/",
@@ -33,8 +36,15 @@ const routes = [
 		path: "/console",
 		name: "Console",
 		meta: { auth: true },
-		component: () => import("@/views/cache/index.vue")
-		// beforeEnter: createAuthGuard(app)
+		component: () => import("@/views/cache/index.vue"),
+		beforeEnter: (to, from) => {
+			console.log("路由独享守卫--------->", to, from);
+			if (Cookies.get(CacheEnum.COOKIE)) {
+				return true;
+			} else {
+				window.location.href = import.meta.env.VITE_API_URL + "/engula/auth0/login";
+			}
+		}
 	},
 	{
 		path: "/redis",

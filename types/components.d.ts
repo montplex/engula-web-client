@@ -15,7 +15,6 @@ declare module 'vue' {
     CodeHight: typeof import('./../src/components/CodeHight/index.vue')['default']
     CountTo: typeof import('./../src/components/CountTo/index.vue')['default']
     Echarts: typeof import('./../src/components/Echarts/index.vue')['default']
-    ElAffix: typeof import('element-plus/es')['ElAffix']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElDialog: typeof import('element-plus/es')['ElDialog']
