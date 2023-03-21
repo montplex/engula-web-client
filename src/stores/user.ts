@@ -28,11 +28,6 @@ export const userStore = defineStore({
 					this.info = res;
 				}
 			}
-		},
-		logout() {
-			Cookies.remove(CacheEnum.COOKIE);
-			Cookies.remove(CacheEnum.JSAUTH);
-			this.info = null;
 		}
 	}
 });

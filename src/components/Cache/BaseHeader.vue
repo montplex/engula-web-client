@@ -128,11 +128,11 @@ const { info } = storeToRefs(store);
 const router = useRouter();
 const handleMineCommand = (command: string) => {
 	if (command === "out") {
-		store.logout();
+		store.info = null;
 		if (import.meta.env.MODE === "development") {
 			useRouter().push({ path: "/", replace: true });
 		} else {
-			window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/login");
+			window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/logout");
 		}
 	}
 };

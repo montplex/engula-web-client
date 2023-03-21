@@ -71,15 +71,11 @@ class Request {
 						break;
 					case 401:
 						message = "身份已过期，请重新登录";
-						userStore().logout();
-						if (import.meta.env.MODE === "development") {
-							useRouter().push({ path: "/", replace: true });
-						} else {
-							window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/login");
-						}
+						logout();
 						break;
 					case 403:
 						message = "拒绝访问(403)";
+						logout();
 						break;
 					case 404:
 						message = "网络开小差了(404)";
@@ -114,7 +110,6 @@ class Request {
 			}
 		);
 	}
-
 	/** 通用请求工具函数 */
 	// 传入的泛型是约束返回值
 	request<T>(config: IRequestConfig<T>): Promise<T> {
@@ -133,7 +128,6 @@ class Request {
 				.request<any, T>(config)
 				.then((res) => {
 					// 调用传入的响应拦截器 [单个请求对返回数据的处理]
-
 					if (config.interceptors?.responseSuccessInterceptor) {
 						res = config.interceptors.responseSuccessInterceptor(res);
 					}
@@ -167,6 +161,15 @@ class Request {
 
 	put<T>(config: IRequestConfig<T>): Promise<T> {
 		return this.request<T>({ ...config, method: "PUT" });
+	}
+}
+
+function logout() {
+	userStore().info = null;
+	if (import.meta.env.MODE === "development") {
+		useRouter().push({ path: "/", replace: true });
+	} else {
+		window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/login");
 	}
 }
 
