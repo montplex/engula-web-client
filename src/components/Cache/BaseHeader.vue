@@ -2,7 +2,7 @@
 	<header class="hidden bg-black py-5 text-white shadow sm:block">
 		<div class="container mx-auto !max-w-screen-xl px-4">
 			<div class="flex items-center gap-6">
-				<h3 class="flex text-white cursor-pointer h-8 text-lg font-semibold">MontPlex</h3>
+				<h3 class="flex text-white cursor-pointer h-8 text-xl font-semibold" @click="$router.push('/console')">MontPlex</h3>
 				<nav cy-id="master-nav" class="flex items-center gap-2">
 					<!-- <RouterLink
 						class="inline-flex h-11 items-center gap-1 rounded-md px-3 hover:bg-gray-700 hover:text-white !bg-white font-semibold !text-black"
@@ -49,7 +49,7 @@
 					</el-popover>
 
 					<div class="flex items-center gap-0.5">
-						<div class="flex h-11 items-center rounded-l bg-[#3f3f46] px-3 cursor-pointer">
+						<!-- 	<div class="flex h-11 items-center rounded-l bg-[#3f3f46] px-3 cursor-pointer">
 							<el-dropdown trigger="click">
 								<div class="flex h-11 items-center">
 									<div class="mr-2">
@@ -68,19 +68,19 @@
 									</el-dropdown-menu>
 								</template>
 							</el-dropdown>
-						</div>
-						<div class="flex h-11 items-center rounded-r bg-[#3f3f46] px-3 cursor-pointer">
+						</div> -->
+						<div class="flex h-12 items-center rounded bg-[#3f3f46] pl-5 pr-3 cursor-pointer">
 							<el-dropdown trigger="click" @command="handleMineCommand">
 								<div class="flex items-center">
-									<el-avatar class="mr-3" :size="30" :src="info?.picture" />
+									<el-avatar class="mr-3" :size="34" :src="info?.picture" />
 									<i-ant-design:caret-down-outlined style="font-size: 10px; color: white" />
 								</div>
 								<template #dropdown>
 									<el-dropdown-menu>
 										<el-dropdown-item>{{ info?.nickname }}</el-dropdown-item>
 										<el-dropdown-item v-if="info?.email"> {{ info?.email }}</el-dropdown-item>
-										<el-dropdown-item divided> Account</el-dropdown-item>
-										<el-dropdown-item> Integrations </el-dropdown-item>
+										<!-- <el-dropdown-item divided> Account</el-dropdown-item> -->
+										<!-- <el-dropdown-item> Integrations </el-dropdown-item> -->
 										<el-dropdown-item> Settings </el-dropdown-item>
 										<el-dropdown-item command="out" divided> Log out </el-dropdown-item>
 									</el-dropdown-menu>

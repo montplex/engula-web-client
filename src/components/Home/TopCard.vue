@@ -9,9 +9,9 @@
 			<h1 class="text-5xl">Engula</h1>
 			<h3 class="text-xl pt-6">Managed Caching Service for Global Business</h3>
 		</div>
-		<a class="mt-20" href="http://engula.montplex.com">
+		<RouterLink :to="{ path: '/my', query: { id: 'r3123123123xxx78' } }" class="mt-20">
 			<button class="console">CONSOLE</button>
-		</a>
+		</RouterLink>
 	</div>
 
 	<div class="">

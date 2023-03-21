@@ -3,10 +3,10 @@
 		<div class="group relative">
 			<div class="absolute hidden right-2 top-4 z-10 items-center gap-2 group-hover:flex">
 				<button
-					@click="handleEyeClick"
+					@click="() => $emit('eyeClick')"
 					class="!flex !h-8 !w-8 cursor-pointer items-center justify-center rounded-md border-0 bg-white bg-opacity-30 text-white hover:bg-opacity-50"
 				>
-					<svgIcon :icon="eyeVisible ? 'eye' : 'eye-off'" class="svg-root" />
+					<svgIcon :icon="isVisible ? 'eye' : 'eye-off'" class="svg-root" />
 				</button>
 
 				<el-tooltip effect="dark" placement="right" content="Copy">
@@ -19,42 +19,31 @@
 				</el-tooltip>
 			</div>
 			<!-- code -->
-			<highlightjs :language="language" :code="eyeVisible ? code : desensitizationCode(code)" class="py-2 rounded-lg" />
+			<highlightjs :language="language" :code="code" class="py-2 rounded-lg" />
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
 import { handleCopyClick } from "@/utils/util";
-import { ref } from "vue";
-const eyeVisible = ref(false);
-const props = defineProps({
-	code: {
-		type: String,
-		default: "*****"
-	},
-	language: {
-		type: String,
-		default: "shell"
-	},
-	eye: {
-		type: Boolean,
-		default: true
-	}
-});
 
-function desensitizationCode(str: string) {
-	const reg = /(\/\/default:)(.*?)(\@)/;
-	return str.replace(reg, "$1**********$3");
+interface IProps {
+	isVisible?: boolean;
+	code?: string;
+	language?: string;
+	eye?: boolean;
 }
 
-const handleCopy = () => {
-	handleCopyClick(props.code);
-};
+const props = withDefaults(defineProps<IProps>(), {
+	isVisible: true,
+	code: "******",
+	language: "shell",
+	eye: true
+});
 
-const handleEyeClick = () => {
-	eyeVisible.value = !eyeVisible.value;
-};
+const emits = defineEmits(["eyeClick"]);
+
+const handleCopy = () => handleCopyClick(props.code);
 </script>
 
 <style lang="scss">

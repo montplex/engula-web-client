@@ -40,7 +40,7 @@ function onExecCmd(
 	if (key === "fail") {
 		failed("Something wrong!!!");
 	} else {
-		xmtApi({ cacheServiceId: 14, command: key }).then((res) => {
+		xmtApi({ cacheServiceId: 14, command }).then((res) => {
 			success({
 				type: "success",
 				class: "success",

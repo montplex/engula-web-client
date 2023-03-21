@@ -89,193 +89,10 @@
 				</div>
 			</div> -->
 		</div>
-		<div class="section-connect">
-			<div class="col-span-1">
-				<h3 class="text-xl font-normal">Configuration</h3>
-			</div>
-			<div class="overflow-x-auto sm:overflow-hidden">
-				<div class="mt-2">
-					<div class="flex items-center py-6">
-						<div class="mr-4 mt-0.5 flex w-10 justify-center self-start">
-							<div class="text-xl">
-								<span class="mt-0.5 flex h-3 w-3 rounded-full !bg-green-500"></span>
-							</div>
-						</div>
-						<div class="flex-grow">
-							<h4 class="text-base text-info-8">TLS (SSL)</h4>
-							<div class="text-gray-500">
-								This option encrypts the data traffic
-								<svg-icon icon="share" class="is-link inline" />
-							</div>
-						</div>
-						<div class="ml-10"><div></div></div>
-					</div>
-					<div class="border-b border-gray-200"></div>
-					<div class="flex items-center py-6">
-						<div class="mr-4 mt-0.5 flex w-10 justify-center self-start">
-							<div class="text-xl">
-								<span class="mt-0.5 flex h-3 w-3 rounded-full !bg-green-500"></span>
-							</div>
-						</div>
-						<div class="flex-grow">
-							<h4 class="text-base text-info-8">Eviction</h4>
-							<div class="text-gray-500">
-								Enable eviction, to evict keys when your database reaches the max size
-								<svg-icon icon="share" class="is-link inline" />
-							</div>
-						</div>
-						<el-button class="!ml-10" plain>Disable</el-button>
-					</div>
-					<div class="border-b border-gray-200"></div>
-					<div class="flex items-center py-6">
-						<div class="mr-4 mt-0.5 flex w-10 justify-center self-start">
-							<div class="text-xl">
-								<span class="mt-0.5 flex h-3 w-3 rounded-full bg-gray-300"></span>
-							</div>
-						</div>
-						<div class="flex-grow">
-							<h4 class="text-base text-info-8">Auto Scale</h4>
-							<div class="text-gray-500">
-								Upgrade to higher plans automatically when it hits quotas
-								<svg-icon icon="share" class="is-link inline" />
-							</div>
-						</div>
-						<el-button class="!ml-10" plain>Enable</el-button>
-					</div>
-					<div class="border-b border-gray-200"></div>
-					<div class="flex items-center py-6">
-						<div class="mr-4 mt-0.5 flex w-10 justify-center self-start">
-							<div class="text-xl">
-								<span class="mt-0.5 flex h-3 w-3 rounded-full !bg-green-500"></span>
-							</div>
-						</div>
-						<div class="flex-grow">
-							<h4 class="text-base text-info-8">Replication</h4>
-							<div class="text-gray-500">
-								The data is replicated to multiple instances. Replication provides you high availability and better scalability
-								<svg-icon icon="share" class="is-link inline" />
-							</div>
-						</div>
-					</div>
-					<div class="border-b border-gray-200"></div>
-					<div class="flex items-center py-6">
-						<div class="mr-4 mt-0.5 flex w-10 justify-center self-start">
-							<div class="text-xl">
-								<svg-icon icon="security" class="inline !text-xl !opacity-70" />
-							</div>
-						</div>
-						<div class="flex-grow">
-							<h4 class="text-base text-info-8">Security Addons</h4>
-							<div class="text-gray-500">
-								<div class="mb-4">
-									The following are additional security features that are enabled at your request for an additional fee.
-									<svg-icon icon="share" class="is-link inline" />
-								</div>
-
-								<div class="grid grid-cols-2 gap-2">
-									<label class="flex select-none items-center">
-										<div class="flex items-center">
-											<el-switch :disabled="true" />
-											<span class="ml-2">IP Whitelisting</span>
-										</div>
-									</label>
-
-									<label class="flex select-none items-center">
-										<div class="flex items-center">
-											<el-switch :disabled="true" />
-											<span class="ml-2">VPC Peering</span>
-										</div>
-									</label>
-
-									<label class="flex select-none items-center">
-										<div class="flex items-center">
-											<el-switch :disabled="true" />
-											<span class="ml-2">Private Link</span>
-										</div>
-									</label>
-
-									<label class="flex select-none items-center">
-										<div class="flex items-center">
-											<el-switch :disabled="true" />
-											<span class="ml-2">TLS Mutual Auth</span>
-										</div>
-									</label>
-								</div>
-
-								<div class="alert-base info mt-4 px-2 py-6">
-									Security addons are only available for the Enterprise database. You can upgrade your database to access these
-									addons.
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="section-connect">
-			<div class="col-span-1">
-				<h3 class="text-xl font-normal">Subscription</h3>
-				<p class="text-gray-600 text-[14px]">
-					You can <button class="is-link">add your credit card</button> to upgrade your database to pay-as-you-go plan.
-				</p>
-			</div>
-			<!-- 收费标准 Start -->
-			<div class="overflow-x-auto sm:overflow-hidden">
-				<div class="min-w-[720px]">
-					<div class="mt-2 grid grid-cols-3 gap-y-[1px] bg-gray-200 bg-opacity-80">
-						<div class="bg-white px-4 py-2"></div>
-						<div class="px-4 py-2 bg-blue-50">
-							<h5 class="text-sm">Free Tier</h5>
-							<p class="mt-1">
-								<span class="whitespace-nowrap rounded-full bg-blue-500 px-2 py-0.5 text-xs text-white">Current Plan</span>
-							</p>
-						</div>
-						<div class="bg-white px-4 py-2">
-							<h5 class="text-sm">Pay as you go</h5>
-						</div>
-						<div class="bg-white px-4 py-2">Max Commands Per Second</div>
-						<div class="px-4 py-2 bg-blue-50">1000</div>
-						<div class="bg-white px-4 py-2">1K</div>
-						<div class="bg-white px-4 py-2">Max Request Size</div>
-						<div class="px-4 py-2 bg-blue-50">1MB</div>
-						<div class="bg-white px-4 py-2">1MB</div>
-						<div class="bg-white px-4 py-2">Max Record Size</div>
-						<div class="px-4 py-2 bg-blue-50">100MB</div>
-						<div class="bg-white px-4 py-2">100MB</div>
-						<div class="bg-white px-4 py-2">Max Memory Storage</div>
-						<div class="px-4 py-2 bg-blue-50">64MB</div>
-						<div class="bg-white px-4 py-2">1GB</div>
-						<div class="bg-white px-4 py-2">Max Data Size</div>
-						<div class="px-4 py-2 bg-blue-50">256MB</div>
-						<div class="bg-white px-4 py-2">10GB</div>
-						<div class="bg-white px-4 py-2">Max Concurrent Connections</div>
-						<div class="px-4 py-2 bg-blue-50">100</div>
-						<div class="bg-white px-4 py-2">1000</div>
-						<div class="bg-white px-4 py-2">Max Daily Bandwidth</div>
-						<div class="px-4 py-2 bg-blue-50">50GB</div>
-						<div class="bg-white px-4 py-2">50GB</div>
-						<div class="px-4 py-2 bg-gray-50">Max Monthly (Cap) Price</div>
-						<div class="px-4 py-2 bg-blue-50"><b>Free</b></div>
-						<div class="px-4 py-2 bg-gray-50"><b>$160</b></div>
-						<div class="px-4 py-2 bg-gray-50">Price</div>
-						<div class="px-4 py-2 bg-blue-50"><b>Free</b></div>
-						<div class="px-4 py-2 bg-gray-50">
-							<p><b>$0.2</b> (per 100k commands)</p>
-						</div>
-						<div class="bg-white px-4 py-2"></div>
-						<div class="px-4 py-2 bg-blue-50"></div>
-						<div class="bg-white px-4 py-2">
-							<!-- <el-button type="primary" class="!border-blue-600 !bg-blue-500 hover:opacity-80">Connect</el-button> -->
-							<!-- padding: 4px 15px -->
-							<el-button class="!my-1" type="primary">Add your credit card</el-button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- 收费标准 End -->
-		</div>
-
+		<configuration />
+		<!-- 收费标准 Start -->
+		<billing-standards />
+		<!-- 收费标准 End -->
 		<!-- CacheReset Password Start  -->
 		<div class="section-connect grid-cols-3 gap-8 !border-orange-200 bg-orange-50">
 			<div class="col-span-2">
@@ -287,7 +104,6 @@
 			<div class="overflow-x-auto sm:overflow-hidden">
 				<div class="flex h-full items-center justify-end">
 					<el-button type="warning" class="!border-orange-600 !bg-orange-500 hover:opacity-80">Reset</el-button>
-					<!-- <el-button type="warning">Reset</el-button> -->
 				</div>
 			</div>
 		</div>
@@ -304,7 +120,6 @@
 			<div class="overflow-x-auto sm:overflow-hidden">
 				<div class="flex h-full items-center justify-end">
 					<el-button type="warning" class="!border-orange-600 !bg-orange-500 hover:opacity-80">Transfer</el-button>
-					<!-- <el-button type="warning">Transfer</el-button> -->
 				</div>
 			</div>
 		</div>
@@ -328,18 +143,21 @@
 
 <script setup lang="ts">
 import CodeFragment from "@/components/Cache/CodeFragment.vue";
+import BillingStandards from "@/components/Cache/BillingStandards.vue";
+import Configuration from "@/components/Cache/Configuration.vue";
 
-import { reactive, ref } from "vue";
+import { ref } from "vue";
 import { useRoute } from "vue-router";
 import { useDbStore } from "@/stores/cache";
 import { CachestatusTo } from "#/enum";
 import { dayjs } from "element-plus";
+
 const route = useRoute();
 const store = useDbStore();
 store.setOneCache({ id: route.query.id as string });
-const cache = ref(store.oneCache);
+// const cache = ref(store.oneCache);
 
-const baseInfo = reactive([
+/* const baseInfo = reactive([
 	{ name: "Region", info: "us-east-1" },
 	{
 		name: "Endpoint",
@@ -350,7 +168,7 @@ const baseInfo = reactive([
 	{ name: "Password", info: "•••••••••", show: false, hover: true },
 	{ name: "Port", info: "39796", show: false, hover: true },
 	{ name: "TLS/SSL", info: "Enabled" }
-]);
+]); */
 
 const code = ref("redis-cli -u redis://default:70c51cb8867142a8a45b2da7516c9dd1@us1-hip-bonefish-40037.upstash.io:40037");
 
@@ -363,10 +181,8 @@ const handleEyeClick = (e: boolean) => {
 
 const tabPosition = ref("redis");
 
-const copyTips = ref("Copy");
-const handleCopy = () => {
-	copyTips.value = "Copied";
-};
+/* const copyTips = ref("Copy");
+const handleCopy = () => (copyTips.value = "Copied"); */
 </script>
 
 <style lang="scss">

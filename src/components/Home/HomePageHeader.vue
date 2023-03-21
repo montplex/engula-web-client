@@ -99,11 +99,12 @@ const HandelNavClick = (item: TNav) => {
 };
 
 const handleConsole = () => {
-	if (env().DEV) {
+	router.push("/console");
+	/* if (env().DEV) {
 		router.push("/console");
 	} else {
 		window.location.href = env().VITE_API_URL + "/engula/auth0/login";
-	}
+	} */
 };
 </script>
 

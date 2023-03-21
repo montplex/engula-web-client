@@ -10,19 +10,27 @@
 					<svg-icon icon="share" class="hover:opacity-80 inline" />
 				</a>
 				to establish a secure connection to the TLS enabled database
-				<a href="#"> <svg-icon icon="share" class="text-[#1677ff] hover:opacity-80 inline" /> </a>
+				<a
+					href="https://www.digitalocean.com/community/tutorials/how-to-connect-to-managed-redis-over-tls-with-stunnel-and-redis-cli"
+					target="_blank"
+					rel="database"
+				>
+					<svg-icon icon="share" class="text-[#1677ff] hover:opacity-80 inline" />
+				</a>
 			</div>
 		</div>
 		<div v-else>
 			<div v-for="(_lib, _ix) in codeObject[type].library" :key="_ix">
 				<div class="title">
 					Library
-					<a class="inline text-[#1677ff]" :href="_lib.url" role="link" target="_blank" rel="noopener noreferrer">
+					<a class="inline text-[#1677ff]" :href="_lib.url" role="link" target="_blank" :rel="_lib.name">
 						{{ _lib.name }}
 						<svg-icon icon="share" class="hover:opacity-80 inline" />
 					</a>
 				</div>
-				<CodeHight @on-eye-click="handleEyeClick" :code="_lib.code" />
+				<!--  eslint-disable-next-line vue/v-on-event-hyphenation -->
+				<!-- @on-eye-click="handleEyeClick" -->
+				<CodeHight :code="_lib.code" :is-visible="eys" @eye-click="eyesClick" />
 			</div>
 		</div>
 		<!-- </div> -->
@@ -43,12 +51,19 @@ const props = defineProps({
 		default: "********"
 	}
 });
+const eyesClick = (e: any) => {
+	console.log("eyesClick", e);
+};
+
+const eys = ref(false);
+
+const password = eys.value ? props.password : "********";
 
 const code = ref("redis-cli -u redis://default:70c51cb8867142a8a45b2da7516c9dd1@us1-hip-bonefish-40037.upstash.io:40037");
 
 const codeObject: any = {
 	redis: {
-		code: `"redis-cli -u redis://default:${props.password}@us1-hip-bonefish-40037.upstash.io:40037"`,
+		code: `"redis-cli -u redis://default:${password}@us1-hip-bonefish-40037.upstash.io:40037"`,
 		tips: true
 	},
 	node: {
@@ -58,7 +73,7 @@ const codeObject: any = {
 				url: "https://github.com/luin/ioredis",
 				code: `
   const Redis = require("ioredis");
-  let client = new Redis("redis://default:${props.password}@us1-hip-bonefish-40037.upstash.io:40037");
+  let client = new Redis("redis://default:${password}@us1-hip-bonefish-40037.upstash.io:40037");
   client.set('foo', 'bar');`
 			},
 			{
@@ -70,7 +85,7 @@ const codeObject: any = {
   let client = redis.createClient ({
     url : 'us1-hip-bonefish-40037.upstash.io',
     port : '40037',
-    password: '${props.password}'
+    password: '${password}'
   });
 
   client.on("error", function(err) {
@@ -91,7 +106,7 @@ const codeObject: any = {
   $client = new Predis\Client(
     [
       'host'   => 'us1-hip-bonefish-40037.upstash.io',
-      'password' => ${props.password},
+      'password' => ${password},
       'port'   => 40037,
       'scheme' => tcp,
     ]
@@ -107,7 +122,7 @@ const codeObject: any = {
 				code: `
   $redis = new Redis();
   $redis->connect('us1-hip-bonefish-40037.upstash.io', 40037);
-  $redis->auth('${props.password}');
+  $redis->auth('${password}');
 
   $redis->set("foo", "bar");
   print_r($redis->get("foo"));`
@@ -125,7 +140,7 @@ const codeObject: any = {
   r = redis.Redis(
     host= 'us1-hip-bonefish-40037.upstash.io',
     port= '40037',
-    password= "${props.password}"
+    password= "${password}"
   )
 
   r.set('foo','bar')
@@ -141,7 +156,7 @@ const codeObject: any = {
 				code: `
     public static void main(String[] args) {
     Jedis jedis = new Jedis("us1-hip-bonefish-40037.upstash.io", 40037);
-    jedis.auth("${props.password}");
+    jedis.auth("${password}");
 
     jedis.set("foo", "bar");
     String value = jedis.get("foo");
@@ -157,7 +172,7 @@ const codeObject: any = {
 				code: `
   var ctx = context.Background()
   func main() {
-    opt, _ := redis.ParseURL("redis://default:${props.password}@us1-hip-bonefish-40037.upstash.io:40037")
+    opt, _ := redis.ParseURL("redis://default:${password}@us1-hip-bonefish-40037.upstash.io:40037")
     client := redis.NewClient(opt)
 
     client.Set(ctx, "foo", "bar", 0)
@@ -168,7 +183,7 @@ const codeObject: any = {
 		]
 	},
 	docker: {
-		code: `docker run -it redis:alpine redis-cli -u redis://default:${props.password}@us1-hip-bonefish-40037.upstash.io:40037`,
+		code: `docker run -it redis:alpine redis-cli -u redis://default:${password}@us1-hip-bonefish-40037.upstash.io:40037`,
 		tips: true
 	}
 };

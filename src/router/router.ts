@@ -36,22 +36,46 @@ const routes = [
 		path: "/console",
 		name: "Console",
 		meta: { auth: true },
-		component: () => import("@/views/cache/index.vue"),
-		beforeEnter: (to, from) => {
+		component: () => import("@/views/cache/index.vue")
+		/* beforeEnter: (to, from) => {
 			console.log("路由独享守卫--------->", to, from);
 			if (Cookies.get(CacheEnum.COOKIE)) {
 				return true;
 			} else {
 				window.location.href = import.meta.env.VITE_API_URL + "/engula/auth0/login";
 			}
-		}
+		} */
 	},
 	{
 		path: "/redis",
 		name: "Redis",
 		meta: { auth: true },
-		component: Cache
+		component: Cache,
+		redirect: { name: "Details" },
+		children: [
+			{
+				path: "details",
+				name: "Details",
+				component: () => import("@/views/cache/tabs/details.vue")
+			},
+			{
+				path: "usages",
+				name: "Usages",
+				component: () => import("@/views/cache/tabs/usages.vue")
+			},
+			{
+				path: "cli",
+				name: "Cli",
+				component: () => import("@/views/cache/tabs/cli.vue")
+			},
+			{
+				path: "token",
+				name: "Token",
+				component: () => import("@/views/cache/tabs/token.vue")
+			}
+		]
 	},
+
 	{
 		path: "/404",
 		meta: { auth: true },
