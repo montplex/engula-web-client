@@ -10,6 +10,7 @@ declare module 'vue' {
     BaseFooter: typeof import('./../src/components/Cache/BaseFooter.vue')['default']
     BaseHeader: typeof import('./../src/components/Cache/BaseHeader.vue')['default']
     BaseInfo: typeof import('./../src/components/Cache/BaseInfo.vue')['default']
+    BasePort: typeof import('./../src/components/Cache/BasePort.vue')['default']
     BillingStandards: typeof import('./../src/components/Cache/BillingStandards.vue')['default']
     CacheBases: typeof import('./../src/components/Cache/CacheBases.vue')['default']
     CodeFragment: typeof import('./../src/components/Cache/CodeFragment.vue')['default']

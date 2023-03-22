@@ -75,7 +75,7 @@
 </template>
 <script setup lang="ts">
 import { dayjs } from "element-plus";
-import { computed, ref, reactive } from "vue";
+import {  ref, reactive } from "vue";
 import { addAccessToken, updateAccessTokenMode } from "@/api/cache";
 import { addTokenParams, updateTokenParams } from "#/cache";
 import { useDbStore } from "@/stores/cache";
@@ -144,12 +144,6 @@ const deleteToken = (id: number) => {
 		})
 		.catch(() => {});
 };
-
-const day = computed(() => dayjs().format("MMM D, YYYY"));
-
-// eslint-disable-next-line vue/require-prop-types
-const props = defineProps(["id"]);
-console.log(props.id);
 </script>
 
 <style lang="scss">

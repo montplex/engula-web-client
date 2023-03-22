@@ -1,65 +1,7 @@
 <!-- eslint-disable vue/require-prop-types -->
 <template>
 	<div class="mt-8 grid grid-cols-1 gap-8">
-		<div class="rounded-lg border border-gray-200 p-4 sm:p-8">
-			<div class="grid items-center gap-4 sm:grid-flow-col">
-				<!-- <div v-for="(item, index) in baseInfo" :key="index" @mouseenter="item.show = true" @mouseleave="item.show = false">
-					<div class="text-gray-500">{{ item.name }}</div>
-					<div class="copy-text flex items-center">
-						<div class="mr-1">{{ item.info }}</div>
-						<el-tooltip effect="dark" placement="top" content="Copy">
-							<div style="min-width: 20px; min-height: 20px" v-copy>
-								<div v-if="item.hover">
-									<svgIcon icon="copy" v-show="item.show" />
-								</div>
-							</div>
-						</el-tooltip>
-					</div>
-				</div> -->
-				<div>
-					<div class="text-gray-500">cloudProvider</div>
-					<div class="copy-text flex items-center">
-						<div class="mr-1">{{ store.oneCache!.cloudProvider }}</div>
-					</div>
-				</div>
-				<div>
-					<div class="text-gray-500">Region</div>
-					<div class="copy-text flex items-center">
-						<div class="mr-1">{{ store.oneCache!.region }}</div>
-					</div>
-				</div>
-				<div>
-					<div class="text-gray-500">Status</div>
-					<div class="copy-text flex items-center">
-						<div class="mr-1">{{ CachestatusTo[store.oneCache!.status] }}</div>
-					</div>
-				</div>
-				<div>
-					<div class="text-gray-500">CreateTime</div>
-					<div class="copy-text flex items-center">
-						<div class="mr-1">
-							{{ dayjs(store.oneCache?.createdDate).format("MMM D, YYYY") }}
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- <el-tooltip effect="dark" placement="top">
-				<template #content>
-					<p class="!text-sm">{{ copyTips }}</p>
-				</template>
-				<div
-					v-copy
-					@click="handleCopy"
-					class="relative mt-6 cursor-pointer justify-center rounded-b-lg bg-gray-50 py-4 text-center hover:bg-gray-100 sm:mt-6 sm:flex"
-				>
-					<div class="!bg-transparent !font-mono text-sm flex items-center">
-						<sapn class="pr-2">{{ code }}</sapn>
-						<svgIcon icon="copy" class="text-[#1677ff] text-sm" />
-					</div>
-				</div>
-			</el-tooltip> -->
-		</div>
-
+		<BasePort />
 		<div class="section-connect">
 			<div class="col-span-1">
 				<h3 class="text-xl font-normal">Connect to your database</h3>
@@ -145,6 +87,7 @@
 import CodeFragment from "@/components/Cache/CodeFragment.vue";
 import BillingStandards from "@/components/Cache/BillingStandards.vue";
 import Configuration from "@/components/Cache/Configuration.vue";
+import BasePort from "@/components/Cache/BasePort.vue";
 
 import { ref } from "vue";
 import { useRoute } from "vue-router";
@@ -156,28 +99,6 @@ const route = useRoute();
 const store = useDbStore();
 store.setOneCache({ id: route.query.id as string });
 // const cache = ref(store.oneCache);
-
-/* const baseInfo = reactive([
-	{ name: "Region", info: "us-east-1" },
-	{
-		name: "Endpoint",
-		info: "us1-trusty-tick-39796.upstash.io",
-		show: false,
-		hover: true
-	},
-	{ name: "Password", info: "•••••••••", show: false, hover: true },
-	{ name: "Port", info: "39796", show: false, hover: true },
-	{ name: "TLS/SSL", info: "Enabled" }
-]); */
-
-const code = ref("redis-cli -u redis://default:70c51cb8867142a8a45b2da7516c9dd1@us1-hip-bonefish-40037.upstash.io:40037");
-
-const handleEyeClick = (e: boolean) => {
-	console.log("chi", e);
-	const reg = /(\/\/default:)(.*?)(\@)/;
-	const desensitizationCode = code.value.replace(reg, "$1**********$3");
-	code.value = e ? code.value : desensitizationCode;
-};
 
 const tabPosition = ref("redis");
 
@@ -192,6 +113,10 @@ const handleCopy = () => (copyTips.value = "Copied"); */
 	line-height: 1.9rem;
 	color: rgb(0 0 0 / 88%);
 	svg {
+		&:focus {
+			outline: none !important;
+			opacity: 0.7;
+		}
 		font-size: 16px;
 		color: #1677ff;
 	}

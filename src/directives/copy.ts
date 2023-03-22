@@ -1,44 +1,36 @@
-import type { Directive, DirectiveBinding } from "vue";
-import { ElMessage } from "element-plus";
+import { DirectiveBinding } from "vue";
 
 interface ElType extends HTMLElement {
 	copyData: string | number;
 	__handleClick__: any;
 }
 
-/**
- * v-copy
- * 复制某个值至剪贴板
- * 接收参数：string类型/Ref<string>类型/Reactive<string>类型
- */
-const copy: Directive = {
+const copy = {
 	mounted(el: ElType, binding: DirectiveBinding) {
-		el.copyData = binding.value;
-		const hasDblclick = binding.modifiers.dblclick;
-		const listener = hasDblclick ? "dblclick" : "click";
-		el.addEventListener(listener, handleClick);
-		// el.addEventListener("click", handleClick);
-	},
-	updated(el: ElType, binding: DirectiveBinding) {
-		el.copyData = binding.value;
+		// 双击触发复制
+		if (binding.modifiers.dblclick) {
+			el.addEventListener("dblclick", () => handleCopyClick(el.innerText));
+		}
+		// 单击触发复制
+		else {
+			el.addEventListener("click", () => handleCopyClick(el.innerText));
+		}
 	},
 	beforeUnmount(el: ElType) {
 		el.removeEventListener("click", el.__handleClick__);
 	}
 };
-
-function handleClick(this: any) {
+function handleCopyClick(e: string) {
 	const input = document.createElement("input");
-	input.style.opacity = "0";
-	input.value = this.copyData.toLocaleString();
+	console.log(e);
+	input.value = e;
 	document.body.appendChild(input);
 	input.select();
 	document.execCommand("Copy");
 	document.body.removeChild(input);
 	ElMessage({
-		type: "success",
-		message: "复制成功"
+		message: "复制成功",
+		type: "success"
 	});
 }
-
 export default copy;

@@ -1,7 +1,7 @@
 <template>
 	<div class="space-y-6">
 		<div v-if="codeObject[type].code">
-			<CodeHight @on-eye-click="handleEyeClick" :code="codeObject[type].code" />
+			<CodeHight :code="codeObject[type].code" />
 			<!-- footer tips -->
 			<div class="info-warning mt-6" v-show="codeObject[type].tips">
 				redis-cli supports TLS starting with version 6. If you are using version 5 or earlier, you should use
@@ -28,42 +28,28 @@
 						<svg-icon icon="share" class="hover:opacity-80 inline" />
 					</a>
 				</div>
-				<!--  eslint-disable-next-line vue/v-on-event-hyphenation -->
-				<!-- @on-eye-click="handleEyeClick" -->
-				<CodeHight :code="_lib.code" :is-visible="eys" @eye-click="eyesClick" />
+				<CodeHight :code="_lib.code" />
 			</div>
 		</div>
-		<!-- </div> -->
 	</div>
 </template>
 
 <script setup lang="ts">
 import CodeHight from "@/components/CodeHight/index.vue";
-import { ref } from "vue";
 
-const props = defineProps({
-	type: {
-		type: String,
-		default: "redis"
-	},
-	password: {
-		type: String,
-		default: "********"
-	}
+interface IProps {
+	type?: string;
+	password?: string;
+}
+
+withDefaults(defineProps<IProps>(), {
+	type: "redis",
+	password: "==================="
 });
-const eyesClick = (e: any) => {
-	console.log("eyesClick", e);
-};
-
-const eys = ref(false);
-
-const password = eys.value ? props.password : "********";
-
-const code = ref("redis-cli -u redis://default:70c51cb8867142a8a45b2da7516c9dd1@us1-hip-bonefish-40037.upstash.io:40037");
 
 const codeObject: any = {
 	redis: {
-		code: `"redis-cli -u redis://default:${password}@us1-hip-bonefish-40037.upstash.io:40037"`,
+		code: `"redis-cli -u redis://default:**********@us1-hip-bonefish-40037.upstash.io:40037"`,
 		tips: true
 	},
 	node: {
@@ -73,7 +59,7 @@ const codeObject: any = {
 				url: "https://github.com/luin/ioredis",
 				code: `
   const Redis = require("ioredis");
-  let client = new Redis("redis://default:${password}@us1-hip-bonefish-40037.upstash.io:40037");
+  let client = new Redis("redis://default:**********@us1-hip-bonefish-40037.upstash.io:40037");
   client.set('foo', 'bar');`
 			},
 			{
@@ -85,7 +71,7 @@ const codeObject: any = {
   let client = redis.createClient ({
     url : 'us1-hip-bonefish-40037.upstash.io',
     port : '40037',
-    password: '${password}'
+    password: '**********'
   });
 
   client.on("error", function(err) {
@@ -106,7 +92,7 @@ const codeObject: any = {
   $client = new Predis\Client(
     [
       'host'   => 'us1-hip-bonefish-40037.upstash.io',
-      'password' => ${password},
+      'password' => **********,
       'port'   => 40037,
       'scheme' => tcp,
     ]
@@ -122,7 +108,7 @@ const codeObject: any = {
 				code: `
   $redis = new Redis();
   $redis->connect('us1-hip-bonefish-40037.upstash.io', 40037);
-  $redis->auth('${password}');
+  $redis->auth('**********');
 
   $redis->set("foo", "bar");
   print_r($redis->get("foo"));`
@@ -140,7 +126,7 @@ const codeObject: any = {
   r = redis.Redis(
     host= 'us1-hip-bonefish-40037.upstash.io',
     port= '40037',
-    password= "${password}"
+    password= "**********"
   )
 
   r.set('foo','bar')
@@ -156,7 +142,7 @@ const codeObject: any = {
 				code: `
     public static void main(String[] args) {
     Jedis jedis = new Jedis("us1-hip-bonefish-40037.upstash.io", 40037);
-    jedis.auth("${password}");
+    jedis.auth("**********");
 
     jedis.set("foo", "bar");
     String value = jedis.get("foo");
@@ -172,7 +158,7 @@ const codeObject: any = {
 				code: `
   var ctx = context.Background()
   func main() {
-    opt, _ := redis.ParseURL("redis://default:${password}@us1-hip-bonefish-40037.upstash.io:40037")
+    opt, _ := redis.ParseURL("redis://default:**********@us1-hip-bonefish-40037.upstash.io:40037")
     client := redis.NewClient(opt)
 
     client.Set(ctx, "foo", "bar", 0)
@@ -183,16 +169,9 @@ const codeObject: any = {
 		]
 	},
 	docker: {
-		code: `docker run -it redis:alpine redis-cli -u redis://default:${password}@us1-hip-bonefish-40037.upstash.io:40037`,
+		code: `docker run -it redis:alpine redis-cli -u redis://default:**********@us1-hip-bonefish-40037.upstash.io:40037`,
 		tips: true
 	}
-};
-
-const handleEyeClick = (e: boolean) => {
-	console.log("chi", e);
-	const reg = /(\/\/default:)(.*?)(\@)/;
-	const desensitizationCode = code.value.replace(reg, "$1**********$3");
-	code.value = e ? code.value : desensitizationCode;
 };
 </script>
 
