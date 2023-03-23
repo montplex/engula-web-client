@@ -58,7 +58,7 @@ export const getCloudProviderList = () => {
 /**
  *  列表访问令牌
  */
-export const getTokenList = (cacheServiceId?: string) => {
+export const getTokenList = (cacheServiceId?: number) => {
 	return http.get<ITokenListRes>({
 		url: "/cache_service/access_token/list",
 		params: { cacheServiceId }

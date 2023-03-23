@@ -46,7 +46,7 @@ export const useDbStore = defineStore({
 			return res;
 		},
 		async setTokenList(id: number) {
-			const res = await getTokenList("14");
+			const res = await getTokenList(id);
 			const list: ItokenItem[] = res.list.map((v) => ({ ...v, show: false }));
 			this.tokenList = list;
 		},

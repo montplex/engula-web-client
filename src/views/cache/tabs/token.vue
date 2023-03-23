@@ -93,10 +93,9 @@ const route = useRoute(),
 	store = useDbStore(),
 	addVisible = ref(false),
 	addFormRef = ref<FormInstance>(),
-	update = ref(false),
-	id = route.query.id as any as number;
+	update = ref(false);
 
-store.setTokenList(id);
+store.setTokenList(route.query.id as any);
 
 const from = reactive<addTokenParams>({
 	cacheServiceId: "",
@@ -123,7 +122,7 @@ const updateMode = () => {
 	updateToken(fromUpdate)
 		.then((res) => {
 			if (res.ok) {
-				store.setTokenList(id);
+				store.setTokenList(route.query.id as any);
 				return ElMessage.success("Update completed");
 			}
 			ElMessage.error("Update failed");
@@ -135,7 +134,7 @@ const updateMode = () => {
 
 const addTokenCallback = () => {
 	addToken(from).then((res) => {
-		store.setTokenList(id);
+		store.setTokenList(route.query.id as any);
 		addVisible.value = false;
 	});
 };

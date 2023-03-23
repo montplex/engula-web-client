@@ -1,6 +1,6 @@
 <template>
 	<base-header />
-	<base-info :base="cache.one" />
+	<BaseInfo />
 	<div class="container mx-auto !max-w-screen-xl px-4 pt-8 pb-20">
 		<el-tabs v-model="activeTab" @tab-click="tabClick">
 			<el-tab-pane v-for="item in tabs" :label="item" :name="item.toLowerCase()" :key="item" :lazy="true" />
@@ -31,9 +31,7 @@ function tabClick({ paneName }: any) {
 	toPage(`/redis/${paneName}`);
 }
 
-store.setOneCache({ id: route.query.id as string }).then((res) => {
-	cache.value = res;
-});
+store.setOneCache({ id: route.query.id as string });
 
 store.setCacheList();
 

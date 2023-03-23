@@ -1,11 +1,11 @@
 <template>
-	<div class="sticky top-0 z-[99]">
+	<div style="position: sticky; top: 0; z-index: 99">
 		<div class="bg-gray-50 py-6 shadow border-b-0">
 			<div class="container mx-auto !max-w-screen-xl px-4">
 				<div class="flex items-center">
 					<div>
 						<h1 class="m-0 flex items-center text-2xl font-bold leading-none">
-							<span>{{ base.name }}</span>
+							<span>{{ store.oneCache.one.name }}</span>
 							<el-tooltip effect="dark" content="Rename Database" placement="top-start">
 								<button type="button" class="ml-3 inline-flex h-auto items-center !p-0">
 									<svgIcon @click="editVisible = true" icon="edit" class="text-gray-400" />
@@ -14,7 +14,10 @@
 						</h1>
 						<div class="mt-2 mr-20">
 							<div class="inline-flex flex-wrap items-center gap-1 text-sm">
-								<span>Free Tier</span><span>·</span><span>Single Replica</span><span>·</span><span>10K commands per day</span>
+								<span>
+									{{ store.oneCache.one.des }}
+								</span>
+								<!-- <span>Free Tier</span><span>·</span><span>Single Replica</span><span>·</span><span>10K commands per day</span> -->
 							</div>
 						</div>
 					</div>
@@ -80,7 +83,7 @@
 					Please type
 					<span class="c-tag">
 						<code
-							><strong>{{ base.name }}</strong></code
+							><strong>{{ store.oneCache.one.name }}</strong></code
 						>
 					</span>
 					to confirm.
@@ -102,14 +105,10 @@
 import { ref } from "vue";
 import { cacheOne } from "@/api/cache";
 import { useRoute } from "vue-router";
-import { ICacheListItem } from "#/cache";
-
-const props = defineProps<{
-	base: ICacheListItem;
-}>();
-
+import { useDbStore } from "@/stores/cache";
 const editVisible = ref(false),
-	cacheNewName = ref(props.base.name),
+	store = useDbStore(),
+	cacheNewName = ref(store.oneCache.one.name),
 	stopVisible = ref(false),
 	isStop = ref(true),
 	powerLoading = ref(false),
@@ -121,11 +120,10 @@ const editVisible = ref(false),
 function powerCache() {
 	powerLoading.value = true;
 	console.log("start");
-	// store.stopCache(CachestatusTo.start);
 }
 
 function nameInput(e: string) {
-	isStop.value = e !== props.base.name;
+	isStop.value = e !== store.oneCache.one.name;
 }
 
 /* 关闭缓存 */

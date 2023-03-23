@@ -51,6 +51,7 @@ import { formatChartsData } from "@/utils/util";
 import { reactive, ref } from "vue";
 import { getChart } from "@/api/cache";
 import { ChartParams, ChartRes } from "#/cache";
+import { useDbStore } from "@/stores/cache";
 
 const ChartTitle: { [index: keyof ChartRes]: string } = {
 	memory_used_bytes: "Data Size (MB)",
@@ -60,9 +61,9 @@ const ChartTitle: { [index: keyof ChartRes]: string } = {
 };
 
 const params = reactive<ChartParams>({
-	cacheServiceId: "1",
-	start: 3123123123,
-	end: 312311312,
+	cacheServiceId: useDbStore().oneCache.one.id,
+	start: new Date().getTime() / 1000 - 5 * 60,
+	end: new Date().getTime() / 1000,
 	step: "5m"
 });
 
