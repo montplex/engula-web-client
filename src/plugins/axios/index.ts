@@ -35,7 +35,7 @@ export const http = new Request({
 			return err;
 		},
 		responseSuccessInterceptor(res) {
-			responseLog(res);
+			// responseLog(res);
 			// console.log("Request实例响应成功的拦截器---->");
 			return res.data;
 		},

@@ -9,13 +9,14 @@ const router = createVueRouter({
 	routes: routes
 });
 
-/* router.beforeEach((to, from) => {
-	const cookie = Cookies.get(CacheEnum.COOKIE);
-	console.log("全局导航守卫--------->", to, from, to.meta.auth, cookie);
-	if (to.meta.auth && !cookie) {
-		window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/login");
+router.beforeEach((to, from) => {
+	if (import.meta.env.VITE_NODE_ENV !== "development") {
+		const cookie = Cookies.get(CacheEnum.COOKIE);
+		if (to.meta.auth && !cookie) {
+			window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/login");
+		}
 	}
-}); */
+});
 
 export async function setupRouter(app: App) {
 	app.use(router);

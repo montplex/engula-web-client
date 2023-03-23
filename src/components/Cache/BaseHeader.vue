@@ -125,7 +125,6 @@ import { useRouter } from "vue-router";
 const store = userStore();
 const { info } = storeToRefs(store);
 
-const router = useRouter();
 const handleMineCommand = (command: string) => {
 	if (command === "out") {
 		store.info = null;

@@ -4,7 +4,6 @@ import { ElLoading, ElMessage } from "element-plus";
 
 import { LoadingInstance } from "element-plus/lib/components/loading/src/loading";
 import { userStore } from "@/stores/user";
-import { useRouter } from "vue-router";
 
 // 引入Elmessage和Elloading的css样式文件
 /* import "element-plus/theme-chalk/el-loading.css"; */
@@ -36,7 +35,7 @@ class Request {
 		this.instance.interceptors.request.use(
 			(config) => {
 				/*    */
-				console.log("--------全局请求拦截器 success--------", config);
+				// console.log("--------全局请求拦截器 success--------", config);
 				if (this.showLoading) {
 					// console.log("loadding.....");
 					// 添加加载loading
@@ -49,7 +48,7 @@ class Request {
 				return config;
 			},
 			(err) => {
-				console.log("--------全局请求拦截器 err--------", err);
+				// console.log("--------全局请求拦截器 err--------", err);
 				this.loading?.close();
 				return err;
 			}
@@ -57,13 +56,15 @@ class Request {
 		// 创建全局响应拦截器
 		this.instance.interceptors.response.use(
 			(config) => {
-				console.log("--------全局响应拦截器 success--------", config);
+				// console.log("--------全局响应拦截器 success--------", config);
+				console.log("全局响应拦截器------", config.status, config);
 				this.loading?.close();
 				return config;
 			},
 			(err) => {
-				console.log("--------全局响应拦截器 err--------", err);
+				// console.log("--------全局响应拦截器 err--------", err);
 				let message = "";
+				console.log("全局响应拦截器-err------", err.response.status, err.response);
 				console.log("err.response.status", err.response.status);
 				switch (err.response.status) {
 					case 400:
@@ -166,11 +167,7 @@ class Request {
 
 function logout() {
 	userStore().info = null;
-	if (import.meta.env.MODE === "development") {
-		useRouter().push({ path: "/", replace: true });
-	} else {
-		window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/login");
-	}
+	window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/login");
 }
 
 export default Request;
