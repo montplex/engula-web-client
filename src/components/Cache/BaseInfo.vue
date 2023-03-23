@@ -1,29 +1,26 @@
 <template>
-	<div style="position: sticky; top: 0; z-index: 99">
-		<div class="bg-gray-50 py-6 shadow border-b-0">
-			<div class="container mx-auto !max-w-screen-xl px-4">
-				<div class="flex items-center">
-					<div>
-						<h1 class="m-0 flex items-center text-2xl font-bold leading-none">
-							<span>{{ store.oneCache.one.name }}</span>
-							<el-tooltip effect="dark" content="Rename Database" placement="top-start">
-								<button type="button" class="ml-3 inline-flex h-auto items-center !p-0">
-									<svgIcon @click="editVisible = true" icon="edit" class="text-gray-400" />
-								</button>
-							</el-tooltip>
-						</h1>
-						<div class="mt-2 mr-20">
-							<div class="inline-flex flex-wrap items-center gap-1 text-sm">
-								<span>
-									{{ store.oneCache.one.des }}
-								</span>
-								<!-- <span>Free Tier</span><span>·</span><span>Single Replica</span><span>·</span><span>10K commands per day</span> -->
-							</div>
+	<!-- style="position: sticky; top: 0; z-index: 99" -->
+	<div class="bg-gray-50 py-6 shadow border-b-0" style="position: sticky; top: 0; z-index: 99">
+		<div class="container mx-auto !max-w-screen-xl px-4">
+			<div class="flex items-center">
+				<div>
+					<h1 class="m-0 flex items-center text-2xl font-bold leading-none">
+						<span v-if="base.name">{{ base.name }}</span>
+						<el-tooltip effect="dark" content="Rename Database" placement="top-start">
+							<button type="button" @click="editName(base.name)" class="ml-3 inline-flex h-auto items-center !p-0">
+								<svgIcon icon="edit" class="text-gray-400" />
+							</button>
+						</el-tooltip>
+					</h1>
+					<div class="mt-2 mr-20">
+						<div class="inline-flex flex-wrap items-center gap-1 text-sm">
+							<span> {{ base.des }}</span>
 						</div>
 					</div>
+				</div>
 
-					<div class="ml-auto">
-						<!-- <el-tooltip effect="dark" content="Help" placement="top-start">
+				<div class="ml-auto">
+					<!-- <el-tooltip effect="dark" content="Help" placement="top-start">
 							<el-button
 								plain
 								class="!flex w-[32px] shrink-0 items-center justify-center !py-0 text-gray-400 sm:flex hover:bg-transparent"
@@ -34,8 +31,8 @@
 							</el-button>
 						</el-tooltip> -->
 
-						<div class="gap-6 ml-3">
-							<!-- <el-button plain @click="powerCache">
+					<div class="gap-6 ml-3">
+						<!-- <el-button plain @click="powerCache">
 								<el-icon :class="['el-icon--left', { 'is-loading': powerLoading }]" size="16" color="#717179">
 									<SvgIcon icon="power" v-if="!powerLoading" />
 									<i-ep:loading v-else />
@@ -43,14 +40,13 @@
 								<span class="text-[#717179]">power</span>
 							</el-button> -->
 
-							<el-button plain @click="stopVisible = true">
-								<el-icon :class="['el-icon--left', { 'is-loading': stopLoading }]" size="16" color="#717179">
-									<SvgIcon icon="ban" v-if="!stopLoading" />
-									<i-ep:loading v-else />
-								</el-icon>
-								<span class="text-[#717179]">stop</span>
-							</el-button>
-						</div>
+						<el-button plain @click="stopVisible = true">
+							<el-icon :class="['el-icon--left', { 'is-loading': stopLoading }]" size="16" color="#717179">
+								<SvgIcon icon="ban" v-if="!stopLoading" />
+								<i-ep:loading v-if="stopLoading" />
+							</el-icon>
+							<span class="text-[#717179]">stop</span>
+						</el-button>
 					</div>
 				</div>
 			</div>
@@ -82,9 +78,7 @@
 				<p>
 					Please type
 					<span class="c-tag">
-						<code
-							><strong>{{ store.oneCache.one.name }}</strong></code
-						>
+						<strong>{{ base.name }}</strong>
 					</span>
 					to confirm.
 				</p>
@@ -105,16 +99,23 @@
 import { ref } from "vue";
 import { cacheOne } from "@/api/cache";
 import { useRoute } from "vue-router";
-import { useDbStore } from "@/stores/cache";
+import { ICacheListItem } from "#/cache";
+
+const props = defineProps({
+	base: {
+		type: Object as () => ICacheListItem,
+		default: () => ({})
+	}
+});
+const route = useRoute();
+
 const editVisible = ref(false),
-	store = useDbStore(),
-	cacheNewName = ref(store.oneCache.one.name),
+	cacheNewName = ref(""),
 	stopVisible = ref(false),
 	isStop = ref(true),
 	powerLoading = ref(false),
 	stopLoading = ref(false),
-	repeatedName = ref(""),
-	route = useRoute();
+	repeatedName = ref("");
 
 /* 启动 */
 function powerCache() {
@@ -122,8 +123,13 @@ function powerCache() {
 	console.log("start");
 }
 
+function editName(name: string) {
+	editVisible.value = true;
+	cacheNewName.value = name;
+}
+
 function nameInput(e: string) {
-	isStop.value = e !== store.oneCache.one.name;
+	isStop.value = e !== props.base.name;
 }
 
 /* 关闭缓存 */
@@ -136,25 +142,3 @@ function stopCache() {
 	});
 }
 </script>
-
-<style lang="scss" scoped>
-.right-btns {
-	display: flex;
-	cursor: pointer;
-	font-size: 15px;
-	font-weight: 500;
-	line-height: 1;
-	color: #606266;
-	button {
-		display: flex;
-		align-items: center;
-	}
-	button:hover {
-		color: #f8991b !important;
-	}
-	.icon {
-		margin-right: 4px;
-		display: inline-block;
-	}
-}
-</style>

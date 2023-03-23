@@ -27,10 +27,10 @@ export const getCacheList = () => {
 /**
  * Add cache service
  */
-export const addCache = (params: AddCacheParams) => {
+export const addCache = (data: AddCacheParams) => {
 	return http.put<AddCacheRes>({
 		url: "/cache_service/add",
-		params
+		data
 	});
 };
 
@@ -72,10 +72,10 @@ type addTokenRes = { accessToken: string; id: string };
 /**
  *  添加访问令牌
  */
-export const addToken = (params: addTokenParams) => {
+export const addToken = (data: addTokenParams) => {
 	return http.put<addTokenRes>({
 		url: "/cache_service/access_token/add",
-		params
+		data
 	});
 };
 

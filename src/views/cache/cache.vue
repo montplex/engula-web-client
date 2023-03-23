@@ -1,6 +1,6 @@
 <template>
 	<base-header />
-	<BaseInfo />
+	<base-info :base="cache" />
 	<div class="container mx-auto !max-w-screen-xl px-4 pt-8 pb-20">
 		<el-tabs v-model="activeTab" @tab-click="tabClick">
 			<el-tab-pane v-for="item in tabs" :label="item" :name="item.toLowerCase()" :key="item" :lazy="true" />
@@ -13,7 +13,7 @@
 import BaseHeader from "@/components/Cache/BaseHeader.vue";
 import BaseInfo from "@/components/Cache/BaseInfo.vue";
 
-import { ICacheOneRes } from "#/cache";
+import { ICacheListItem } from "#/cache";
 import { useRouter, useRoute } from "vue-router";
 import { ref, watch } from "vue";
 import { useDbStore } from "@/stores/cache";
@@ -23,7 +23,7 @@ const router = useRouter(),
 	store = useDbStore(),
 	activeTab = ref("details"),
 	tabs = ref(["Details", "Usages", "Cli", "Token"]),
-	cache = ref({} as ICacheOneRes);
+	cache = ref({} as ICacheListItem);
 
 function tabClick({ paneName }: any) {
 	activeTab.value = paneName;
@@ -31,7 +31,9 @@ function tabClick({ paneName }: any) {
 	toPage(`/redis/${paneName}`);
 }
 
-store.setOneCache({ id: route.query.id as string });
+store.setOneCache({ id: route.query.id as string }).then((res) => {
+	cache.value = res.one;
+});
 
 store.setCacheList();
 

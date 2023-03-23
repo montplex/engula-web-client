@@ -69,10 +69,10 @@
 								</template>
 							</el-dropdown>
 						</div> -->
-						<div class="flex h-12 items-center rounded bg-[#3f3f46] pl-5 pr-3 cursor-pointer">
+						<div class="flex h-11 items-center rounded bg-[#3f3f46] pl-3 pr-3 py-2 cursor-pointer">
 							<el-dropdown trigger="click" @command="handleMineCommand">
 								<div class="flex items-center">
-									<el-avatar class="mr-3" :size="34" :src="info?.picture" />
+									<el-avatar class="mr-3" :size="30" :src="info?.picture" />
 									<i-ant-design:caret-down-outlined style="font-size: 10px; color: white" />
 								</div>
 								<template #dropdown>
