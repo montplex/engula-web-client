@@ -173,12 +173,12 @@ export const handleCopyClick = (e: string) => {
 	});
 };
 
-export function formatChartsData(obj: { [key: string]: any[] }) {
+export function formatChartsData(obj: { [key: string]: any[] | any[][] }) {
 	let memo = {} as any;
 	for (const [key, value] of Object.entries(obj)) {
 		const ch = value.map((item) => dayjs(item[0]).format("YYYY[年]M[月]D[日] HH:mm"));
 		const en = value.map((item) => dayjs(item[0]).format("D MMM HH:mm"));
-		const y = value.map((item) => item[1]);
+		const y = value.map((item) => (item[1] == "NaN" ? 0 : Number(item[1])));
 		memo[key] = {
 			x: {
 				ch,

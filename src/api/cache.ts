@@ -4,13 +4,14 @@ import {
 	ICacheListRes,
 	AddCacheParams,
 	AddCacheRes,
-	ICacheListItem,
 	CacheByIdParams,
 	RegionListRes,
 	ITokenListRes,
 	addTokenParams,
 	updateTokenParams,
-	ICacheOneRes
+	ICacheOneRes,
+	ChartParams,
+	ChartRes
 } from "#/cache";
 
 /**
@@ -35,8 +36,10 @@ export const addCache = (params: AddCacheParams) => {
 
 /**
  * Get one cache service
+ * @param id cache service id
+ * @param opt 'stop' or 'terminate'  Cache Service
  */
-export const getCacheById = (params: CacheByIdParams) => {
+export const cacheOne = (params: CacheByIdParams) => {
 	return http.get<ICacheOneRes>({
 		url: "/cache_service/one",
 		params
@@ -55,7 +58,7 @@ export const getCloudProviderList = () => {
 /**
  *  列表访问令牌
  */
-export const getAccessTokenList = (cacheServiceId?: string) => {
+export const getTokenList = (cacheServiceId?: string) => {
 	return http.get<ITokenListRes>({
 		url: "/cache_service/access_token/list",
 		params: { cacheServiceId }
@@ -69,7 +72,7 @@ type addTokenRes = { accessToken: string; id: string };
 /**
  *  添加访问令牌
  */
-export const addAccessToken = (params: addTokenParams) => {
+export const addToken = (params: addTokenParams) => {
 	return http.put<addTokenRes>({
 		url: "/cache_service/access_token/add",
 		params
@@ -79,7 +82,7 @@ export const addAccessToken = (params: addTokenParams) => {
 /**
  * 删除访问令牌
  */
-export const deleteAccessToken = (id: string | number) => {
+export const deleteToken = (id: string | number) => {
 	return http.delete<any>({
 		url: `/cache_service/access_token/delete`,
 		params: { id }
@@ -89,13 +92,29 @@ export const deleteAccessToken = (id: string | number) => {
 /**
  * 更新访问令牌
  */
-export const updateAccessTokenMode = (params: updateTokenParams) => {
+export const updateToken = (params: updateTokenParams) => {
 	return http.post<any>({
 		url: `/cache_service/access_token/mode/update`,
 		params
 	});
 };
 
+/**
+ * query metrics
+ */
+export const getChart = (params: ChartParams) => {
+	return http.get<ChartRes>({
+		url: `/metric/query`,
+		params
+	});
+};
+
+export const testPut = () => {
+	http.request({
+		url: "/engula/cache_service/list",
+		method: "put"
+	});
+};
 /* http
 	.get<IRequestData>({
 		url: "/engula/cache_service/list?id=3",

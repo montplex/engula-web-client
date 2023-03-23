@@ -1,13 +1,13 @@
 import { defineStore } from "pinia";
-import { getCacheList, getCacheById, getAccessTokenList, deleteAccessToken } from "@/api/cache";
-import { ICacheListItem, CloudProviderItem, ItokenItem, CacheByIdParams } from "#/cache";
+import { getCacheList, cacheOne, getTokenList, deleteToken } from "@/api/cache";
+import { ICacheOneRes, ICacheListItem, CloudProviderItem, ItokenItem, CacheByIdParams } from "#/cache";
 import { getCloudProviderList } from "@/api/cache";
 
 export interface useDbStore {
 	filterList: ICacheListItem[];
 	serviceList: ICacheListItem[];
 	regionList: CloudProviderItem[];
-	oneCache: ICacheListItem;
+	oneCache: ICacheOneRes;
 	tokenList: ItokenItem[];
 }
 export const useDbStore = defineStore({
@@ -16,7 +16,7 @@ export const useDbStore = defineStore({
 		filterList: [],
 		serviceList: [],
 		regionList: [],
-		oneCache: {} as ICacheListItem,
+		oneCache: {} as ICacheOneRes,
 		tokenList: []
 	}),
 	actions: {
@@ -41,19 +41,20 @@ export const useDbStore = defineStore({
 			return regionObj;
 		},
 		async setOneCache(params: CacheByIdParams) {
-			const res = await getCacheById(params);
-			this.oneCache = res.one;
-			return res.one;
+			const res = await cacheOne(params);
+			this.oneCache = res;
+			return res;
 		},
-		async setTokenList() {
-			const res = await getAccessTokenList("14");
-			this.tokenList = res.list;
+		async setTokenList(id: number) {
+			const res = await getTokenList("14");
+			const list: ItokenItem[] = res.list.map((v) => ({ ...v, show: false }));
+			this.tokenList = list;
 		},
 		deleteTokenList(id: number) {
 			// this.tokenList = this.tokenList.filter((item) => item.id !== id);
-			deleteAccessToken(id).then((res) => {
+			deleteToken(id).then((res) => {
 				res.ok ? ElMessage.success("Delete completed") : ElMessage.error("Delete failed");
-				this.setTokenList();
+				this.setTokenList(id);
 			});
 		}
 	}

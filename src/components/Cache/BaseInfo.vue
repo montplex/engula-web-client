@@ -20,15 +20,34 @@
 					</div>
 
 					<div class="ml-auto">
-						<el-tooltip effect="dark" content="Help" placement="top-start">
+						<!-- <el-tooltip effect="dark" content="Help" placement="top-start">
 							<el-button
+								plain
 								class="!flex w-[32px] shrink-0 items-center justify-center !py-0 text-gray-400 sm:flex hover:bg-transparent"
 							>
 								<el-icon :size="22">
 									<svgIcon icon="error" />
 								</el-icon>
 							</el-button>
-						</el-tooltip>
+						</el-tooltip> -->
+
+						<div class="gap-6 ml-3">
+							<!-- <el-button plain @click="powerCache">
+								<el-icon :class="['el-icon--left', { 'is-loading': powerLoading }]" size="16" color="#717179">
+									<SvgIcon icon="power" v-if="!powerLoading" />
+									<i-ep:loading v-else />
+								</el-icon>
+								<span class="text-[#717179]">power</span>
+							</el-button> -->
+
+							<el-button plain @click="stopVisible = true">
+								<el-icon :class="['el-icon--left', { 'is-loading': stopLoading }]" size="16" color="#717179">
+									<SvgIcon icon="ban" v-if="!stopLoading" />
+									<i-ep:loading v-else />
+								</el-icon>
+								<span class="text-[#717179]">stop</span>
+							</el-button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -46,21 +65,98 @@
 			</span>
 		</template>
 	</el-dialog>
+
+	<el-dialog v-model="stopVisible" title="Stop cache service" width="520px" style="border-radius: 8px">
+		<div class="space-y-4">
+			<div>
+				<p>Are you sure to stop the current deployment?</p>
+				<div class="alert-base danger px-4 mt-2 text-red-500">
+					After stopping the deployment, you will not be able to connect to the deployment. Your data, connection address, and
+					value-added services (if any) will be preserved.
+				</div>
+			</div>
+			<div class="space-y-2 rounded-lg bg-gray-100 px-6 py-5">
+				<p>
+					Please type
+					<span class="c-tag">
+						<code
+							><strong>{{ base.name }}</strong></code
+						>
+					</span>
+					to confirm.
+				</p>
+				<el-input @input="nameInput" v-model="repeatedName" placeholder="Enter the name of the cache" />
+			</div>
+		</div>
+
+		<template #footer>
+			<span class="dialog-footer">
+				<el-button plain @click="stopVisible = false">Cancel</el-button>
+				<el-button :disabled="isStop" :type="isStop ? '' : 'danger'" @click="stopCache"> stop </el-button>
+			</span>
+		</template>
+	</el-dialog>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { useDbStore } from "@/stores/cache";
+import { cacheOne } from "@/api/cache";
+import { useRoute } from "vue-router";
 import { ICacheListItem } from "#/cache";
 
-defineProps<{
+const props = defineProps<{
 	base: ICacheListItem;
 }>();
 
-const store = useDbStore();
-const editVisible = ref(false);
-const cacheName = store.oneCache?.name;
-const cacheNewName = ref(cacheName);
+const editVisible = ref(false),
+	cacheNewName = ref(props.base.name),
+	stopVisible = ref(false),
+	isStop = ref(true),
+	powerLoading = ref(false),
+	stopLoading = ref(false),
+	repeatedName = ref(""),
+	route = useRoute();
+
+/* 启动 */
+function powerCache() {
+	powerLoading.value = true;
+	console.log("start");
+	// store.stopCache(CachestatusTo.start);
+}
+
+function nameInput(e: string) {
+	isStop.value = e !== props.base.name;
+}
+
+/* 关闭缓存 */
+function stopCache() {
+	stopLoading.value = true;
+	stopVisible.value = false;
+	cacheOne({ id: route.query.id as any, opt: "stop" }).then((res) => {
+		stopLoading.value = false;
+		ElMessage.success("stop success");
+	});
+}
 </script>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.right-btns {
+	display: flex;
+	cursor: pointer;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 1;
+	color: #606266;
+	button {
+		display: flex;
+		align-items: center;
+	}
+	button:hover {
+		color: #f8991b !important;
+	}
+	.icon {
+		margin-right: 4px;
+		display: inline-block;
+	}
+}
+</style>

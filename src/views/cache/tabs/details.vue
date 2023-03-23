@@ -35,37 +35,6 @@
 		<!-- 收费标准 Start -->
 		<billing-standards />
 		<!-- 收费标准 End -->
-		<!-- CacheReset Password Start  -->
-		<div class="section-connect grid-cols-3 gap-8 !border-orange-200 bg-orange-50">
-			<div class="col-span-2">
-				<h4 class="text-lg">Reset Password</h4>
-				<div class="text-gray-600">
-					<p>This operation will generate a new random password for the Redis database.</p>
-				</div>
-			</div>
-			<div class="overflow-x-auto sm:overflow-hidden">
-				<div class="flex h-full items-center justify-end">
-					<el-button type="warning" class="!border-orange-600 !bg-orange-500 hover:opacity-80">Reset</el-button>
-				</div>
-			</div>
-		</div>
-		<!-- CacheReset Password End  -->
-
-		<!-- Transfer Start -->
-		<div class="section-connect grid-cols-3 !border-orange-200 bg-orange-50">
-			<div class="col-span-2">
-				<h4 class="text-lg">Transfer Database</h4>
-				<div class="text-gray-600">
-					<p>Move your Database to a different team with zero downtime.</p>
-				</div>
-			</div>
-			<div class="overflow-x-auto sm:overflow-hidden">
-				<div class="flex h-full items-center justify-end">
-					<el-button type="warning" class="!border-orange-600 !bg-orange-500 hover:opacity-80">Transfer</el-button>
-				</div>
-			</div>
-		</div>
-		<!-- Transfer End -->
 
 		<div class="section-connect grid-cols-3 !border-red-200 bg-red-50">
 			<div class="col-span-2">
@@ -76,11 +45,48 @@
 			</div>
 			<div class="overflow-x-auto sm:overflow-hidden">
 				<div class="flex h-full items-center justify-end">
-					<el-button type="danger">Delete</el-button>
+					<el-button type="danger" :loading="delLoading" @click="delVisible = true">
+						<template #loading>
+							<el-icon class="el-icon--left is-loading" size="16">
+								<i-ep:loading />
+							</el-icon>
+						</template>
+						Delete</el-button
+					>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<!-- Delete-dialog Start -->
+	<el-dialog v-model="delVisible" title="Delete Cache Service" width="520px" style="border-radius: 8px">
+		<div class="space-y-4">
+			<div>
+				<p>All data will be deleted permanently.</p>
+				<div class="alert-base danger px-4 mt-2 text-red-500">This action cannot be undone.</div>
+			</div>
+			<div class="space-y-2 rounded-lg bg-gray-100 px-6 py-5">
+				<p>
+					Please type
+					<span class="c-tag">
+						<code
+							><strong>{{ store.oneCache.one.name }}</strong></code
+						>
+					</span>
+					to confirm.
+				</p>
+				<el-input @input="nameInput" v-model="repeatedName" placeholder="Enter the name of the database" />
+			</div>
+		</div>
+
+		<template #footer>
+			<span class="dialog-footer">
+				<el-button @click="delVisible = false">Cancel</el-button>
+				<el-button :disabled="isdel" :type="isdel ? '' : 'danger'" @click="delCache"> delete </el-button>
+			</span>
+		</template>
+	</el-dialog>
+	<!-- Delete-dialog End -->
 </template>
 
 <script setup lang="ts">
@@ -92,18 +98,31 @@ import BasePort from "@/components/Cache/BasePort.vue";
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 import { useDbStore } from "@/stores/cache";
-import { CachestatusTo } from "#/enum";
-import { dayjs } from "element-plus";
+import { cacheOne } from "@/api/cache";
 
-const route = useRoute();
-const store = useDbStore();
+const tabPosition = ref("redis"),
+	route = useRoute(),
+	store = useDbStore(),
+	delVisible = ref(false),
+	isdel = ref(true),
+	delLoading = ref(false),
+	repeatedName = ref("");
+
 store.setOneCache({ id: route.query.id as string });
-// const cache = ref(store.oneCache);
 
-const tabPosition = ref("redis");
+function nameInput(e: string) {
+	isdel.value = e !== store.oneCache.one.name;
+}
 
-/* const copyTips = ref("Copy");
-const handleCopy = () => (copyTips.value = "Copied"); */
+function delCache() {
+	delLoading.value = true;
+	delVisible.value = false;
+	if (Number(store.oneCache.one.status) === 1) return ElMessage.error("Please stop the service first");
+	cacheOne({ id: route.query.id as any, opt: "terminate" }).then((res) => {
+		delLoading.value = false;
+		ElMessage.success("cache terminate");
+	});
+}
 </script>
 
 <style lang="scss">
@@ -141,5 +160,20 @@ const handleCopy = () => (copyTips.value = "Copied"); */
 	background-color: #fffbe6;
 	border: 1px solid #ffe58f;
 	border-radius: 8px;
+}
+
+.c-tag {
+	code {
+		padding-inline: 0.6em;
+		padding-block: 0.2em 0.1em;
+		font-size: 14px;
+		background: rgba(150, 150, 150, 0.1);
+		border: 1px solid rgba(100, 100, 100, 0.2);
+		border-radius: 3px;
+	}
+	strong {
+		color: #111;
+		font-weight: 600;
+	}
 }
 </style>

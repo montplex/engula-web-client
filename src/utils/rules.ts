@@ -10,6 +10,7 @@ export const createCacheRules = reactive<FormRules>({
 			trigger: "change"
 		}
 	],
+	des: [{ required: false }],
 	region: [{ required: true, message: "Please select region", trigger: "change" }]
 });
 

@@ -1,79 +1,3 @@
-<script setup lang="ts">
-import { ref, reactive, computed, onMounted } from "vue";
-import { useRouter } from "vue-router";
-import { useDbStore } from "@/stores/cache";
-import { addCache } from "@/api/cache";
-import { AddCacheParams } from "#/cache";
-import { createCacheRules, resetForm, submit } from "@/utils/rules";
-import type { FormInstance } from "element-plus";
-
-const store = useDbStore();
-const router = useRouter();
-
-const addForm = reactive<AddCacheParams>({
-	cloudProvider: "",
-	name: "",
-	region: ""
-	// des: ""
-});
-
-const region = computed(() => {
-	let regionObj: any = {};
-	store.regionList.map((item) => item.regions && (regionObj[item.cloudProvider] = item.regions));
-	return regionObj;
-});
-
-const cross = ref(false); // 控制超出创建限制 (显示弹窗)
-
-const isRefresh = ref(false); // 刷新按钮 laoding
-const importVisible = ref(false); // 导入弹窗
-const addVisible = ref(false); // 新建弹窗
-const searchVal = ref(""); // 搜索
-
-const dbList = ["DB_1", "DB2", "DB3"];
-const dbList2 = ["NGinx", "Ecrssio", "Montplex"];
-const importFrom = reactive({ first: "", second: "" });
-
-const addFormRef = ref<FormInstance>();
-
-/* 新建 Cache  */
-const createCache = () => {
-	resetForm(addFormRef.value);
-	if (store?.serviceList?.length >= 5) cross.value = true;
-	else {
-		store.setCloudProviderList();
-		addVisible.value = true;
-	}
-};
-
-const addCallback = () => {
-	addCache(addForm).then((res) => {
-		store.setCacheList();
-		ElMessage.success("Create successfully");
-		addVisible.value = false;
-	});
-};
-
-/* 导入 */
-const importCache = () => (importVisible.value = true);
-
-/* 去详情页 */
-const goDetail = (id: number) => router.push({ path: "/redis", query: { id } });
-
-/* 搜索 */
-const handleSearch = (e: string) => store.filterCacheList(e);
-
-/* 刷新按钮  */
-function refresh() {
-	isRefresh.value = true;
-	store.setCacheList();
-	setTimeout(() => {
-		isRefresh.value = false;
-		ElMessage.success("Refresh successfully");
-	}, 1000);
-}
-</script>
-
 <template>
 	<div class="container mx-auto !max-w-screen-xl px-4 pt-8 pb-20">
 		<h1 class="text-3xl mt-2 text-[#3f3f46]">Cache Services</h1>
@@ -90,8 +14,8 @@ function refresh() {
 						@click="refresh"
 						class="!flex w-[32px] shrink-0 items-center justify-center !py-0 text-gray-400 sm:flex base-btn-hover"
 					>
-						<el-icon :size="22">
-							<svgIcon icon="refresh" :class="{ circular: isRefresh }" />
+						<el-icon :size="22" :class="{ 'is-loading': isRefresh }">
+							<svgIcon icon="refresh" />
 						</el-icon>
 					</el-button>
 				</el-tooltip>
@@ -113,8 +37,20 @@ function refresh() {
 						<h3 class="text-lg font-semibold text-[#3f3f46] cursor-pointer" @click="goDetail(item.id)">
 							{{ item.name }}
 						</h3>
-						<span class="mt-1.5 flex items-center gap-1.5 opacity-50"> Regional·{{ item.cloudProvider }}·{{ item.region }} </span>
+						<span class="mt-1.5 flex items-center gap-1.5 opacity-50">
+							<span>Regional</span> {{ item.cloudProvider }} <span></span>{{ item.region }}
+						</span>
+						<div class="mt-1.5 flex items-center justify-between gap-1.5">
+							<span class="flex-1 opacity-50">Status</span>
+
+							<StatusIcon :status="item.status" />
+
+							<span :style="{ color: statusStyle[item.status] }" class="text-base">
+								{{ CachestatusTo[item.status] }}
+							</span>
+						</div>
 					</header>
+
 					<!-- <header class="p-4 sm:p-6 sm:pt-5 sm:pb-4">
 						<div class="mb-2 flex items-center justify-between">
 							<div class="text-lg font-semibold text-gray-900 line-clamp-1">
@@ -176,11 +112,9 @@ function refresh() {
 				<el-input v-model="addForm.name" />
 			</el-form-item>
 
-			<!-- <el-form-item label="DES">
-				<el-select v-model="addForm.des" filterable placeholder="Select" class="w-full">
-					<el-option v-for="item in dbList2" :key="item" :label="item" :value="item" />
-				</el-select>
-			</el-form-item> -->
+			<el-form-item label="Describes" prop="des">
+				<el-input v-model="addForm.des" />
+			</el-form-item>
 
 			<el-form-item label="Cloud Provider" prop="cloudProvider">
 				<el-select
@@ -212,7 +146,14 @@ function refresh() {
 		<template #footer>
 			<span class="dialog-footer">
 				<el-button @click="addVisible = false">Cancel</el-button>
-				<el-button type="primary" @click="submit(addFormRef, addCallback)"> Confirm </el-button>
+				<el-button :loading="addLoading" type="primary" @click="submit(addFormRef, addCallback)">
+					<template #loading>
+						<el-icon class="el-icon--left is-loading" size="16">
+							<i-ep:loading />
+						</el-icon>
+					</template>
+					Confirm
+				</el-button>
 			</span>
 		</template>
 	</el-dialog>
@@ -286,6 +227,87 @@ function refresh() {
 	</el-dialog> -->
 	<!-- import-dialog End -->
 </template>
+
+<script setup lang="ts">
+import StatusIcon from "@/components/Cache/StatusIcon.vue";
+import { ref, reactive, computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import { useDbStore } from "@/stores/cache";
+import { addCache } from "@/api/cache";
+import { AddCacheParams } from "#/cache";
+import { createCacheRules, resetForm, submit } from "@/utils/rules";
+import type { FormInstance } from "element-plus";
+import { CachestatusTo, statusStyle } from "#/enum";
+
+const store = useDbStore();
+const router = useRouter();
+const addLoading = ref(false);
+
+const addForm = reactive<AddCacheParams>({
+	cloudProvider: "",
+	name: "",
+	region: "",
+	des: ""
+});
+
+const region = computed(() => {
+	let regionObj: any = {};
+	store.regionList.map((item) => item.regions && (regionObj[item.cloudProvider] = item.regions));
+	return regionObj;
+});
+
+const cross = ref(false); // 控制超出创建限制 (显示弹窗)
+
+const isRefresh = ref(false); // 刷新按钮 laoding
+const importVisible = ref(false); // 导入弹窗
+const addVisible = ref(false); // 新建弹窗
+const searchVal = ref(""); // 搜索
+
+const dbList = ["DB_1", "DB2", "DB3"];
+const dbList2 = ["NGinx", "Ecrssio", "Montplex"];
+const importFrom = reactive({ first: "", second: "" });
+
+const addFormRef = ref<FormInstance>();
+
+/* 新建 Cache  */
+const createCache = () => {
+	resetForm(addFormRef.value);
+	if (store?.serviceList?.length >= 5) cross.value = true;
+	else {
+		store.setCloudProviderList();
+		addVisible.value = true;
+	}
+};
+
+const addCallback = () => {
+	addLoading.value = true;
+	addCache(addForm).then((res) => {
+		store.setCacheList();
+		ElMessage.success("Create successfully");
+		addVisible.value = false;
+		addLoading.value = false;
+	});
+};
+
+/* 导入 */
+const importCache = () => (importVisible.value = true);
+
+/* 去详情页 */
+const goDetail = (id: number) => router.push({ path: "/redis", query: { id } });
+
+/* 搜索 */
+const handleSearch = (e: string) => store.filterCacheList(e);
+
+/* 刷新按钮  */
+function refresh() {
+	isRefresh.value = true;
+	store.setCacheList();
+	setTimeout(() => {
+		isRefresh.value = false;
+		ElMessage.success("Refresh successfully");
+	}, 1000);
+}
+</script>
 
 <style lang="scss">
 .br-8 {

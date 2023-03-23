@@ -10,6 +10,14 @@
 				</div>
 
 				<div>
+					<div class="text-gray-500">Status</div>
+					<div class="copy-text flex items-center">
+						<StatusIcon status="1" />
+						<div class="mx-1">runing</div>
+					</div>
+				</div>
+
+				<div>
 					<div class="text-gray-500">Endpoint</div>
 					<div class="copy-text group w-full" v-copy>
 						<sapn class="mr-1 inline-block">us1-trusty-tick-39796.upstash.io</sapn>
@@ -47,43 +55,15 @@
 					</div>
 				</div>
 
-				<div>
+				<!-- 	<div>
 					<div class="text-gray-500">TLS/SSL</div>
 					<div class="copy-text flex items-center">
 						<div class="mr-1">Enabled</div>
 					</div>
-				</div>
-
-				<!-- <template v-if="false">
-			<div>
-				<div class="text-gray-500">cloudProvider</div>
-				<div class="copy-text flex items-center">
-					<div class="mr-1">{{ store.oneCache!.cloudProvider }}</div>
-				</div>
-			</div>
-			<div>
-				<div class="text-gray-500">Region</div>
-				<div class="copy-text flex items-center">
-					<div class="mr-1">{{ store.oneCache!.region }}</div>
-				</div>
-			</div>
-			<div>
-				<div class="text-gray-500">Status</div>
-				<div class="copy-text flex items-center">
-					<div class="mr-1">{{ CachestatusTo[store.oneCache!.status] }}</div>
-				</div>
-			</div>
-			<div>
-				<div class="text-gray-500">CreateTime</div>
-				<div class="copy-text flex items-center">
-					<div class="mr-1">
-						{{ dayjs(store.oneCache?.createdDate).format("MMM D, YYYY") }}
-					</div>
-				</div>
-			</div>
-		</template> -->
+				</div> -->
 			</div>
 		</div>
+
 		<el-tooltip effect="dark" placement="top" content="Copy" :show-after="300">
 			<div
 				v-copy
@@ -99,6 +79,7 @@
 </template>
 
 <script setup lang="ts">
+import StatusIcon from "@/components/Cache/StatusIcon.vue";
 import { useRoute } from "vue-router";
 import { useDbStore } from "@/stores/cache";
 import { handleCopyClick } from "@/utils/util";
