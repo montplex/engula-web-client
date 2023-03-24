@@ -293,7 +293,10 @@ const addCallback = () => {
 const importCache = () => (importVisible.value = true);
 
 /* 去详情页 */
-const goDetail = (id: number) => router.push({ path: "/redis", query: { id } });
+const goDetail = (id: number) => {
+	console.log(id);
+	router.push({ path: "/redis/details", query: { id } });
+};
 
 /* 搜索 */
 const handleSearch = (e: string) => store.filterCacheList(e);

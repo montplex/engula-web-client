@@ -1,13 +1,14 @@
 import { ESBuildOptions, BuildOptions } from "vite";
 
 export const setEsbuild = (env: ImportMetaEnv): ESBuildOptions => ({
-	pure: env.VITE_DROP_CONSOLE ? ["console.log", "debugger"] : []
+	// pure: env.VITE_DROP_CONSOLE ? ["console.log", "debugger"] : []
+	pure: []
 });
 
 export const build: BuildOptions = {
 	outDir: "dist",
 	minify: "esbuild",
-	chunkSizeWarningLimit: 1500,
+	// chunkSizeWarningLimit: 1500,
 	rollupOptions: {
 		output: {
 			// Static resource classification and packaging

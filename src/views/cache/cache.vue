@@ -5,7 +5,6 @@
 		<el-tabs v-model="activeTab" @tab-click="tabClick">
 			<el-tab-pane v-for="(item, index) in tabs" :label="item" :name="item.toLowerCase()" :key="index" />
 		</el-tabs>
-
 		<router-view />
 	</div>
 </template>
@@ -27,6 +26,7 @@ const router = useRouter(),
 	cache = ref({} as ICacheListItem);
 
 function tabClick({ paneName }: any) {
+	activeTab.value = paneName;
 	const toPage = (path: string) => router.replace({ path, query: { id: route.query.id } });
 	toPage(`/redis/${paneName}`);
 }

@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/require-prop-types -->
 <template>
 	<div class="mt-8 grid grid-cols-1 gap-8">
-		<BasePort />
+		<base-port />
 		<div class="section-connect">
 			<div class="col-span-1">
 				<h3 class="text-xl font-normal">Connect to your database</h3>
@@ -94,12 +94,10 @@ import CodeFragment from "@/components/Cache/CodeFragment.vue";
 import BillingStandards from "@/components/Cache/BillingStandards.vue";
 import Configuration from "@/components/Cache/Configuration.vue";
 import BasePort from "@/components/Cache/BasePort.vue";
-
-import { ref, watchEffect } from "vue";
+import { ref } from "vue";
 import { useRoute } from "vue-router";
 import { useDbStore } from "@/stores/cache";
 import { cacheOne } from "@/api/cache";
-import { ICacheOneRes } from "#/cache";
 
 const tabPosition = ref("redis"),
 	route = useRoute(),
@@ -109,10 +107,12 @@ const tabPosition = ref("redis"),
 	delLoading = ref(false),
 	repeatedName = ref("");
 
-watchEffect(async () => {
-	store.setOneCache({ id: route.query.id as string });
-});
+store.setOneCache({ id: route.query.id as string });
 
+/* watchEffect(async () => {
+	
+});
+ */
 /* const cache = ref(store.oneCache.one);
 const host = ref<string>(store.oneCache.host); */
 
@@ -129,8 +129,6 @@ function delCache() {
 		ElMessage.success("cache terminate");
 	});
 }
-
-function copyPassword() {}
 </script>
 
 <style lang="scss">
