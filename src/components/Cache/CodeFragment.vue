@@ -75,7 +75,7 @@ const codeObject: any = {
         
   let client = redis.createClient ({
     url : '${host}',
-    port : '40037',
+    port : '${port}',
     password: '**********'
   });
 
@@ -98,7 +98,7 @@ const codeObject: any = {
     [
       'host'   => '${host}',
       'password' => **********,
-      'port'   => 40037,
+      'port'   => '${port}',
       'scheme' => tcp,
     ]
   );
@@ -130,7 +130,7 @@ const codeObject: any = {
 
   r = redis.Redis(
     host= '${host}',
-    port= '40037',
+    port= '${port}',
     password= "**********"
   )
 
