@@ -51,10 +51,10 @@ export const useDbStore = defineStore({
 			this.tokenList = list;
 		},
 		deleteTokenList(id: number) {
-			// this.tokenList = this.tokenList.filter((item) => item.id !== id);
+			this.tokenList = this.tokenList.filter((item) => item.id !== id);
 			deleteToken(id).then((res) => {
 				res.ok ? ElMessage.success("Delete completed") : ElMessage.error("Delete failed");
-				this.setTokenList(id);
+				// this.setTokenList(id);
 			});
 		}
 	}

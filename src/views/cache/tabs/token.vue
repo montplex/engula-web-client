@@ -88,7 +88,6 @@ import { resetForm, addTokenRules, submit } from "@/utils/rules";
 import type { FormInstance } from "element-plus";
 import { useRoute } from "vue-router";
 
-// store.setOneCache({ id: route.query.id as string });
 const route = useRoute(),
 	store = useDbStore(),
 	addVisible = ref(false),
@@ -140,6 +139,10 @@ const addTokenCallback = () => {
 };
 
 const deleteToken = (id: number) => {
+	if (store.tokenList.length <= 1) {
+		return ElMessage.error("At least one token is required");
+	}
+
 	ElMessageBox.confirm("Are you sure you want to delete ?", "", {
 		confirmButtonText: "Delete",
 		cancelButtonText: "Cancel",

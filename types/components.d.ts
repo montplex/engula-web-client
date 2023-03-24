@@ -47,6 +47,7 @@ declare module 'vue' {
     SvgIcon: typeof import('./../src/components/SvgIcon/index.vue')['default']
     TableOnMobile: typeof import('./../src/components/Home/TableOnMobile.vue')['default']
     TableOnPc: typeof import('./../src/components/Home/TableOnPc.vue')['default']
+    Tabs: typeof import('./../src/components/Tabs.vue')['default']
     TopCard: typeof import('./../src/components/Home/TopCard.vue')['default']
   }
 }

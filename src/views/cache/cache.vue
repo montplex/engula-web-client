@@ -3,9 +3,10 @@
 	<base-info :base="cache" />
 	<div class="container mx-auto !max-w-screen-xl px-4 pt-8 pb-20">
 		<el-tabs v-model="activeTab" @tab-click="tabClick">
-			<el-tab-pane v-for="item in tabs" :label="item" :name="item.toLowerCase()" :key="item" :lazy="true" />
-			<router-view />
+			<el-tab-pane v-for="(item, index) in tabs" :label="item" :name="item.toLowerCase()" :key="index" />
 		</el-tabs>
+
+		<router-view />
 	</div>
 </template>
 
@@ -26,10 +27,13 @@ const router = useRouter(),
 	cache = ref({} as ICacheListItem);
 
 function tabClick({ paneName }: any) {
-	activeTab.value = paneName;
 	const toPage = (path: string) => router.replace({ path, query: { id: route.query.id } });
 	toPage(`/redis/${paneName}`);
 }
+/* function tabClick(name: string) {
+	const toPage = (path: string) => router.replace({ path, query: { id: route.query.id } });
+	toPage(`/redis/${name}`);
+} */
 
 store.setOneCache({ id: route.query.id as string }).then((res) => {
 	cache.value = res.one;

@@ -36,6 +36,7 @@
 
 <script setup lang="ts">
 import CodeHight from "@/components/CodeHight/index.vue";
+import { useDbStore } from "@/stores/cache";
 
 interface IProps {
 	type?: string;
@@ -47,9 +48,13 @@ withDefaults(defineProps<IProps>(), {
 	password: "==================="
 });
 
+const store = useDbStore();
+const host = store.oneCache.host;
+const port = "8125";
+const url = host + ":" + port;
 const codeObject: any = {
 	redis: {
-		code: `"redis-cli -u redis://default:**********@us1-hip-bonefish-40037.upstash.io:40037"`,
+		code: `"redis-cli -u redis://default:**********@${url}"`,
 		tips: true
 	},
 	node: {
@@ -59,7 +64,7 @@ const codeObject: any = {
 				url: "https://github.com/luin/ioredis",
 				code: `
   const Redis = require("ioredis");
-  let client = new Redis("redis://default:**********@us1-hip-bonefish-40037.upstash.io:40037");
+  let client = new Redis("redis://default:**********@${url}");
   client.set('foo', 'bar');`
 			},
 			{
@@ -69,7 +74,7 @@ const codeObject: any = {
   const redis = require("redis");
         
   let client = redis.createClient ({
-    url : 'us1-hip-bonefish-40037.upstash.io',
+    url : '${host}',
     port : '40037',
     password: '**********'
   });
@@ -91,7 +96,7 @@ const codeObject: any = {
 				code: `
   $client = new Predis\Client(
     [
-      'host'   => 'us1-hip-bonefish-40037.upstash.io',
+      'host'   => '${host}',
       'password' => **********,
       'port'   => 40037,
       'scheme' => tcp,
@@ -107,7 +112,7 @@ const codeObject: any = {
 				url: "https://github.com/phpredis/phpredis",
 				code: `
   $redis = new Redis();
-  $redis->connect('us1-hip-bonefish-40037.upstash.io', 40037);
+  $redis->connect('${host}', ${port});
   $redis->auth('**********');
 
   $redis->set("foo", "bar");
@@ -124,7 +129,7 @@ const codeObject: any = {
   import redis
 
   r = redis.Redis(
-    host= 'us1-hip-bonefish-40037.upstash.io',
+    host= '${host}',
     port= '40037',
     password= "**********"
   )
@@ -141,7 +146,7 @@ const codeObject: any = {
 				url: "https://github.com/redis/jedis",
 				code: `
     public static void main(String[] args) {
-    Jedis jedis = new Jedis("us1-hip-bonefish-40037.upstash.io", 40037);
+    Jedis jedis = new Jedis("${host}", ${port});
     jedis.auth("**********");
 
     jedis.set("foo", "bar");
@@ -158,7 +163,7 @@ const codeObject: any = {
 				code: `
   var ctx = context.Background()
   func main() {
-    opt, _ := redis.ParseURL("redis://default:**********@us1-hip-bonefish-40037.upstash.io:40037")
+    opt, _ := redis.ParseURL("redis://default:**********@${url}")
     client := redis.NewClient(opt)
 
     client.Set(ctx, "foo", "bar", 0)
@@ -169,7 +174,7 @@ const codeObject: any = {
 		]
 	},
 	docker: {
-		code: `docker run -it redis:alpine redis-cli -u redis://default:**********@us1-hip-bonefish-40037.upstash.io:40037`,
+		code: `docker run -it redis:alpine redis-cli -u redis://default:**********@${url}`,
 		tips: true
 	}
 };

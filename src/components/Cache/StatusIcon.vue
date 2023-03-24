@@ -8,7 +8,7 @@
 <script setup lang="ts">
 defineProps({
 	status: {
-		type: String,
+		type: [String, Number],
 		default: "0"
 	}
 });

@@ -82,7 +82,7 @@ export const addToken = (data: addTokenParams) => {
 /**
  * 删除访问令牌
  */
-export const deleteToken = (id: string | number) => {
+export const deleteToken = (id: number) => {
 	return http.delete<any>({
 		url: `/cache_service/access_token/delete`,
 		params: { id }

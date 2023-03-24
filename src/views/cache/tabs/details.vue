@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/require-prop-types -->
 <template>
 	<div class="mt-8 grid grid-cols-1 gap-8">
-		<BasePort />
+		<base-port />
 		<div class="section-connect">
 			<div class="col-span-1">
 				<h3 class="text-xl font-normal">Connect to your database</h3>

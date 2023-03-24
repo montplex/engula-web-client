@@ -23,6 +23,8 @@
 import Terminal from "vue-web-terminal";
 import { xmtApi } from "@/api/command";
 import { help } from "@/plugins/help";
+import { useRoute } from "vue-router";
+const route = useRoute();
 
 const initLog = [
 	{
@@ -40,7 +42,7 @@ function onExecCmd(
 	if (key === "fail") {
 		failed("Something wrong!!!");
 	} else {
-		xmtApi({ cacheServiceId: 14, command }).then((res) => {
+		xmtApi({ cacheServiceId: route.query.id as any, command }).then((res) => {
 			success({
 				type: "success",
 				class: "success",

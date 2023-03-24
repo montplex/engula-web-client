@@ -187,7 +187,8 @@ export default [
 					region: "ap-northeast-1",
 					createdDate: 1678695891000,
 					updatedDate: 1678695891000
-				}
+				},
+				host: "mdawmdiwmda0oq.engula-aws-ap-northeast-1.montplex.com"
 			};
 		}
 	},
