@@ -9,9 +9,8 @@
 			<h1 class="text-5xl">Engula</h1>
 			<h3 class="text-xl pt-6">Managed Caching Service for Global Business</h3>
 		</div>
-		<RouterLink :to="{ path: '/my', query: { id: 'r3123123123xxx78' } }" class="mt-20">
-			<button class="console">CONSOLE</button>
-		</RouterLink>
+
+		<button class="console mt-20 hover:opacity-80" @click="handleConsole">CONSOLE</button>
 	</div>
 
 	<div class="">
@@ -35,7 +34,17 @@
 </template>
 
 <script setup lang="ts">
-import {} from "vue";
+import { env } from "@/utils/util";
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+function handleConsole() {
+	if (env().DEV) {
+		router.push("/console");
+	} else {
+		window.location.href = env().VITE_API_URL + "/engula/auth0/login";
+	}
+}
 </script>
 
 <style lang="scss">

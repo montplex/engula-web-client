@@ -123,13 +123,14 @@ import { userStore } from "@/stores/user";
 import { useRouter } from "vue-router";
 
 const store = userStore();
+const router = useRouter();
 const { info } = storeToRefs(store);
 
 const handleMineCommand = (command: string) => {
 	if (command === "out") {
 		store.info = null;
 		if (import.meta.env.MODE === "development") {
-			useRouter().push({ path: "/", replace: true });
+			router.push({ path: "/", replace: true });
 		} else {
 			window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/logout");
 		}

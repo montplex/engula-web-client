@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/require-prop-types -->
 <template>
-	<div class="mt-8 grid grid-cols-1 gap-8">
-		<base-port />
+	<div class="mt-8 grid grid-cols-1 gap-8" v-if="cache">
+		<base-port :cache="cache.one" :host="cache.host" />
 		<div class="section-connect">
 			<div class="col-span-1">
 				<h3 class="text-xl font-normal">Connect to your database</h3>
@@ -52,7 +52,7 @@
 					Please type
 					<span class="c-tag">
 						<code
-							><strong>{{ store.oneCache.one.name }}</strong></code
+							><strong>{{ cache.one.name }}</strong></code
 						>
 					</span>
 					to confirm.
@@ -91,6 +91,7 @@ let codeRadioGroup = reactive([
 	{ name: "Go", com: "CodeGo" },
 	{ name: "Docker", com: "CodeDocker" }
 ]);
+
 const tabPosition = ref("CodeRedis"),
 	route = useRoute(),
 	store = cacheStore(),
@@ -98,21 +99,20 @@ const tabPosition = ref("CodeRedis"),
 	isdel = ref(true),
 	delLoading = ref(false),
 	repeatedName = ref(""),
-	cache = ref<ICacheOneRes>();
+	cache = ref<ICacheOneRes>({} as ICacheOneRes);
 
 watchEffect(async () => {
-	const res = await store.setOneCache({ id: route.query.id as string });
-	cache.value = res;
-	console.log(res);
+	cache.value = await store.setOneCache({ id: route.query.id as string });
 });
+
 function nameInput(e: string) {
-	isdel.value = e !== store.oneCache.one.name;
+	isdel.value = e !== cache.value.one.name;
 }
 
 function delCache() {
 	delLoading.value = true;
 	delVisible.value = false;
-	if (Number(store.oneCache.one.status) === 1) {
+	if (Number(cache!.value.one.status) === 1) {
 		ElMessage.error("Please stop the service first");
 		delLoading.value = false;
 		return;

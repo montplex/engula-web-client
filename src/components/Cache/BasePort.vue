@@ -4,16 +4,16 @@
 			<div>
 				<div class="title">Region</div>
 				<div class="info copy-text">
-					<div class="mr-1">{{ cache!.one!.name }}</div>
+					<div class="mr-1">{{ cache.region }}</div>
 				</div>
 			</div>
 
 			<div>
 				<div class="title">Status</div>
 				<div class="info copy-text">
-					<StatusIcon :status="cache.one.status" />
-					<div class="mx-1" :style="{ color: statusStyle[cache!.one.status] }">
-						{{ CachestatusTo[cache!.one.status] }}
+					<StatusIcon :status="cache.status" />
+					<div class="mx-1" :style="{ color: statusStyle[cache.status] }">
+						{{ CachestatusTo[cache.status] }}
 					</div>
 				</div>
 			</div>
@@ -21,7 +21,7 @@
 			<div>
 				<div class="title">Endpoint</div>
 				<div class="copy-text group w-full" v-copy>
-					<p class="mr-1 inline-block">{{ cache!.host }}</p>
+					<p class="mr-1 inline-block">{{ host }}</p>
 					<span class="inline-block min-w-[40px]">
 						<span class="hidden group-hover:inline-block">
 							<el-tooltip effect="dark" placement="top" content="Copy" :show-after="200">
@@ -58,9 +58,9 @@
 		</div>
 
 		<el-tooltip effect="dark" placement="top" content="Copy" :show-after="300">
-			<div class="url" @click="handleCopyClick(`redis://${password}@${cache!.host}:${store.port}`)">
+			<div class="url" @click="handleCopyClick(`redis://${password}@${host}:${store.port}`)">
 				<div class="_copy">
-					<p class="pr-2">redis://**********@{{ cache!.host }}:{{ store.port }}</p>
+					<p class="pr-2">redis://**********@{{ host }}:{{ store.port }}</p>
 					<svgIcon icon="copy" class="text-[#1677ff] text-sm" />
 				</div>
 			</div>
@@ -73,21 +73,26 @@ import StatusIcon from "@/components/Cache/StatusIcon.vue";
 import { useRoute } from "vue-router";
 import { cacheStore } from "@/stores/cache";
 import { handleCopyClick } from "@/utils/util";
-import { ref, watchEffect } from "vue";
-import { ICacheOneRes } from "#/cache";
+import { ref } from "vue";
+import { ICacheListItem } from "#/cache";
 import { CachestatusTo, statusStyle } from "#/enum";
+
+defineProps({
+	cache: {
+		type: Object as () => ICacheListItem,
+		default: () => ({})
+	},
+	host: {
+		type: String,
+		default: ""
+	}
+});
 
 const store = cacheStore(),
 	route = useRoute(),
-	password = ref<string>(""),
-	cache = ref<ICacheOneRes>();
+	password = ref<string>(store.getTokenByid(route.query.id as any as number));
 
-watchEffect(async () => {
-	await store.setOneCache({ id: route.query.id as string });
-	cache.value = store.oneCache;
-	await store.setTokenList(route.query.id as any as number);
-	password.value = store.getTokenByid(route.query.id as any as number);
-});
+// password.value = store.getTokenByid(route.query.id as any as number);
 </script>
 
 <style lang="scss">

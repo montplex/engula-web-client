@@ -1,20 +1,20 @@
 <template>
 	<!-- style="position: sticky; top: 0; z-index: 99" -->
-	<div class="bg-gray-50 py-6 shadow border-b-0" style="position: sticky; top: 0; z-index: 99">
+	<div class="bg-gray-50 py-6 shadow border-b-0" style="position: sticky; top: 0; z-index: 99" v-if="cache">
 		<div class="container mx-auto !max-w-screen-xl px-4">
 			<div class="flex items-center">
 				<div>
 					<h1 class="m-0 flex items-center text-2xl font-bold leading-none">
-						<span v-if="cache?.name">{{ cache?.name }}</span>
+						<span>{{ cache.name }}</span>
 						<el-tooltip effect="dark" content="Rename Database" placement="top-start">
-							<button type="button" @click="editName(cache!.name)" class="ml-3 inline-flex h-auto items-center !p-0">
+							<button type="button" @click="editName(cache.name)" class="ml-3 inline-flex h-auto items-center !p-0">
 								<svgIcon icon="edit" class="text-gray-400" />
 							</button>
 						</el-tooltip>
 					</h1>
 					<div class="mt-2 mr-20">
 						<div class="inline-flex flex-wrap items-center gap-1 text-sm">
-							<span> {{ cache?.des }}</span>
+							<span> {{ cache.des }}</span>
 						</div>
 					</div>
 				</div>
@@ -79,7 +79,7 @@
 				<p>
 					Please type
 					<span class="c-tag">
-						<strong>{{ cache?.name }}</strong>
+						<strong>{{ cache.name }}</strong>
 					</span>
 					to confirm.
 				</p>
@@ -97,7 +97,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watchEffect } from "vue";
+import { ref } from "vue";
 import { cacheOne } from "@/api/cache";
 import { useRoute } from "vue-router";
 import { ICacheListItem } from "#/cache";
@@ -105,12 +105,12 @@ import { cacheStore } from "@/stores/cache";
 
 const route = useRoute();
 const store = cacheStore();
-const cache = ref<ICacheListItem>();
 
-watchEffect(() => {
-	store.setOneCache({ id: route.query.id as string }).then((res) => {
-		cache.value = res.one;
-	});
+const props = defineProps({
+	cache: {
+		type: Object as () => ICacheListItem,
+		default: () => ({})
+	}
 });
 
 const editVisible = ref(false),
@@ -133,7 +133,7 @@ function editName(name: string) {
 }
 
 function nameInput(e: string) {
-	isStop.value = e !== cache.value?.name;
+	isStop.value = e !== props.cache?.name;
 }
 
 /* 关闭缓存 */

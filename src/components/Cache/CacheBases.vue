@@ -294,7 +294,6 @@ const importCache = () => (importVisible.value = true);
 
 /* 去详情页 */
 const goDetail = (id: number) => {
-	console.log(id);
 	router.push({ path: "/redis/details", query: { id } });
 };
 
