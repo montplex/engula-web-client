@@ -1,11 +1,11 @@
 <template>
 	<base-header />
-	<base-info :base="cache" />
+	<base-info />
 	<div class="container mx-auto !max-w-screen-xl px-4 pt-8 pb-20">
 		<el-tabs v-model="activeTab" @tab-click="tabClick">
-			<el-tab-pane v-for="(item, index) in tabs" :label="item" :name="item.toLowerCase()" :key="index" />
+			<el-tab-pane v-for="(item, index) in tabs" :label="item" :name="item.toLowerCase()" :key="index" :lazy="true" />
+			<router-view />
 		</el-tabs>
-		<router-view />
 	</div>
 </template>
 
@@ -16,11 +16,11 @@ import BaseInfo from "@/components/Cache/BaseInfo.vue";
 import { ICacheListItem } from "#/cache";
 import { useRouter, useRoute } from "vue-router";
 import { ref, watch } from "vue";
-import { useDbStore } from "@/stores/cache";
+import { cacheStore } from "@/stores/cache";
 
 const router = useRouter(),
 	route = useRoute(),
-	store = useDbStore(),
+	store = cacheStore(),
 	activeTab = ref("details"),
 	tabs = ref(["Details", "Usages", "Cli", "Token"]),
 	cache = ref({} as ICacheListItem);
@@ -30,16 +30,12 @@ function tabClick({ paneName }: any) {
 	const toPage = (path: string) => router.replace({ path, query: { id: route.query.id } });
 	toPage(`/redis/${paneName}`);
 }
-/* function tabClick(name: string) {
-	const toPage = (path: string) => router.replace({ path, query: { id: route.query.id } });
-	toPage(`/redis/${name}`);
-} */
 
 store.setOneCache({ id: route.query.id as string }).then((res) => {
 	cache.value = res.one;
 });
 
-store.setCacheList();
+// store.setCacheList();
 
 /* 监听路由变化,切换子路由页面时保持tab选中状态 */
 watch(

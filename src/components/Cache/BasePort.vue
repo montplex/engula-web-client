@@ -1,25 +1,27 @@
 <template>
-	<div class="base-port">
+	<div class="base-port" v-if="cache">
 		<div class="gr-box">
 			<div>
 				<div class="title">Region</div>
 				<div class="info copy-text">
-					<div class="mr-1">{{ cache.name }}</div>
+					<div class="mr-1">{{ cache!.one!.name }}</div>
 				</div>
 			</div>
 
 			<div>
 				<div class="title">Status</div>
 				<div class="info copy-text">
-					<StatusIcon status="1" />
-					<div class="mx-1">{{ CachestatusTo[cache.status] }}</div>
+					<StatusIcon :status="cache.one.status" />
+					<div class="mx-1" :style="{ color: statusStyle[cache!.one.status] }">
+						{{ CachestatusTo[cache!.one.status] }}
+					</div>
 				</div>
 			</div>
 
 			<div>
 				<div class="title">Endpoint</div>
 				<div class="copy-text group w-full" v-copy>
-					<p class="mr-1 inline-block">{{ host }}</p>
+					<p class="mr-1 inline-block">{{ cache!.host }}</p>
 					<span class="inline-block min-w-[40px]">
 						<span class="hidden group-hover:inline-block">
 							<el-tooltip effect="dark" placement="top" content="Copy" :show-after="200">
@@ -32,7 +34,7 @@
 
 			<div>
 				<div class="title">Password</div>
-				<div class="copy-text info group min-w-[100px]" @click="copyPassword">
+				<div class="copy-text info group min-w-[100px]" @click="handleCopyClick(password)">
 					<div class="mr-1">•••••••••</div>
 					<div class="hidden group-hover:block">
 						<el-tooltip effect="dark" placement="top" content="Copy" :show-after="200">
@@ -45,7 +47,7 @@
 			<div>
 				<div class="text-gray-500">Port</div>
 				<div class="copy-text info group min-w-[100px]" v-copy>
-					<div class="mr-1">8125</div>
+					<div class="mr-1">{{ store.port }}</div>
 					<div class="hidden group-hover:block">
 						<el-tooltip effect="dark" placement="top" content="Copy" :show-after="200">
 							<svgIcon icon="copy" class="!inline !text-xl" />
@@ -56,10 +58,9 @@
 		</div>
 
 		<el-tooltip effect="dark" placement="top" content="Copy" :show-after="300">
-			<div v-copy class="url">
+			<div class="url" @click="handleCopyClick(`redis://${password}@${cache!.host}:${store.port}`)">
 				<div class="_copy">
-					<!-- token@host:port -->
-					<p class="pr-2">redis://**********@{{ host }}:8125</p>
+					<p class="pr-2">redis://**********@{{ cache!.host }}:{{ store.port }}</p>
 					<svgIcon icon="copy" class="text-[#1677ff] text-sm" />
 				</div>
 			</div>
@@ -70,24 +71,23 @@
 <script setup lang="ts">
 import StatusIcon from "@/components/Cache/StatusIcon.vue";
 import { useRoute } from "vue-router";
-import { useDbStore } from "@/stores/cache";
+import { cacheStore } from "@/stores/cache";
 import { handleCopyClick } from "@/utils/util";
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
+import { ICacheOneRes } from "#/cache";
+import { CachestatusTo, statusStyle } from "#/enum";
 
-import { CachestatusTo } from "#/enum";
+const store = cacheStore(),
+	route = useRoute(),
+	password = ref<string>(""),
+	cache = ref<ICacheOneRes>();
 
-const store = useDbStore(),
-	route = useRoute();
-const cache = ref(store.oneCache.one);
-const host = ref<string>(store.oneCache.host);
-
-/* store.setOneCache({ id: route.query.id as string }).then((res) => {
-	cache.value = res;
-}); */
-
-function copyPassword() {
-	handleCopyClick("121312312312312312");
-}
+watchEffect(async () => {
+	await store.setOneCache({ id: route.query.id as string });
+	cache.value = store.oneCache;
+	await store.setTokenList(route.query.id as any as number);
+	password.value = store.getTokenByid(route.query.id as any as number);
+});
 </script>
 
 <style lang="scss">

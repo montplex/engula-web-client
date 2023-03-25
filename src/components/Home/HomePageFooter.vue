@@ -28,15 +28,12 @@
 						<svgIcon icon="arrow-right" class="inline" />
 					</a>
 				</div>
-				<div class="md:my-10 py-6 text-xs md:text-xl">© 2022 Upstash, Inc. Based in California.</div>
+				<div class="md:my-10 py-6 text-xs md:text-xl">© 2022 Montplex, Inc. All rights reserved</div>
 				<div class="hidden px-40 text-center text-6 text-sm md:block">
 					<p>
-						Redis is a trademark of Redis Labs Ltd. Any rights therein are reserved to Redis Ltd. Any use by Upstash is for
-						referential purposes only and does not indicate any sponsorship, endorsement or affiliation between Redis and Upstash.
-					</p>
-					<p>
-						Cloudflare, the Cloudflare logo, and Cloudflare Workers are trademarks and/or registered trademarks of Cloudflare,
-						Inc. in the United States and other jurisdictions.
+						Redis is a trademark of Redis Labs Ltd. Any rights therein are reserved to Redis Ltd. Any use by Montplex is for
+						referential purposes only and does not indicate any sponsorship, endorsement or affiliation between Redis and
+						Montplex.
 					</p>
 				</div>
 			</div>

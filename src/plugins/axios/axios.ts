@@ -41,7 +41,7 @@ class Request {
 					// 添加加载loading
 					this.loading = ElLoading.service({
 						lock: true,
-						text: "加载中...",
+						text: "loading...",
 						background: "rgba(255, 255, 255, 1)"
 					});
 				}

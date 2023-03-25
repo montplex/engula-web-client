@@ -9,7 +9,7 @@
 defineProps({
 	status: {
 		type: [String, Number],
-		default: "0"
+		default: ""
 	}
 });
 </script>

@@ -30,7 +30,7 @@
 		<!-- Sraech and AddButton End -->
 
 		<!-- dbList Start -->
-		<div class="mt-6 sm:mt-10" v-if="store.filterList">
+		<div class="mt-6 sm:mt-10" v-if="store.filterList && store.filterList.length">
 			<div cy-id="redis-db-list" class="grid gap-6 sm:grid-cols-2 sm:gap-8">
 				<div v-for="item in store.filterList" :key="item.id" class="flex flex-col rounded-lg border border-gray-200 shadow-sm">
 					<header class="p-4 sm:p-6 sm:pt-6 sm:pb-6">
@@ -91,7 +91,7 @@
 							<p>We manage the cache service for you and you only pay what you use.</p>
 						</div>
 					</div>
-					<el-button type="success">Create cache service</el-button>
+					<el-button @click="createCache" type="success">Create cache service</el-button>
 				</template>
 			</el-empty>
 		</div>
@@ -232,14 +232,14 @@
 import StatusIcon from "@/components/Cache/StatusIcon.vue";
 import { ref, reactive, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { useDbStore } from "@/stores/cache";
+import { cacheStore } from "@/stores/cache";
 import { addCache } from "@/api/cache";
 import { AddCacheParams } from "#/cache";
 import { createCacheRules, resetForm, submit } from "@/utils/rules";
 import type { FormInstance } from "element-plus";
 import { CachestatusTo, statusStyle } from "#/enum";
 
-const store = useDbStore();
+const store = cacheStore();
 const router = useRouter();
 const addLoading = ref(false);
 

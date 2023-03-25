@@ -83,13 +83,13 @@ import { dayjs } from "element-plus";
 import { ref, reactive } from "vue";
 import { addToken, updateToken, getTokenList } from "@/api/cache";
 import { addTokenParams, updateTokenParams, ItokenItem } from "#/cache";
-import { useDbStore } from "@/stores/cache";
+import { cacheStore } from "@/stores/cache";
 import { resetForm, addTokenRules, submit } from "@/utils/rules";
 import type { FormInstance } from "element-plus";
 import { useRoute } from "vue-router";
 
 const route = useRoute(),
-	store = useDbStore(),
+	store = cacheStore(),
 	addVisible = ref(false),
 	addFormRef = ref<FormInstance>(),
 	update = ref(false);

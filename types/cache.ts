@@ -97,23 +97,24 @@ export interface ChartParams {
 
 type TwoArr = Array<Array<string | number>>;
 // (number | string)[][]
+export interface Metrics {
+	/** 内存使用byte */
+	memory_used_bytes: any[] | TwoArr;
+	/** keys数量  */
+	db_keys: any[] | TwoArr;
+	/** 客户端命令数量 */
+	client_commands_total: any[] | TwoArr;
+	/** 缓存命中率 */
+	hit_rate: any[] | TwoArr;
+}
 
-export interface ChartRes {
+export interface Cards {
+	fee: number;
+	readBytes: number;
+	storageBytes: number;
+	writeBytes: number;
+}
+
+export interface ChartRes extends Metrics, Cards {
 	[index: string]: any;
-	/**
-	 * 内存使用byte
-	 */
-	memory_used_bytes: TwoArr;
-	/**
-	 * keys数量
-	 */
-	db_keys: TwoArr;
-	/**
-	 * 客户端命令数量
-	 */
-	client_commands_total: TwoArr; // Throughput (commands per sec)
-	/**
-	 * 缓存命中率
-	 */
-	hit_rate: TwoArr;
 }

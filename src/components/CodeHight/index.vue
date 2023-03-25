@@ -3,7 +3,7 @@
 		<div class="group relative">
 			<div class="absolute hidden right-2 top-4 z-10 items-center gap-2 group-hover:flex">
 				<button
-					@click="handleEyeClick"
+					@click="isVisible = !isVisible"
 					class="!flex !h-8 !w-8 cursor-pointer items-center justify-center rounded-md border-0 bg-white bg-opacity-30 text-white hover:bg-opacity-50"
 				>
 					<svgIcon :icon="isVisible ? 'eye-off' : 'eye'" class="svg-root" />
@@ -11,7 +11,7 @@
 
 				<el-tooltip effect="dark" placement="right" content="Copy">
 					<button
-						@click="handleCopy"
+						@click="copyCode"
 						class="!flex !h-8 !w-8 cursor-pointer items-center justify-center rounded-md border-0 bg-white bg-opacity-30 text-white hover:bg-opacity-50"
 					>
 						<svgIcon icon="copy" class="svg-root" />
@@ -39,20 +39,17 @@ const props = withDefaults(defineProps<IProps>(), {
 	language: "shell",
 	eye: true
 });
+const isVisible = ref(false);
 
 const codes = computed(() => {
-	const desensitizationCode = props.code.replace(/\*\*\*\*\*\*\*\*\*\*/g, "========YoaiLyi=======");
+	const desensitizationCode = props.code.replace(/\*\*\*\*\*\*\*\*\*\*/g, "63246934340262050070490945954639");
 	return isVisible.value ? desensitizationCode : props.code;
 });
 
-const isVisible = ref(false);
-
-const handleCopy = () => handleCopyClick(props.code);
-
-const handleEyeClick = () => {
-	isVisible.value = !isVisible.value;
-	console.log(isVisible.value);
-};
+function copyCode() {
+	const code = props.code.replace(/\*\*\*\*\*\*\*\*\*\*/g, "63246934340262050070490945954639");
+	handleCopyClick(code);
+}
 </script>
 
 <style lang="scss">

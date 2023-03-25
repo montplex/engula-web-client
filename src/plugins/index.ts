@@ -15,11 +15,11 @@ import setupHighlight from "./highlight";
 
 import Terminal from "vue-web-terminal";
 
-// import error from "./error";
+import error from "./error";
 import directives from "@/directives";
 
 export function setupPlugins(app: App) {
-	// app.config.errorHandler = error;
+	app.config.errorHandler = error;
 	app.component("SvgIcon", svgIcon);
 	setupPinia(app);
 	tailwindCss();

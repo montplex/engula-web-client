@@ -64,17 +64,6 @@ export default [
 						createdDate: 1678695897000,
 						updatedDate: 1678695898000
 					}
-					/* {
-						id: 16,
-						orgId: 2,
-						name: "DBTEST-008",
-						des: "desc",
-						status: 1,
-						cloudProvider: "aws",
-						region: "ap-northeast-1",
-						createdDate: 1678695901000,
-						updatedDate: 1678695902000
-					} */
 				]
 			};
 		}

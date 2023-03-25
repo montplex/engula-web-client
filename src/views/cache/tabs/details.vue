@@ -8,28 +8,10 @@
 			</div>
 			<div class="overflow-x-auto sm:overflow-hidden">
 				<el-radio-group v-model="tabPosition" size="large" fill="#21cc93">
-					<el-radio-button label="redis">redis-cli</el-radio-button>
-					<el-radio-button label="node">Node</el-radio-button>
-					<el-radio-button label="php">PHP</el-radio-button>
-					<el-radio-button label="python">Python</el-radio-button>
-					<el-radio-button label="java">Java</el-radio-button>
-					<el-radio-button label="go">Go</el-radio-button>
-					<el-radio-button label="docker">Docker</el-radio-button>
+					<el-radio-button v-for="item in codeRadioGroup" :key="item.name" :label="item.com">{{ item.name }}</el-radio-button>
 				</el-radio-group>
 			</div>
-			<code-fragment :type="tabPosition" password="70c51cb8867142a8a45b2da7516c9dd1" />
-			<!-- <div class="space-y-6">
-				<CodeHight @on-eye-click="handleEyeClick" :code="code" />
-				<div class="info-warning">
-					redis-cli supports TLS starting with version 6. If you are using version 5 or earlier, you should use
-					<a class="inline text-[#1677ff]" href="https://www.stunnel.org/" role="link" target="_blank" rel="noopener noreferrer">
-						Stunnel
-						<svg-icon icon="share" class="hover:opacity-80 inline" />
-					</a>
-					to establish a secure connection to the TLS enabled database
-					<a href="#"> <svg-icon icon="share" class="text-[#1677ff] hover:opacity-80 inline" /> </a>
-				</div>
-			</div> -->
+			<component :is="tabPosition"></component>
 		</div>
 		<configuration />
 		<!-- 收费标准 Start -->
@@ -90,32 +72,39 @@
 </template>
 
 <script setup lang="ts">
-import CodeFragment from "@/components/Cache/CodeFragment.vue";
 import BillingStandards from "@/components/Cache/BillingStandards.vue";
 import Configuration from "@/components/Cache/Configuration.vue";
 import BasePort from "@/components/Cache/BasePort.vue";
-import { ref } from "vue";
-import { useRoute } from "vue-router";
-import { useDbStore } from "@/stores/cache";
-import { cacheOne } from "@/api/cache";
 
-const tabPosition = ref("redis"),
+import { ref, watchEffect, reactive } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { cacheStore } from "@/stores/cache";
+import { cacheOne } from "@/api/cache";
+import { ICacheOneRes } from "#/cache";
+
+let codeRadioGroup = reactive([
+	{ name: "redis-cli", com: "CodeRedis" },
+	{ name: "Node", com: "CodeNode" },
+	{ name: "PHP", com: "CodePhp" },
+	{ name: "Python", com: "CodePython" },
+	{ name: "Java", com: "CodeJava" },
+	{ name: "Go", com: "CodeGo" },
+	{ name: "Docker", com: "CodeDocker" }
+]);
+const tabPosition = ref("CodeRedis"),
 	route = useRoute(),
-	store = useDbStore(),
+	store = cacheStore(),
 	delVisible = ref(false),
 	isdel = ref(true),
 	delLoading = ref(false),
-	repeatedName = ref("");
+	repeatedName = ref(""),
+	cache = ref<ICacheOneRes>();
 
-store.setOneCache({ id: route.query.id as string });
-
-/* watchEffect(async () => {
-	
+watchEffect(async () => {
+	const res = await store.setOneCache({ id: route.query.id as string });
+	cache.value = res;
+	console.log(res);
 });
- */
-/* const cache = ref(store.oneCache.one);
-const host = ref<string>(store.oneCache.host); */
-
 function nameInput(e: string) {
 	isdel.value = e !== store.oneCache.one.name;
 }
@@ -123,14 +112,46 @@ function nameInput(e: string) {
 function delCache() {
 	delLoading.value = true;
 	delVisible.value = false;
-	if (Number(store.oneCache.one.status) === 1) return ElMessage.error("Please stop the service first");
-	cacheOne({ id: route.query.id as any, opt: "terminate" }).then((res) => {
+	if (Number(store.oneCache.one.status) === 1) {
+		ElMessage.error("Please stop the service first");
 		delLoading.value = false;
+		return;
+	}
+	cacheOne({ id: route.query.id as any, opt: "terminate" }).then((res) => {
 		ElMessage.success("cache terminate");
+		useRouter().push({ path: "/console" });
+		delLoading.value = false;
 	});
 }
 </script>
 
+<script lang="ts">
+import CodeRedis from "@/components/Cache/SampleCode/Redis.vue";
+import CodeNode from "@/components/Cache/SampleCode/Node.vue";
+import CodePhp from "@/components/Cache/SampleCode/Php.vue";
+import CodePython from "@/components/Cache/SampleCode/Python.vue";
+import CodeJava from "@/components/Cache/SampleCode/Java.vue";
+import CodeGo from "@/components/Cache/SampleCode/Go.vue";
+import CodeDocker from "@/components/Cache/SampleCode/Docker.vue";
+export default {
+	components: {
+		// eslint-disable-next-line vue/no-unused-components
+		CodeRedis,
+		// eslint-disable-next-line vue/no-unused-components
+		CodeNode,
+		// eslint-disable-next-line vue/no-unused-components
+		CodePhp,
+		// eslint-disable-next-line vue/no-unused-components
+		CodePython,
+		// eslint-disable-next-line vue/no-unused-components
+		CodeJava,
+		// eslint-disable-next-line vue/no-unused-components
+		CodeGo,
+		// eslint-disable-next-line vue/no-unused-components
+		CodeDocker
+	}
+};
+</script>
 <style lang="scss">
 .copy-text {
 	font-size: 15px;

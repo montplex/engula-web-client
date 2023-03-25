@@ -3,21 +3,23 @@ import { getCacheList, cacheOne, getTokenList, deleteToken } from "@/api/cache";
 import { ICacheOneRes, ICacheListItem, CloudProviderItem, ItokenItem, CacheByIdParams } from "#/cache";
 import { getCloudProviderList } from "@/api/cache";
 
-export interface useDbStore {
+interface IcacheStore {
 	filterList: ICacheListItem[];
 	serviceList: ICacheListItem[];
 	regionList: CloudProviderItem[];
 	oneCache: ICacheOneRes;
 	tokenList: ItokenItem[];
+	port: string;
 }
-export const useDbStore = defineStore({
-	id: "useDbStore",
-	state: (): useDbStore => ({
+export const cacheStore = defineStore({
+	id: "cacheStore",
+	state: (): IcacheStore => ({
 		filterList: [],
 		serviceList: [],
 		regionList: [],
 		oneCache: {} as ICacheOneRes,
-		tokenList: []
+		tokenList: [],
+		port: "8125"
 	}),
 	actions: {
 		async setCacheList() {
@@ -56,6 +58,11 @@ export const useDbStore = defineStore({
 				res.ok ? ElMessage.success("Delete completed") : ElMessage.error("Delete failed");
 				// this.setTokenList(id);
 			});
+		},
+		getTokenByid(id: number) {
+			const item = this.tokenList.find((item) => item.id === id)?.accessToken;
+			const spare = this.tokenList[0]?.accessToken;
+			return item ? item : spare;
 		}
 	}
 });

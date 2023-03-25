@@ -1,30 +1,30 @@
 <template>
 	<div class="mt-8 grid grid-cols-1 gap-6">
-		<div class="rounded-lg bg-gray-100 p-6">
+		<div class="card-box">
 			<h3 class="text-bold m-0 text-base">Current Month</h3>
-			<div class="mt-4 grid gap-2 sm:grid-cols-4 sm:gap-4">
-				<div class="rounded-lg px-5 pt-4 pb-3 shadow-sm bg-white dark:bg-gray-900">
-					<el-statistic title="Requests" :value="62" />
+			<div class="grid-card">
+				<div class="items">
+					<div class="title">Storage Bytes</div>
+					<div class="meat">{{ cards?.storageBytes }}<span>B</span></div>
 				</div>
-				<div class="rounded-lg px-5 pt-4 pb-3 shadow-sm bg-white dark:bg-gray-900">
-					<el-statistic title="Bandwidth (Today)" suffix="B" :value="789" />
+				<div class="items">
+					<div class="title">Read Bytes</div>
+					<div class="meat">{{ cards?.readBytes }}<span>B</span></div>
 				</div>
-				<div class="rounded-lg px-5 pt-4 pb-3 shadow-sm bg-white dark:bg-gray-900">
-					<div class="ant-statistic css-1wz8zvc">
-						<div class="ant-statistic-title">Average Storage</div>
-						<div class="ant-statistic-content">
-							<span class="ant-statistic-content-value">0B</span>
-						</div>
-					</div>
+
+				<div class="items">
+					<div class="title">Read Bytes</div>
+					<div class="meat">{{ cards?.readBytes }}<span>B</span></div>
 				</div>
-				<div class="rounded-lg px-5 pt-4 pb-3 shadow-sm bg-white dark:bg-gray-900">
-					<el-statistic title="Cost" suffix="$" :value="789.99" />
+				<div class="items">
+					<div class="title">Fee</div>
+					<div class="meat">{{ cards?.fee }}<span>$</span></div>
 				</div>
 			</div>
 		</div>
 
 		<div class="flex items-center">
-			<h4 class="text-base">Filter Data</h4>
+			<h4 class="text-base">Write Bytes</h4>
 			<div class="ml-auto">
 				<!-- select -->
 				<el-select v-model="unit" filterable placeholder="Select cloud provider" class="w-full">
@@ -33,63 +33,60 @@
 			</div>
 		</div>
 
-		<div class="chart-item" v-for="(value, key) in metrics" :key="key">
-			<header>
-				<h4>{{ ChartTitle[key] }}</h4>
-			</header>
-			<!-- {{ value }} -->
-			<div style="width: 100%; height: 300px">
-				<Echarts width="100%" height="300px" :options="mergeData(value)" />
-			</div>
-		</div>
+		<chart-list :metrics="metrics" />
 	</div>
 </template>
 
 <script setup lang="ts">
-import Echarts from "@/components/Echarts/index.vue";
-import { formatChartsData } from "@/utils/util";
+import ChartList from "@/components/Cache/ChartList.vue";
 import { reactive, ref } from "vue";
 import { getChart } from "@/api/cache";
-import { ChartParams, ChartRes } from "#/cache";
-import { useDbStore } from "@/stores/cache";
+import { ChartParams, ChartRes, Metrics, Cards } from "#/cache";
+import { dayjs } from "element-plus";
+import { watchEffect } from "vue";
+import { useRoute } from "vue-router";
 
-const ChartTitle: { [index: keyof ChartRes]: string } = {
-	memory_used_bytes: "Data Size (MB)",
-	db_keys: "Keyspace",
-	client_commands_total: "Throughput (commands per sec)",
-	hit_rate: "Hits / Misses"
-};
+const unit = ref("3D"),
+	metrics = ref<Metrics>(),
+	cards = ref<Cards>();
 
 const params = reactive<ChartParams>({
-	cacheServiceId: useDbStore().oneCache.one.id,
+	cacheServiceId: useRoute().query.id as string,
 	start: new Date().getTime() / 1000 - 5 * 60,
 	end: new Date().getTime() / 1000,
 	step: "5m"
 });
 
-const metrics = ref<ChartRes>();
+function formatCharts(res: ChartRes) {
+	let memo = {} as any;
+	let card = {} as any;
+	for (const [key, value] of Object.entries(res)) {
+		if (value instanceof Array) {
+			// const ch = value.map((item) => dayjs(item[0]).format("YYYY[年]M[月]D[日] HH:mm"));
+			const x = value.map((item) => dayjs(item[0]).format("D MMM HH:mm"));
+			const y = value.map((item) => (item[1] == "NaN" ? 0 : Number(item[1])));
+			const item = mergeData({ x, y });
+			memo[key] = item;
+		} else {
+			card[key] = value;
+		}
+	}
+	return { memo, card };
+}
 
-getChart(params).then((res) => {
-	metrics.value = formatChartsData(res);
-	/* console.log(formatChartsData(res));
-	console.log(metrics.value); */
+watchEffect(() => {
+	getChart(params).then((res) => {
+		const { memo, card } = formatCharts(res);
+		metrics.value = memo;
+		cards.value = card;
+	});
 });
-
-const unit = ref("3D");
-
-const unitSelectList = reactive([
-	{ label: "Past 3 hours", value: "3D" },
-	{ label: "Past 12 hours", value: "12D" },
-	{ label: "Past day", value: "1D" },
-	{ label: "Past 3 day", value: "3D" },
-	{ label: "Past week", value: "1W" }
-]);
 
 function mergeData(value: any) {
 	const res = {
 		xAxis: {
 			type: "category",
-			data: value.x.en
+			data: value.x
 		},
 		yAxis: {
 			type: "value"
@@ -112,6 +109,13 @@ function mergeData(value: any) {
 	};
 	return res;
 }
+const unitSelectList = reactive([
+	{ label: "Past 3 hours", value: "3D" },
+	{ label: "Past 12 hours", value: "12D" },
+	{ label: "Past day", value: "1D" },
+	{ label: "Past 3 day", value: "3D" },
+	{ label: "Past week", value: "1W" }
+]);
 </script>
 
 <style lang="scss" scoped>
@@ -119,6 +123,26 @@ function mergeData(value: any) {
 	@apply grid grid-cols-1 gap-8 rounded-lg border border-gray-200 p-4 sm:px-8 sm:py-7;
 	header h4 {
 		@apply m-0 mb-1 text-base;
+	}
+}
+
+.card-box {
+	@apply rounded-lg bg-gray-100 p-6;
+
+	.grid-card {
+		@apply mt-4 grid gap-2 sm:grid-cols-4 sm:gap-4;
+		.items {
+			@apply rounded-lg px-5 pt-4 pb-3 shadow-sm bg-white dark:bg-gray-900;
+			.title {
+				@apply text-[#606266] mb-1 leading-5 opacity-70;
+			}
+			.meat {
+				@apply text-info-8 text-xl font-normal;
+			}
+			span {
+				padding-left: 0.25rem;
+			}
+		}
 	}
 }
 </style>

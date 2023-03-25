@@ -5,16 +5,16 @@
 			<div class="flex items-center">
 				<div>
 					<h1 class="m-0 flex items-center text-2xl font-bold leading-none">
-						<span v-if="base.name">{{ base.name }}</span>
+						<span v-if="cache?.name">{{ cache?.name }}</span>
 						<el-tooltip effect="dark" content="Rename Database" placement="top-start">
-							<button type="button" @click="editName(base.name)" class="ml-3 inline-flex h-auto items-center !p-0">
+							<button type="button" @click="editName(cache!.name)" class="ml-3 inline-flex h-auto items-center !p-0">
 								<svgIcon icon="edit" class="text-gray-400" />
 							</button>
 						</el-tooltip>
 					</h1>
 					<div class="mt-2 mr-20">
 						<div class="inline-flex flex-wrap items-center gap-1 text-sm">
-							<span> {{ base.des }}</span>
+							<span> {{ cache?.des }}</span>
 						</div>
 					</div>
 				</div>
@@ -40,12 +40,13 @@
 								<span class="text-[#717179]">power</span>
 							</el-button> -->
 
-						<el-button plain @click="stopVisible = true">
-							<el-icon :class="['el-icon--left', { 'is-loading': stopLoading }]" size="16" color="#717179">
+						<el-button type="primary" @click="stopVisible = true">
+							<el-icon :class="['el-icon--left', { 'is-loading': stopLoading }]" size="16">
 								<SvgIcon icon="ban" v-if="!stopLoading" />
 								<i-ep:loading v-if="stopLoading" />
 							</el-icon>
-							<span class="text-[#717179]">stop</span>
+							<!-- text-[#717179] -->
+							<span>stop</span>
 						</el-button>
 					</div>
 				</div>
@@ -78,7 +79,7 @@
 				<p>
 					Please type
 					<span class="c-tag">
-						<strong>{{ base.name }}</strong>
+						<strong>{{ cache?.name }}</strong>
 					</span>
 					to confirm.
 				</p>
@@ -96,18 +97,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 import { cacheOne } from "@/api/cache";
 import { useRoute } from "vue-router";
 import { ICacheListItem } from "#/cache";
+import { cacheStore } from "@/stores/cache";
 
-const props = defineProps({
-	base: {
-		type: Object as () => ICacheListItem,
-		default: () => ({})
-	}
-});
 const route = useRoute();
+const store = cacheStore();
+const cache = ref<ICacheListItem>();
+
+watchEffect(() => {
+	store.setOneCache({ id: route.query.id as string }).then((res) => {
+		cache.value = res.one;
+	});
+});
 
 const editVisible = ref(false),
 	cacheNewName = ref(""),
@@ -129,16 +133,17 @@ function editName(name: string) {
 }
 
 function nameInput(e: string) {
-	isStop.value = e !== props.base.name;
+	isStop.value = e !== cache.value?.name;
 }
 
 /* 关闭缓存 */
 function stopCache() {
 	stopLoading.value = true;
 	stopVisible.value = false;
-	cacheOne({ id: route.query.id as any, opt: "stop" }).then((res) => {
+	cacheOne({ id: route.query.id as any, opt: "stop" }).then(async (res) => {
 		stopLoading.value = false;
 		ElMessage.success("stop success");
+		await store.setOneCache({ id: route.query.id as string });
 	});
 }
 </script>

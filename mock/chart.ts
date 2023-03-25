@@ -96,7 +96,11 @@ export default [
 					[1679461985, "NaN"],
 					[1679462000, "NaN"],
 					[1679462015, "NaN"]
-				]
+				],
+				fee: 88,
+				readBytes: 12,
+				storageBytes: 67,
+				writeBytes: 1022
 			};
 		}
 	}

@@ -11,8 +11,8 @@ import HeaderCount from "@/components/Cache/HeaderCount.vue";
 import CacheBases from "@/components/Cache/CacheBases.vue";
 import BaseFooter from "@/components/Cache/BaseFooter.vue";
 import { userStore } from "@/stores/user";
-import { useDbStore } from "@/stores/cache";
-const store = useDbStore();
+import { cacheStore } from "@/stores/cache";
+const store = cacheStore();
 userStore().getUserInfo();
 store.setCacheList();
 </script>
