@@ -1,16 +1,16 @@
 <template>
-	<div class="text-center mt-36 mx-8" id="bander-info">
+	<div class="text-center mt-32 mx-8" id="bander-info" style="z-index: 99999; position: relative">
 		<div class="flex justify-center items-center">
-			<img class="w-40" src="@/assets/images/main-logo.png" alt="logo" />
+			<img class="w-32" src="@/assets/images/main-logo.png" alt="logo" />
 		</div>
 		<!-- <div class="mt-15">Engula</div>
 		<div class="mt-10">Managed Caching Service for Global Business</div> -->
 		<div class="text-white opacity-80 font-semibold text-center my-10">
-			<h1 class="text-5xl">Engula</h1>
-			<h3 class="text-xl pt-6">Managed Caching Service for Global Business</h3>
+			<h1 class="text-5xl"><span class="text-block" style="font-weight: 700">Engula</span></h1>
+			<h3 class="text-xl pt-6"><span class="text-block">Managed Caching Service for Global Business</span></h3>
 		</div>
-
-		<button class="console mt-20 hover:opacity-80" @click="handleConsole">CONSOLE</button>
+		<!--  mt-20 hover:opacity-80 -->
+		<button class="mt-10 console" @click="handleConsole">GET STATRED</button>
 	</div>
 
 	<div class="">
@@ -68,14 +68,9 @@ function handleConsole() {
 		backdrop-filter: blur(18px);
 		backdrop-filter: blur(18px);
 		&:hover {
-			.icon {
-				transition: all 0.5s ease-in-out;
-				transform: scale(1.1);
-			}
-			h2 {
-				padding-left: 8px;
-				transition: padding 0.2s ease-in-out;
-			}
+			background: rgb(160 178 242 / 20%);
+			border: 1px solid rgb(255 255 255 / 28%);
+			box-shadow: 0 8px 32px 0 rgba(31 38 135 / 23%);
 		}
 		.icon {
 			width: 6rem;
@@ -138,7 +133,34 @@ function handleConsole() {
 	color: #ffffff;
 	text-align: center;
 	cursor: pointer;
-	background: linear-gradient(180deg, #642dff 0%, #892dff 100%);
+	background: linear-gradient(179deg, #642dff 0%, #892dff 100%);
 	border-radius: 0.5rem;
+	&:hover {
+		background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+			linear-gradient(90.27deg, #f926e1 0.22%, #2ab5fb 99.76%);
+	}
+}
+
+.__cool-btn {
+	width: 11.5rem;
+	height: 3rem;
+	line-height: 3rem;
+	border-radius: 100px;
+	background-image: linear-gradient(90.27deg, #f926e1 0.22%, #2ab5fb 99.76%);
+	font-size: 16px;
+	font-weight: 700;
+	text-align: center;
+	&:hover {
+		background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+			linear-gradient(90.27deg, #f926e1 0.22%, #2ab5fb 99.76%);
+	}
+	&.w-button {
+		background-color: #3898ec;
+		color: #fff;
+		border: 0;
+		line-height: inherit;
+		text-decoration: none;
+		cursor: pointer;
+	}
 }
 </style>

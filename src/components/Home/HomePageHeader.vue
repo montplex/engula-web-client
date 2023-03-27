@@ -48,7 +48,7 @@
 					<div class="-my-6">
 						<div class="nav-mb">
 							<a v-for="item in navList" :key="item.name" @click.prevent class="item">
-								<span class="pr-1" @click="HandelNavClick(item)">{{ item.name }}</span>
+								<span class="pr-1 nav-lg-item" @click="HandelNavClick(item)">{{ item.name }}</span>
 								<svg class="h-4 w-4" viewBox="0 0 24 24" v-if="item.name == 'DOCS'">
 									<path
 										fill="currentColor"
@@ -112,7 +112,7 @@ const handleConsole = () => {
 	@apply bg-transparent w-full left-0 top-0;
 	z-index: 99999;
 	.nav-box {
-		@apply mx-auto flex max-w-full items-center justify-between py-7 px-6 lg:px-0;
+		@apply mx-auto flex max-w-full items-center justify-between py-5 px-6 lg:px-0;
 	}
 
 	.nav-pc {
@@ -120,26 +120,35 @@ const handleConsole = () => {
 		._item {
 			display: flex;
 			align-items: center;
-			color: rgb(255 255 255 / 64%);
+			color: rgb(255 255 255 / 90%);
 			&:hover {
-				color: #712dff;
-				text-decoration: underline;
-				text-decoration: underline;
+				// @layer text-block;
+				// color: #712dff;
+				background-image: -webkit-gradient(linear, left top, right top, from(#f926e1), to(#2ab5fb));
+				background-image: linear-gradient(90deg, #f926e1, #2ab5fb);
+				font-weight: 700;
+				-webkit-background-clip: text;
+				background-clip: text;
+				-webkit-text-fill-color: transparent;
 			}
 		}
 	}
 	.console-btn {
 		@apply hidden lg:flex lg:justify-end;
 		button {
-			@apply text-sm font-semibold hover:opacity-80 duration-300;
+			@apply text-sm font-semibold duration-300;
 			width: 9rem;
-			height: 3rem;
+			height: 2.5rem;
 			color: #ffffff;
 			font-size: 16px;
 			text-align: center;
 			cursor: pointer;
 			background: linear-gradient(180deg, #642dff 0%, #892dff 100%);
 			border-radius: 0.5rem;
+			&:hover {
+				background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+					linear-gradient(90.27deg, #f926e1 0.22%, #2ab5fb 99.76%);
+			}
 		}
 	}
 

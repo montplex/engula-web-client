@@ -249,6 +249,16 @@ export default [
 		}
 	},
 	{
+		url: "/engula/cache_service/rename",
+		method: "post",
+		response: () => {
+			return {
+				id: 70,
+				name: "DBTEST-004"
+			};
+		}
+	},
+	{
 		url: "/engula/command/exe",
 		method: "get",
 		response: () => {

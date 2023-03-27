@@ -45,4 +45,13 @@ import HomePageFooter from "@/components/Home/HomePageFooter.vue";
 		z-index: 1;
 	}
 }
+
+.text-block {
+    background-image: -webkit-gradient(linear,left top,right top,from(#f926e1),to(#2ab5fb));
+    background-image: linear-gradient(90deg,#f926e1,#2ab5fb);
+    font-weight: 700;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 </style>

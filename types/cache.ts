@@ -16,14 +16,19 @@ export interface ICacheListItem {
 export interface FeeItem {
 	cacheServiceId: number;
 	fee: number;
-	monthStr: string;
 	readBytes: number;
 	writeBytes: number;
+	monthStr: string;
 }
 
 export type FeeRes = Array<FeeItem>;
 
 export type ICacheOneRes = { one: ICacheListItem; host: string };
+
+export interface FeeOrg extends FeeItem {
+	cacheServiceName: string;
+}
+export type FeeOrgList = FeeOrg[];
 
 export type ICacheList = { list: ICacheListItem[] };
 

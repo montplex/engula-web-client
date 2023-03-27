@@ -37,7 +37,7 @@
 
 	<el-dialog v-model="editVisible" title="Rename Database" width="520px" style="border-radius: 8px">
 		<label class="dialog-label mb-1">Database name</label>
-		<el-input v-model="cacheNewName" />
+		<el-input v-model="cacheNewName" ref="refRename" />
 		<div class="alert-base info !mt-6">Your connections and clients will not be affected by this change.</div>
 		<template #footer>
 			<span class="dialog-footer">
@@ -80,8 +80,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, nextTick } from "vue";
 import { ICacheListItem } from "#/cache";
+import { cacheRename } from "@/api/cache";
+import { useRoute } from "vue-router";
 
 defineProps({
 	cache: {
@@ -92,11 +94,19 @@ defineProps({
 
 const editVisible = ref(false),
 	cacheNewName = ref(""),
+	refRename = ref(),
+	route = useRoute(),
 	helpVisible = ref(false);
 
-function editName(name: string) {
+async function editName(name: string) {
 	editVisible.value = true;
 	cacheNewName.value = name;
+	cacheNewName.value && nextTick(() => refRename.value.focus());
+	if (cacheNewName.value && cacheNewName.value !== name) {
+		const body = { id: route.params.id as any, name: cacheNewName.value };
+		const res = await cacheRename(body);
+		res.id ? ElMessage.success("Rename success") : ElMessage.error("Rename failed");
+	}
 }
 </script>
 

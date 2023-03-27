@@ -15,17 +15,17 @@
 					</a>
 				</div>
 				<div class="flex items-center text-main flex-col md:flex-row gap-1">
-					<a href="#" class="md:mr-16">
+					<a href="#" class="md:mr-16 text-block">
 						Contact Us
-						<svgIcon icon="arrow-right" class="inline" />
+						<svgIcon icon="right-jb" class="inline" />
 					</a>
-					<a href="#" class="md:mr-16">
+					<a href="#" class="md:mr-16 text-block">
 						Privacy Policy
-						<svgIcon icon="arrow-right" class="inline" />
+						<svgIcon icon="right-jb" class="inline" />
 					</a>
-					<a href="#">
+					<a href="#" class="text-block">
 						Terms of Service
-						<svgIcon icon="arrow-right" class="inline" />
+						<svgIcon icon="right-jb" class="inline" />
 					</a>
 				</div>
 				<div class="md:my-10 py-6 text-xs md:text-lg">© 2022 Montplex, Inc. All rights reserved</div>

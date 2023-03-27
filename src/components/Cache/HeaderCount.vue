@@ -26,15 +26,34 @@
 
 <script setup lang="ts">
 import { getFeeOrgList } from "@/api/cache";
-import { FeeItem } from "#/cache";
 import { ref } from "vue";
 
-const fee = ref<FeeItem>();
+type Fee = {
+	readBytes: number;
+	writeBytes: number;
+	fee: number;
+};
+const fee = ref<Fee>();
 
 getFeeOrgList().then((res) => {
 	console.log(res);
 	if (!res[0]) return;
+	fee.value = sumOrg(res);
 });
+
+function sumOrg(arr: any): Fee {
+	const len = arr.length;
+	let readBytes = 0,
+		writeBytes = 0,
+		fee = 0;
+
+	for (let i = 0; i < len; i++) {
+		readBytes += arr[i].readBytes;
+		writeBytes += arr[i].writeBytes;
+		fee += arr[i].fee;
+	}
+	return { readBytes, writeBytes, fee };
+}
 </script>
 
 <style lang="scss" scoped>

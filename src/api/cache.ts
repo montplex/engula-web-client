@@ -12,7 +12,8 @@ import {
 	ICacheOneRes,
 	ChartParams,
 	ChartRes,
-	FeeRes
+	FeeRes,
+	FeeOrgList
 } from "#/cache";
 
 /**
@@ -25,15 +26,6 @@ export const getFeeList = (cacheServiceId: number) => {
 		params: { cacheServiceId }
 	});
 };
-
-interface FeeOrgList {
-	cacheServiceId: number;
-	cacheServiceName: string;
-	monthStr: string;
-	readByte: number;
-	writeByte: number;
-	fee: number;
-}
 
 /**
  * Get Fee Org list
@@ -74,6 +66,18 @@ export const cacheOne = (params: CacheByIdParams) => {
 	return http.get<ICacheOneRes>({
 		url: "/cache_service/one",
 		params
+	});
+};
+/**
+ * Get one cache service
+ * @param id cache service id
+ * @param name  Cache new Name
+ */
+type TRename = { id: string; name: string };
+export const cacheRename = (data: TRename) => {
+	return http.post<TRename>({
+		url: "/cache_service/rename",
+		data
 	});
 };
 
