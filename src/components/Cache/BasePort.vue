@@ -90,9 +90,14 @@ defineProps({
 
 const store = cacheStore(),
 	route = useRoute(),
-	password = ref<string>(store.getTokenByid(route.query.id as any as number));
+	password = ref<string>("");
 
-// password.value = store.getTokenByid(route.query.id as any as number);
+async function init() {
+	await store.setTokenList(route.query.id as any);
+	password.value = store.getTokenByid(route.query.id as any as number);
+}
+
+init();
 </script>
 
 <style lang="scss">

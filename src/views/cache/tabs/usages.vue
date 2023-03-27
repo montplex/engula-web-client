@@ -1,24 +1,24 @@
 <template>
 	<div class="mt-8 grid grid-cols-1 gap-6">
 		<div class="card-box">
-			<h3 class="text-bold m-0 text-base">Current Month</h3>
+			<!-- <h3 class="text-bold m-0 text-base">Current Month</h3> -->
 			<div class="grid-card">
 				<div class="items">
 					<div class="title">Storage Bytes</div>
-					<div class="meat">{{ cards?.storageBytes }}<span>B</span></div>
+					<div class="meat">{{ cards?.storageBytes || 0 }}<span>B</span></div>
 				</div>
 				<div class="items">
 					<div class="title">Read Bytes</div>
-					<div class="meat">{{ cards?.readBytes }}<span>B</span></div>
+					<div class="meat">{{ cards?.readBytes || 0 }}<span>B</span></div>
 				</div>
 
 				<div class="items">
-					<div class="title">Read Bytes</div>
-					<div class="meat">{{ cards?.readBytes }}<span>B</span></div>
+					<div class="title">writeBytes</div>
+					<div class="meat">{{ cards?.writeBytes || 0 }}<span>B</span></div>
 				</div>
 				<div class="items">
 					<div class="title">Fee</div>
-					<div class="meat">{{ cards?.fee }}<span>$</span></div>
+					<div class="meat">{{ cards?.fee || 0 }}<span>$</span></div>
 				</div>
 			</div>
 		</div>

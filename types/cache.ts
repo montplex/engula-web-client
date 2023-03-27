@@ -1,5 +1,4 @@
 import { Cachestatus } from "#/enum";
-import { type } from "os";
 
 type StrTest = (typeof Cachestatus)[keyof typeof Cachestatus];
 export interface ICacheListItem {
@@ -7,12 +6,22 @@ export interface ICacheListItem {
 	name: string;
 	des: string;
 	orgId: number;
-	status: StrTest;
+	status: 0 | 1 | 20 | 200 | "-1" | "-10";
 	cloudProvider: string;
 	region: string;
 	createdDate: number;
 	updatedDate: number;
 }
+
+export interface FeeItem {
+	cacheServiceId: number;
+	fee: number;
+	monthStr: string;
+	readBytes: number;
+	writeBytes: number;
+}
+
+export type FeeRes = Array<FeeItem>;
 
 export type ICacheOneRes = { one: ICacheListItem; host: string };
 

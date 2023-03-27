@@ -1,5 +1,4 @@
 <template>
-	<!-- style="position: sticky; top: 0; z-index: 99" -->
 	<div class="bg-gray-50 py-6 shadow border-b-0" style="position: sticky; top: 0; z-index: 99" v-if="cache">
 		<div class="container mx-auto !max-w-screen-xl px-4">
 			<div class="flex items-center">
@@ -19,37 +18,19 @@
 					</div>
 				</div>
 
-				<div class="ml-auto">
-					<!-- <el-tooltip effect="dark" content="Help" placement="top-start">
-							<el-button
-								plain
-								class="!flex w-[32px] shrink-0 items-center justify-center !py-0 text-gray-400 sm:flex hover:bg-transparent"
-							>
-								<el-icon :size="22">
-									<svgIcon icon="error" />
-								</el-icon>
-							</el-button>
-						</el-tooltip> -->
-
-					<div class="gap-6 ml-3">
-						<!-- <el-button plain @click="powerCache">
-								<el-icon :class="['el-icon--left', { 'is-loading': powerLoading }]" size="16" color="#717179">
-									<SvgIcon icon="power" v-if="!powerLoading" />
-									<i-ep:loading v-else />
-								</el-icon>
-								<span class="text-[#717179]">power</span>
-							</el-button> -->
-
-						<el-button type="primary" @click="stopVisible = true">
-							<el-icon :class="['el-icon--left', { 'is-loading': stopLoading }]" size="16">
-								<SvgIcon icon="ban" v-if="!stopLoading" />
-								<i-ep:loading v-if="stopLoading" />
+				<!-- <div class="ml-auto">
+					<el-tooltip effect="dark" content="Help" placement="top-start">
+						<el-button
+							plain
+							class="w-[32px] shrink-0 items-center justify-center !py-0 text-gray-400 sm:flex hover:bg-transparent"
+							@click="helpVisible = true"
+						>
+							<el-icon :size="22" color="#717179">
+								<svgIcon icon="error" />
 							</el-icon>
-							<!-- text-[#717179] -->
-							<span>stop</span>
 						</el-button>
-					</div>
-				</div>
+					</el-tooltip>
+				</div> -->
 			</div>
 		</div>
 	</div>
@@ -66,47 +47,43 @@
 		</template>
 	</el-dialog>
 
-	<el-dialog v-model="stopVisible" title="Stop cache service" width="520px" style="border-radius: 8px">
-		<div class="space-y-4">
-			<div>
-				<p>Are you sure to stop the current deployment?</p>
-				<div class="alert-base danger px-4 mt-2 text-red-500">
-					After stopping the deployment, you will not be able to connect to the deployment. Your data, connection address, and
-					value-added services (if any) will be preserved.
+	<el-dialog v-model="helpVisible" width="520px" style="border-radius: 8px">
+		<div class="p-6 pt-0 text-center">
+			<div class="space-y-4">
+				<h5>Database ID</h5>
+				<div class="mt-2 inline-flex items-center rounded-md bg-gray-100 py-2 px-4 text-base">
+					bb6a0604-b244-4530-b70d-70a8926ae6bb
+					<svgIcon icon="copy" class="mr-1" />
 				</div>
 			</div>
-			<div class="space-y-2 rounded-lg bg-gray-100 px-6 py-5">
-				<p>
-					Please type
-					<span class="c-tag">
-						<strong>{{ cache.name }}</strong>
-					</span>
-					to confirm.
-				</p>
-				<el-input @input="nameInput" v-model="repeatedName" placeholder="Enter the name of the cache" />
+		</div>
+		<div class="help-icons">
+			<div class="box">
+				<!-- mailto:support@upstash.com -->
+				<a class="item" href="#" target="_blank">
+					<svgIcon icon="emailat" class="inline text-xl" />
+					<span class="mt-1">Contact Us</span></a
+				>
+				<!-- https://github.com/upstash/issues/issues/new -->
+				<a class="item" href="#" target="_blank">
+					<svgIcon icon="bug-report" class="inline text-2xl" />
+					<span>Report a Bug</span></a
+				>
+				<!-- https://discord.gg/w9SenAtbme -->
+				<a class="item" href="#" target="_blank">
+					<svgIcon icon="discord" class="inline text-xl" />
+					<span class="mt-1">Discord</span></a
+				>
 			</div>
 		</div>
-
-		<template #footer>
-			<span class="dialog-footer">
-				<el-button plain @click="stopVisible = false">Cancel</el-button>
-				<el-button :disabled="isStop" :type="isStop ? '' : 'danger'" @click="stopCache"> stop </el-button>
-			</span>
-		</template>
 	</el-dialog>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { cacheOne } from "@/api/cache";
-import { useRoute } from "vue-router";
 import { ICacheListItem } from "#/cache";
-import { cacheStore } from "@/stores/cache";
 
-const route = useRoute();
-const store = cacheStore();
-
-const props = defineProps({
+defineProps({
 	cache: {
 		type: Object as () => ICacheListItem,
 		default: () => ({})
@@ -115,39 +92,29 @@ const props = defineProps({
 
 const editVisible = ref(false),
 	cacheNewName = ref(""),
-	stopVisible = ref(false),
-	isStop = ref(true),
-	powerLoading = ref(false),
-	stopLoading = ref(false),
-	repeatedName = ref("");
-
-/* 启动 */
-function powerCache() {
-	powerLoading.value = true;
-	console.log("start");
-}
+	helpVisible = ref(false);
 
 function editName(name: string) {
 	editVisible.value = true;
 	cacheNewName.value = name;
 }
-
-function nameInput(e: string) {
-	isStop.value = e !== props.cache?.name;
-}
-
-/* 关闭缓存 */
-function stopCache() {
-	stopLoading.value = true;
-	stopVisible.value = false;
-	cacheOne({ id: route.query.id as any, opt: "stop" })
-		.then((res) => {
-			if (res.one) {
-				store.updateOneCache(res);
-				ElMessage.success("stop success");
-			}
-		})
-		.catch(() => ElMessage.error("stop fail"))
-		.finally(() => (stopLoading.value = false));
-}
 </script>
+
+<style lang="scss">
+.help-icons {
+	@apply -mx-5 -mb-7 rounded-b-lg bg-gray-100 p-6 text-center;
+	.box {
+		@apply grid grid-cols-3 gap-4;
+		.item {
+			@apply grid h-auto place-items-center rounded-lg  py-4 text-gray-600 shadow;
+			background-color: #fff;
+			color: #4b5563;
+			&:hover {
+				border-color: #bfdbfe;
+				background-color: #eff6ff;
+				color: #2563eb !important;
+			}
+		}
+	}
+}
+</style>

@@ -4,7 +4,7 @@
 		<base-port :cache="cache.one" :host="cache.host" />
 		<div class="section-connect">
 			<div class="col-span-1">
-				<h3 class="text-xl font-normal">Connect to your database</h3>
+				<h3 class="text-xl font-normal">Connect to your cache service</h3>
 			</div>
 			<div class="overflow-x-auto sm:overflow-hidden">
 				<el-radio-group v-model="tabPosition" size="large" fill="#21cc93">
@@ -20,9 +20,9 @@
 
 		<div class="section-connect grid-cols-3 !border-red-200 bg-red-50">
 			<div class="col-span-2">
-				<h4 class="text-lg">Delete this database</h4>
+				<h4 class="text-lg">Delete this Cache Service</h4>
 				<div class="text-gray-600">
-					<p>Once you delete a database, there is no going back. Please be certain.</p>
+					<p>Once you delete a cache service, there is no going back. Please be certain.</p>
 				</div>
 			</div>
 			<div class="overflow-x-auto sm:overflow-hidden">
@@ -94,6 +94,7 @@ let codeRadioGroup = reactive([
 
 const tabPosition = ref("CodeRedis"),
 	route = useRoute(),
+	router = useRouter(),
 	store = cacheStore(),
 	delVisible = ref(false),
 	isdel = ref(true),
@@ -113,16 +114,21 @@ function nameInput(e: string) {
 function delCache() {
 	delLoading.value = true;
 	delVisible.value = false;
-	if (Number(cache!.value.one.status) === 1) {
+	/* if (Number(cache!.value.one.status) === 1) {
 		ElMessage.error("Please stop the service first");
 		delLoading.value = false;
 		return;
-	}
-	cacheOne({ id: route.query.id as any, opt: "terminate" }).then((res) => {
-		ElMessage.success("cache terminate");
-		useRouter().push({ path: "/console" });
-		delLoading.value = false;
-	});
+	} */
+	cacheOne({ id: route.query.id as any, opt: "terminate" })
+		.then((res) => {
+			if (res.one) {
+				store.updateOneCache(res);
+				ElMessage.success("cache terminate");
+				router.go(-1);
+			}
+		})
+		.catch(() => ElMessage.error("cache terminate error!"))
+		.finally(() => (delLoading.value = false));
 }
 </script>
 

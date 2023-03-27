@@ -11,8 +11,20 @@ import {
 	updateTokenParams,
 	ICacheOneRes,
 	ChartParams,
-	ChartRes
+	ChartRes,
+	FeeRes
 } from "#/cache";
+
+/**
+ * Get Fee list
+ */
+export const getFeeList = (cacheServiceId: number) => {
+	return http.get<FeeRes>({
+		url: "/fee/list",
+		showLoading: false,
+		params: { cacheServiceId }
+	});
+};
 
 /**
  * Get list cache service

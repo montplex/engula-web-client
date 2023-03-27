@@ -15,6 +15,49 @@ export default [
 		}
 	},
 	{
+		url: "/engula/fee/list",
+		method: "get",
+		response: () => {
+			return [
+				{
+					readBytes: 94,
+					writeBytes: 58,
+					monthStr: "amet quis anim",
+					fee: 57,
+					cacheServiceId: 64
+				},
+				{
+					readBytes: 51,
+					writeBytes: 79,
+					monthStr: "eu",
+					fee: 89,
+					cacheServiceId: 87
+				},
+				{
+					readBytes: 97,
+					writeBytes: 24,
+					monthStr: "enim laboris",
+					fee: 96,
+					cacheServiceId: 5
+				},
+				{
+					readBytes: 26,
+					writeBytes: 72,
+					monthStr: "elit in incididunt consequat",
+					fee: 35,
+					cacheServiceId: 1
+				},
+				{
+					readBytes: 81,
+					writeBytes: 69,
+					monthStr: "Duis amet",
+					fee: 54,
+					cacheServiceId: 37
+				}
+			];
+		}
+	},
+	{
 		url: "/engula/cache_service/list",
 		method: "get",
 		response: () => {
@@ -47,7 +90,7 @@ export default [
 						orgId: 2,
 						name: "DBTEST-004",
 						des: "desc",
-						status: 1,
+						status: "-1",
 						cloudProvider: "aws",
 						region: "ap-northeast-1",
 						createdDate: 1678695891000,
@@ -171,7 +214,7 @@ export default [
 					orgId: 2,
 					name: "DBTEST-004",
 					des: "desc",
-					status: 1,
+					status: "-1",
 					cloudProvider: "aws",
 					region: "ap-northeast-1",
 					createdDate: 1678695891000,

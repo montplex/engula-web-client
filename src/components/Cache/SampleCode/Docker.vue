@@ -8,7 +8,7 @@
 				Stunnel
 				<svg-icon icon="share" />
 			</a>
-			to establish a secure connection to the TLS enabled database
+			to establish a secure connection to the TLS enabled cache service.
 			<a
 				href="https://www.digitalocean.com/community/tutorials/how-to-connect-to-managed-redis-over-tls-with-stunnel-and-redis-cli"
 			>
