@@ -47,6 +47,9 @@ export const cacheStore = defineStore({
 			this.oneCache = res;
 			return res;
 		},
+		updateOneCache(data: ICacheOneRes) {
+			this.oneCache = data;
+		},
 		async setTokenList(id: number) {
 			const res = await getTokenList(id);
 			const list: ItokenItem[] = res.list.map((v) => ({ ...v, show: false }));

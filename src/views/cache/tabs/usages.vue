@@ -24,10 +24,10 @@
 		</div>
 
 		<div class="flex items-center">
-			<h4 class="text-base">Write Bytes</h4>
+			<h4 class="text-base">Filter Data</h4>
 			<div class="ml-auto">
 				<!-- select -->
-				<el-select v-model="unit" filterable placeholder="Select cloud provider" class="w-full">
+				<el-select v-model="unit" @change="timeChange" filterable placeholder="Select cloud provider" class="w-full">
 					<el-option v-for="item in unitSelectList" :key="item.value" :label="item.label" :value="item.value" />
 				</el-select>
 			</div>
@@ -46,15 +46,16 @@ import { dayjs } from "element-plus";
 import { watchEffect } from "vue";
 import { useRoute } from "vue-router";
 
-const unit = ref("3D"),
+const route = useRoute(),
+	unit = ref("hour"),
 	metrics = ref<Metrics>(),
 	cards = ref<Cards>();
 
 const params = reactive<ChartParams>({
-	cacheServiceId: useRoute().query.id as string,
-	start: new Date().getTime() / 1000 - 5 * 60,
+	cacheServiceId: route.query.id as string,
+	start: getTimeAgo("hour") / 1000,
 	end: new Date().getTime() / 1000,
-	step: "5m"
+	step: "15s"
 });
 
 function formatCharts(res: ChartRes) {
@@ -74,12 +75,16 @@ function formatCharts(res: ChartRes) {
 	return { memo, card };
 }
 
-watchEffect(() => {
+function initChart() {
 	getChart(params).then((res) => {
 		const { memo, card } = formatCharts(res);
 		metrics.value = memo;
 		cards.value = card;
 	});
+}
+
+watchEffect(() => {
+	initChart();
 });
 
 function mergeData(value: any) {
@@ -110,12 +115,37 @@ function mergeData(value: any) {
 	return res;
 }
 const unitSelectList = reactive([
-	{ label: "Past 3 hours", value: "3D" },
-	{ label: "Past 12 hours", value: "12D" },
-	{ label: "Past day", value: "1D" },
-	{ label: "Past 3 day", value: "3D" },
-	{ label: "Past week", value: "1W" }
+	{ label: "Past hour", value: "hour" },
+	{ label: "Past 3 hours", value: "hour,3" },
+	{ label: "Past 12 hours", value: "hour,12" },
+	{ label: "Past day", value: "day" },
+	{ label: "Past 3 days", value: "day,3" },
+	{ label: "Past week", value: "week" }
 ]);
+
+function timeChange(e: string) {
+	const [type, ago] = e.split(","),
+		start = getTimeAgo(type as any, ago ? Number(ago) : 1) / 1000;
+	params.start = start;
+}
+
+function getTimeAgo(type: "hour" | "day" | "week", ago = 1) {
+	const now = new Date().getTime(),
+		hour = 60 * 60 * 1000, // 1小时的毫秒数
+		day = 24 * hour, // 1天的毫秒数
+		week = 7 * day; // 1周的毫秒
+
+	switch (type) {
+		case "hour":
+			return now - ago * hour;
+		case "day":
+			return now - ago * day;
+		case "week":
+			return now - ago * week;
+		default:
+			return now - ago * hour;
+	}
+}
 </script>
 
 <style lang="scss" scoped>

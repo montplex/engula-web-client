@@ -35,7 +35,7 @@ class Request {
 		this.instance.interceptors.request.use(
 			(config) => {
 				/*    */
-				// console.log("--------全局请求拦截器 success--------", config);
+				console.log("--------全局请求拦截器 success--------", config);
 				if (this.showLoading) {
 					// console.log("loadding.....");
 					// 添加加载loading
@@ -48,7 +48,7 @@ class Request {
 				return config;
 			},
 			(err) => {
-				// console.log("--------全局请求拦截器 err--------", err);
+				console.log("--------全局请求拦截器 err--------", err);
 				this.loading?.close();
 				return err;
 			}
@@ -64,7 +64,7 @@ class Request {
 			(err) => {
 				// console.log("--------全局响应拦截器 err--------", err);
 				let message = "";
-				console.log("全局响应拦截器-err------", err.response.status, err.response);
+				console.log("全局响应拦截器-err------", err);
 				console.log("err.response.status", err.response.status);
 				switch (err.response.status) {
 					case 400:

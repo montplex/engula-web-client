@@ -13,8 +13,6 @@ const defaultConfig = {
 		"Content-Type": "application/json",
 		// "Content-Type": "application/x-www-form-urlencoded",
 		"X-Requested-With": "XMLHttpRequest"
-		/* 	Cookie:
-			"Auth-Token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsYXN0TG9naW5UaW1lIjoxNjc4NjkwMTg2LCJyb2xlIjoiZW5ndWxhX3VzZXIiLCJpc3MiOiJtb250cGxleCIsIm5pY2tuYW1lIjoiYTI0MTcyNzY0NTkiLCJpZCI6Mn0.VG7dK-2iFZC2f2PAepsLiRFJxEZkopqbu9Qi_K3DReQ" */
 	},
 	withCredentials: false,
 	// 数组格式参数序列化（https://github.com/axios/axios/issues/5142）

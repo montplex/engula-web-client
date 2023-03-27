@@ -140,10 +140,14 @@ function nameInput(e: string) {
 function stopCache() {
 	stopLoading.value = true;
 	stopVisible.value = false;
-	cacheOne({ id: route.query.id as any, opt: "stop" }).then(async (res) => {
-		stopLoading.value = false;
-		ElMessage.success("stop success");
-		await store.setOneCache({ id: route.query.id as string });
-	});
+	cacheOne({ id: route.query.id as any, opt: "stop" })
+		.then((res) => {
+			if (res.one) {
+				store.updateOneCache(res);
+				ElMessage.success("stop success");
+			}
+		})
+		.catch(() => ElMessage.error("stop fail"))
+		.finally(() => (stopLoading.value = false));
 }
 </script>

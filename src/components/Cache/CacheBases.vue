@@ -281,12 +281,18 @@ const createCache = () => {
 
 const addCallback = () => {
 	addLoading.value = true;
-	addCache(addForm).then((res) => {
-		store.setCacheList();
-		ElMessage.success("Create successfully");
-		addVisible.value = false;
-		addLoading.value = false;
-	});
+	addCache(addForm)
+		.then((res) => {
+			if (res.id) {
+				store.setCacheList();
+				ElMessage.success("Create successfully");
+			}
+		})
+		.catch(() => ElMessage.error("request failure"))
+		.finally(() => {
+			addVisible.value = false;
+			addLoading.value = false;
+		});
 };
 
 /* 导入 */

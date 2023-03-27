@@ -28,6 +28,7 @@ onMounted(() => {
 	const code = document.querySelector("code") as HTMLElement;
 	code.style.display = "flex";
 	code.style.flexWrap = "wrap";
+	code.style.whiteSpace = "break-spaces";
 });
 const store = cacheStore();
 const code = computed(() => {

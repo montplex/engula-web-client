@@ -102,7 +102,8 @@ const tabPosition = ref("CodeRedis"),
 	cache = ref<ICacheOneRes>({} as ICacheOneRes);
 
 watchEffect(async () => {
-	cache.value = await store.setOneCache({ id: route.query.id as string });
+	cache.value = store.oneCache;
+	// cache.value = await store.setOneCache({ id: route.query.id as string });
 });
 
 function nameInput(e: string) {

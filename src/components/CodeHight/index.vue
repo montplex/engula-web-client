@@ -25,6 +25,7 @@
 </template>
 
 <script setup lang="ts">
+import "highlight.js/styles/atom-one-dark.css";
 import { handleCopyClick } from "@/utils/util";
 import { computed, ref } from "vue";
 

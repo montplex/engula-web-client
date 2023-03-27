@@ -31,12 +31,16 @@ function tabClick({ paneName }: any) {
 	toPage(`/redis/${paneName}`);
 }
 
-watchEffect(async () => {
-	cache.value = store.oneCache.one;
-	console.log("cache.value");
-});
+// tab切换时,每次都会重新请求数据
+/* watchEffect(async () => {
+	store.setOneCache({ id: route.query.id as string }).then((res) => {
+		cache.value = res.one;
+	});
+}); */
 
-// store.setCacheList();
+store.setOneCache({ id: route.query.id as string }).then((res) => {
+	cache.value = res.one;
+});
 
 /* 监听路由变化,切换子路由页面时保持tab选中状态 */
 watch(
