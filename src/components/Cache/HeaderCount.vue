@@ -25,16 +25,15 @@
 </template>
 
 <script setup lang="ts">
-import { getFeeList } from "@/api/cache";
+import { getFeeOrgList } from "@/api/cache";
 import { FeeItem } from "#/cache";
-import { useRoute } from "vue-router";
-import { reactive, ref, watch } from "vue";
-const route = useRoute();
+import { ref } from "vue";
+
 const fee = ref<FeeItem>();
-getFeeList(route.query.id as any).then((res) => {
-	console.log(res[0]);
+
+getFeeOrgList().then((res) => {
+	console.log(res);
 	if (!res[0]) return;
-	fee.value = res[0];
 });
 </script>
 

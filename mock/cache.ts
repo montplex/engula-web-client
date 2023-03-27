@@ -58,6 +58,30 @@ export default [
 		}
 	},
 	{
+		url: "/engula/fee/org/list",
+		method: "get",
+		response: () => {
+			return [
+				{
+					cacheServiceId: 48,
+					cacheServiceName: "DBTEST-mo",
+					monthStr: "2023-03",
+					readByte: 141,
+					writeByte: 116,
+					fee: 0
+				},
+				{
+					cacheServiceId: 48,
+					cacheServiceName: "DBTEST-test",
+					monthStr: "2023-03",
+					readByte: 141,
+					writeByte: 116,
+					fee: 0
+				}
+			];
+		}
+	},
+	{
 		url: "/engula/cache_service/list",
 		method: "get",
 		response: () => {

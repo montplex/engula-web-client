@@ -26,6 +26,25 @@ export const getFeeList = (cacheServiceId: number) => {
 	});
 };
 
+interface FeeOrgList {
+	cacheServiceId: number;
+	cacheServiceName: string;
+	monthStr: string;
+	readByte: number;
+	writeByte: number;
+	fee: number;
+}
+
+/**
+ * Get Fee Org list
+ */
+export const getFeeOrgList = () => {
+	return http.get<FeeOrgList[]>({
+		url: "/fee/org/list",
+		showLoading: false
+	});
+};
+
 /**
  * Get list cache service
  */
