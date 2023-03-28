@@ -8,11 +8,11 @@
 				</div> -->
 				<div class="cu-items">
 					<div class="title">Read Bytes</div>
-					<div class="meat">{{ fee?.readBytes ?? 0 }}<span>B</span></div>
+					<div class="meat">{{ fee?.readByte ?? 0 }}<span>B</span></div>
 				</div>
 				<div class="cu-items">
 					<div class="title">Write Bytes</div>
-					<div class="meat">{{ fee?.writeBytes ?? 0 }}<span>B</span></div>
+					<div class="meat">{{ fee?.writeByte ?? 0 }}<span>B</span></div>
 				</div>
 
 				<div class="cu-items">
@@ -29,8 +29,8 @@ import { getFeeOrgList } from "@/api/cache";
 import { ref } from "vue";
 
 type Fee = {
-	readBytes: number;
-	writeBytes: number;
+	readByte: number;
+	writeByte: number;
 	fee: number;
 };
 const fee = ref<Fee>();
@@ -43,16 +43,18 @@ getFeeOrgList().then((res) => {
 
 function sumOrg(arr: any): Fee {
 	const len = arr.length;
-	let readBytes = 0,
-		writeBytes = 0,
+	let readByte = 0,
+		writeByte = 0,
 		fee = 0;
 
 	for (let i = 0; i < len; i++) {
-		readBytes += arr[i].readBytes;
-		writeBytes += arr[i].writeBytes;
+		readByte += arr[i].readByte;
+		writeByte += arr[i].writeByte;
 		fee += arr[i].fee;
 	}
-	return { readBytes, writeBytes, fee };
+
+	console.log(readByte, writeByte, fee);
+	return { readByte, writeByte, fee };
 }
 </script>
 

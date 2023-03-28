@@ -68,7 +68,7 @@ export default [
 					monthStr: "2023-03",
 					readByte: 141,
 					writeByte: 116,
-					fee: 0
+					fee: 23
 				},
 				{
 					cacheServiceId: 48,
@@ -76,7 +76,7 @@ export default [
 					monthStr: "2023-03",
 					readByte: 141,
 					writeByte: 116,
-					fee: 0
+					fee: 66
 				}
 			];
 		}

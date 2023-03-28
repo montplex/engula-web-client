@@ -44,9 +44,9 @@ function onExecCmd(
 	} else {
 		xmtApi({ cacheServiceId: route.query.id as any, command }).then((res) => {
 			success({
-				type: "info",
-				class: "info",
-				tag: "12",
+				type: "success",
+				class: "success",
+				tag: "",
 				content: JSON.stringify(res)
 			});
 		});
