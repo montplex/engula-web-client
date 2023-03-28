@@ -20,9 +20,9 @@
 
 			<div>
 				<div class="title">Endpoint</div>
-				<div class="copy-text group w-full" v-copy>
+				<div class="copy-text group w-full">
 					<p class="mr-1 inline-block">{{ host }}</p>
-					<span class="inline-block min-w-[40px]">
+					<span class="inline-block min-w-[40px]" v-copy v-if="cache.status === 1">
 						<span class="hidden group-hover:inline-block">
 							<el-tooltip effect="dark" placement="top" content="Copy" :show-after="200">
 								<svgIcon icon="copy" class="!inline !text-xl" />
@@ -34,9 +34,9 @@
 
 			<div>
 				<div class="title">Password</div>
-				<div class="copy-text info group min-w-[100px]" @click="handleCopyClick(password)">
+				<div class="copy-text info group min-w-[100px]">
 					<div class="mr-1">•••••••••</div>
-					<div class="hidden group-hover:block">
+					<div class="hidden group-hover:block" v-copy v-if="cache.status === 1" @click="handleCopyClick(password)">
 						<el-tooltip effect="dark" placement="top" content="Copy" :show-after="200">
 							<svgIcon icon="copy" class="!inline !text-xl" />
 						</el-tooltip>
@@ -46,9 +46,9 @@
 
 			<div>
 				<div class="text-gray-500">Port</div>
-				<div class="copy-text info group min-w-[100px]" v-copy>
+				<div class="copy-text info group min-w-[100px]">
 					<div class="mr-1">{{ store.port }}</div>
-					<div class="hidden group-hover:block">
+					<div class="hidden group-hover:block" v-copy v-if="cache.status === 1">
 						<el-tooltip effect="dark" placement="top" content="Copy" :show-after="200">
 							<svgIcon icon="copy" class="!inline !text-xl" />
 						</el-tooltip>
@@ -57,7 +57,12 @@
 			</div>
 		</div>
 
-		<el-tooltip effect="dark" placement="top" content="Copy" :show-after="300">
+		<div class="url" v-if="cache.status !== 1">
+			<div class="_copy">
+				<p class="pr-2">redis://**********@{{ host }}:{{ store.port }}</p>
+			</div>
+		</div>
+		<el-tooltip effect="dark" placement="top" content="Copy" :show-after="300" v-else>
 			<div class="url" @click="handleCopyClick(`redis://${password}@${host}:${store.port}`)">
 				<div class="_copy">
 					<p class="pr-2">redis://**********@{{ host }}:{{ store.port }}</p>
