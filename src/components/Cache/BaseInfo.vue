@@ -5,7 +5,7 @@
 				<div>
 					<h1 class="m-0 flex items-center text-2xl font-bold leading-none">
 						<span>{{ cache.name }}</span>
-						<el-tooltip effect="dark" content="Rename Database" placement="top-start">
+						<el-tooltip effect="dark" content="Rename" placement="top-start">
 							<button type="button" @click="editName(cache.name)" class="ml-3 inline-flex h-auto items-center !p-0">
 								<svgIcon icon="edit" class="text-gray-400" />
 							</button>
@@ -35,7 +35,7 @@
 		</div>
 	</div>
 
-	<el-dialog v-model="editVisible" title="Rename Database" width="520px" style="border-radius: 8px">
+	<el-dialog v-model="editVisible" title="Rename" width="520px" style="border-radius: 8px">
 		<label class="dialog-label mb-1">Database name</label>
 		<el-input v-model="cacheNewName" ref="refRename" />
 		<div class="alert-base info !mt-6">Your connections and clients will not be affected by this change.</div>

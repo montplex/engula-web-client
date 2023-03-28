@@ -47,6 +47,7 @@
     "@commitlint/cli": "^17.0.1",
     "@commitlint/config-conventional": "^17.0.0",
     "@iconify-json/ant-design": "^1.1.5",
+    "@iconify-json/ic": "^1.1.13",
     "@types/mockjs": "^1.0.7",
     "@types/node": "^17.0.31",
     "@types/qs": "^6.9.7",

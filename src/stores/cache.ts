@@ -25,12 +25,13 @@ export const cacheStore = defineStore({
 		async setCacheList() {
 			const res = await getCacheList();
 			this.serviceList = res.list;
-			this.filterList = res.list;
+			this.filterList = res.list.filter((item) => item.status == 1);
 			return res.list;
 		},
-		filterCacheList(val: string) {
-			const data = this.serviceList.filter((item) => item.name.indexOf(val) !== -1);
-			this.filterList = val ? data : this.serviceList;
+		filterCacheList(e: string, selected: any) {
+			console.log("e", e);
+			const data = this.filterList.filter((item) => item.name.indexOf(e) !== -1);
+			this.filterList = e ? data : this.serviceList.filter((item) => (selected == 1 ? item.status == 1 : item.status != 1));
 		},
 		async setCloudProviderList() {
 			const res = await getCloudProviderList();
@@ -59,7 +60,6 @@ export const cacheStore = defineStore({
 			this.tokenList = this.tokenList.filter((item) => item.id !== id);
 			deleteToken(id).then((res) => {
 				res.ok ? ElMessage.success("Delete completed") : ElMessage.error("Delete failed");
-				// this.setTokenList(id);
 			});
 		},
 		getTokenByid(id: number) {

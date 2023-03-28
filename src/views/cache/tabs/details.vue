@@ -76,7 +76,7 @@ import BillingStandards from "@/components/Cache/BillingStandards.vue";
 import Configuration from "@/components/Cache/Configuration.vue";
 import BasePort from "@/components/Cache/BasePort.vue";
 
-import { ref, watchEffect, reactive } from "vue";
+import { ref, watchEffect, reactive, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { cacheStore } from "@/stores/cache";
 import { cacheOne } from "@/api/cache";
@@ -91,6 +91,8 @@ let codeRadioGroup = reactive([
 	{ name: "Go", com: "CodeGo" },
 	{ name: "Docker", com: "CodeDocker" }
 ]);
+
+// const status = computed(() => cache.value.one.status);
 
 const tabPosition = ref("CodeRedis"),
 	route = useRoute(),

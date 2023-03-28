@@ -64,7 +64,7 @@ function formatCharts(res: ChartRes) {
 	for (const [key, value] of Object.entries(res)) {
 		if (value instanceof Array) {
 			// const ch = value.map((item) => dayjs(item[0]).format("YYYY[年]M[月]D[日] HH:mm"));
-			const x = value.map((item) => dayjs(item[0]).format("D MMM HH:mm"));
+			const x = value.map((item) => dayjs(item[0] * 1000).format("D MMM HH:mm"));
 			const y = value.map((item) => (item[1] == "NaN" ? 0 : Number(item[1])));
 			const item = mergeData({ x, y });
 			memo[key] = item;

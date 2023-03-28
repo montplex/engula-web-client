@@ -3,8 +3,16 @@
 		<h1 class="text-3xl mt-2 text-[#3f3f46]">Cache Services</h1>
 		<!-- Sraech and AddButton Start -->
 		<div class="mt-6 flex grid-cols-2 items-center gap-2 sm:grid sm:gap-8">
-			<div class="w-full">
-				<el-input @input="handleSearch" v-model="searchVal" placeholder="Search..." />
+			<div class="flex">
+				<div class="flex-1 w-full">
+					<el-input @input="handleSearch" @change="handleSearch" v-model="searchVal" placeholder="Search..." />
+				</div>
+				<div class="ml-9">
+					<el-select v-model="selectVal" placeholder="Filter..." @change="rStatusChange">
+						<el-option label="Running" :value="1" />
+						<el-option label="Terminated" value="-10" />
+					</el-select>
+				</div>
 			</div>
 
 			<div class="flex items-center justify-end gap-2">
@@ -32,8 +40,13 @@
 		<!-- dbList Start -->
 		<div class="mt-6 sm:mt-10" v-if="store.filterList && store.filterList.length">
 			<div cy-id="redis-db-list" class="grid gap-6 sm:grid-cols-2 sm:gap-8">
-				<div v-for="item in store.filterList" :key="item.id" class="flex flex-col rounded-lg border border-gray-200 shadow-sm">
-					<header class="p-4 sm:p-6 sm:pt-6 sm:pb-6">
+				<div
+					v-for="item in store.filterList"
+					:key="item.id"
+					class="flex flex-col rounded-lg border border-gray-200 shadow-sm"
+					:class="{ 'cursor-not-allowed': item.status == '-10' }"
+				>
+					<header class="p-4 sm:p-6 sm:pt-6 sm:pb-6" :class="{ 'pointer-events-none  opacity-70': item.status == '-10' }">
 						<h3 class="text-lg font-semibold text-[#3f3f46] cursor-pointer" @click="goDetail(item.id)">
 							{{ item.name }}
 						</h3>
@@ -234,7 +247,7 @@ import { ref, reactive, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { cacheStore } from "@/stores/cache";
 import { addCache } from "@/api/cache";
-import { AddCacheParams } from "#/cache";
+import { AddCacheParams, ICacheListItem } from "#/cache";
 import { createCacheRules, resetForm, submit } from "@/utils/rules";
 import type { FormInstance } from "element-plus";
 import { CachestatusTo, statusStyle } from "#/enum";
@@ -262,17 +275,15 @@ const isRefresh = ref(false); // 刷新按钮 laoding
 const importVisible = ref(false); // 导入弹窗
 const addVisible = ref(false); // 新建弹窗
 const searchVal = ref(""); // 搜索
-
-const dbList = ["DB_1", "DB2", "DB3"];
-const dbList2 = ["NGinx", "Ecrssio", "Montplex"];
-const importFrom = reactive({ first: "", second: "" });
-
+const selectVal = ref<string | number>(1);
 const addFormRef = ref<FormInstance>();
 
 /* 新建 Cache  */
 const createCache = () => {
 	resetForm(addFormRef.value);
-	if (store?.serviceList?.length >= 5) cross.value = true;
+	/* 最多只能创建五个正在运行的 cache */
+	const isCreate = store.serviceList.reduce((sum, item) => (item.status === 1 ? sum + 1 : sum + 0), 0);
+	if (isCreate >= 5) cross.value = true;
 	else {
 		store.setCloudProviderList();
 		addVisible.value = true;
@@ -304,7 +315,9 @@ const goDetail = (id: number) => {
 };
 
 /* 搜索 */
-const handleSearch = (e: string) => store.filterCacheList(e);
+const handleSearch = (e: string) => {
+	store.filterCacheList(e, selectVal.value);
+};
 
 /* 刷新按钮  */
 function refresh() {
@@ -314,6 +327,10 @@ function refresh() {
 		isRefresh.value = false;
 		ElMessage.success("Refresh successfully");
 	}, 1000);
+}
+
+function rStatusChange(val: any) {
+	store.filterList = store.serviceList.filter((item) => (val == 1 ? item.status == 1 : item.status != 1));
 }
 </script>
 

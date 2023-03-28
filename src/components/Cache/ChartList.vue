@@ -22,9 +22,9 @@ defineProps({
 
 enum ChartTitle {
 	memory_used_bytes = "Memory Used Bytes",
-	db_keys = "Keyspace",
+	db_keys = "Db keys",
 	client_commands_total = "Client Commands Total",
-	hit_rate = "Hits / Misses"
+	hit_rate = "Hit Rate"
 }
 </script>
 
