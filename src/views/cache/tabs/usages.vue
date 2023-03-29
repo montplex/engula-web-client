@@ -56,7 +56,7 @@ const params = reactive<ChartParams>({
 	cacheServiceId: route.query.id as string,
 	start: getTimeAgo("hour") / 1000,
 	end: new Date().getTime() / 1000,
-	step: "15s"
+	step: "3m"
 });
 
 function formatCharts(res: ChartRes) {
@@ -123,10 +123,30 @@ const unitSelectList = reactive([
 	{ label: "Past week", value: "week" }
 ]);
 
+/* const stepMap = {
+	hour: "15s",
+	"hour,3": "1m",
+	"hour,12": "5m",
+	day: "1h",
+	"day,3": "3h",
+	week: "1d"
+};
+ */
+
+const setMap = new Map([
+	["hour", "3m"],
+	["hour,3", "20m"],
+	["hour,12", "30m"],
+	["day", "1h"],
+	["day,3", "3h"],
+	["week", "1d"]
+]);
+
 function timeChange(e: string) {
 	const [type, ago] = e.split(","),
 		start = getTimeAgo(type as any, ago ? Number(ago) : 1) / 1000;
 	params.start = start;
+	params.step = setMap.get(e) as string;
 }
 
 function getTimeAgo(type: "hour" | "day" | "week", ago = 1) {

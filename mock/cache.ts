@@ -254,7 +254,7 @@ export default [
 		response: () => {
 			return {
 				id: 70,
-				name: "DBTEST-lllllllllllllllllllllll0"
+				name: "DBTEST-ll"
 			};
 		}
 	},
