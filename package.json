@@ -23,6 +23,7 @@
     "@auth0/auth0-vue": "^2.0.2",
     "@highlightjs/vue-plugin": "^2.1.0",
     "@iconify-json/ep": "^1.1.9",
+    "@stripe/stripe-js": "^1.52.0",
     "@types/js-cookie": "^3.0.3",
     "@vueuse/core": "^9.13.0",
     "axios": "^1.2.0",

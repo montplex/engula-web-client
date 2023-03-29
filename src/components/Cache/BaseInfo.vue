@@ -37,12 +37,12 @@
 
 	<el-dialog v-model="editVisible" title="Rename" width="520px" style="border-radius: 8px">
 		<label class="dialog-label mb-1">Database name</label>
-		<el-input v-model="cacheNewName" ref="refRename" />
+		<el-input v-model="cacheNewName" @input="nameInput" />
 		<div class="alert-base info !mt-6">Your connections and clients will not be affected by this change.</div>
 		<template #footer>
 			<span class="dialog-footer">
 				<el-button @click="editVisible = false">Cancel</el-button>
-				<el-button type="primary" @click="editVisible = false"> Confirm </el-button>
+				<el-button :disabled="hasSumbit" :type="hasSumbit ? '' : 'primary'" @click="confirmName(cache.name)"> Confirm </el-button>
 			</span>
 		</template>
 	</el-dialog>
@@ -80,12 +80,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, nextTick } from "vue";
+import { ref } from "vue";
 import { ICacheListItem } from "#/cache";
 import { cacheRename } from "@/api/cache";
 import { useRoute } from "vue-router";
 
-defineProps({
+const props = defineProps({
 	cache: {
 		type: Object as () => ICacheListItem,
 		default: () => ({})
@@ -94,14 +94,21 @@ defineProps({
 
 const editVisible = ref(false),
 	cacheNewName = ref(""),
-	refRename = ref(),
 	route = useRoute(),
+	hasSumbit = ref(true),
 	helpVisible = ref(false);
 
-async function editName(name: string) {
+function editName(name: string) {
 	editVisible.value = true;
 	cacheNewName.value = name;
-	cacheNewName.value && nextTick(() => refRename.value.focus());
+	// focus not work
+	// document.querySelector(".el-input__inner")!.focus();
+}
+function nameInput(e: string) {
+	hasSumbit.value = e === props.cache.name;
+}
+
+async function confirmName(name: string) {
 	if (cacheNewName.value && cacheNewName.value !== name) {
 		const body = { id: route.params.id as any, name: cacheNewName.value };
 		const res = await cacheRename(body);
