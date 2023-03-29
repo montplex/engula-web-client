@@ -110,7 +110,8 @@ function nameInput(e: string) {
 
 async function confirmName(name: string) {
 	if (cacheNewName.value && cacheNewName.value !== name) {
-		const body = { id: route.params.id as any, name: cacheNewName.value };
+		// console.log("confirmName", props.cache.id, route.query.id as string);
+		const body = { id: route.query.id as any, name: cacheNewName.value };
 		const res = await cacheRename(body);
 		res.id ? ElMessage.success("Rename success") : ElMessage.error("Rename failed");
 	}

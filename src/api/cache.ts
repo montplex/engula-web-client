@@ -73,7 +73,7 @@ export const cacheOne = (params: CacheByIdParams) => {
  * @param id cache service id
  * @param name  Cache new Name
  */
-type TRename = { id: string; name: string };
+type TRename = { id: string | number; name: string };
 export const cacheRename = (data: TRename) => {
 	return http.post<TRename>({
 		url: "/cache_service/rename",
