@@ -25,13 +25,18 @@ export const cacheStore = defineStore({
 		async setCacheList() {
 			const res = await getCacheList();
 			this.serviceList = res.list;
-			this.filterList = res.list.filter((item) => item.status == 1);
+			this.filterList = res.list.filter((item) => item.status != "-1" && item.status != "-10");
 			return res.list;
 		},
 		filterCacheList(e: string, selected: any) {
-			console.log("e", e);
 			const data = this.filterList.filter((item) => item.name.indexOf(e) !== -1);
-			this.filterList = e ? data : this.serviceList.filter((item) => (selected == 1 ? item.status == 1 : item.status != 1));
+
+			// this.serviceList.filter((item) => ["-1", "-10"].includes(selected == 1 ? !item.status : (item.status as any)));
+			const list = this.serviceList.filter((item) =>
+				selected == 1 ? item.status != "-1" && item.status != "-10" : ["-1", "-10"].includes(item.status as any)
+			);
+
+			this.filterList = e ? data : list;
 		},
 		async setCloudProviderList() {
 			const res = await getCloudProviderList();

@@ -330,7 +330,10 @@ function refresh() {
 }
 
 function rStatusChange(val: any) {
-	store.filterList = store.serviceList.filter((item) => (val == 1 ? item.status == 1 : item.status != 1));
+	const list = store.serviceList.filter((item) =>
+		val == 1 ? item.status != "-1" && item.status != "-10" : ["-1", "-10"].includes(item.status as any)
+	);
+	store.filterList = list;
 }
 </script>
 
