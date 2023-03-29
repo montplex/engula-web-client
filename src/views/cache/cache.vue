@@ -1,6 +1,6 @@
 <template>
 	<base-header />
-	<base-info :cache="cache" />
+	<base-info :cache="cache" @update="updateName" />
 	<div class="container mx-auto !max-w-screen-xl px-4 pt-8 pb-20">
 		<el-tabs v-model="activeTab" @tab-click="tabClick">
 			<el-tab-pane v-for="(item, index) in tabs" :label="item" :name="item.toLowerCase()" :key="index" :lazy="true" />
@@ -15,7 +15,7 @@ import BaseInfo from "@/components/Cache/BaseInfo.vue";
 
 import { ICacheListItem } from "#/cache";
 import { useRouter, useRoute } from "vue-router";
-import { ref, watch, watchEffect } from "vue";
+import { ref, watch } from "vue";
 import { cacheStore } from "@/stores/cache";
 
 const router = useRouter(),
@@ -50,4 +50,9 @@ watch(
 	},
 	{ immediate: true }
 );
+
+function updateName(name: string) {
+	console.log(name, "-----updateName");
+	cache.value!.name = name;
+}
 </script>

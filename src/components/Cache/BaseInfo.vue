@@ -92,6 +92,8 @@ const props = defineProps({
 	}
 });
 
+const emits = defineEmits(["update"]);
+
 const editVisible = ref(false),
 	cacheNewName = ref(""),
 	route = useRoute(),
@@ -113,7 +115,14 @@ async function confirmName(name: string) {
 		// console.log("confirmName", props.cache.id, route.query.id as string);
 		const body = { id: route.query.id as any, name: cacheNewName.value };
 		const res = await cacheRename(body);
-		res.id ? ElMessage.success("Rename success") : ElMessage.error("Rename failed");
+		if (res.id) {
+			ElMessage.success("Rename success");
+			editVisible.value = false;
+			emits("update", res.name);
+		} else {
+			ElMessage.error("Rename failed");
+		}
+		// res.id ? { ElMessage.success("Rename success") }: ElMessage.error("Rename failed");
 	}
 }
 </script>
