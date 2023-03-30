@@ -332,9 +332,10 @@ function refresh() {
 function rStatusChange(val: any) {
 	const list = store.serviceList.filter((item) => {
 		const run = item.status != "-1" && item.status != "-10";
-		const stop = item.status == "-1" || item.status == "-10";
+		const stop = item.status == "-10" || item.status == "-1";
 		return val == 1 ? run : stop;
 	});
+	console.log(list);
 	store.filterList = list;
 }
 </script>
