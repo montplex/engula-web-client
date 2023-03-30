@@ -330,9 +330,11 @@ function refresh() {
 }
 
 function rStatusChange(val: any) {
-	const list = store.serviceList.filter((item) =>
-		val == 1 ? item.status != "-1" && item.status != "-10" : ["-1", "-10"].includes(item.status as any)
-	);
+	const list = store.serviceList.filter((item) => {
+		const run = item.status != "-1" && item.status != "-10";
+		const stop = item.status == "-1" || item.status == "-10";
+		return val == 1 ? run : stop;
+	});
 	store.filterList = list;
 }
 </script>
