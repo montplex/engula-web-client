@@ -189,3 +189,26 @@ export function formatChartsData(obj: { [key: string]: any[] | any[][] }) {
 	}
 	return memo;
 }
+
+export function formatBytes(bytes: number): string {
+	const _f3 = (num: number) =>
+		num.toLocaleString("en-US", {
+			minimumFractionDigits: 2,
+			maximumFractionDigits: 2
+		});
+	const _m = (num: number) => Math.pow(1024, num);
+
+	if (!bytes || bytes == 0) return "0";
+	if (bytes < 1024) {
+		return `${bytes} B`;
+	} else if (bytes < _m(2)) {
+		return `${_f3(bytes / 1024)} KB`;
+	} else if (bytes < _m(3)) {
+		return `${_f3(bytes / _m(2))} MB`;
+	} else if (bytes < _m(4)) {
+		return `${_f3(bytes / _m(3))} GB`;
+	} else {
+		// (bytes < _m(5))
+		return `${_f3(bytes / _m(4))} TB`;
+	}
+}

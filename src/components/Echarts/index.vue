@@ -81,7 +81,9 @@ onMounted(() => {
 });
 const initChart = (): void => {
 	// 初始化echart
-	(document.getElementById("my-eharts") as HTMLElement).style.width = "100%";
+	const _c = document.getElementById("my-eharts") as HTMLElement;
+	if (_c) _c.style.width = "100%";
+
 	const chartRefWrap = unref(chartRef);
 	if (chartRefWrap) {
 		chart = echarts.init(chartRefWrap, "", {

@@ -20,4 +20,6 @@ declare module "*.vue" {
 	export default component;
 }
 
+declare module "numeral";
+
 declare module "vue-web-terminal";

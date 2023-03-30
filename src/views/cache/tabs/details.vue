@@ -13,9 +13,9 @@
 			</div>
 			<component :is="tabPosition"></component>
 		</div>
-		<configuration />
+		<!-- <configuration /> -->
 		<!-- 收费标准 Start -->
-		<billing-standards />
+		<!-- <billing-standards /> -->
 		<!-- 收费标准 End -->
 
 		<div class="section-connect grid-cols-3 !border-red-200 bg-red-50">

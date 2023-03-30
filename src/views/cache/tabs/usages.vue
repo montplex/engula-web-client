@@ -5,20 +5,20 @@
 			<div class="grid-card">
 				<div class="items">
 					<div class="title">Storage Bytes</div>
-					<div class="meat">{{ cards?.storageBytes || 0 }}<span>B</span></div>
+					<div class="meat">{{ cards?.storageBytes ?? 0 }}</div>
 				</div>
 				<div class="items">
 					<div class="title">Read Bytes</div>
-					<div class="meat">{{ cards?.readBytes || 0 }}<span>B</span></div>
+					<div class="meat">{{ cards?.readBytes ?? 0 }}</div>
 				</div>
 
 				<div class="items">
 					<div class="title">writeBytes</div>
-					<div class="meat">{{ cards?.writeBytes || 0 }}<span>B</span></div>
+					<div class="meat">{{ cards?.writeBytes ?? 0 }}</div>
 				</div>
 				<div class="items">
 					<div class="title">Fee</div>
-					<div class="meat">{{ cards?.fee || 0 }}<span>$</span></div>
+					<div class="meat">{{ cards?.fee ?? 0 }}<span>$</span></div>
 				</div>
 			</div>
 		</div>
@@ -45,8 +45,8 @@ import { ChartParams, ChartRes, Metrics, Cards } from "#/cache";
 import { dayjs } from "element-plus";
 import { watchEffect } from "vue";
 import { useRoute } from "vue-router";
+import { formatBytes } from "@/utils/util";
 
-// console.log("usages---dayjs>>>>>", dayjs(1680064994.641 * 1000).format("D MMM HH:mm"));
 const route = useRoute(),
 	unit = ref("hour"),
 	metrics = ref<Metrics>(),
@@ -69,7 +69,7 @@ function formatCharts(res: ChartRes) {
 			const item = mergeData({ x, y });
 			memo[key] = item;
 		} else {
-			card[key] = value;
+			card[key] = key == "fee" ? value : formatBytes(value);
 		}
 	}
 	return { memo, card };
@@ -123,23 +123,13 @@ const unitSelectList = reactive([
 	{ label: "Past week", value: "week" }
 ]);
 
-/* const stepMap = {
-	hour: "15s",
-	"hour,3": "1m",
-	"hour,12": "5m",
-	day: "1h",
-	"day,3": "3h",
-	week: "1d"
-};
- */
-
 const setMap = new Map([
 	["hour", "3m"],
 	["hour,3", "20m"],
 	["hour,12", "30m"],
 	["day", "1h"],
 	["day,3", "3h"],
-	["week", "1d"]
+	["week", "6h"]
 ]);
 
 function timeChange(e: string) {

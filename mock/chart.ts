@@ -977,10 +977,10 @@ export default [
 					[1680068534.641, "11"],
 					[1680068549.641, "23"]
 				],
-				fee: 88,
-				readBytes: 12,
-				storageBytes: 67,
-				writeBytes: 1022
+				fee: 1241432,
+				readBytes: 234235345435,
+				storageBytes: 24234234234,
+				writeBytes: 10234234
 			};
 		}
 	}

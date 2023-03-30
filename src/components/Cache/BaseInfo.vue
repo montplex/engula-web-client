@@ -91,19 +91,6 @@ const props = defineProps({
 		default: () => ({})
 	}
 });
-
-const vFocus = {
-	mounted: (el: any) => {
-		nextTick(() => {
-			/* 设置输入框中当前选中文本的起始和结束位置 */
-			const selectionEnd = el.value.length;
-			// https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLInputElement/setSelectionRange
-			el.setSelectionRange(0, selectionEnd);
-		});
-		el.focus();
-	}
-};
-
 const emits = defineEmits(["update"]);
 
 const editVisible = ref(false),
