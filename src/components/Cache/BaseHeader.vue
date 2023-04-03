@@ -1,8 +1,11 @@
 <template>
-	<header class="hidden bg-black py-5 text-white shadow sm:block">
+	<header class="hidden bg-black py-4 text-white shadow sm:block">
 		<div class="container mx-auto !max-w-screen-xl px-4">
 			<div class="flex items-center gap-6">
-				<h3 class="flex text-white cursor-pointer h-8 text-xl font-semibold" @click="$router.push('/console')">MontPlex</h3>
+				<h3 class="flex items-center gap-1 text-white cursor-pointer h-8 text-xl font-semibold" @click="$router.push('/')">
+					<img src="@/assets/images/main-logo.png" alt="logo" class="h-[30px]" />
+					<span class="text-block">Montplex</span>
+				</h3>
 				<nav cy-id="master-nav" class="flex items-center gap-2">
 					<!-- <RouterLink
 						class="inline-flex h-11 items-center gap-1 rounded-md px-3 hover:bg-gray-700 hover:text-white !bg-white font-semibold !text-black"
@@ -48,8 +51,8 @@
 						</div>
 					</el-popover>
 
-					<div class="flex items-center gap-0.5">
-						<!-- 	<div class="flex h-11 items-center rounded-l bg-[#3f3f46] px-3 cursor-pointer">
+					<!-- <div class="flex items-center"> -->
+					<!-- 	<div class="flex h-11 items-center rounded-l bg-[#3f3f46] px-3 cursor-pointer">
 							<el-dropdown trigger="click">
 								<div class="flex h-11 items-center">
 									<div class="mr-2">
@@ -69,24 +72,69 @@
 								</template>
 							</el-dropdown>
 						</div> -->
-						<div class="flex h-11 items-center rounded bg-[#3f3f46] pl-3 pr-3 py-2 cursor-pointer">
-							<el-dropdown trigger="click" @command="handleMineCommand">
-								<div class="flex items-center">
-									<el-avatar class="mr-3" :size="30" :src="info?.picture" />
-									<i-ant-design:caret-down-outlined style="font-size: 10px; color: white" />
-								</div>
-								<template #dropdown>
-									<el-dropdown-menu>
-										<el-dropdown-item>{{ info?.nickname }}</el-dropdown-item>
-										<el-dropdown-item v-if="info?.email"> {{ info?.email }}</el-dropdown-item>
-										<!-- <el-dropdown-item divided> Account</el-dropdown-item> -->
-										<!-- <el-dropdown-item> Integrations </el-dropdown-item> -->
-										<el-dropdown-item> Settings </el-dropdown-item>
-										<el-dropdown-item command="out" divided> Log out </el-dropdown-item>
-									</el-dropdown-menu>
-								</template>
-							</el-dropdown>
+
+					<el-dropdown trigger="hover" @command="handleMineCommand" class="ml-4">
+						<el-avatar class="focus-visible:outline-none" :size="32" :src="info?.picture" />
+						<template #dropdown>
+							<el-dropdown-menu>
+								<el-dropdown-item> {{ info?.nickname }} </el-dropdown-item>
+								<el-dropdown-item v-if="info?.email">
+									{{ info?.email }}
+								</el-dropdown-item>
+								<el-dropdown-item command="account" divided> Account </el-dropdown-item>
+								<!-- <el-dropdown-item> Integrations </el-dropdown-item> -->
+								<el-dropdown-item> Settings </el-dropdown-item>
+								<el-dropdown-item command="out" divided> Log out </el-dropdown-item>
+							</el-dropdown-menu>
+						</template>
+					</el-dropdown>
+					<!-- </div> -->
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<header class="relative z-50 bg-black py-4 text-white shadow sm:hidden">
+		<div class="container mx-auto !max-w-screen-lg px-4">
+			<div class="flex items-center">
+				<div class="flex items-center gap-2">
+					<router-link to="/" class="flex items-center gap-2">
+						<img src="@/assets/images/logo.png" alt="logo" class="h-8" />
+					</router-link>
+				</div>
+				<div class="ml-4 flex items-center space-x-0.5">
+					<!-- <div class="flex h-10 items-center rounded-l bg-[#3f3f46] pl-3 pr-2 cursor-pointer">
+						<div class="mr-2 leading-none">
+							<div class="text-xs text-gray-400">Team</div>
+							<div class="">Personal</div>
 						</div>
+						<i-ant-design:caret-down-outlined class="!text-[12px]" />
+					</div> -->
+				</div>
+				<!-- <div class="ml-auto -mr-2">
+					<button class="flex h-10 w-10 items-center justify-center !bg-transparent !p-0 !text-white">
+						<SvgIcon icon="menu" class="!text-[20px]" />
+					</button>
+				</div> -->
+				<!-- -mr-2 -->
+				<div class="ml-auto">
+					<div class="flex h-10 items-center rounded pl-3 pr-2 cursor-pointer">
+						<el-dropdown trigger="click" @command="handleMineCommand">
+							<div class="flex items-center">
+								<el-avatar class="mr-3" :size="26" :src="info?.picture" />
+								<i-ant-design:caret-down-outlined class="!text-[12px] text-w-80" />
+							</div>
+							<template #dropdown>
+								<el-dropdown-menu>
+									<el-dropdown-item>{{ info?.nickname }}</el-dropdown-item>
+									<el-dropdown-item v-if="info?.email"> {{ info?.email }}</el-dropdown-item>
+									<el-dropdown-item command="account" divided> Account</el-dropdown-item>
+									<!-- <el-dropdown-item> Integrations </el-dropdown-item> -->
+									<el-dropdown-item> Settings </el-dropdown-item>
+									<el-dropdown-item command="out" divided> Log out </el-dropdown-item>
+								</el-dropdown-menu>
+							</template>
+						</el-dropdown>
 					</div>
 				</div>
 			</div>
@@ -127,15 +175,26 @@ const router = useRouter();
 const { info } = storeToRefs(store);
 
 const handleMineCommand = (command: string) => {
-	if (command === "out") {
-		store.info = null;
-		if (import.meta.env.MODE === "development") {
-			router.push({ path: "/", replace: true });
-		} else {
-			window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/logout");
-		}
+	switch (command) {
+		case "out":
+			logout();
+			break;
+		case "account":
+			router.push({ path: "/account" });
+			break;
+		default:
+			break;
 	}
 };
+
+function logout() {
+	store.info = null;
+	if (import.meta.env.MODE === "development") {
+		router.push({ path: "/", replace: true });
+	} else {
+		window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/logout");
+	}
+}
 const questionPopList = [
 	{
 		icon: "description",
@@ -179,5 +238,14 @@ h5 {
 	font-size: 1rem;
 	font-weight: 600;
 	line-height: 1.5rem;
+}
+
+.text-block {
+	background-image: -webkit-gradient(linear, left top, right top, from(#c947e7), to(#2ab5fb));
+	background-image: linear-gradient(90deg, #c947e7, #2ab5fb);
+	font-weight: 700;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 </style>

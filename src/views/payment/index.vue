@@ -7,7 +7,16 @@
 			<div id="payment" class="mb-6">
 				<!--Stripe.js injects the Payment Element-->
 			</div>
-			<el-button native-type="submit" color="#5469d4" class="w-full !h-10 !rounded-lg !font-bold">Pay now</el-button>
+
+			<div id="name" class="mb-6">
+				<!--Stripe.js injects the Link Authentication Element-->
+			</div>
+
+			<div id="card-number" class="mb-6">
+				<!--Stripe.js injects the Link Authentication Element-->
+			</div>
+
+			<el-button native-type="submit" color="#5469d4" class="w-full !h-10 !rounded-lg !font-bold">Pay ow</el-button>
 		</form>
 	</div>
 </template>
@@ -18,6 +27,7 @@ import { loadStripe, Stripe } from "@stripe/stripe-js";
 let stripe: Stripe;
 let elements: any;
 let emailAddress = "";
+let elName = "";
 
 // publishable API key
 const key = "pk_test_51MdVvdKtlgGSFCEP8CGyhnrD0ve2sxuVjdF7AMrmYdoJxXDGwEdHbXqlJY2IkKWy21xsEDdr9ZSiIrVDZHvjSkDt000ZkK5hih";
@@ -36,7 +46,12 @@ async function initStripe() {
 	linkAuthElement.on("change", (event: any) => {
 		emailAddress = event.value.email;
 	});
-
+	// card,cardNumber , cardExpiry, cardCvc, postalCode, paymentRequestButton, iban, idealBank, p24Bank, auBankAccount, fpxBank, affirmMessage, afterpayClearpayMessage;
+	// const nameElement = elements.create("card");
+	// nameElement.mount("#name");
+	/* // Create the Address Element in billing mode
+	let addressElement = elements.create("address", { mode: "billing" });
+	addressElement.mount("#address"); */
 	const paymentElement = elements.create("payment", { layout: "tabs" });
 	paymentElement.mount("#payment");
 }

@@ -13,7 +13,7 @@
 				</div>
 
 				<div class="items">
-					<div class="title">writeBytes</div>
+					<div class="title">write Bytes</div>
 					<div class="meat">{{ cards?.writeBytes ?? 0 }}</div>
 				</div>
 				<div class="items">

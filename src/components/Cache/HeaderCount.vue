@@ -53,7 +53,6 @@ function sumOrg(arr: any): Fee {
 		fee += arr[i].fee;
 	}
 
-	console.log(readByte, writeByte, fee);
 	return { readByte, writeByte, fee };
 }
 </script>

@@ -38,6 +38,11 @@ const routes = [
 		component: () => import("@/views/payment/index.vue")
 	},
 	{
+		path: "/account",
+		name: "Account",
+		component: () => import("@/views/account/index.vue")
+	},
+	{
 		path: "/console",
 		name: "Console",
 		meta: { auth: true },
