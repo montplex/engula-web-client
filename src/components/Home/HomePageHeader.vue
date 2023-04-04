@@ -80,7 +80,7 @@ type TNav = {
 
 let open = ref(false);
 const router = useRouter();
-
+// const api = import.meta.env.VITE_API_URL;
 const navList: TNav[] = [
 	{ name: "HOME", url: "/" },
 	{ name: "DOCS", herf: "https://dev.montplex.com/docs" },

@@ -12,9 +12,9 @@ import CacheBases from "@/components/Cache/CacheBases.vue";
 import BaseFooter from "@/components/Cache/BaseFooter.vue";
 import { userStore } from "@/stores/user";
 import { cacheStore } from "@/stores/cache";
+import { onBeforeUnmount, ref } from "vue";
 const store = cacheStore();
 userStore().getUserInfo();
-store.setCacheList();
-</script>
 
-<style lang="scss"></style>
+store.setCacheList(true);
+</script>

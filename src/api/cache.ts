@@ -40,10 +40,10 @@ export const getFeeOrgList = () => {
 /**
  * Get list cache service
  */
-export const getCacheList = () => {
+export const getCacheList = (showLoading: boolean) => {
 	return http.get<ICacheListRes>({
 		url: "/cache_service/list",
-		showLoading: true
+		showLoading
 	});
 };
 

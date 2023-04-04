@@ -243,7 +243,7 @@
 
 <script setup lang="ts">
 import StatusIcon from "@/components/Cache/StatusIcon.vue";
-import { ref, reactive, computed, onMounted } from "vue";
+import { ref, reactive, computed, onMounted, onBeforeUnmount } from "vue";
 import { useRouter } from "vue-router";
 import { cacheStore } from "@/stores/cache";
 import { addCache } from "@/api/cache";
@@ -295,7 +295,8 @@ const addCallback = () => {
 	addCache(addForm)
 		.then((res) => {
 			if (res.id) {
-				store.setCacheList();
+				store.setCacheList(false);
+				store.isCreate = true;
 				ElMessage.success("Create successfully");
 			}
 		})
@@ -322,7 +323,7 @@ const handleSearch = (e: string) => {
 /* 刷新按钮  */
 function refresh() {
 	isRefresh.value = true;
-	store.setCacheList();
+	store.setCacheList(true);
 	setTimeout(() => {
 		isRefresh.value = false;
 		ElMessage.success("Refresh successfully");

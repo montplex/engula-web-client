@@ -52,7 +52,6 @@ watch(
 );
 
 function updateName(name: string) {
-	console.log(name, "-----updateName");
 	cache.value!.name = name;
 }
 </script>
