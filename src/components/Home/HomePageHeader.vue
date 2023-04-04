@@ -83,8 +83,8 @@ const router = useRouter();
 
 const navList: TNav[] = [
 	{ name: "HOME", url: "/" },
-	{ name: "DOCS", herf: "http://docs.montplex.com" },
-	// { name: "BLOG", herf: "http://www.baidu.com" },
+	{ name: "DOCS", herf: "http://docs.montplex.com/docs" },
+	{ name: "BLOG", herf: "http://www.baidu.com/docs/blog" },
 	{ name: "ABOUT", url: "/about" },
 	{ name: "CARREERS", url: "/careers" }
 ];
