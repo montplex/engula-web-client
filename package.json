@@ -20,7 +20,6 @@
     "commit": "git pull && git add -A && git-cz && git push"
   },
   "dependencies": {
-    "@auth0/auth0-vue": "^2.0.2",
     "@highlightjs/vue-plugin": "^2.1.0",
     "@iconify-json/ep": "^1.1.9",
     "@stripe/stripe-js": "^1.52.0",
@@ -32,7 +31,6 @@
     "js-cookie": "^3.0.1",
     "mitt": "^3.0.0",
     "mockjs": "^1.1.0",
-    "numeral": "^2.0.6",
     "pinia": "^2.0.12",
     "pinia-plugin-persistedstate": "^1.6.1",
     "qs": "^6.11.0",
@@ -40,10 +38,7 @@
     "vite-plugin-mock": "^2.9.6",
     "vue": "^3.2.37",
     "vue-router": "^4.0.12",
-    "vue-web-terminal": "3",
-    "xterm": "^5.1.0",
-    "xterm-addon-attach": "^0.8.0",
-    "xterm-addon-fit": "^0.7.0"
+    "vue-web-terminal": "3"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.1",
@@ -52,7 +47,6 @@
     "@iconify-json/ic": "^1.1.13",
     "@types/mockjs": "^1.0.7",
     "@types/node": "^17.0.31",
-    "@types/numeral": "^2.0.2",
     "@types/qs": "^6.9.7",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
