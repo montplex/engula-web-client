@@ -7,18 +7,22 @@
 					<span class="pl-8">Commands Limit</span>
 					<img class="w-4 h-4" src="@/assets/images/info.png" />
 				</div>
+				<!--
 				<div class="b-bottom info">
 					<span class="pl-8">Persistence</span>
 					<img class="w-4 h-4" src="@/assets/images/info.png" />
 				</div>
+				-->
 				<div class="b-bottom info">
 					<span class="pl-8">Encryption (TLS)</span>
 					<img class="w-4 h-4" src="@/assets/images/info.png" />
 				</div>
+				<!--
 				<div class="b-bottom info">
 					<span class="pl-8">REST API</span>
 					<img class="w-4 h-4" src="@/assets/images/info.png" />
 				</div>
+				-->
 				<div class="b-bottom info">
 					<span class="pl-8">Multi Zone Replication</span>
 					<img class="w-4 h-4" src="@/assets/images/info.png" />
@@ -36,10 +40,10 @@
 
 			<div :class="['table-col', { 'active-table': tableActive === 2 }]" @click="handeleTableClick(2)">
 				<div class="title">Free</div>
-				<div class="b-bottom">Max 10,000 Commands Daily</div>
+				<div class="b-bottom">Max 864,000 Commands Daily</div>
+<!--				<div class="b-bottom"><img src="@/assets/images/tick.png" alt="" /></div>-->
 				<div class="b-bottom"><img src="@/assets/images/tick.png" alt="" /></div>
-				<div class="b-bottom"><img src="@/assets/images/tick.png" alt="" /></div>
-				<div class="b-bottom"><img src="@/assets/images/tick.png" alt="" /></div>
+<!--				<div class="b-bottom"><img src="@/assets/images/tick.png" alt="" /></div>-->
 				<div class="b-bottom">-</div>
 				<div class="b-bottom">-</div>
 				<div class="b-bottom">-</div>
@@ -52,14 +56,14 @@
 			<div :class="['table-col', { 'active-table': tableActive === 3 }]" @click="handeleTableClick(3)">
 				<div class="title">Pay as you go</div>
 				<div class="b-bottom">Unlimited</div>
+<!--				<div class="b-bottom"><img src="@/assets/images/tick.png" alt="" /></div>-->
 				<div class="b-bottom"><img src="@/assets/images/tick.png" alt="" /></div>
-				<div class="b-bottom"><img src="@/assets/images/tick.png" alt="" /></div>
-				<div class="b-bottom"><img src="@/assets/images/tick.png" alt="" /></div>
+<!--				<div class="b-bottom"><img src="@/assets/images/tick.png" alt="" /></div>-->
 				<div class="b-bottom"><img src="@/assets/images/tick.png" alt="" /></div>
 				<div class="b-bottom">-</div>
 				<div class="b-bottom">Optional</div>
 				<div class="py-4">
-					<p class="h-12">$0.2 per 100K commands,up to $160 monthly max.</p>
+					<p class="h-12">$0.15 per GB read write throughput, up to $160 monthly max.</p>
 					<button class="w-3/5 h-10 btn-base bg-success my-10 font-semibold">LOGIN</button>
 				</div>
 			</div>
@@ -67,9 +71,9 @@
 			<div :class="['table-col', { 'active-table': tableActive === 4 }]" @click="handeleTableClick(4)">
 				<div class="title">Enterprise</div>
 				<div class="b-bottom">Unlimited</div>
+<!--				<div class="b-bottom"><img src="@/assets/images/tick.png" alt="" /></div>-->
 				<div class="b-bottom"><img src="@/assets/images/tick.png" alt="" /></div>
-				<div class="b-bottom"><img src="@/assets/images/tick.png" alt="" /></div>
-				<div class="b-bottom"><img src="@/assets/images/tick.png" alt="" /></div>
+<!--				<div class="b-bottom"><img src="@/assets/images/tick.png" alt="" /></div>-->
 				<div class="b-bottom"><img src="@/assets/images/tick.png" alt="" /></div>
 				<div class="b-bottom"><img src="@/assets/images/tick.png" alt="" /></div>
 				<div class="b-bottom">Optional</div>

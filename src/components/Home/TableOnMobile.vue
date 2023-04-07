@@ -6,20 +6,24 @@
 					<div class="title">Free</div>
 					<div class="b-bottom">
 						<p>Commands Limit</p>
-						<p>Max 10,000 Commands Daily</p>
+						<p>Max 864,000 Commands Daily</p>
 					</div>
+					<!--
 					<div class="b-bottom">
 						<p>Persistence</p>
 						<img src="@/assets/images/tick.png" />
 					</div>
+					-->
 					<div class="b-bottom">
 						<p>Encryption (TLS)</p>
 						<img src="@/assets/images/tick.png" />
 					</div>
+					<!--
 					<div class="b-bottom">
 						<p>REST API</p>
 						<img src="@/assets/images/tick.png" />
 					</div>
+					-->
 					<div class="b-bottom">
 						<p>Multi Zone Replication</p>
 						<p>-</p>
@@ -46,18 +50,22 @@
 						<p>Commands Limit</p>
 						<p class="text-white">Unlimited</p>
 					</div>
+					<!--
 					<div class="b-bottom">
 						<p>Persistence</p>
 						<img src="@/assets/images/tick.png" />
 					</div>
+					-->
 					<div class="b-bottom">
 						<p>Encryption (TLS)</p>
 						<img src="@/assets/images/tick.png" />
 					</div>
+					<!--
 					<div class="b-bottom">
 						<p>REST API</p>
 						<img src="@/assets/images/tick.png" />
 					</div>
+					-->
 					<div class="b-bottom">
 						<p>Multi Zone Replication</p>
 						<img src="@/assets/images/tick.png" />
@@ -72,7 +80,7 @@
 					</div>
 					<div class="py-4">
 						<p class="h-12 text-white text-ellipsis">
-							$0.2 per 100K commands,<br />
+							$0.15 per GB read write throughput, <br />
 							up to $160 monthly max.
 						</p>
 						<button class="w-3/5 h-10 btn-base bg-success my-10 font-semibold">LOGIN</button>
@@ -86,18 +94,22 @@
 						<p>Commands Limit</p>
 						<p class="text-white">Unlimited</p>
 					</div>
+					<!--
 					<div class="b-bottom">
 						<p>Persistence</p>
 						<img src="@/assets/images/tick.png" />
 					</div>
+					-->
 					<div class="b-bottom">
 						<p>Encryption (TLS)</p>
 						<img src="@/assets/images/tick.png" />
 					</div>
+					<!--
 					<div class="b-bottom">
 						<p>REST API</p>
 						<img src="@/assets/images/tick.png" />
 					</div>
+					-->
 					<div class="b-bottom">
 						<p>Multi Zone Replication</p>
 						<img src="@/assets/images/tick.png" />
