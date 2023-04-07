@@ -10,8 +10,6 @@ interface IcacheStore {
 	oneCache: ICacheOneRes;
 	tokenList: ItokenItem[];
 	port: string;
-	isCreate: boolean;
-	countDown: number;
 }
 export const cacheStore = defineStore({
 	id: "cacheStore",
@@ -21,9 +19,7 @@ export const cacheStore = defineStore({
 		regionList: [],
 		oneCache: {} as ICacheOneRes,
 		tokenList: [],
-		port: "8125",
-		isCreate: false,
-		countDown: 30
+		port: "8125"
 	}),
 	actions: {
 		async setCacheList(loadding: boolean) {

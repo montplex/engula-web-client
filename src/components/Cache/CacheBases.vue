@@ -251,6 +251,10 @@ import { AddCacheParams, ICacheListItem } from "#/cache";
 import { createCacheRules, resetForm, submit } from "@/utils/rules";
 import type { FormInstance } from "element-plus";
 import { CachestatusTo, statusStyle } from "#/enum";
+import { useIntervalFn } from "@vueuse/core";
+
+// 控制新建cache后60s内轮询(更新cache状态)
+const counDown = ref(0);
 
 const store = cacheStore();
 const router = useRouter();
@@ -262,6 +266,18 @@ const addForm = reactive<AddCacheParams>({
 	region: "",
 	des: ""
 });
+
+const { pause, resume } = useIntervalFn(
+	() => {
+		if (counDown.value <= 0) pause();
+		else {
+			counDown.value -= 5;
+			store.setCacheList(false);
+		}
+	},
+	5000,
+	{ immediate: false }
+);
 
 const region = computed(() => {
 	let regionObj: any = {};
@@ -296,8 +312,9 @@ const addCallback = () => {
 		.then((res) => {
 			if (res.id) {
 				store.setCacheList(false);
-				store.isCreate = true;
 				ElMessage.success("Create successfully");
+				counDown.value = 35;
+				resume();
 			}
 		})
 		.catch(() => ElMessage.error("request failure"))

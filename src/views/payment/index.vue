@@ -29,10 +29,9 @@ import { ref } from "vue";
 
 let stripe: Stripe;
 let elements: StripeElements;
-// let cardElement: StripeCardElement;
-let emailAddress = "";
+let email = ref("");
 let address = ref("");
-// publishable API key
+
 const key = "pk_test_51MdVvdKtlgGSFCEP8CGyhnrD0ve2sxuVjdF7AMrmYdoJxXDGwEdHbXqlJY2IkKWy21xsEDdr9ZSiIrVDZHvjSkDt000ZkK5hih";
 
 const options = {
@@ -93,28 +92,28 @@ async function initStripe() {
 	const emailElement = elements.create("linkAuthentication");
 	emailElement.mount("#link-auth");
 
-	emailElement.on("change", (event: any) => {
-		emailAddress = event.value.email;
+	emailElement.on("change", (e: any) => {
+		console.log("emailElement--->", e);
+		// email.value = e.value.email;
 	});
 
 	let addressElement = elements.create("address", addressOptions);
-	console.log(addressElement);
 	addressElement.mount("#address");
 
 	addressElement.on("change", (e) => {
-		if (e.complete) {
-			address.value = e.value.address as any;
-		}
+		console.log(address);
+		console.log("addressElement--->", e);
 	});
 }
 
 async function handleSubmit(e: any) {
 	e.preventDefault();
 
-	const { error } = await stripe.confirmPayment({
+	const res = await stripe.confirmPayment({
 		elements,
 		redirect: "if_required" //如果设置redirect: 'if_required'则不跳转returnUrl
 	});
+	console.log("confirmPayment-res--->", res);
 
 	/* if (error?.type === "card_error" || error?.type === "validation_error") {
 		showMessage(error.message);

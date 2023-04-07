@@ -10,6 +10,8 @@ export const useTheme = () => {
 	const initPrimary = (val: string) => {
 		// 为了兼容暗黑模式下主题颜色也正常，以下方法计算主题颜色 由深到浅 的具体颜色
 		document.documentElement.style.setProperty("--el-color-primary", val);
+		document.documentElement.style.setProperty("--el-input-border-radius", "8px");
+		document.documentElement.style.setProperty("--el-border-radius-base", "8px");
 		document.documentElement.style.setProperty("--el-component-size", "36px");
 		document.documentElement.style.setProperty(
 			"--el-color-primary-dark-2",
