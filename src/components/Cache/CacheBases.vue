@@ -148,14 +148,22 @@
 			</el-form-item>
 
 			<el-form-item label="Region" prop="region" v-show="addForm.cloudProvider">
-				<el-select v-model="addForm.region" filterable placeholder="Select region" class="w-full">
-					<el-option v-for="item in region[addForm.cloudProvider]" :key="item" :label="item" :value="item" />
+				<el-select v-model="addForm.region" placeholder="Select region" class="w-full" @change="addForm.primaryZone = ''">
+					<el-option v-for="(item, index) in region[addForm.cloudProvider]" :key="index" :label="item" :value="item" />
 				</el-select>
-				<div class="mt-2 text-xs">
-					<p class="text-gray-500">For best performance, select the region that is closer to your application.</p>
-				</div>
+			</el-form-item>
+
+			<div class="my-2 text-xs">
+				<p class="text-gray-500">For best performance, select the region that is closer to your application.</p>
+			</div>
+
+			<el-form-item label="Primary Zone" prop="primaryZone" v-show="addForm.region">
+				<el-select v-model="addForm.primaryZone" placeholder="Select Zones" class="w-full" :allow-create="true">
+					<el-option v-for="(item, index) in zoneList[addForm.region as any]" :key="index" :label="item" :value="item" />
+				</el-select>
 			</el-form-item>
 		</el-form>
+
 		<template #footer>
 			<span class="dialog-footer">
 				<el-button @click="addVisible = false">Cancel</el-button>
@@ -188,66 +196,15 @@
 			</span>
 		</template>
 	</el-dialog>
-
-	<!-- import-dialog Start -->
-	<!-- <el-dialog v-model="importVisible" title="Migrate Database" width="520px" style="border-radius: 8px">
-		<el-steps direction="vertical" :active="1">
-			<el-step>
-				<template #title>
-					<div class="import-title">
-						<span class="font-semibold text-info px-2">From</span>
-						<span class="text-info-4">Select the source of the database</span>
-					</div>
-				</template>
-				<template #description>
-					<div class="mt-2 mb-4 space-y-4 rounded-lg bg-[#f4f4f5] p-4">
-						<el-select v-model="importFrom.first" filterable placeholder="Select database" class="w-full">
-							<el-option v-for="item in dbList" :key="item" :label="item" :value="item" />
-						</el-select>
-						<div>
-							<el-checkbox size="large">Import from backups</el-checkbox>
-						</div>
-						<el-select v-model="importFrom.second" filterable placeholder="Select" class="w-full">
-							<el-option v-for="item in dbList2" :key="item" :label="item" :value="item" />
-						</el-select>
-					</div>
-				</template>
-			</el-step>
-
-			<el-step>
-				<template #title>
-					<div class="import-title">
-						<span class="font-semibold text-info px-2">To</span>
-						<span class="text-info-4">Select the destination</span>
-					</div>
-				</template>
-				<template #description>
-					<div class="mt-2 mb-4 space-y-4 rounded-lg bg-[#f4f4f5] p-4">
-						<el-select v-model="selectdbVal" filterable placeholder="Select database" class="w-full">
-							<el-option v-for="item in dbList" :key="item" :label="item" :value="item" />
-						</el-select>
-					</div>
-				</template>
-			</el-step>
-		</el-steps>
-
-		<template #footer>
-			<span class="dialog-footer">
-				<el-button @click="importVisible = false">Cancel</el-button>
-				<el-button type="primary" @click="importVisible = false"> Confirm </el-button>
-			</span>
-		</template>
-	</el-dialog> -->
-	<!-- import-dialog End -->
 </template>
 
 <script setup lang="ts">
 import StatusIcon from "@/components/Cache/StatusIcon.vue";
-import { ref, reactive, computed, onMounted, onBeforeUnmount } from "vue";
+import { ref, reactive, computed } from "vue";
 import { useRouter } from "vue-router";
 import { cacheStore } from "@/stores/cache";
 import { addCache } from "@/api/cache";
-import { AddCacheParams, ICacheListItem } from "#/cache";
+import { AddCacheParams } from "#/cache";
 import { createCacheRules, resetForm, submit } from "@/utils/rules";
 import type { FormInstance } from "element-plus";
 import { CachestatusTo, statusStyle } from "#/enum";
@@ -260,12 +217,27 @@ const store = cacheStore();
 const router = useRouter();
 const addLoading = ref(false);
 
-const addForm = reactive<AddCacheParams>({
+const asdfasd = ref(["asddasd", "dawfasf", "214234234234"]);
+
+const addForm = ref<AddCacheParams>({
 	cloudProvider: "",
 	name: "",
 	region: "",
-	des: ""
+	des: "",
+	primaryZone: ""
 });
+
+const zooeChange = (e: any) => {
+	console.log(e);
+	addForm.value.primaryZone = e;
+	console.log(addForm.value.primaryZone);
+};
+const regionChange = (e: any) => {
+	if (e) {
+		addForm.value.primaryZone = "";
+		addForm.value.region = e;
+	}
+};
 
 const { pause, resume } = useIntervalFn(
 	() => {
@@ -278,12 +250,12 @@ const { pause, resume } = useIntervalFn(
 	5000,
 	{ immediate: false }
 );
-
 const region = computed(() => {
 	let regionObj: any = {};
 	store.regionList.map((item) => item.regions && (regionObj[item.cloudProvider] = item.regions));
 	return regionObj;
 });
+const zoneList = computed(() => store.zoneList);
 
 const cross = ref(false); // 控制超出创建限制 (显示弹窗)
 
@@ -308,7 +280,7 @@ const createCache = () => {
 
 const addCallback = () => {
 	addLoading.value = true;
-	addCache(addForm)
+	addCache(addForm.value)
 		.then((res) => {
 			if (res.id) {
 				store.setCacheList(false);
@@ -353,7 +325,7 @@ function rStatusChange(val: any) {
 		const stop = item.status == "-10" || item.status == "-1";
 		return val == 1 ? run : stop;
 	});
-	console.log(list);
+
 	store.filterList = list;
 }
 </script>
@@ -362,6 +334,7 @@ function rStatusChange(val: any) {
 .br-8 {
 	border-radius: 8px;
 }
+
 .el-form-item__label {
 	display: flex;
 	gap: 0.25rem;
@@ -370,52 +343,21 @@ function rStatusChange(val: any) {
 	font-weight: 550;
 	color: rgb(0 0 0 / 88%);
 }
+
 .base-btn-hover {
 	&:focus,
 	&:hover {
 		color: #67c23a;
 		background-color: transparent;
 		border-color: #67c23a;
+
 		&:active {
 			color: #67c23a;
 			border-color: #67c23a;
 		}
 	}
 }
-.el-step.is-vertical .el-step__title {
-	line-height: 32px;
-}
-.el-step__head.is-process {
-	.el-step__icon.is-text {
-		color: #111111;
-		background-color: #f0f0f0;
-		border-color: #f0f0f0;
-	}
-	.el-step__icon-inner {
-		font-weight: 400;
-	}
-}
-.el-step__head.is-finish {
-	width: 32px;
-	color: var(--el-color-success);
-	border-color: var(--el-color-success);
-}
-.el-step__icon.is-text {
-	color: #ffffff;
-	background-color: var(--el-color-success);
-}
-.el-step__icon {
-	width: 32px;
-	height: 32px;
-}
-.el-step.is-vertical .el-step__line {
-	left: 16px;
-	width: 1px;
-	background-color: #e2e3e5;
-}
-.el-step__description {
-	padding-right: 0;
-}
+
 .circular {
 	animation: loading-rotate 2s linear infinite;
 }

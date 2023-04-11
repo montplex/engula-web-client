@@ -41,6 +41,7 @@ export interface AddCacheParams {
 	des: string; // 描述
 	name: string; // 自定义名
 	region: string; // 区域
+	primaryZone: string;
 }
 
 export interface CacheByIdParams {
@@ -60,6 +61,7 @@ export interface CloudProviderItem {
 }
 export interface RegionListRes {
 	list: CloudProviderItem[];
+	zonesByRegion: string[];
 }
 
 type Mode = "ro" | "rw";

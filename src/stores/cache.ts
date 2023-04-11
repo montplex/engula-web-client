@@ -7,6 +7,7 @@ interface IcacheStore {
 	filterList: ICacheListItem[];
 	serviceList: ICacheListItem[];
 	regionList: CloudProviderItem[];
+	zoneList: string[];
 	oneCache: ICacheOneRes;
 	tokenList: ItokenItem[];
 	port: string;
@@ -19,6 +20,7 @@ export const cacheStore = defineStore({
 		regionList: [],
 		oneCache: {} as ICacheOneRes,
 		tokenList: [],
+		zoneList: [] as string[],
 		port: "8125"
 	}),
 	actions: {
@@ -41,6 +43,7 @@ export const cacheStore = defineStore({
 		async setCloudProviderList() {
 			const res = await getCloudProviderList();
 			this.regionList = res.list;
+			this.zoneList = res.zonesByRegion;
 		},
 		filterRegions(cloudProvider: string) {
 			let regionObj: any = {};

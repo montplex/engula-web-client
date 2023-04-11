@@ -1,0 +1,8 @@
+{
+  "editor.fontSize": 16,
+  "editor.fontFamily": "Fira Code",
+  "editor.tabSize": 2,
+  "editor.renderWhitespace": "boundary",
+  "editor.cursorStyle": "underline",
+  "editor.mouseWheelZoom": true
+}

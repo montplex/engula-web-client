@@ -11,7 +11,8 @@ export const createCacheRules = reactive<FormRules>({
 		}
 	],
 	des: [{ required: false }],
-	region: [{ required: true, message: "Please select region", trigger: "change" }]
+	region: [{ required: true, message: "Please select region", trigger: "change" }],
+	primaryZone: [{ required: true, message: "Please select Primary Zone", trigger: "change" }]
 });
 
 export const addTokenRules = reactive<FormRules>({

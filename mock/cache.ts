@@ -189,9 +189,9 @@ export default [
 						cloudProvider: "aws",
 						regions: [
 							"ap-northeast-1",
-							"ap-northeast-2",
+							"cn-northwest-1",
 							"ap-northeast-3",
-							"ap-south-1",
+							"ap-northeast-2",
 							"ap-southeast-1",
 							"ap-southeast-2",
 							"ca-central-1",
@@ -258,7 +258,12 @@ export default [
 							"xm-zh-zhengzhou"
 						]
 					}
-				]
+				],
+				zonesByRegion: {
+					"ap-northeast-1": ["ap-northeast-1d", "ap-northeast-1c", "ap-northeast-1a"],
+					"cn-northwest-1": ["cn-northwest-1a"],
+					"ap-northeast-2": ["ap-northeast-2a", "ap-northeast-2b", "ap-northeast-2c"]
+				}
 			};
 		}
 	},
