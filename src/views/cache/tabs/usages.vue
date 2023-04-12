@@ -172,7 +172,7 @@ function getTimeAgo(type: "hour" | "day" | "week", ago = 1) {
 	.grid-card {
 		@apply mt-4 grid gap-2 sm:grid-cols-4 sm:gap-4;
 		.items {
-			@apply rounded-lg px-5 pt-4 pb-3 shadow-sm bg-white dark:bg-gray-900;
+			@apply rounded-lg px-5 pt-4 pb-3 shadow-sm bg-white;
 			.title {
 				@apply text-[#606266] mb-1 leading-5 opacity-70;
 			}

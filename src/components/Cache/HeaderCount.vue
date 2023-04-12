@@ -1,9 +1,9 @@
 <template>
-	<div class="bg-gray-100 py-8 dark:bg-gray-800">
+	<div class="bg-gray-100 py-8">
 		<div class="container mx-auto !max-w-screen-xl px-4">
 			<h3 class="m-0 text-base">Usage For Current Billing</h3>
 			<div class="mt-4 grid gap-2 sm:grid-cols-3 sm:gap-4">
-				<!-- <div class="rounded-lg px-5 pt-4 pb-3 shadow-sm bg-white dark:bg-gray-900">
+				<!-- <div class="rounded-lg px-5 pt-4 pb-3 shadow-sm bg-white">
 					<el-statistic title="" :value="62" />
 				</div> -->
 				<div class="cu-items">
@@ -59,7 +59,7 @@ function sumOrg(arr: any): Fee {
 
 <style lang="scss" scoped>
 .cu-items {
-	@apply rounded-lg px-5 pt-4 pb-4 shadow-sm bg-white dark:bg-gray-900;
+	@apply rounded-lg px-5 pt-4 pb-4 shadow-sm bg-white;
 	.title {
 		@apply text-[#606266] mb-1 leading-5 opacity-70;
 	}
