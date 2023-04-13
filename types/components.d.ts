@@ -14,6 +14,7 @@ declare module 'vue' {
     BillingStandards: typeof import('./../src/components/Cache/BillingStandards.vue')['default']
     CacheBases: typeof import('./../src/components/Cache/CacheBases.vue')['default']
     CacheEmpty: typeof import('./../src/components/Cache/cacheEmpty.vue')['default']
+    CardDialog: typeof import('./../src/components/Account/CardDialog.vue')['default']
     ChartList: typeof import('./../src/components/Cache/ChartList.vue')['default']
     CodeHight: typeof import('./../src/components/CodeHight/index.vue')['default']
     Configuration: typeof import('./../src/components/Cache/Configuration.vue')['default']

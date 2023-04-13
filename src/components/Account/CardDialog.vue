@@ -1,45 +1,5 @@
 <template>
-	<div class="mt-6 sm:mt-8 w-full">
-		<el-empty class="rounded-lg bg-gray-50 !p-14">
-			<template #image>
-				<svgIcon icon="empty-cache" style="width: 100%; height: 90px" />
-			</template>
-			<template #description>
-				<div class="mx-auto my-4 max-w-screen-sm text-gray-600">
-					<h3>No credit card added yet</h3>
-					<div>
-						<p>
-							When you add a credit card,you will be able to create databases with pay-as-you-go plan. We work with
-							<a class="text-[#67c23a] hover:underline cursor-pointer" href="https://stripe.com/" target="_blank">Stripe</a>
-							for payment processing and never keep your credit card information in our database.
-						</p>
-					</div>
-				</div>
-				<el-button @click="addCardhandle" type="success">Add new card</el-button>
-			</template>
-		</el-empty>
-	</div>
-
-	<div class="container mx-auto !max-w-screen-xl py-10 bg-white">
-		<el-table :data="tableData" v-bind="tabStyle">
-			<el-table-column prop="date" label="Date" />
-			<el-table-column prop="const" label="Const">
-				<template #default="scope"> ${{ scope.row.const }}</template>
-			</el-table-column>
-			<el-table-column prop="status" label="Status">
-				<template #default="scope">
-					<el-tag type="warning">
-						{{ scope.row.status }}
-					</el-tag>
-				</template>
-			</el-table-column>
-		</el-table>
-		<div class="flex justify-end mb-4 mt-6">
-			<el-pagination background :hide-on-single-page="false" :total="100" layout="prev, pager, next" />
-		</div>
-	</div>
-
-	<el-dialog :modelValue="addVisible" title="Payment Information" class="!w-8/10 md:!w-[540px] !rounded-lg">
+	<el-dialog :modelValue="modelValue" title="Payment Information" class="!w-8/10 md:!w-[540px] !rounded-lg">
 		<div class="form">
 			<el-form label-position="top" label-width="100px" ref="cardFormRef" :model="cardForm">
 				<div class="alert-base info text-info-8 mb-5">
@@ -101,80 +61,20 @@
 		</div>
 		<template #footer>
 			<span class="dialog-footer">
-				<el-button @click="addVisible = false">Cancel</el-button>
-				<el-button type="primary" @click="addVisible = false"> Add Your Card </el-button>
+				<el-button @click="$emit('cancel')">Cancel</el-button>
+				<el-button type="primary" @click="$emit('confirm')"> Add Your Card </el-button>
 			</span>
 		</template>
 	</el-dialog>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { loadStripe, Stripe, StripeElementsOptionsClientSecret, StripeElements, StripeCardElement } from "@stripe/stripe-js";
-import { reactive, ref, nextTick, onUnmounted } from "vue";
+import { reactive, ref } from "vue";
 import { countryList } from "#/consts";
 
-const addVisible = ref(false);
-
-const tabStyle: any = {
-	style: {
-		width: "100%",
-		textAlign: "start",
-		borderRadius: "8px 8px 0 0",
-		borderCollapse: "separate",
-		borderSpacing: 0
-	},
-	tableLayout: "fixed",
-	headerCellStyle: {
-		color: "rgba(0, 0, 0, 0.88)",
-		fontWeight: 600,
-		textAlign: "start",
-		background: "#fafafa",
-		padding: "12px 8px",
-		borderBottom: "1px solid #f0f0f0"
-	},
-	cellStyle: {
-		padding: "12px 8px",
-		borderBottom: "1px solid #f0f0f0"
-	}
-};
-
-const tableData = [
-	{
-		date: "2016-05-03",
-		const: "68",
-		status: "SCHEDULED"
-	},
-	{
-		date: "2016-05-01",
-		const: "12",
-		status: "SCHEDULED"
-	},
-	{
-		date: "2016-04-27",
-		const: "34.8",
-		status: "SCHEDULED"
-	},
-	{
-		date: "2016-04-11",
-		const: "2.9",
-		status: "SCHEDULED"
-	},
-	{
-		date: "2016-03-03",
-		const: "11",
-		status: "SCHEDULED"
-	}
-];
-
-function addCardhandle() {
-	initSt();
-	addVisible.value = true;
-}
-
 const coll = ref(false);
-
 const selectCountry = reactive(countryList);
-
 const cardForm = reactive({
 	country: "",
 	cardId: "",
@@ -199,7 +99,7 @@ let stripe: Stripe;
 let elements: StripeElements;
 let cardElement: StripeCardElement;
 
-const initSt = async () => {
+async function initStripe() {
 	stripe = (await loadStripe(key)) as Stripe;
 	elements = stripe.elements(options);
 	cardElement = elements.create("card", {
@@ -209,23 +109,7 @@ const initSt = async () => {
 		}
 	});
 	cardElement.mount("#card");
-};
-
-// initSt();
-
-/* onUnmounted(() => {
-	nextTick(async () => {
-		stripe = (await loadStripe(key)) as Stripe;
-		elements = stripe.elements(options);
-		cardElement = elements.create("card", {
-			hidePostalCode: true,
-			classes: {
-				base: "h-9 border border-gray-300 rounded-lg px-2 py-2.5  bg-white"
-			}
-		});
-		cardElement.mount("#card");
-	});
-}); */
+}
 
 async function handleSubmit(e: Event) {
 	e.preventDefault();
@@ -244,39 +128,18 @@ async function handleSubmit(e: Event) {
 		console.log(paymentIntent);
 	}
 }
+
+defineProps(["modelValue"]);
+defineEmits(["update:modelValue", "cancel", "confirm"]);
+defineExpose({ coll, handleSubmit });
 </script>
+<style scoped>
+.dialog-footer button:first-child {
+	margin-right: 10px;
+}
+</style>
 
 <style lang="scss">
-.el-pagination.is-background .el-pager li {
-	background-color: transparent;
-	border: 1px solid #d9d9d9;
-	border-radius: 8px;
-	&:hover {
-		border: 1px solid var(--el-color-primary);
-	}
-}
-.el-pagination.is-background .el-pager li.is-active {
-	font-weight: 600;
-	color: var(--el-color-primary);
-	background-color: transparent;
-	border: 1px solid var(--el-color-primary);
-	border-radius: 8px;
-}
-.el-pagination.is-background button {
-	background-color: transparent !important;
-	border: 1px solid #d9d9d9;
-	border-radius: 8px;
-	.el-icon {
-		font-size: 16px;
-		font-weight: 600;
-		svg {
-			display: inline;
-			font-size: 18px;
-			font-weight: 700;
-		}
-	}
-}
-
 .my-collapse {
 	box-sizing: border-box;
 	padding: 0;
@@ -324,11 +187,5 @@ async function handleSubmit(e: Event) {
 	&:hover {
 		color: rgb(0 0 0 / 88%);
 	}
-}
-</style>
-
-<style scoped>
-.dialog-footer button:first-child {
-	margin-right: 10px;
 }
 </style>

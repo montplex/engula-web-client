@@ -3,6 +3,5 @@
   "editor.fontFamily": "Fira Code",
   "editor.tabSize": 2,
   "editor.renderWhitespace": "selection",
-  "editor.cursorStyle": "underline",
   "editor.mouseWheelZoom": true
 }

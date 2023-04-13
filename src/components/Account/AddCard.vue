@@ -69,51 +69,11 @@
 <script setup lang="ts">
 import { loadStripe, Stripe, StripeElementsOptionsClientSecret, StripeElements, StripeCardElement } from "@stripe/stripe-js";
 import { reactive, ref } from "vue";
+import { countryList } from "#/consts";
+
 const coll = ref(false);
-const selectCountry = reactive([
-	"China",
-	"USA",
-	"Japan",
-	"Korea",
-	"India",
-	"Afghanistan",
-	"Australia",
-	"Brazil",
-	"Canada",
-	"France",
-	"Germany",
-	"Italy",
-	"Mexico",
-	"Russia",
-	"Spain",
-	"United Kingdom",
-	"United States",
-	"Vietnam",
-	"Thailand",
-	"Singapore",
-	"Malaysia",
-	"Indonesia",
-	"Philippines",
-	"Cambodia",
-	"Laos",
-	"Myanmar",
-	"Brunei",
-	"Timor-Leste",
-	"East Timor",
-	"Nepal",
-	"Bangladesh",
-	"Sri Lanka",
-	"Pakistan",
-	"Afghanistan",
-	"Iran",
-	"Iraq",
-	"Saudi Arabia",
-	"Yemen",
-	"Oman",
-	"United Arab Emirates",
-	"Qatar",
-	"Kuwait"
-]);
+
+const selectCountry = reactive(countryList);
 
 const cardForm = reactive({
 	country: "",
