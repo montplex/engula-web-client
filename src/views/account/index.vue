@@ -179,11 +179,11 @@ async function handleSubmit(e: Event) {
 <style lang="scss">
 .my-collapse {
 	box-sizing: border-box;
-	margin: 0;
 	padding: 0;
-	color: rgba(0, 0, 0, 0.88);
+	margin: 0;
 	font-size: 14px;
-	background-color: rgba(0, 0, 0, 0.02);
+	color: rgb(0 0 0 / 88%);
+	background-color: rgb(0 0 0 / 2%);
 	border: 1px solid #d9d9d9;
 	border-bottom: 0;
 	border-radius: 8px;
@@ -201,36 +201,35 @@ async function handleSubmit(e: Event) {
 			flex-wrap: nowrap;
 			align-items: flex-start;
 			padding: 12px 16px;
-			color: rgba(0, 0, 0, 0.8);
-			line-height: 1.5714285714285714;
+			line-height: 1.58;
+			color: rgb(0 0 0 / 80%);
 			cursor: pointer;
 			transition: all 0.3s, visibility 0s;
 		}
 		.content {
-			color: rgba(0, 0, 0, 0.88);
+			color: rgb(0 0 0 / 88%);
 			background-color: #ffffff;
-			border-radius: 0 0 8px 8px;
 			border-top: 1px solid #d9d9d9;
+			border-radius: 0 0 8px 8px;
 			transition: all 0.3s ease-in;
 		}
 	}
 }
 .form {
+	align-self: center;
 	width: 30vw;
 	min-width: 500px;
-	align-self: center;
-	box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1), 0px 2px 5px 0px rgba(50, 50, 93, 0.1),
-		0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
-	border-radius: 7px;
 	padding: 40px;
+	border-radius: 7px;
+	box-shadow: 0 0 0 0.5px rgb(50 50 93 / 10%), 0 2px 5px 0 rgb(50 50 93 / 10%), 0 1px 1.5px 0 rgb(0 0 0 / 7%);
 }
 .ep_close {
 	display: inline;
 	font-size: 24px;
-	color: rgba(0, 0, 0, 0.45);
+	color: rgb(0 0 0 / 45%);
 	transition: color 0.2s;
 	&:hover {
-		color: rgba(0, 0, 0, 0.88);
+		color: rgb(0 0 0 / 88%);
 	}
 }
 </style>

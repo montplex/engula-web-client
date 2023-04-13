@@ -334,7 +334,6 @@ function rStatusChange(val: any) {
 .br-8 {
 	border-radius: 8px;
 }
-
 .el-form-item__label {
 	display: flex;
 	gap: 0.25rem;
@@ -343,21 +342,18 @@ function rStatusChange(val: any) {
 	font-weight: 550;
 	color: rgb(0 0 0 / 88%);
 }
-
 .base-btn-hover {
 	&:focus,
 	&:hover {
 		color: #67c23a;
 		background-color: transparent;
 		border-color: #67c23a;
-
 		&:active {
 			color: #67c23a;
 			border-color: #67c23a;
 		}
 	}
 }
-
 .circular {
 	animation: loading-rotate 2s linear infinite;
 }

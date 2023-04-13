@@ -92,12 +92,13 @@ function onExecCmd(
 			&::before {
 				margin-right: 0;
 			}
+
 			font-size: 16px;
 		}
 	}
 	.cmd-init-title {
-		color: #00e994;
 		font-size: 18px;
+		color: #00e994;
 	}
 }
 </style>

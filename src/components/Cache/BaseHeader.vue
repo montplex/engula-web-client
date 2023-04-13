@@ -239,12 +239,10 @@ h5 {
 	font-weight: 600;
 	line-height: 1.5rem;
 }
-
 .text-block {
+	font-weight: 700;
 	background-image: -webkit-gradient(linear, left top, right top, from(#c947e7), to(#2ab5fb));
 	background-image: linear-gradient(90deg, #c947e7, #2ab5fb);
-	font-weight: 700;
-	-webkit-background-clip: text;
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
 }

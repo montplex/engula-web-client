@@ -132,22 +132,22 @@ initStripe();
 
 <style lang="scss" scoped>
 .pay-page {
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	width: 100vw;
+	height: 100vh;
 	font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 	font-size: 16px;
 	-webkit-font-smoothing: antialiased;
-	display: flex;
-	justify-content: center;
-	align-content: center;
-	height: 100vh;
-	width: 100vw;
 	form {
+		align-self: center;
 		width: 30vw;
 		min-width: 500px;
-		align-self: center;
-		box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1), 0px 2px 5px 0px rgba(50, 50, 93, 0.1),
-			0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
-		border-radius: 7px;
 		padding: 40px;
+		border-radius: 7px;
+		box-shadow: 0 0 0 0.5px rgb(50 50 93 / 10%), 0 2px 5px 0 rgb(50 50 93 / 10%),
+			0 1px 1.5px 0 rgb(0 0 0 / 7%);
 	}
 }
 </style>

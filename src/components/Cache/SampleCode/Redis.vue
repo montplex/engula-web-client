@@ -39,7 +39,6 @@ const code = computed(() => {
 	border: 1px solid #ffe58f;
 	border-radius: 8px;
 }
-
 .code-library {
 	a {
 		display: inline;

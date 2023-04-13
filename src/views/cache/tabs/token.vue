@@ -208,14 +208,14 @@ function powerCache() {
 <style lang="scss">
 .el-button {
 	&.del-btn {
-		background-color: #f6f8fa;
-		border-color: rgba(27, 31, 36, 0.15);
 		color: #dc3545;
+		background-color: #f6f8fa;
+		border-color: rgb(27 31 36 / 15%);
 		&:hover {
+			color: #f6f8fa;
+			background-color: #dc3545;
 			border-color: #dc3545;
 			opacity: 0.9;
-			background-color: #dc3545;
-			color: #f6f8fa;
 		}
 	}
 }

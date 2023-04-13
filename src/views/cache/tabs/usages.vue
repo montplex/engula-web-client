@@ -165,10 +165,8 @@ function getTimeAgo(type: "hour" | "day" | "week", ago = 1) {
 		@apply m-0 mb-1 text-base;
 	}
 }
-
 .card-box {
 	@apply rounded-lg bg-gray-100 p-6;
-
 	.grid-card {
 		@apply mt-4 grid gap-2 sm:grid-cols-4 sm:gap-4;
 		.items {

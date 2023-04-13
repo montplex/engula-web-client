@@ -110,11 +110,11 @@ const handleConsole = () => {
 <style lang="scss">
 .home-page-header {
 	@apply bg-transparent w-full left-0 top-0;
+
 	z-index: 99999;
 	.nav-box {
 		@apply mx-auto flex max-w-full items-center justify-between py-5 px-6 lg:px-0;
 	}
-
 	.nav-pc {
 		@apply hidden lg:flex lg:flex-1 justify-center lg:gap-x-10 text-white text-xl text-center duration-300 ease-in;
 		._item {
@@ -122,12 +122,12 @@ const handleConsole = () => {
 			align-items: center;
 			color: rgb(255 255 255 / 90%);
 			&:hover {
+				font-weight: 700;
+
 				// @layer text-block;
 				// color: #712dff;
 				background-image: -webkit-gradient(linear, left top, right top, from(#f926e1), to(#2ab5fb));
 				background-image: linear-gradient(90deg, #f926e1, #2ab5fb);
-				font-weight: 700;
-				-webkit-background-clip: text;
 				background-clip: text;
 				-webkit-text-fill-color: transparent;
 			}
@@ -137,23 +137,24 @@ const handleConsole = () => {
 		@apply hidden lg:flex lg:justify-end;
 		button {
 			@apply text-sm font-semibold duration-300;
+
 			width: 9rem;
 			height: 2.5rem;
-			color: #ffffff;
 			font-size: 16px;
+			color: #ffffff;
 			text-align: center;
 			cursor: pointer;
 			background: linear-gradient(180deg, #642dff 0%, #892dff 100%);
 			border-radius: 0.5rem;
 			&:hover {
-				background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+				background-image: linear-gradient(180deg, rgb(0 0 0 / 20%), rgb(0 0 0 / 20%)),
 					linear-gradient(90.27deg, #f926e1 0.22%, #2ab5fb 99.76%);
 			}
 		}
 	}
-
 	.mb-menu {
 		@apply fixed inset-y-0 right-0 w-full overflow-y-auto bg-[#10063A] py-7 px-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10;
+
 		z-index: 9999;
 		.header {
 			@apply flex items-center justify-between text-white;
@@ -166,7 +167,6 @@ const handleConsole = () => {
 		}
 	}
 }
-
 .header-logo {
 	width: 10rem;
 }

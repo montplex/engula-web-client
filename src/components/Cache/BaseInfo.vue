@@ -133,12 +133,13 @@ async function confirmName(name: string) {
 		@apply grid grid-cols-3 gap-4;
 		.item {
 			@apply grid h-auto place-items-center rounded-lg  py-4 text-gray-600 shadow;
-			background-color: #fff;
+
 			color: #4b5563;
+			background-color: #ffffff;
 			&:hover {
-				border-color: #bfdbfe;
-				background-color: #eff6ff;
 				color: #2563eb !important;
+				background-color: #eff6ff;
+				border-color: #bfdbfe;
 			}
 		}
 	}

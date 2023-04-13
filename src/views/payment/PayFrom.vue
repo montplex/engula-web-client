@@ -128,46 +128,46 @@ const cardForm = reactive({
 	.one-step {
 		display: flex;
 		align-items: center;
-		color: rgba(132, 133, 135, 1);
+		color: rgb(132 133 135 / 100%);
 		&.active {
 			color: unset;
 		}
 		.step-icon {
+			width: 20px;
 			height: 20px;
 			margin-right: 0.5rem;
-			text-align: center;
-			--tw-text-opacity: 1;
-			color: rgba(255, 255, 255, 1);
-			width: 20px;
 			line-height: 20px;
+			color: rgb(255 255 255 / 100%);
+			text-align: center;
 			background-color: #c7c7c7;
 			border-radius: 50%;
+
+			--tw-text-opacity: 1;
 		}
 		.enable {
-			color: var(--el-color-primary);
-			font-size: 20px;
-			margin-left: -4px;
 			margin-right: 4px;
+			margin-left: -4px;
+			font-size: 20px;
+			color: var(--el-color-primary);
 			cursor: pointer;
 		}
 		.line {
-			height: 1px;
-			margin-left: 0.5rem;
-			margin-right: 0.5rem;
 			width: 80px;
+			height: 1px;
+			margin-right: 0.5rem;
+			margin-left: 0.5rem;
 			background-color: #e9eff6;
 		}
 	}
 }
-
 .cloud-message {
-	border-radius: 8px;
+	position: relative;
 	padding: 10px 16px 10px 36px;
 	margin-bottom: 20px;
-	position: relative;
+	border-radius: 8px;
 	&.error {
-		border: 1px solid #f16538;
 		color: #f16538;
+		border: 1px solid #f16538;
 	}
 }
 </style>

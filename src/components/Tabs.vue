@@ -49,16 +49,15 @@ function tabClicks(item: any, index: number) {
 
 <style lang="scss">
 .tabs-group {
-	border-bottom-width: 2px;
 	border-color: #e4e7ed;
+	border-bottom-width: 2px;
 	ul {
-		height: 40px;
-		line-height: 40px;
-		font-weight: 500;
-		display: flex;
-		text-align: center;
 		position: relative;
-
+		display: flex;
+		height: 40px;
+		font-weight: 500;
+		line-height: 40px;
+		text-align: center;
 		li {
 			&.is-active {
 				color: #67c23a;
@@ -67,18 +66,17 @@ function tabClicks(item: any, index: number) {
 				color: #67c23a;
 			}
 		}
-
 		#active-bar {
 			position: absolute;
-			left: 0;
 			bottom: -2px;
+			left: 0;
+			z-index: 1;
+			box-sizing: border-box;
 			width: 54px;
 			height: 2px;
-			transition: all 0.3s;
-			transform: translateX(0px);
-			box-sizing: border-box;
 			background-color: #67c23a;
-			z-index: 1;
+			transition: all 0.3s;
+			transform: translateX(0);
 		}
 	}
 }

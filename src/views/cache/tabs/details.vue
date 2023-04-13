@@ -172,6 +172,7 @@ export default {
 			outline: none !important;
 			opacity: 0.7;
 		}
+
 		font-size: 16px;
 		color: #1677ff;
 	}
@@ -197,19 +198,18 @@ export default {
 	border: 1px solid #ffe58f;
 	border-radius: 8px;
 }
-
 .c-tag {
 	code {
-		padding-inline: 0.6em;
 		padding-block: 0.2em 0.1em;
+		padding-inline: 0.6em;
 		font-size: 14px;
-		background: rgba(150, 150, 150, 0.1);
-		border: 1px solid rgba(100, 100, 100, 0.2);
+		background: rgb(150 150 150 / 10%);
+		border: 1px solid rgb(100 100 100 / 20%);
 		border-radius: 3px;
 	}
 	strong {
-		color: #111;
 		font-weight: 600;
+		color: #111111;
 	}
 }
 </style>

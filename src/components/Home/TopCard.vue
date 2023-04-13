@@ -1,5 +1,5 @@
 <template>
-	<div class="text-center mt-32 mx-8" id="bander-info" style="z-index: 99999; position: relative">
+	<div class="text-center mt-32 mx-8" id="bander-info" style=" position: relative;z-index: 99999">
 		<div class="flex justify-center items-center">
 			<img class="w-32" src="@/assets/images/main-logo.png" alt="logo" />
 		</div>
@@ -65,7 +65,6 @@ function handleConsole() {
 		border: 1px solid rgb(255 255 255 / 18%);
 		border-radius: 0.5rem;
 		box-shadow: 0 8px 32px 0 rgba(31 38 135 / 13%);
-		backdrop-filter: blur(18px);
 		backdrop-filter: blur(18px);
 		&:hover {
 			background: rgb(160 178 242 / 20%);
@@ -136,31 +135,30 @@ function handleConsole() {
 	background: linear-gradient(179deg, #642dff 0%, #892dff 100%);
 	border-radius: 0.5rem;
 	&:hover {
-		background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+		background-image: linear-gradient(180deg, rgb(0 0 0 / 20%), rgb(0 0 0 / 20%)),
 			linear-gradient(90.27deg, #f926e1 0.22%, #2ab5fb 99.76%);
 	}
 }
-
 .__cool-btn {
 	width: 11.5rem;
 	height: 3rem;
-	line-height: 3rem;
-	border-radius: 100px;
-	background-image: linear-gradient(90.27deg, #f926e1 0.22%, #2ab5fb 99.76%);
 	font-size: 16px;
 	font-weight: 700;
+	line-height: 3rem;
 	text-align: center;
+	background-image: linear-gradient(90.27deg, #f926e1 0.22%, #2ab5fb 99.76%);
+	border-radius: 100px;
 	&:hover {
-		background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+		background-image: linear-gradient(180deg, rgb(0 0 0 / 20%), rgb(0 0 0 / 20%)),
 			linear-gradient(90.27deg, #f926e1 0.22%, #2ab5fb 99.76%);
 	}
 	&.w-button {
-		background-color: #3898ec;
-		color: #fff;
-		border: 0;
 		line-height: inherit;
+		color: #ffffff;
 		text-decoration: none;
 		cursor: pointer;
+		background-color: #3898ec;
+		border: 0;
 	}
 }
 </style>
