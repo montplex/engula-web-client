@@ -42,7 +42,6 @@
 		<el-form-item label="Address" prop="address">
 			<el-input v-model="cardForm.address" />
 		</el-form-item>
-
 		<el-form-item label="City" prop="city">
 			<el-input v-model="cardForm.city" />
 		</el-form-item>

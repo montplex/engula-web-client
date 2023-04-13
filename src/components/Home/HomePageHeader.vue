@@ -1,3 +1,4 @@
+
 <template>
 	<header class="home-page-header">
 		<nav class="home-container nav-box">

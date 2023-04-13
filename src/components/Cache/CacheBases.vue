@@ -27,11 +27,6 @@
 						</el-icon>
 					</el-button>
 				</el-tooltip>
-
-				<!-- Import -->
-				<!-- <el-button class="hidden items-center space-x-1 sm:inline-flex base-btn-hover" @click="importCache">
-					Import...
-				</el-button> -->
 				<el-button type="success" @click="createCache"> Create cache service </el-button>
 			</div>
 		</div>
@@ -90,25 +85,7 @@
 			</div>
 		</div>
 		<!-- dbList End -->
-
-		<!-- empty Start -->
-		<div class="mt-6 sm:mt-10" v-else>
-			<el-empty class="rounded-lg bg-gray-50 !p-14">
-				<template #image>
-					<svgIcon icon="empty-cache" style="width: 100%; height: 90px" />
-				</template>
-				<template #description>
-					<div class="mx-auto my-4 max-w-screen-sm text-gray-600">
-						<h3>Create a Cache Service</h3>
-						<div>
-							<p>We manage the cache service for you and you only pay what you use.</p>
-						</div>
-					</div>
-					<el-button @click="createCache" type="success">Create cache service</el-button>
-				</template>
-			</el-empty>
-		</div>
-		<!-- empty End -->
+		<cacheEmpty @btn-click="createCache" v-else />
 	</div>
 
 	<!-- add-dialog Start -->
@@ -199,8 +176,9 @@
 </template>
 
 <script setup lang="ts">
+import cacheEmpty from "./cacheEmpty.vue";
 import StatusIcon from "@/components/Cache/StatusIcon.vue";
-import { ref, reactive, computed } from "vue";
+import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import { cacheStore } from "@/stores/cache";
 import { addCache } from "@/api/cache";
@@ -217,8 +195,6 @@ const store = cacheStore();
 const router = useRouter();
 const addLoading = ref(false);
 
-const asdfasd = ref(["asddasd", "dawfasf", "214234234234"]);
-
 const addForm = ref<AddCacheParams>({
 	cloudProvider: "",
 	name: "",
@@ -226,19 +202,6 @@ const addForm = ref<AddCacheParams>({
 	des: "",
 	primaryZone: ""
 });
-
-const zooeChange = (e: any) => {
-	console.log(e);
-	addForm.value.primaryZone = e;
-	console.log(addForm.value.primaryZone);
-};
-const regionChange = (e: any) => {
-	if (e) {
-		addForm.value.primaryZone = "";
-		addForm.value.region = e;
-	}
-};
-
 const { pause, resume } = useIntervalFn(
 	() => {
 		if (counDown.value <= 0) pause();
@@ -260,7 +223,6 @@ const zoneList = computed(() => store.zoneList);
 const cross = ref(false); // 控制超出创建限制 (显示弹窗)
 
 const isRefresh = ref(false); // 刷新按钮 laoding
-const importVisible = ref(false); // 导入弹窗
 const addVisible = ref(false); // 新建弹窗
 const searchVal = ref(""); // 搜索
 const selectVal = ref<string | number>(1);
@@ -295,9 +257,6 @@ const addCallback = () => {
 			addLoading.value = false;
 		});
 };
-
-/* 导入 */
-const importCache = () => (importVisible.value = true);
 
 /* 去详情页 */
 const goDetail = (id: number) => {

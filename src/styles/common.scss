@@ -340,3 +340,35 @@ strong {
 		}
 	}
 }
+
+.ly-tag {
+	box-sizing: border-box;
+	display: inline-block;
+	height: auto;
+	padding-inline: 7px;
+	margin-inline-end: 8px;
+	font-size: 12px;
+	line-height: 20px;
+	white-space: nowrap;
+	list-style: none;
+	border: 1px solid #d9d9d9;
+	border-radius: 4px;
+	transition: all 0.3s;
+&.success {
+	color: #52c41a;
+	background: #f6ffed;
+	border-color: #b7eb8f;
+
+}
+.error {
+	color: #ff4d4f;
+	background: #fff2f0;
+	border-color: #ffccc7;
+}
+
+.warring {
+	color: #d46b08;
+	background: #fff7e6;
+	border-color: #ffd591;
+}
+}

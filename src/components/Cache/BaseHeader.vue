@@ -81,7 +81,7 @@
 								<el-dropdown-item v-if="info?.email">
 									{{ info?.email }}
 								</el-dropdown-item>
-								<!-- <el-dropdown-item command="account" divided> Account </el-dropdown-item> -->
+								<el-dropdown-item command="account" divided> Account </el-dropdown-item>
 								<!-- <el-dropdown-item> Integrations </el-dropdown-item> -->
 								<!-- <el-dropdown-item> Settings </el-dropdown-item> -->
 								<el-dropdown-item command="out" divided> Log out </el-dropdown-item>
