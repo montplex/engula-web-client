@@ -6,3 +6,14 @@ export const striptPk = () => {
 		showLoading: false
 	});
 };
+
+export const getClientSecret = (data: {
+	cacheServiceId: string | number;
+	monthStr: string;
+}) => {
+	return http.post<{ clientSecret: string }>({
+		url: "/fee/create-payment-intent",
+		showLoading: false,
+		data
+	});
+};

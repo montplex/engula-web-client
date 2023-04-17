@@ -27,6 +27,7 @@ export type ICacheOneRes = { one: ICacheListItem; host: string };
 
 export interface FeeOrg extends FeeItem {
 	cacheServiceName: string;
+	isPaid: boolean;
 }
 export type FeeOrgList = FeeOrg[];
 
@@ -94,7 +95,8 @@ export interface addTokenParams {
 type Tcommand = "set" | "get" | "del" | "keys" | "exists" | "expire" | "ttl";
 
 // get a / set a 100
-const Fcommand = (instruct: Tcommand, params: any): string => `${instruct} ${params}`;
+const Fcommand = (instruct: Tcommand, params: any): string =>
+	`${instruct} ${params}`;
 
 export interface CommandParams {
 	cacheServiceId: number | string;

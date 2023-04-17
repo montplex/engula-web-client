@@ -73,22 +73,27 @@
 							</el-dropdown>
 						</div> -->
 
-					<el-dropdown trigger="hover" @command="handleMineCommand" class="ml-4">
+					<el-dropdown trigger="hover" @command="handleMineCommand">
 						<el-avatar class="focus-visible:outline-none" :size="32" :src="info?.picture" />
 						<template #dropdown>
 							<el-dropdown-menu>
-								<el-dropdown-item> {{ info?.nickname }} </el-dropdown-item>
+								<el-dropdown-item>
+									<el-icon size="16"> <i-ep:user /> </el-icon> {{ info?.nickname }}
+								</el-dropdown-item>
 								<el-dropdown-item v-if="info?.email">
 									{{ info?.email }}
 								</el-dropdown-item>
-								<el-dropdown-item command="account" divided> Account </el-dropdown-item>
+								<el-dropdown-item command="account" divided>
+									<el-icon size="16"> <i-ep:credit-card /> </el-icon> Account
+								</el-dropdown-item>
 								<!-- <el-dropdown-item> Integrations </el-dropdown-item> -->
 								<!-- <el-dropdown-item> Settings </el-dropdown-item> -->
-								<el-dropdown-item command="out" divided> Log out </el-dropdown-item>
+								<el-dropdown-item @click="logout" divided>
+									<el-icon size="16"> <i-ep:switch-button /> </el-icon> Log out
+								</el-dropdown-item>
 							</el-dropdown-menu>
 						</template>
 					</el-dropdown>
-					<!-- </div> -->
 				</div>
 			</div>
 		</div>

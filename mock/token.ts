@@ -86,5 +86,15 @@ export default [
 				pk: "pk_test_51McKuKHLx89RNo7rjmtJAY6EJBzQtPYDtHx9mTOzDelZuMX3QLHJC0QKw1JzsUGAABkAZJlgGl9Rs0YUmnS07Fmc009HFDgNL6"
 			};
 		}
+	},
+	{
+		url: "/engula/fee/create-payment-intent",
+		method: "post",
+		response: () => {
+			return {
+				clientSecret:
+					"pk_test_51McKuKHLx89RNo7rjmtJAY6EJBzQtPYDtHx9mTOzDelZuMX3QLHJC0QKw1JzsUGAABkAZJlgGl9Rs0YUmnS07Fmc009HFDgNL6"
+			};
+		}
 	}
 ] as MockMethod[];

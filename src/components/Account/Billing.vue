@@ -21,7 +21,7 @@
 	</div>
 
 	<div class="container mx-auto !max-w-screen-xl py-10 bg-white">
-		<el-table :data="tableListData" v-bind="tableStyle" @row-click="rowClick">
+		<el-table :data="tableListData" v-bind="tableStyle">
 			<el-table-column prop="cacheServiceName" label="Name" />
 			<el-table-column prop="date" label="Date">
 				<template #default="{ row }"> {{ dayjs(row.monthStr).format("YYYY MMM") }}</template>
@@ -36,7 +36,7 @@
 			<el-table-column prop="isPaid" label="IS Paid">
 				<template #default="{ row }">
 					<el-button v-if="row.isPaid" type="info" disable text>success</el-button>
-					<el-button v-else type="success" plain> Pay </el-button>
+					<el-button v-else type="success" plain @click="handlePayFor(row)"> Pay </el-button>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -53,13 +53,10 @@
 import { ref } from "vue";
 import { dayjs } from "element-plus";
 import { tableStyle } from "#/consts";
+import { FeeOrg } from "#/cache";
 import { getCacheList, getFeeOrgList } from "@/api/cache";
-import { striptPk } from "@/api/stript";
+import { striptPk, getClientSecret } from "@/api/stript";
 import CardDialog from "./CardDialog.vue";
-
-const rowClick = (row, column, event) => {
-	console.log("rowClick >>>", row, column, event);
-};
 
 const addVisible = ref(false);
 const tableListData = ref();
@@ -71,6 +68,14 @@ getFeeOrgList().then((res) => {
 	tableListData.value = res;
 });
 striptPk().then((res) => (pk.value = res.pk));
+
+function handlePayFor(row: FeeOrg) {
+	const { cacheServiceId, monthStr, fee, isPaid } = row;
+	getClientSecret({ cacheServiceId, monthStr }).then((res) => {
+		console.log("getClientSecret >>>", res);
+	});
+	// console.log("handlePayFor >>>", row, cacheServiceId, monthStr, fee, isPaid);
+}
 
 function showDialog() {
 	addCardRef.value.initStripe();
