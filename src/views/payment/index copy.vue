@@ -159,21 +159,21 @@ initStripe();
 <style lang="scss" scoped>
 .pay-page {
 	display: flex;
-	align-content: center;
 	justify-content: center;
 	width: 100vw;
 	height: 100vh;
-	font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 	font-size: 16px;
+	font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	align-content: center;
 	-webkit-font-smoothing: antialiased;
 	form {
-		align-self: center;
+		padding: 40px;
 		width: 30vw;
 		min-width: 500px;
-		padding: 40px;
 		border-radius: 7px;
-		box-shadow: 0 0 0 0.5px rgb(50 50 93 / 10%), 0 2px 5px 0 rgb(50 50 93 / 10%),
-			0 1px 1.5px 0 rgb(0 0 0 / 7%);
+		box-shadow: 0 0 0 0.5px rgb(50 50 93 / 0.1), 0 2px 5px 0 rgb(50 50 93 / 0.1),
+			0 1px 1.5px 0 rgb(0 0 0 / 0.07);
+		align-self: center;
 	}
 }
 </style>

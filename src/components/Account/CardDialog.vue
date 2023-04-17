@@ -1,15 +1,19 @@
 <template>
-	<el-dialog :modelValue="modelValue" title="Payment Information" class="!w-8/10 md:!w-[540px] !rounded-lg">
+	<el-dialog
+		:modelValue="modelValue"
+		:before-close="handleClose"
+		title="Payment Information"
+		class="!w-8/10 md:!w-[540px] !rounded-lg"
+	>
 		<div class="form">
 			<el-form label-position="top" label-width="100px" ref="cardFormRef" :model="cardForm">
-				<div class="alert-base info text-info-8 mb-5">
+				<!-- 	<div class="alert-base info text-info-8 mb-5">
 					<p>
 						This credit card will be used for your personal account. If you want to use it under a team account, switch to your
 						team first.
 					</p>
 					<i-ep:close class="ep_close" />
-				</div>
-
+				</div> 	-->
 				<el-form-item label="Credit Card">
 					<div id="card" class="mb-2 w-full"></div>
 				</el-form-item>
@@ -20,16 +24,16 @@
 
 				<div class="my-collapse !mb-5">
 					<div class="collapse-item">
-						<div class="header" @click="coll = !coll">
+						<div class="header" @click="moreInfo = !moreInfo">
 							<i-ep:arrow-right
 								class="ep_close !text-base mr-3"
 								:class="{
-									'rotate-90 transition-all decoration-300': coll
+									'rotate-90 transition-all decoration-300': moreInfo
 								}"
 							/>
 							<span class="ant-collapse-header-text">Billing Details</span>
 						</div>
-						<div class="content p-4" v-show="coll">
+						<div class="content p-4" v-show="moreInfo">
 							<el-form-item label="Country">
 								<el-select v-model="cardForm.country" clearable filterable placeholder="Select cloud provider" class="w-full">
 									<el-option v-for="item in selectCountry" :key="item" :label="item" :value="item" />
@@ -61,7 +65,7 @@
 		</div>
 		<template #footer>
 			<span class="dialog-footer">
-				<el-button @click="$emit('cancel')">Cancel</el-button>
+				<el-button @click="handleCancel">Cancel</el-button>
 				<el-button type="primary" @click="$emit('confirm')"> Add Your Card </el-button>
 			</span>
 		</template>
@@ -73,8 +77,23 @@ import { loadStripe, Stripe, StripeElementsOptionsClientSecret, StripeElements, 
 import { reactive, ref } from "vue";
 import { countryList } from "#/consts";
 
-const coll = ref(false);
+const props = defineProps({
+	modelValue: {
+		type: Boolean,
+		default: false
+	},
+	pk: {
+		type: String,
+		default: ""
+	},
+	clientSecret: {
+		type: String,
+		default: ""
+	}
+});
+const moreInfo = ref(false);
 const selectCountry = reactive(countryList);
+
 const cardForm = reactive({
 	country: "",
 	cardId: "",
@@ -86,21 +105,22 @@ const cardForm = reactive({
 	tax: ""
 });
 
-// publishable API key
-const key = "pk_test_51MdVvdKtlgGSFCEP8CGyhnrD0ve2sxuVjdF7AMrmYdoJxXDGwEdHbXqlJY2IkKWy21xsEDdr9ZSiIrVDZHvjSkDt000ZkK5hih";
-
-const options = {
-	locale: "auto",
-	appearance: { theme: "stripe" },
-	clientSecret: "pi_3MrF95KtlgGSFCEP02yKPSIs_secret_Gltf2AZjucRdxr5CICLNB15Tz"
-} as StripeElementsOptionsClientSecret;
-
 let stripe: Stripe;
 let elements: StripeElements;
 let cardElement: StripeCardElement;
 
 async function initStripe() {
-	stripe = (await loadStripe(key)) as Stripe;
+	if (!props.pk || !props.clientSecret || stripe) {
+		return;
+	}
+	const options = {
+		locale: "auto",
+		appearance: { theme: "stripe" },
+		clientSecret: props.clientSecret
+	} as StripeElementsOptionsClientSecret;
+
+	stripe = (await loadStripe(props.pk)) as Stripe;
+
 	elements = stripe.elements(options);
 	cardElement = elements.create("card", {
 		hidePostalCode: true,
@@ -113,7 +133,7 @@ async function initStripe() {
 
 async function handleSubmit(e: Event) {
 	e.preventDefault();
-	const { error, paymentIntent } = await stripe.confirmCardPayment(options.clientSecret as string, {
+	const { error, paymentIntent } = await stripe.confirmCardPayment(props.clientSecret as string, {
 		payment_method: {
 			card: cardElement,
 			billing_details: {
@@ -129,9 +149,15 @@ async function handleSubmit(e: Event) {
 	}
 }
 
-defineProps(["modelValue"]);
-defineEmits(["update:modelValue", "cancel", "confirm"]);
-defineExpose({ coll, handleSubmit });
+const emits = defineEmits(["update:modelValue", "confirm"]);
+defineExpose({ moreInfo, handleSubmit, initStripe });
+
+const handleClose = (done: () => void) => {
+	emits("update:modelValue", false);
+	done();
+};
+
+const handleCancel = () => emits("update:modelValue", false);
 </script>
 <style scoped>
 .dialog-footer button:first-child {
@@ -145,8 +171,8 @@ defineExpose({ coll, handleSubmit });
 	padding: 0;
 	margin: 0;
 	font-size: 14px;
-	color: rgb(0 0 0 / 88%);
-	background-color: rgb(0 0 0 / 2%);
+	color: rgb(0 0 0 / 0.88);
+	background-color: rgb(0 0 0 / 0.02);
 	border: 1px solid #d9d9d9;
 	border-bottom: 0;
 	border-radius: 8px;
@@ -165,12 +191,12 @@ defineExpose({ coll, handleSubmit });
 			align-items: flex-start;
 			padding: 12px 16px;
 			line-height: 1.58;
-			color: rgb(0 0 0 / 80%);
+			color: rgb(0 0 0 / 0.8);
 			cursor: pointer;
 			transition: all 0.3s, visibility 0s;
 		}
 		.content {
-			color: rgb(0 0 0 / 88%);
+			color: rgb(0 0 0 / 0.88);
 			background-color: #ffffff;
 			border-top: 1px solid #d9d9d9;
 			border-radius: 0 0 8px 8px;
@@ -182,10 +208,10 @@ defineExpose({ coll, handleSubmit });
 .ep_close {
 	display: inline;
 	font-size: 24px;
-	color: rgb(0 0 0 / 45%);
+	color: rgb(0 0 0 / 0.45);
 	transition: color 0.2s;
 	&:hover {
-		color: rgb(0 0 0 / 88%);
+		color: rgb(0 0 0 / 0.88);
 	}
 }
 </style>

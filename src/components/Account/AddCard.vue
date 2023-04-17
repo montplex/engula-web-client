@@ -136,8 +136,8 @@ async function handleSubmit(e: Event) {
 	padding: 0;
 	margin: 0;
 	font-size: 14px;
-	color: rgb(0 0 0 / 88%);
-	background-color: rgb(0 0 0 / 2%);
+	color: rgb(0 0 0 / 0.88);
+	background-color: rgb(0 0 0 / 0.02);
 	border: 1px solid #d9d9d9;
 	border-bottom: 0;
 	border-radius: 8px;
@@ -156,12 +156,12 @@ async function handleSubmit(e: Event) {
 			align-items: flex-start;
 			padding: 12px 16px;
 			line-height: 1.58;
-			color: rgb(0 0 0 / 80%);
+			color: rgb(0 0 0 / 0.8);
 			cursor: pointer;
 			transition: all 0.3s, visibility 0s;
 		}
 		.content {
-			color: rgb(0 0 0 / 88%);
+			color: rgb(0 0 0 / 0.88);
 			background-color: #ffffff;
 			border-top: 1px solid #d9d9d9;
 			border-radius: 0 0 8px 8px;
@@ -170,20 +170,20 @@ async function handleSubmit(e: Event) {
 	}
 }
 .form {
-	align-self: center;
+	padding: 40px;
 	width: 30vw;
 	min-width: 500px;
-	padding: 40px;
 	border-radius: 7px;
-	box-shadow: 0 0 0 0.5px rgb(50 50 93 / 10%), 0 2px 5px 0 rgb(50 50 93 / 10%), 0 1px 1.5px 0 rgb(0 0 0 / 7%);
+	box-shadow: 0 0 0 0.5px rgb(50 50 93 / 0.1), 0 2px 5px 0 rgb(50 50 93 / 0.1), 0 1px 1.5px 0 rgb(0 0 0 / 0.07);
+	align-self: center;
 }
 .ep_close {
 	display: inline;
 	font-size: 24px;
-	color: rgb(0 0 0 / 45%);
+	color: rgb(0 0 0 / 0.45);
 	transition: color 0.2s;
 	&:hover {
-		color: rgb(0 0 0 / 88%);
+		color: rgb(0 0 0 / 0.88);
 	}
 }
 </style>

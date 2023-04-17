@@ -236,4 +236,27 @@ let country = {
 
 const countryList = Object.values(country);
 
-export { country, countryList };
+const tableStyle: any = {
+	style: {
+		width: "100%",
+		textAlign: "start",
+		borderRadius: "8px 8px 0 0",
+		borderCollapse: "separate",
+		borderSpacing: 0
+	},
+	tableLayout: "fixed",
+	headerCellStyle: {
+		color: "rgba(0, 0, 0, 0.88)",
+		fontWeight: 600,
+		textAlign: "start",
+		background: "#fafafa",
+		padding: "12px 8px",
+		borderBottom: "1px solid #f0f0f0"
+	},
+	cellStyle: {
+		padding: "12px 8px",
+		borderBottom: "1px solid #f0f0f0"
+	}
+};
+
+export { country, countryList, tableStyle };

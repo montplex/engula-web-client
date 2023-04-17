@@ -1,6 +1,12 @@
 import { defineStore } from "pinia";
 import { getCacheList, cacheOne, getTokenList, deleteToken } from "@/api/cache";
-import { ICacheOneRes, ICacheListItem, CloudProviderItem, ItokenItem, CacheByIdParams } from "#/cache";
+import {
+	ICacheOneRes,
+	ICacheListItem,
+	CloudProviderItem,
+	ItokenItem,
+	CacheByIdParams
+} from "#/cache";
 import { getCloudProviderList } from "@/api/cache";
 
 interface IcacheStore {
@@ -27,15 +33,21 @@ export const cacheStore = defineStore({
 		async setCacheList(loadding: boolean) {
 			const res = await getCacheList(loadding);
 			this.serviceList = res.list;
-			this.filterList = res.list.filter((item) => item.status != "-1" && item.status != "-10");
+			this.filterList = res.list.filter(
+				(item) => item.status != "-1" && item.status != "-10"
+			);
 			return res.list;
 		},
 		filterCacheList(e: string, selected: any) {
-			const data = this.filterList.filter((item) => item.name.indexOf(e) !== -1);
+			const data = this.filterList.filter(
+				(item) => item.name.indexOf(e) !== -1
+			);
 
 			// this.serviceList.filter((item) => ["-1", "-10"].includes(selected == 1 ? !item.status : (item.status as any)));
 			const list = this.serviceList.filter((item) =>
-				selected == 1 ? item.status != "-1" && item.status != "-10" : ["-1", "-10"].includes(item.status as any)
+				selected == 1
+					? item.status != "-1" && item.status != "-10"
+					: ["-1", "-10"].includes(item.status as any)
 			);
 
 			this.filterList = e ? data : list;
@@ -47,7 +59,9 @@ export const cacheStore = defineStore({
 		},
 		filterRegions(cloudProvider: string) {
 			let regionObj: any = {};
-			this.regionList.map((item) => item.regions && (regionObj[cloudProvider] = item.regions));
+			this.regionList.map(
+				(item) => item.regions && (regionObj[cloudProvider] = item.regions)
+			);
 			console.log("regionObj", regionObj);
 			return regionObj;
 		},
@@ -67,7 +81,9 @@ export const cacheStore = defineStore({
 		deleteTokenList(id: number) {
 			this.tokenList = this.tokenList.filter((item) => item.id !== id);
 			deleteToken(id).then((res) => {
-				res.ok ? ElMessage.success("Delete completed") : ElMessage.error("Delete failed");
+				res.ok
+					? ElMessage.success("Delete completed")
+					: ElMessage.error("Delete failed");
 			});
 		},
 		getTokenByid(id: number) {

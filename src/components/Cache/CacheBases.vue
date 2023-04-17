@@ -164,7 +164,7 @@
 				<h4 :id="titleId" class="font-semibold ml-2">You can create 5 cache service in free tier.</h4>
 			</div>
 		</template>
-		<div class="info-text pl-9 text-start pb-0">
+		<div class="text-info-88 pl-9 text-start pb-0 text-sm">
 			You can <a class="is-link" href="#">add a payment method</a> to upgrade your plan and create more cache services.
 		</div>
 		<template #footer>
@@ -173,6 +173,18 @@
 			</span>
 		</template>
 	</el-dialog>
+
+	<!-- 	<el-dialog v-model="createSuccess" width="26%" :show-close="false" class="br-8">
+		<div>
+			<span class="text-black text-base font-semibold">Database is being prepared for you...</span>
+			<div class="pt-5 pb-2">
+				width: 28%;height: 8px;background-image: linear-gradient(to right, rgb(167, 243, 208) 0%, rgb(5, 150, 105) 100%); 
+				<el-progress :percentage="100" :stroke-width="15" :text-inside="true" :indeterminate="true" :duration="5">
+					<span></span>
+				</el-progress>
+			</div>
+		</div>
+	</el-dialog> -->
 </template>
 
 <script setup lang="ts">
@@ -194,6 +206,7 @@ const counDown = ref(0);
 const store = cacheStore();
 const router = useRouter();
 const addLoading = ref(false);
+const createSuccess = ref(false);
 
 const addForm = ref<AddCacheParams>({
 	cloudProvider: "",
@@ -203,14 +216,21 @@ const addForm = ref<AddCacheParams>({
 	primaryZone: ""
 });
 const { pause, resume } = useIntervalFn(
-	() => {
+	async () => {
 		if (counDown.value <= 0) pause();
 		else {
-			counDown.value -= 5;
-			store.setCacheList(false);
+			counDown.value -= 3;
+			await store.setCacheList(false);
+			if (store.serviceList.length > 0) {
+				const cache = store.serviceList.find((item) => item.name === addForm.value.name);
+				if (cache!.status === 1) {
+					pause();
+					createSuccessMsg();
+				}
+			}
 		}
 	},
-	5000,
+	3000,
 	{ immediate: false }
 );
 const region = computed(() => {
@@ -229,7 +249,7 @@ const selectVal = ref<string | number>(1);
 const addFormRef = ref<FormInstance>();
 
 /* 新建 Cache  */
-const createCache = () => {
+const createCache = async () => {
 	resetForm(addFormRef.value);
 	/* 最多只能创建五个正在运行的 cache */
 	const isCreate = store.serviceList.reduce((sum, item) => (item.status === 1 ? sum + 1 : sum + 0), 0);
@@ -245,9 +265,9 @@ const addCallback = () => {
 	addCache(addForm.value)
 		.then((res) => {
 			if (res.id) {
+				creattingMsg();
+				counDown.value = 36;
 				store.setCacheList(false);
-				ElMessage.success("Create successfully");
-				counDown.value = 35;
 				resume();
 			}
 		})
@@ -256,6 +276,23 @@ const addCallback = () => {
 			addVisible.value = false;
 			addLoading.value = false;
 		});
+};
+
+const createSuccessMsg = () => {
+	ElNotification({
+		title: "Success",
+		message: "create successfully",
+		position: "bottom-right"
+	});
+};
+
+const creattingMsg = () => {
+	ElNotification({
+		title: "Success",
+		message: "Database is being prepared for you...",
+		type: "success",
+		position: "bottom-right"
+	});
 };
 
 /* 去详情页 */
@@ -299,7 +336,7 @@ function rStatusChange(val: any) {
 	align-items: center;
 	margin-bottom: 0.25rem;
 	font-weight: 550;
-	color: rgb(0 0 0 / 88%);
+	color: rgb(0 0 0 / 0.88);
 }
 .base-btn-hover {
 	&:focus,
@@ -315,5 +352,9 @@ function rStatusChange(val: any) {
 }
 .circular {
 	animation: loading-rotate 2s linear infinite;
+}
+
+.el-dialog__body {
+	padding-top: 0;
 }
 </style>

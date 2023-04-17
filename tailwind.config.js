@@ -11,7 +11,8 @@ module.exports = {
 				"info-88": "rgba(0, 0, 0, 0.88)",
 				"w-80": "rgba(255, 255, 255, 0.8)",
 				"w-60": "rgba(255, 255, 255, 0.8)",
-				label: "rgba(132, 133, 135, 1)"
+				label: "rgba(132, 133, 135, 1)",
+				"lable-70": "#ffffffa3"
 			},
 			width: {
 				"25r": "25rem",
@@ -20,6 +21,12 @@ module.exports = {
 			},
 			height: {
 				"25r": "25rem"
+			},
+			backgroundColor: {
+				"ly-mian": "#050505",
+				"ly-check": "rgba(255, 255, 255, 0.03)",
+				"ly-info-70": "rgba(255, 255, 255, 0.064)",
+				"ly-line": "rgba(255, 255, 255, 0.06)"
 			}
 		}
 	},

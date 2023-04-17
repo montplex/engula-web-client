@@ -19,13 +19,23 @@
 				</el-tooltip>
 			</div>
 			<!-- code -->
-			<highlightjs :language="language" :code="codes" class="py-2 rounded-lg" />
+			<highlight language="javascript" :code="codes" class="py-2 rounded-lg" />
 		</div>
 	</div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import "highlight.js/styles/atom-one-dark.css";
+import "highlight.js/lib/common";
+import hljsVuePlugin from "@highlightjs/vue-plugin";
+export default {
+	components: {
+		highlight: hljsVuePlugin.component
+	}
+};
+</script>
+
+<script setup lang="ts">
 import { handleCopyClick } from "@/utils/util";
 import { computed, ref } from "vue";
 

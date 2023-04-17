@@ -77,5 +77,14 @@ export default [
 				ok: true
 			};
 		}
+	},
+	{
+		url: "/engula/fee/stripe/pk",
+		method: "get",
+		response: () => {
+			return {
+				pk: "pk_test_51McKuKHLx89RNo7rjmtJAY6EJBzQtPYDtHx9mTOzDelZuMX3QLHJC0QKw1JzsUGAABkAZJlgGl9Rs0YUmnS07Fmc009HFDgNL6"
+			};
+		}
 	}
 ] as MockMethod[];

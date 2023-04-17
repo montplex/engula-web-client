@@ -15,235 +15,75 @@
 						</p>
 					</div>
 				</div>
-				<el-button @click="addCardhandle" type="success">Add new card</el-button>
+				<el-button @click="showDialog" type="success">Add new card</el-button>
 			</template>
 		</el-empty>
 	</div>
 
 	<div class="container mx-auto !max-w-screen-xl py-10 bg-white">
-		<el-table :data="tableData" v-bind="tabStyle">
-			<el-table-column prop="date" label="Date" />
-			<el-table-column prop="const" label="Const">
-				<template #default="scope"> ${{ scope.row.const }}</template>
+		<el-table :data="tableListData" v-bind="tableStyle" @row-click="rowClick">
+			<el-table-column prop="cacheServiceName" label="Name" />
+			<el-table-column prop="date" label="Date">
+				<template #default="{ row }"> {{ dayjs(row.monthStr).format("YYYY MMM") }}</template>
 			</el-table-column>
-			<el-table-column prop="status" label="Status">
-				<template #default="scope">
-					<el-tag type="warning">
-						{{ scope.row.status }}
-					</el-tag>
+
+			<!-- <el-table-column prop="readByte" label="Readbyte" /> -->
+
+			<el-table-column prop="fee" label="Fee">
+				<template #default="scope"> $ {{ scope.row.fee }}</template>
+			</el-table-column>
+
+			<el-table-column prop="isPaid" label="IS Paid">
+				<template #default="{ row }">
+					<el-button v-if="row.isPaid" type="info" disable text>success</el-button>
+					<el-button v-else type="success" plain> Pay </el-button>
 				</template>
 			</el-table-column>
 		</el-table>
-		<div class="flex justify-end mb-4 mt-6">
+		<!-- 分页 -->
+		<!-- <div class="flex justify-end mb-4 mt-6">
 			<el-pagination background :hide-on-single-page="false" :total="100" layout="prev, pager, next" />
-		</div>
+		</div> -->
 	</div>
 
-	<el-dialog :modelValue="addVisible" title="Payment Information" class="!w-8/10 md:!w-[540px] !rounded-lg">
-		<div class="form">
-			<el-form label-position="top" label-width="100px" ref="cardFormRef" :model="cardForm">
-				<div class="alert-base info text-info-8 mb-5">
-					<p>
-						This credit card will be used for your personal account. If you want to use it under a team account, switch to your
-						team first.
-					</p>
-					<i-ep:close class="ep_close" />
-				</div>
-
-				<el-form-item label="Credit Card">
-					<div id="card" class="mb-2 w-full"></div>
-				</el-form-item>
-
-				<el-form-item label="Name/Company">
-					<el-input v-model="cardForm.name" placeholder="My Name / My Company Name" />
-				</el-form-item>
-
-				<div class="my-collapse !mb-5">
-					<div class="collapse-item">
-						<div class="header" @click="coll = !coll">
-							<i-ep:arrow-right
-								class="ep_close !text-base mr-3"
-								:class="{
-									'rotate-90 transition-all decoration-300': coll
-								}"
-							/>
-							<span class="ant-collapse-header-text">Billing Details</span>
-						</div>
-						<div class="content p-4" v-show="coll">
-							<el-form-item label="Country">
-								<el-select v-model="cardForm.country" clearable filterable placeholder="Select cloud provider" class="w-full">
-									<el-option v-for="item in selectCountry" :key="item" :label="item" :value="item" />
-								</el-select>
-							</el-form-item>
-							<div class="flex gap-2">
-								<el-form-item label="State/Province" class="w-full">
-									<el-input v-model="cardForm.state" placeholder="Washington" />
-								</el-form-item>
-								<el-form-item label="Zip Code" class="w-full">
-									<el-input v-model="cardForm.zip" placeholder="eg. 98004" />
-								</el-form-item>
-							</div>
-
-							<el-form-item label="City">
-								<el-input v-model="cardForm.city" placeholder="Seattle" />
-							</el-form-item>
-
-							<el-form-item label="Street Address">
-								<el-input v-model="cardForm.address" placeholder="Seattle" />
-							</el-form-item>
-							<el-form-item label="Tax ID (Optional)">
-								<el-input v-model="cardForm.tax" placeholder="eg. 4567891233" />
-							</el-form-item>
-						</div>
-					</div>
-				</div>
-			</el-form>
-		</div>
-		<template #footer>
-			<span class="dialog-footer">
-				<el-button @click="addVisible = false">Cancel</el-button>
-				<el-button type="primary" @click="addVisible = false"> Add Your Card </el-button>
-			</span>
-		</template>
-	</el-dialog>
+	<CardDialog v-model="addVisible" :pk="key" :client-secret="clientSecret" @confirm="addCardhandle" ref="addCardRef" />
 </template>
 
 <script setup lang="ts">
-import { loadStripe, Stripe, StripeElementsOptionsClientSecret, StripeElements, StripeCardElement } from "@stripe/stripe-js";
-import { reactive, ref, nextTick, onUnmounted } from "vue";
-import { countryList } from "#/consts";
+import { ref } from "vue";
+import { dayjs } from "element-plus";
+import { tableStyle } from "#/consts";
+import { getCacheList, getFeeOrgList } from "@/api/cache";
+import { striptPk } from "@/api/stript";
+import CardDialog from "./CardDialog.vue";
 
-const addVisible = ref(false);
-
-const tabStyle: any = {
-	style: {
-		width: "100%",
-		textAlign: "start",
-		borderRadius: "8px 8px 0 0",
-		borderCollapse: "separate",
-		borderSpacing: 0
-	},
-	tableLayout: "fixed",
-	headerCellStyle: {
-		color: "rgba(0, 0, 0, 0.88)",
-		fontWeight: 600,
-		textAlign: "start",
-		background: "#fafafa",
-		padding: "12px 8px",
-		borderBottom: "1px solid #f0f0f0"
-	},
-	cellStyle: {
-		padding: "12px 8px",
-		borderBottom: "1px solid #f0f0f0"
-	}
+const rowClick = (row, column, event) => {
+	console.log("rowClick >>>", row, column, event);
 };
 
-const tableData = [
-	{
-		date: "2016-05-03",
-		const: "68",
-		status: "SCHEDULED"
-	},
-	{
-		date: "2016-05-01",
-		const: "12",
-		status: "SCHEDULED"
-	},
-	{
-		date: "2016-04-27",
-		const: "34.8",
-		status: "SCHEDULED"
-	},
-	{
-		date: "2016-04-11",
-		const: "2.9",
-		status: "SCHEDULED"
-	},
-	{
-		date: "2016-03-03",
-		const: "11",
-		status: "SCHEDULED"
-	}
-];
+const addVisible = ref(false);
+const tableListData = ref();
+const pk = ref("");
+const addCardRef = ref();
 
-function addCardhandle() {
-	initSt();
+getFeeOrgList().then((res) => {
+	console.log("getFeeOrgList >>>", res);
+	tableListData.value = res;
+});
+striptPk().then((res) => (pk.value = res.pk));
+
+function showDialog() {
+	addCardRef.value.initStripe();
 	addVisible.value = true;
 }
 
-const coll = ref(false);
-
-const selectCountry = reactive(countryList);
-
-const cardForm = reactive({
-	country: "",
-	cardId: "",
-	name: "",
-	address: "",
-	city: "",
-	state: "",
-	zip: "",
-	tax: ""
-});
+function addCardhandle() {
+	console.log("addCardhandleSubmit >>>");
+}
 
 // publishable API key
 const key = "pk_test_51MdVvdKtlgGSFCEP8CGyhnrD0ve2sxuVjdF7AMrmYdoJxXDGwEdHbXqlJY2IkKWy21xsEDdr9ZSiIrVDZHvjSkDt000ZkK5hih";
-
-const options = {
-	locale: "auto",
-	appearance: { theme: "stripe" },
-	clientSecret: "pi_3MrF95KtlgGSFCEP02yKPSIs_secret_Gltf2AZjucRdxr5CICLNB15Tz"
-} as StripeElementsOptionsClientSecret;
-
-let stripe: Stripe;
-let elements: StripeElements;
-let cardElement: StripeCardElement;
-
-const initSt = async () => {
-	stripe = (await loadStripe(key)) as Stripe;
-	elements = stripe.elements(options);
-	cardElement = elements.create("card", {
-		hidePostalCode: true,
-		classes: {
-			base: "h-9 border border-gray-300 rounded-lg px-2 py-2.5  bg-white"
-		}
-	});
-	cardElement.mount("#card");
-};
-
-// initSt();
-
-/* onUnmounted(() => {
-	nextTick(async () => {
-		stripe = (await loadStripe(key)) as Stripe;
-		elements = stripe.elements(options);
-		cardElement = elements.create("card", {
-			hidePostalCode: true,
-			classes: {
-				base: "h-9 border border-gray-300 rounded-lg px-2 py-2.5  bg-white"
-			}
-		});
-		cardElement.mount("#card");
-	});
-}); */
-
-async function handleSubmit(e: Event) {
-	e.preventDefault();
-	const { error, paymentIntent } = await stripe.confirmCardPayment(options.clientSecret as string, {
-		payment_method: {
-			card: cardElement,
-			billing_details: {
-				name: "lioayiyi"
-			}
-		}
-	});
-
-	if (error) {
-		console.log(error);
-	} else {
-		console.log(paymentIntent);
-	}
-}
+const clientSecret = "pi_3MrF95KtlgGSFCEP02yKPSIs_secret_Gltf2AZjucRdxr5CICLNB15Tz";
 </script>
 
 <style lang="scss">
@@ -275,60 +115,5 @@ async function handleSubmit(e: Event) {
 			font-weight: 700;
 		}
 	}
-}
-
-.my-collapse {
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
-	font-size: 14px;
-	color: rgb(0 0 0 / 88%);
-	background-color: rgb(0 0 0 / 2%);
-	border: 1px solid #d9d9d9;
-	border-bottom: 0;
-	border-radius: 8px;
-	.collapse-item {
-		&:last-child {
-			border-bottom: 1px solid #d9d9d9;
-			border-radius: 0 0 8px 8px;
-			.header {
-				border-radius: 0 0 8px 8px;
-			}
-		}
-		.header {
-			position: relative;
-			display: flex;
-			flex-wrap: nowrap;
-			align-items: flex-start;
-			padding: 12px 16px;
-			line-height: 1.58;
-			color: rgb(0 0 0 / 80%);
-			cursor: pointer;
-			transition: all 0.3s, visibility 0s;
-		}
-		.content {
-			color: rgb(0 0 0 / 88%);
-			background-color: #ffffff;
-			border-top: 1px solid #d9d9d9;
-			border-radius: 0 0 8px 8px;
-			transition: all 0.3s ease-in;
-		}
-	}
-}
-
-.ep_close {
-	display: inline;
-	font-size: 24px;
-	color: rgb(0 0 0 / 45%);
-	transition: color 0.2s;
-	&:hover {
-		color: rgb(0 0 0 / 88%);
-	}
-}
-</style>
-
-<style scoped>
-.dialog-footer button:first-child {
-	margin-right: 10px;
 }
 </style>

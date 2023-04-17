@@ -127,19 +127,19 @@ const cardForm = reactive({
 	.one-step {
 		display: flex;
 		align-items: center;
-		color: rgb(132 133 135 / 100%);
+		color: rgb(132 133 135 / 1);
 		&.active {
 			color: unset;
 		}
 		.step-icon {
+			margin-right: 0.5rem;
 			width: 20px;
 			height: 20px;
-			margin-right: 0.5rem;
-			line-height: 20px;
-			color: rgb(255 255 255 / 100%);
 			text-align: center;
+			color: rgb(255 255 255 / 1);
 			background-color: #c7c7c7;
 			border-radius: 50%;
+			line-height: 20px;
 
 			--tw-text-opacity: 1;
 		}
@@ -151,10 +151,10 @@ const cardForm = reactive({
 			cursor: pointer;
 		}
 		.line {
-			width: 80px;
-			height: 1px;
 			margin-right: 0.5rem;
 			margin-left: 0.5rem;
+			width: 80px;
+			height: 1px;
 			background-color: #e9eff6;
 		}
 	}

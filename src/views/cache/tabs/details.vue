@@ -166,11 +166,11 @@ export default {
 	font-size: 15px;
 	font-weight: 550;
 	line-height: 1.9rem;
-	color: rgb(0 0 0 / 88%);
+	color: rgb(0 0 0 / 0.88);
 	svg {
 		&:focus {
-			outline: none !important;
 			opacity: 0.7;
+			outline: none !important;
 		}
 
 		font-size: 16px;
@@ -193,7 +193,7 @@ export default {
 	padding: 8px 12px;
 	font-size: 14px;
 	line-height: 1.6rem;
-	color: rgb(0 0 0 / 88%);
+	color: rgb(0 0 0 / 0.88);
 	background-color: #fffbe6;
 	border: 1px solid #ffe58f;
 	border-radius: 8px;
@@ -203,8 +203,8 @@ export default {
 		padding-block: 0.2em 0.1em;
 		padding-inline: 0.6em;
 		font-size: 14px;
-		background: rgb(150 150 150 / 10%);
-		border: 1px solid rgb(100 100 100 / 20%);
+		background: rgb(150 150 150 / 0.1);
+		border: 1px solid rgb(100 100 100 / 0.2);
 		border-radius: 3px;
 	}
 	strong {

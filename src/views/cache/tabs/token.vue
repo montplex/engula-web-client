@@ -151,7 +151,7 @@ const fromUpdate = reactive<updateTokenParams>({
 });
 
 async function addTokenBtnClick() {
-	await store.setCacheList();
+	await store.setCacheList(false);
 	resetForm(addFormRef.value);
 	addVisible.value = true;
 }
@@ -210,7 +210,7 @@ function powerCache() {
 	&.del-btn {
 		color: #dc3545;
 		background-color: #f6f8fa;
-		border-color: rgb(27 31 36 / 15%);
+		border-color: rgb(27 31 36 / 0.15);
 		&:hover {
 			color: #f6f8fa;
 			background-color: #dc3545;
