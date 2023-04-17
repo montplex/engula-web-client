@@ -78,9 +78,15 @@
 						</div>
 					</header> -->
 					<!-- Buttom Chart-->
-					<!-- <footer class="relative hidden h-8 overflow-hidden sm:block">
-						<div class="absolute left-6 right-6 top-0 bottom-0 h-8"></div>
-					</footer> -->
+					<!-- hidden sm:block -->
+					<footer class="cb-tip">
+						<div class="cb-tip bg-[#34d399eb]" v-if="item.status === 0">
+							<el-progress :percentage="100" :stroke-width="6" :text-inside="true" :indeterminate="true" :duration="10">
+								<span></span>
+							</el-progress>
+						</div>
+						<!-- <div>121312</div> -->
+					</footer>
 				</div>
 			</div>
 		</div>
@@ -173,18 +179,6 @@
 			</span>
 		</template>
 	</el-dialog>
-
-	<!-- 	<el-dialog v-model="createSuccess" width="26%" :show-close="false" class="br-8">
-		<div>
-			<span class="text-black text-base font-semibold">Database is being prepared for you...</span>
-			<div class="pt-5 pb-2">
-				width: 28%;height: 8px;background-image: linear-gradient(to right, rgb(167, 243, 208) 0%, rgb(5, 150, 105) 100%); 
-				<el-progress :percentage="100" :stroke-width="15" :text-inside="true" :indeterminate="true" :duration="5">
-					<span></span>
-				</el-progress>
-			</div>
-		</div>
-	</el-dialog> -->
 </template>
 
 <script setup lang="ts">
@@ -196,7 +190,7 @@ import { cacheStore } from "@/stores/cache";
 import { addCache } from "@/api/cache";
 import { AddCacheParams } from "#/cache";
 import { createCacheRules, resetForm, submit } from "@/utils/rules";
-import type { FormInstance } from "element-plus";
+import { ElMessage, ElNotification, FormInstance } from "element-plus";
 import { CachestatusTo, statusStyle } from "#/enum";
 import { useIntervalFn } from "@vueuse/core";
 
@@ -282,7 +276,8 @@ const createSuccessMsg = () => {
 	ElNotification({
 		title: "Success",
 		message: "create successfully",
-		position: "bottom-right"
+		position: "bottom-right",
+		type: "success"
 	});
 };
 
@@ -327,6 +322,22 @@ function rStatusChange(val: any) {
 </script>
 
 <style lang="scss">
+.cb-tip {
+	height: 6px;
+	border-radius: 0 0 0.5rem 0.5rem;
+	overflow: hidden;
+}
+.el-progress-bar {
+	border-radius: 0;
+	.el-progress-bar__outer {
+		border-radius: 0 0 100px 100px;
+		background-color: transparent;
+	}
+	.el-progress-bar__inner {
+		background-image: linear-gradient(to right, rgb(167, 243, 208) 0%, rgb(5, 150, 105) 100%);
+	}
+}
+
 .br-8 {
 	border-radius: 8px;
 }
