@@ -1,5 +1,5 @@
 <template>
-	<div class="container mx-auto relative z-10 md:!px-8 px-6" >
+	<div class="container mx-auto relative z-10 md:!px-8 px-6">
 		<section class="see" style="padding-bottom: 140px">
 			<!-- <div class="__title">
         <div class="text-block text-sm">OVERVIEW</div>
@@ -57,7 +57,7 @@
 							</svg>
 						</div>
 						<div class="meta">
-							<div class="meta_title font-semibold text-[22px]">Redis Compatible</div>
+							<div class="meta_title font-semibold text-[22px]">{{ $t("home.cards.list.redis") }}</div>
 							<!-- <div class="meta_body text-base">
                 Our proprietary scanning tools monitor for security vulnerabilities continuously, so
                 you can rest easy knowing your Vue 2 application remains secure
@@ -86,7 +86,7 @@
 							</svg>
 						</div>
 						<div class="meta">
-							<div class="meta_title text-[22px]">Lower cost with zero effort</div>
+							<div class="meta_title text-[22px]">{{ $t("home.cards.list.effort") }}</div>
 							<!-- <div class="meta_body">
                 When we find a vulnerability or incompatibility, we create a fix, test it, and
                 release it within 14 days of discovery
@@ -114,7 +114,7 @@
 							</svg>
 						</div>
 						<div class="meta">
-							<div class="meta_title text-[22px]">Any Scale , any place , any cloud</div>
+							<div class="meta_title text-[22px]">{{ $t("home.cards.list.cloud") }}</div>
 							<!-- <div class="meta_body">
                 With our on-prem license delivery, you don’t have to worry about any package data
                 leaving your network when you install NES Vue 2.

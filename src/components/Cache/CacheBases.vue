@@ -95,7 +95,7 @@
 	</div>
 
 	<!-- add-dialog Start -->
-	<el-dialog v-model="addVisible" title="Create Database" width="520px" style="border-radius: 8px">
+	<el-dialog v-model="addVisible" title=" Create Cache Service " width="520px" style="border-radius: 8px">
 		<el-form
 			label-position="top"
 			label-width="100px"
@@ -136,9 +136,9 @@
 				</el-select>
 			</el-form-item>
 
-			<div class="my-2 text-xs">
+			<!-- <div class="my-2 text-xs">
 				<p class="text-gray-500">For best performance, select the region that is closer to your application.</p>
-			</div>
+			</div> -->
 
 			<el-form-item label="Primary Zone" prop="primaryZone" v-show="addForm.region">
 				<el-select v-model="addForm.primaryZone" placeholder="Select Zones" class="w-full" :allow-create="true">
@@ -200,7 +200,6 @@ const counDown = ref(0);
 const store = cacheStore();
 const router = useRouter();
 const addLoading = ref(false);
-const createSuccess = ref(false);
 
 const addForm = ref<AddCacheParams>({
 	cloudProvider: "",

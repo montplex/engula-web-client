@@ -1,5 +1,5 @@
 <template>
-	<div class="mt-6 sm:mt-8 w-full">
+	<!-- <div class="mt-6 sm:mt-8 w-full">
 		<el-empty class="rounded-lg bg-gray-50 !p-14">
 			<template #image>
 				<svgIcon icon="empty-cache" style="width: 100%; height: 90px" />
@@ -18,7 +18,7 @@
 				<el-button @click="showDialog" type="success">Add new card</el-button>
 			</template>
 		</el-empty>
-	</div>
+	</div> -->
 
 	<div class="container mx-auto !max-w-screen-xl py-10 bg-white">
 		<el-table :data="tableListData" v-bind="tableStyle">
@@ -46,7 +46,7 @@
 		</div> -->
 	</div>
 
-	<CardDialog v-model="addVisible" :pk="key" :client-secret="clientSecret" @confirm="addCardhandle" ref="addCardRef" />
+	<!-- <CardDialog v-model="addVisible" :pk="key" :client-secret="clientSecret" @confirm="addCardhandle" ref="addCardRef" /> -->
 </template>
 
 <script setup lang="ts">

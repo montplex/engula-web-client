@@ -23,10 +23,7 @@
 						</span>
 
 						<p class="leading-relaxed text-xl w-full md:w-[720px]">
-							Engula is a powerful multi-model database, built for the cloud, and designed to improve the development process of
-							traditional and modern applications. Engula’s premise is that developers should be able to build secure, modern,
-							collaborative applications without needing to build complicated backend APIs and database layers, and without being
-							forced into using a single data model or cloud platform.
+							{{ $t("home.about") }}
 						</p>
 					</div>
 				</div>
@@ -36,12 +33,12 @@
 			</div>
 		</div>
 		<div class="gradient-border division-line"></div>
-		<Team />
+		<!-- <Team /> -->
 	</div>
 </template>
 
 <script setup lang="ts">
-import Team from "./Team.vue";
+// import Team from "./Team.vue";
 </script>
 
 <style lang="scss" scoped></style>

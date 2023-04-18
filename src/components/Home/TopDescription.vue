@@ -6,7 +6,7 @@
 				<h1 class="text-6xl font-semibold text-white">Engula</h1>
 			</div> -->
 			<div class="flex mt-14 justify-center items-stretch">
-				<h1 class="!text-6xl font-semibold text-white">Serverless Database</h1>
+				<h1 class="!text-6xl font-semibold text-white text-center">{{ $t("home.banner.title") }}</h1>
 				<!-- <h3 class="md:text-4xl text-[26px] text-white text-center"></h3> -->
 			</div>
 
@@ -23,7 +23,7 @@
         </p>
       </div> -->
 			<div class="mt-16 mx-auto text-center">
-				<a class="play-btn" href="https://dev.montplex.com" target="_blank">GET STATRED</a>
+				<a class="play-btn" href="https://dev.montplex.com" target="_blank">{{ $t("home.banner.button") }}</a>
 			</div>
 		</div>
 	</section>
