@@ -23,3 +23,5 @@ declare module "*.vue" {
 declare module "numeral";
 
 declare module "vue-web-terminal";
+
+declare module "vue3-pdfjs/esm";

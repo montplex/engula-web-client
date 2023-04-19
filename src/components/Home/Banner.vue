@@ -6,7 +6,7 @@
 				<div class="divBlock70"></div>
 			</div>
 			<div class="container mx-auto md:px-4 px-6 flex pt-20 flex-col justify-center items-center gap-3">
-				<div class="text-block text-5xl">Bilieve in Serverles</div>
+				<div class="text-block text-5xl">Believe in Serverless</div>
 				<!-- <div class="md:w-[600px] text-center pb-2" style="color: var(--my-text-main-color)">
 					{{ $t("home.cards.title") }}
 				</div> -->

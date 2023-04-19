@@ -1,6 +1,6 @@
 <template>
 	<section className="py-14 bg-ly-mian">
-		<div class="container mx-auto md:px-4 px-6 mt-[9rem]">
+		<div class="container mx-auto md:px-4 mt-[9rem]">
 			<!-- <div class="mt-[9rem]">
 				<div class="flex mt-16 justify-center items-stretch">
 					<img width="110" class="" src="@/assets/images/main-logo.png" alt="" />

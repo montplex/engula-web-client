@@ -1,18 +1,4 @@
 <template>
-	<div>
-		<el-button type="primary" @click="handleClick">打开PDF</el-button>
-	</div>
-</template>
-
-<script setup lang="ts">
-function handleClick() {
-	window.open("/static/pdf/web/viewer.html");
-}
-</script>
-
-<style lang="scss"></style>
-
-<!-- <template>
 	<VuePdf v-for="page in numOfPages" :key="page" :src="pdfSrc" :page="page" />
 </template>
 
@@ -40,4 +26,4 @@ export default {
 };
 </script>
 
-<style lang="scss"></style> -->
+<style lang="scss"></style>
