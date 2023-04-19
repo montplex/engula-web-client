@@ -35,7 +35,8 @@
 		"vite-plugin-mock": "^2.9.6",
 		"vue": "^3.2.37",
 		"vue-router": "^4.0.12",
-		"vue-web-terminal": "3"
+		"vue-web-terminal": "3",
+		"vue3-pdfjs": "^0.1.6"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^17.0.1",

@@ -11,14 +11,35 @@ export default {
 			name: "刷新",
 			refreshSuccess: "刷新成功",
 			refreshFail: "刷新失败",
-			refreshing: "刷新中",
-			refreshingTip: "刷新中，请稍后",
-			refreshTip: "刷新缓存列表"
+			refreshTip: "刷新列表"
 		},
-		searchPlaceholder: "请输入缓存名称",
-		running: "运行中",
-		Terminated: "已终止",
 		new: "新建",
-		regional: "区域"
+		createFrom: {
+			title: "创建缓存服务",
+			name: {
+				label: "名字",
+				placeholder: "请输入名字"
+			},
+			describes: {
+				label: "描述",
+				placeholder: "请输入描述"
+			},
+			cloudProvider: {
+				label: "云服务商",
+				placeholder: "请选择云服务商"
+			},
+			region: {
+				label: "Region",
+				placeholder: "Please select the region"
+			},
+			primaryZone: {
+				label: "Primary Zone",
+				placeholder: "Please select the primary zone"
+			}
+		},
+		btn: {
+			confirm: "Create",
+			cancel: "Cancel"
+		}
 	}
 };

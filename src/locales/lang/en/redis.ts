@@ -13,7 +13,6 @@ export default {
 			refreshFail: "refresh Fail",
 			refreshTip: "Refresh"
 		},
-		searchPlaceholder: "Search",
 		new: "Create",
 		createFrom: {
 			title: "Create Cache Service",

@@ -17,3 +17,5 @@ index.html
 commitlint.config.js
 lint-staged.config.js
 
+/public/pdf/*
+

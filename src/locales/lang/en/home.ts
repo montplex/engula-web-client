@@ -10,14 +10,13 @@ export default {
 		button: "GET STARTED"
 	},
 	cards: {
-		title:
-			"Engula provides low latency data, ease of use, and on-demand pricing, making it an excellent choice for serverless caching.",
+		title: "Beleive in Serverless",
 
 		button: "Learn More",
 		list: {
-			redis: "Redis Compatible",
-			effort: "Lower cost with zero effort",
-			cloud: "Any Scale , any place , any cloud"
+			redis: "Redis API Compatible",
+			effort: "Lower Cost With Zero Effort",
+			cloud: "Any Scale , Global Availability"
 		}
 	},
 	about:

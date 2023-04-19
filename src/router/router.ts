@@ -8,7 +8,7 @@ const routes = [
 	{
 		path: "/",
 		name: "Home",
-		component: Home,
+		component: Home
 		/* children: [
 			{
 				path: "/",
@@ -36,6 +36,11 @@ const routes = [
 		path: "/payment",
 		name: "Payment",
 		component: () => import("@/views/payment/index.vue")
+	},
+	{
+		path: "/pdf",
+		name: "PdfView",
+		component: () => import("@/views/Pdf/index.vue")
 	},
 	{
 		path: "/account",

@@ -88,7 +88,8 @@
 								</el-dropdown-item>
 								<!-- <el-dropdown-item> Integrations </el-dropdown-item> -->
 								<!-- <el-dropdown-item> Settings </el-dropdown-item> -->
-								<el-dropdown-item @click="logout" divided>
+								<el-dropdown-item command="pdfview"> PDF View </el-dropdown-item>
+								<el-dropdown-item command="out" divided>
 									<el-icon size="16"> <i-ep:switch-button /> </el-icon> Log out
 								</el-dropdown-item>
 							</el-dropdown-menu>
@@ -186,6 +187,9 @@ const handleMineCommand = (command: string) => {
 			break;
 		case "account":
 			router.push({ path: "/account" });
+			break;
+		case "pdfview":
+			router.push({ path: "/pdf" });
 			break;
 		default:
 			break;
