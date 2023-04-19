@@ -217,10 +217,10 @@
 	}
 }
 .navbar-mb {
-	@apply absolute top-[80px] inset-x-0 p-6 transition transform origin-top-right md:hidden;
+	@apply absolute top-[80px] inset-x-0 py-6 transition transform origin-top-right md:hidden;
 
 	.nav-mb-box {
-		@apply rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50;
+		@apply rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50 px-6;
 		background-color: var(--my-bg-light);
 	}
 
