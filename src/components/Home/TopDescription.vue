@@ -10,7 +10,7 @@
 					</div>
 				</div>
 			</div> -->
-			<div class="flex mt-14 justify-center flex-col items-stretch text-8xl gap-3 font-bold text-center">
+			<div class="flex mt-14 justify-center flex-col text-8xl gap-3 font-bold text-center">
 				<!-- Serverless Cache for Global Business -->
 				<div class="text-block">Serverless</div>
 				<div class="text-block">Cache</div>
