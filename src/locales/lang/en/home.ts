@@ -10,7 +10,7 @@ export default {
 		button: "GET STARTED"
 	},
 	cards: {
-		title: "Beleive in Serverless",
+		title: "Bilieve in Serverless",
 
 		button: "Learn More",
 		list: {
@@ -20,7 +20,7 @@ export default {
 		}
 	},
 	about:
-		"Engula is a powerful multi-model database, built for the cloud, and designed to improve the development process of traditional and modern applications. Engula’s premise is that developers should be able to build secure, modern, collaborative applications without needing to build complicated backend APIs and database layers, and without being forced into using a single data model or cloud platform.",
+		"The Montplex team has done a great job of designing a cache that is specifically suited for the cloud. Their cache is dynamic, pay-per-use, and performs exceptionally well. If you are looking for a scalable, cost-effective, and high-performance cache solution, then you should consider using Montplex serverless cache.",
 	team: {
 		title: "Meet the team",
 		subTitle:

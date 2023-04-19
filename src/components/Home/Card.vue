@@ -174,7 +174,7 @@ import About from "./About.vue";
 }
 .cardItem > .cardBox {
 	&.card {
-		@apply md:flex-col flex-row md:p-10 p-4;
+		@apply md:flex-col flex-row md:py-10 p-4;
 		.icon_8 {
 			@apply w-14 h-14 md:w-24 md:h-24;
 

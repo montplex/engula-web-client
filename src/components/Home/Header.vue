@@ -8,9 +8,9 @@
 						<a href="#" class="flex items-center">
 							<span class="sr-only">MontPlex</span>
 							<img src="@/assets/images/main-logo.png" alt="" />
-							<div class="flex items-center pl-2">
-								<span class="text-white font-semibold text-2xl">Mont</span>
-								<span class="text-block font-semibold !text-2xl">plex</span>
+							<div class="flex items-center pl-2 font-semibold text-2xl">
+								<span class="text-block">Mont</span>
+								<span class="text-block">plex</span>
 							</div>
 						</a>
 					</div>
@@ -68,7 +68,7 @@
 						</a>
 					</nav>
 					<div class="conlose">
-						<div>
+						<!-- <div>
 							<el-dropdown trigger="click">
 								<span class="text-white focus-visible:outline-none mr-10">
 									<svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="30" height="30" data-v-12008bb2="">
@@ -85,7 +85,7 @@
 									</el-dropdown-menu>
 								</template>
 							</el-dropdown>
-						</div>
+						</div> -->
 						<div class="cos-btn-home">
 							<div class="button-space items-center" @click="handleConsole">
 								<div class="text-block">Console</div>

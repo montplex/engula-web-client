@@ -126,7 +126,7 @@
 	<!-- Pricing Mobie Start -->
 	<!-- md:hidden block -->
 	<div class="">
-		<div class="cardContent md:flex-row flex-col md:!px-4 px-0">
+		<div class="cardContent md:flex-row flex-col md:!px-4 px-0 !mb-10">
 			<!-- <div class="cardItem gradient-border">
 				<div class="cardBox text-white !px-0">
 					<div class="px-7 pt-10 text-center">

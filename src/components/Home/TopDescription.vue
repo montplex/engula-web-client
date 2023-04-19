@@ -1,12 +1,20 @@
 <template>
 	<section className="py-14 bg-ly-mian">
-		<div class="container mx-auto md:px-4 px-6">
-			<img width="140" class="mt-[6.3rem] mr-auto ml-auto text-left" src="@/assets/images/main-logo.png" alt="" />
-			<!-- <div class="flex mt-16 justify-center items-stretch">
-				<h1 class="text-6xl font-semibold text-white">Engula</h1>
+		<div class="container mx-auto md:px-4 px-6 mt-[9rem]">
+			<!-- <div class="mt-[9rem]">
+				<div class="flex mt-16 justify-center items-stretch">
+					<img width="110" class="" src="@/assets/images/main-logo.png" alt="" />
+					<div class="flex items-center pl-2 font-semibold !text-8xl">
+						<span class="text-block">Mont</span>
+						<span class="text-block">plex</span>
+					</div>
+				</div>
 			</div> -->
-			<div class="flex mt-14 justify-center items-stretch">
-				<h1 class="!text-6xl font-semibold text-white text-center">{{ $t("home.banner.title") }}</h1>
+			<div class="flex mt-14 text-center justify-center flex-col items-stretch text-8xl gap-3 font-bold">
+				<!-- Serverless Cache for Global Business -->
+				<div class="text-block mx-auto">Serverless</div>
+				<div class="text-block mx-auto">Cache</div>
+				<div class="text-white mx-auto text-7xl mb-8">for Global Business</div>
 				<!-- <h3 class="md:text-4xl text-[26px] text-white text-center"></h3> -->
 			</div>
 
@@ -28,3 +36,19 @@
 		</div>
 	</section>
 </template>
+
+<script lang="ts" setup>
+import { onMounted } from "vue";
+
+onMounted(() => {
+	// typeWriter();
+});
+/* function typeWriter() {
+	const typeWriter = document.getElementById("typewriter-text");
+	const text: string = "Global Business";
+	typeWriter!.innerHTML = text;
+	typeWriter!.style.setProperty("--characters", text.length.toString());
+} */
+</script>
+
+<style></style>

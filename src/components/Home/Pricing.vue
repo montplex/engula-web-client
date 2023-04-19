@@ -38,9 +38,9 @@
 			</header>
 			<PricingChild />
 			<!-- meat -->
-			<div class="flex items-center flex-col mt-14 text-white" style="font-family: 'Airbnbcereal book'">
+			<div class="flex items-center flex-col text-white mb-28" style="font-family: 'Airbnbcereal book'">
 				<p>Read write throughput cost is $0.15 per GB per month.</p>
-				<p>
+				<!-- 	<p>
 					Each plan has
 					<a
 						target="_blank"
@@ -75,7 +75,7 @@
 						us
 					</a>
 					for advanced needs.
-				</p>
+				</p> -->
 			</div>
 		</div>
 	</section>
