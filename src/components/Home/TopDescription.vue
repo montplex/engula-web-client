@@ -12,13 +12,17 @@
 			</div> -->
 			<div class="flex mt-14 justify-center flex-col text-8xl gap-3 font-bold text-center">
 				<!-- Serverless Cache for Global Business -->
-				<div class="">
-					<span class="text-block">Serverless</span>
+				<div class="flex justify-center flex-col md:flex-row text-block">
+					<div><span class="text-block">Serverless</span></div>
+					<div>
+						<!-- style="background-image: linear-gradient(-90deg, #f926e1, #2ab5fb)" -->
+						<span class="pl-4">Cache</span>
+					</div>
 				</div>
-				<div>
-					<span class="text-block" style="background-image: linear-gradient(-90deg, #f926e1, #2ab5fb)">Cache</span>
+				<div></div>
+				<div class="mb-8">
+					<span class="text-block" style="background-image: linear-gradient(-120deg, #f926e1, #2ab5fb)">for Global Business</span>
 				</div>
-				<div class="text-white text-7xl mb-8">for Global Business</div>
 				<!-- <h3 class="md:text-4xl text-[26px] text-white text-center"></h3> -->
 			</div>
 

@@ -8,9 +8,9 @@
 						<a href="#" class="flex items-center">
 							<span class="sr-only">MontPlex</span>
 							<img src="@/assets/images/main-logo.png" alt="" />
-							<div class="flex items-center pl-2 font-semibold text-2xl">
-								<span class="text-block">Mont</span>
-								<span class="text-block">plex</span>
+							<div class="flex items-center pl-2 font-semibold text-2xl text-block">
+								<span>Mont</span>
+								<span>plex</span>
 							</div>
 						</a>
 					</div>
