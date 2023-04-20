@@ -142,6 +142,7 @@ import CodePython from "@/components/Cache/SampleCode/Python.vue";
 import CodeJava from "@/components/Cache/SampleCode/Java.vue";
 import CodeGo from "@/components/Cache/SampleCode/Go.vue";
 import CodeDocker from "@/components/Cache/SampleCode/Docker.vue";
+import { ElMessage } from "element-plus";
 export default {
 	components: {
 		// eslint-disable-next-line vue/no-unused-components

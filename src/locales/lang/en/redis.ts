@@ -38,5 +38,25 @@ export default {
 		cloudProvider: "Please select the cloud provider",
 		region: "Please select the region",
 		primaryZone: "Please select the primary zone"
+	},
+	set: {
+		account: "Account",
+		out: "Log out",
+		settings: "Settings"
+	},
+	more: {
+		title: "Docs & Support",
+		docs: "Documentation",
+		api: "API Docs",
+		bug: "Report a Bug",
+		contact: "Contact us",
+		discord: "Join our Discord community",
+		twitter: "Follow us at Twitter"
+	},
+	renameTips: "Rename",
+	editName: {
+		title: "Rename",
+		name: "Cache Service Name",
+		info: "Your connections and clients will not be affected by this change."
 	}
 };

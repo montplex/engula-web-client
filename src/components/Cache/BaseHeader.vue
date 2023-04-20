@@ -33,7 +33,7 @@
 						</template>
 						<div class="-mx-3 -my-3 w-[360px]">
 							<div class="py-8 text-center">
-								<p class="text-gray-500">You have no new notifications.</p>
+								<p class="text-gray-500">{{ $t("msg.notice") }}</p>
 								<div class="flex items-center justify-center">
 									<svgIcon icon="refresh" class="mt-2 text-2xl text-[#3388ff] hover:text-blue-300 cursor-pointer" />
 								</div>
@@ -44,34 +44,12 @@
 										type="button"
 										class="!h-auto w-full !py-3 !font-medium text-[#3388ff] hover:text-blue-300 cursor-pointer"
 									>
-										<span>View all</span>
+										<span>{{ $t("msg.viewAll") }}</span>
 									</button></a
 								>
 							</div>
 						</div>
 					</el-popover>
-
-					<!-- <div class="flex items-center"> -->
-					<!-- 	<div class="flex h-11 items-center rounded-l bg-[#3f3f46] px-3 cursor-pointer">
-							<el-dropdown trigger="click">
-								<div class="flex h-11 items-center">
-									<div class="mr-2">
-										<div class="text-xs text-gray-400">Team</div>
-										<div class="!text-white pt-1">Personal</div>
-									</div>
-									<i-ant-design:caret-down-outlined style="font-size: 10px; color: white" />
-								</div>
-								<template #dropdown>
-									<el-dropdown-menu>
-										<el-dropdown-item>Create Team</el-dropdown-item>
-										<el-dropdown-item disabled>
-											<span class="mr-2">Switch Team</span>
-											<i-ant-design:right-outlined style="font-size: 10px" />
-										</el-dropdown-item>
-									</el-dropdown-menu>
-								</template>
-							</el-dropdown>
-						</div> -->
 
 					<el-dropdown trigger="hover" @command="handleMineCommand">
 						<el-avatar class="focus-visible:outline-none" :size="32" :src="info?.picture" />
@@ -80,17 +58,13 @@
 								<el-dropdown-item>
 									<el-icon size="16"> <i-ep:user /> </el-icon> {{ info?.nickname }}
 								</el-dropdown-item>
-								<el-dropdown-item v-if="info?.email">
-									{{ info?.email }}
-								</el-dropdown-item>
+								<el-dropdown-item v-if="info?.email"> {{ info?.email }} </el-dropdown-item>
 								<el-dropdown-item command="account" divided>
-									<el-icon size="16"> <i-ep:credit-card /> </el-icon> Account
+									<el-icon size="16"> <i-ep:credit-card /> </el-icon> {{ $t("redis.set.account") }}
 								</el-dropdown-item>
-								<!-- <el-dropdown-item> Integrations </el-dropdown-item> -->
-								<!-- <el-dropdown-item> Settings </el-dropdown-item> -->
-								<!-- <el-dropdown-item command="pdfview"> PDF View </el-dropdown-item> -->
+								<!-- <el-dropdown-item>  {{ $t("redis.set.settings") }}  </el-dropdown-item> -->
 								<el-dropdown-item command="out" divided>
-									<el-icon size="16"> <i-ep:switch-button /> </el-icon> Log out
+									<el-icon size="16"> <i-ep:switch-button /> </el-icon> {{ $t("redis.set.out") }}
 								</el-dropdown-item>
 							</el-dropdown-menu>
 						</template>
@@ -103,69 +77,89 @@
 	<header class="relative z-50 bg-black py-4 text-white shadow sm:hidden">
 		<div class="container mx-auto !max-w-screen-lg px-4">
 			<div class="flex items-center">
-				<div class="flex items-center gap-2">
-					<router-link to="/" class="flex items-center gap-2">
-						<img src="@/assets/images/logo.png" alt="logo" class="h-8" />
-					</router-link>
+				<div class="flex items-center gap-1 cursor-pointer h-8" @click="$router.push('/')">
+					<img src="@/assets/images/main-logo.png" alt="logo" class="h-[24px]" />
+					<span class="text-block font-semibold text-lg">Montplex</span>
 				</div>
-				<div class="ml-4 flex items-center space-x-0.5">
-					<!-- <div class="flex h-10 items-center rounded-l bg-[#3f3f46] pl-3 pr-2 cursor-pointer">
-						<div class="mr-2 leading-none">
-							<div class="text-xs text-gray-400">Team</div>
-							<div class="">Personal</div>
+				<div class="ml-auto flex items-center h-9 px-2 rounded bg-[#3f3f46]">
+					<el-dropdown trigger="click" @command="handleMineCommand">
+						<div class="flex items-center">
+							<el-avatar class="mr-3" :size="26" :src="info?.picture" />
+							<i-ant-design:caret-down-outlined class="!text-[12px] text-w-80" />
 						</div>
-						<i-ant-design:caret-down-outlined class="!text-[12px]" />
-					</div> -->
-				</div>
-				<!-- <div class="ml-auto -mr-2">
-					<button class="flex h-10 w-10 items-center justify-center !bg-transparent !p-0 !text-white">
-						<SvgIcon icon="menu" class="!text-[20px]" />
-					</button>
-				</div> -->
-				<!-- -mr-2 -->
-				<div class="ml-auto">
-					<div class="flex h-10 items-center rounded pl-3 pr-2 cursor-pointer">
-						<el-dropdown trigger="click" @command="handleMineCommand">
-							<div class="flex items-center">
-								<el-avatar class="mr-3" :size="26" :src="info?.picture" />
-								<i-ant-design:caret-down-outlined class="!text-[12px] text-w-80" />
-							</div>
-							<template #dropdown>
-								<el-dropdown-menu>
-									<el-dropdown-item>{{ info?.nickname }}</el-dropdown-item>
-									<el-dropdown-item v-if="info?.email"> {{ info?.email }}</el-dropdown-item>
-									<el-dropdown-item command="account" divided> Account</el-dropdown-item>
-									<!-- <el-dropdown-item> Integrations </el-dropdown-item> -->
-									<el-dropdown-item> Settings </el-dropdown-item>
-									<el-dropdown-item command="out" divided> Log out </el-dropdown-item>
-								</el-dropdown-menu>
-							</template>
-						</el-dropdown>
-					</div>
+						<template #dropdown>
+							<el-dropdown-menu>
+								<el-dropdown-item>
+									<el-icon size="16"> <i-ep:user /> </el-icon> {{ info?.nickname }}
+								</el-dropdown-item>
+								<el-dropdown-item v-if="info?.email"> {{ info?.email }} </el-dropdown-item>
+								<el-dropdown-item command="account" divided>
+									<el-icon size="16"> <i-ep:credit-card /> </el-icon> {{ $t("redis.set.account") }}
+								</el-dropdown-item>
+								<!-- <el-dropdown-item>  {{ $t("redis.set.settings") }}  </el-dropdown-item> -->
+								<el-dropdown-item command="out" divided>
+									<el-icon size="16"> <i-ep:switch-button /> </el-icon> {{ $t("redis.set.out") }}
+								</el-dropdown-item>
+							</el-dropdown-menu>
+						</template>
+					</el-dropdown>
 				</div>
 			</div>
 		</div>
 	</header>
 
-	<!-- dialog -->
-	<el-dialog v-model="question" title="Docs & Support" class="br-8 sm:!w-[520px]">
-		<div class="grid gap-3">
-			<a
-				v-for="(item, idx) in questionPopList"
-				:key="idx"
-				href="#"
-				target="_blank"
-				class="is-link relative flex h-auto items-center rounded-md bg-white p-5 shadow hover:bg-blue-50"
-			>
-				<svgIcon :icon="item.icon" class="!text-[20px]" />
-				<div class="ml-4 flex-grow">
-					<h5>{{ item.title }}</h5>
+	<el-dialog v-model="question" :title="$t('redis.more.title')" class="br-8 sm:!w-[520px]">
+		<div class="more-dialog">
+			<a href="#" target="_blank" class="more-link is-link">
+				<svgIcon icon="description" class="!text-[20px]" />
+				<div class="lable">
+					<h5>{{ $t("redis.more.docs") }}</h5>
+				</div>
+				<svgIcon icon="right" class="!text-[20px] opacity-50" />
+			</a>
+
+			<a href="#" target="_blank" class="more-link is-link">
+				<svgIcon icon="cloud" class="!text-[20px]" />
+				<div class="lable">
+					<h5>{{ $t("redis.more.api") }}</h5>
+				</div>
+				<svgIcon icon="right" class="!text-[20px] opacity-50" />
+			</a>
+
+			<a href="#" target="_blank" class="more-link is-link">
+				<svgIcon icon="bug" class="!text-[20px]" />
+				<div class="lable">
+					<h5>{{ $t("redis.more.bug") }}</h5>
+				</div>
+				<svgIcon icon="right" class="!text-[20px] opacity-50" />
+			</a>
+
+			<a href="#" target="_blank" class="more-link is-link">
+				<svgIcon icon="base-email" class="!text-[20px]" />
+				<div class="lable">
+					<h5>{{ $t("redis.more.contact") }}</h5>
+				</div>
+				<svgIcon icon="right" class="!text-[20px] opacity-50" />
+			</a>
+
+			<a href="#" target="_blank" class="more-link is-link">
+				<svgIcon icon="discord" class="!text-[20px]" />
+				<div class="lable">
+					<h5>{{ $t("redis.more.discord") }}</h5>
+				</div>
+				<svgIcon icon="right" class="!text-[20px] opacity-50" />
+			</a>
+
+			<a href="#" target="_blank" class="more-link is-link">
+				<svgIcon icon="twitter" class="!text-[20px]" />
+				<div class="lable">
+					<h5>{{ $t("redis.more.twitter") }}</h5>
 				</div>
 				<svgIcon icon="right" class="!text-[20px] opacity-50" />
 			</a>
 		</div>
 		<template #footer>
-			<el-button @click="question = false"> Cancel </el-button>
+			<el-button @click="question = false"> {{ $t("msg.close") }} </el-button>
 		</template>
 	</el-dialog>
 </template>
@@ -179,6 +173,7 @@ import { useRouter } from "vue-router";
 const store = userStore();
 const router = useRouter();
 const { info } = storeToRefs(store);
+const question = ref(false);
 
 const handleMineCommand = (command: string) => {
 	switch (command) {
@@ -204,35 +199,6 @@ function logout() {
 		window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/logout");
 	}
 }
-const questionPopList = [
-	{
-		icon: "description",
-		title: "Documentation"
-	},
-	{
-		icon: "cloud",
-		title: "API Docs"
-	},
-	{
-		icon: "bug",
-		title: "Report a Bug"
-	},
-	{
-		icon: "base-email",
-		title: "Contact us"
-	},
-	{
-		icon: "discord",
-		title: "Join our Discord community"
-	},
-	{
-		icon: "twitter",
-		title: "Follow us at Twitter"
-	}
-];
-const question = ref(false);
-
-// const notice = ref(false);
 </script>
 
 <style lang="scss">
@@ -254,5 +220,15 @@ h5 {
 	background-image: linear-gradient(90deg, #c947e7, #2ab5fb);
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
+}
+
+.more-dialog {
+	@apply grid gap-3;
+	.more-link {
+		@apply relative flex h-auto items-center rounded-md bg-white p-5 shadow hover:bg-blue-50;
+	}
+	.lable {
+		@apply ml-4 flex-grow;
+	}
 }
 </style>

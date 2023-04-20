@@ -38,5 +38,25 @@ export default {
 		cloudProvider: "请选择云服务商",
 		region: "请选择区域",
 		primaryZone: "请选择可用区"
+	},
+	set: {
+		account: "账户",
+		out: "退出登入",
+		settings: "设置"
+	},
+	more: {
+		title: "文档和支持",
+		docs: "文档",
+		api: "API 文档",
+		bug: "报告 Bug",
+		contact: "联系我们",
+		discord: "加入Discord社区",
+		twitter: "在推特上关注我们"
+	},
+	renameTips: "编辑名称",
+	editName: {
+		title: "编辑",
+		name: "缓存服务名",
+		info: "您连接和客户端不会受到此更改的影响。"
 	}
 };

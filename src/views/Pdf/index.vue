@@ -1,31 +1,10 @@
+vue
 <template>
-	<!-- <VuePdf v-for="page in numOfPages" :key="page" :src="pdfSrc" :page="page" /> -->
-	<div></div>
+	<div>pdf</div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { VuePdf, createLoadingTask } from "vue3-pdfjs/esm";
-import { VuePdfPropsType } from "vue3-pdfjs/components/vue-pdf/vue-pdf-props"; // Prop type definitions can also be imported
-
-const pdfurl = ref("https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf");
-const pdfSrc = ref<VuePdfPropsType["src"]>(
-	"https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf"
-);
-const numOfPages = ref(0);
-
-onMounted(() => {
-	const loadingTask = createLoadingTask(pdfSrc.value);
-	loadingTask.promise.then((pdf: any) => {
-		numOfPages.value = pdf.numPages;
-	});
-});
-</script>
-
-<script lang="ts">
-/* export default {
-	components: { VuePdf }
-}; */
+import {} from "vue";
 </script>
 
 <style lang="scss"></style>

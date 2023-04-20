@@ -5,7 +5,7 @@
 				<div>
 					<h1 class="m-0 flex items-center text-2xl font-bold leading-none">
 						<span>{{ cache.name }}</span>
-						<el-tooltip effect="dark" content="Rename" placement="top-start">
+						<el-tooltip effect="dark" :content="$t('redis.renameTips')" placement="top-start">
 							<button type="button" @click="editName(cache.name)" class="ml-3 inline-flex h-auto items-center !p-0">
 								<svgIcon icon="edit" class="text-gray-400" />
 							</button>
@@ -35,14 +35,16 @@
 		</div>
 	</div>
 
-	<el-dialog v-model="editVisible" title="Rename" width="520px" style="border-radius: 8px">
-		<label class="dialog-label mb-1">Database name</label>
+	<el-dialog v-model="editVisible" :title="$t('redis.editName.title')" width="520px" style="border-radius: 8px">
+		<label class="dialog-label my-3">{{ $t("redis.editName.name") }}</label>
 		<el-input v-model="cacheNewName" @input="nameInput" />
-		<div class="alert-base info !mt-6">Your connections and clients will not be affected by this change.</div>
+		<div class="alert-base info !mt-6">{{ $t("redis.editName.info") }}</div>
 		<template #footer>
 			<span class="dialog-footer">
-				<el-button @click="editVisible = false">Cancel</el-button>
-				<el-button :disabled="hasSumbit" :type="hasSumbit ? '' : 'primary'" @click="confirmName(cache.name)"> Confirm </el-button>
+				<el-button @click="editVisible = false">{{ $t("msg.cancel") }}</el-button>
+				<el-button :disabled="hasSumbit" :type="hasSumbit ? '' : 'primary'" @click="confirmName(cache.name)">
+					{{ $t("msg.edit") }}
+				</el-button>
 			</span>
 		</template>
 	</el-dialog>
@@ -80,10 +82,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, nextTick } from "vue";
+import { ref } from "vue";
 import { ICacheListItem } from "#/cache";
 import { cacheRename } from "@/api/cache";
 import { useRoute } from "vue-router";
+import { ElMessage } from "element-plus";
 
 const props = defineProps({
 	cache: {
@@ -102,8 +105,6 @@ const editVisible = ref(false),
 function editName(name: string) {
 	editVisible.value = true;
 	cacheNewName.value = name;
-	// focus not work
-	// document.querySelector(".el-input__inner")!.focus();
 }
 function nameInput(e: string) {
 	hasSumbit.value = e === props.cache.name;
@@ -111,7 +112,6 @@ function nameInput(e: string) {
 
 async function confirmName(name: string) {
 	if (cacheNewName.value && cacheNewName.value !== name) {
-		// console.log("confirmName", props.cache.id, route.query.id as string);
 		const body = { id: route.query.id as any, name: cacheNewName.value };
 		const res = await cacheRename(body);
 		if (res.id) {
@@ -121,12 +121,14 @@ async function confirmName(name: string) {
 		} else {
 			ElMessage.error("Rename failed");
 		}
-		// res.id ? { ElMessage.success("Rename success") }: ElMessage.error("Rename failed");
 	}
 }
 </script>
 
 <style lang="scss">
+.el-dialog__body {
+	padding-top: 0;
+}
 .help-icons {
 	@apply -mx-5 -mb-7 rounded-b-lg bg-gray-100 p-6 text-center;
 	.box {
