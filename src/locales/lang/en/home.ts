@@ -20,7 +20,7 @@ export default {
 		}
 	},
 	about:
-		"The Montplex team has done a great job of designing a cache that is specifically suited for the cloud. Their cache is dynamic, pay-per-use, and performs exceptionally well. If you are looking for a scalable, cost-effective, and high-performance cache solution, then you should consider using Montplex serverless cache.",
+		"Montplex serverless cache, a cutting-edge technology, is specifically designed for cloud environments, providing dynamic scaling, pay-as-you-go pricing, and exceptional performance. As the next-generation cache solution, Montplex is an excellent choice for those seeking a scalable, cost-efficient, and high-performing option.",
 	team: {
 		title: "Meet the team",
 		subTitle:

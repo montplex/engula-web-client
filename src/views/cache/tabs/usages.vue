@@ -45,7 +45,7 @@ import { ChartParams, ChartRes, Metrics, Cards } from "#/cache";
 import { dayjs } from "element-plus";
 import { watchEffect } from "vue";
 import { useRoute } from "vue-router";
-import { formatBytes } from "@/utils/util";
+import { formatBytes, toThousandFilter } from "@/utils/util";
 
 const route = useRoute(),
 	unit = ref("hour"),
@@ -69,7 +69,8 @@ function formatCharts(res: ChartRes) {
 			const item = mergeData({ x, y });
 			memo[key] = item;
 		} else {
-			card[key] = key == "fee" ? value : formatBytes(value);
+			card[key] = key == "fee" ? toThousandFilter(value) : formatBytes(value);
+			// card[key] = toThousandFilter(value);
 		}
 	}
 	return { memo, card };

@@ -11,7 +11,10 @@ export const cloneDeep = (obj: TObject): TObject => {
 		return new Error(`传入参数${obj}类型错误`);
 	}
 	for (let i in obj) {
-		memo[i] = Object.prototype === Object.getPrototypeOf(obj[i]) ? cloneDeep(obj[i]) : obj[i];
+		memo[i] =
+			Object.prototype === Object.getPrototypeOf(obj[i])
+				? cloneDeep(obj[i])
+				: obj[i];
 	}
 	return memo;
 };
@@ -22,13 +25,15 @@ export const cloneDeep = (obj: TObject): TObject => {
  */
 export function env() {
 	const env = cloneDeep(import.meta.env) as ImportMetaEnv;
-	Object.entries(import.meta.env as Record<string, any>).forEach(([key, value]) => {
-		if (value == "true" || value == "false") {
-			env[key] = value == "true" ? true : false;
-		} else if (/^\d+$/.test(value)) env[key] = Number(value);
-		else if (value == "null") env[key] = null;
-		else if (value == "undefined") env[key] = undefined;
-	});
+	Object.entries(import.meta.env as Record<string, any>).forEach(
+		([key, value]) => {
+			if (value == "true" || value == "false") {
+				env[key] = value == "true" ? true : false;
+			} else if (/^\d+$/.test(value)) env[key] = Number(value);
+			else if (value == "null") env[key] = null;
+			else if (value == "undefined") env[key] = undefined;
+		}
+	);
 	return env;
 }
 
@@ -76,7 +81,8 @@ export function localClear() {
 export function isType(val: any) {
 	if (val === null) return "null";
 	if (typeof val !== "object") return typeof val;
-	else return Object.prototype.toString.call(val).slice(8, -1).toLocaleLowerCase();
+	else
+		return Object.prototype.toString.call(val).slice(8, -1).toLocaleLowerCase();
 }
 
 /**
@@ -91,12 +97,22 @@ export function getTime(type: number) {
 	let myHour = myDate.getHours();
 	let myMinute = myDate.getMinutes();
 	let mySecond = myDate.getSeconds();
-	let week = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+	let week = [
+		"星期日",
+		"星期一",
+		"星期二",
+		"星期三",
+		"星期四",
+		"星期五",
+		"星期六"
+	];
 	let nowTime;
 	if (type === 1) {
-		nowTime = myYear + "年" + fillZero(myMonth) + "月" + fillZero(myToday) + "日";
+		nowTime =
+			myYear + "年" + fillZero(myMonth) + "月" + fillZero(myToday) + "日";
 	} else if (type === 2) {
-		nowTime = fillZero(myHour) + ":" + fillZero(myMinute) + ":" + fillZero(mySecond);
+		nowTime =
+			fillZero(myHour) + ":" + fillZero(myMinute) + ":" + fillZero(mySecond);
 	} else if (type === 3) {
 		nowTime = week[myDay];
 	} else {
@@ -134,9 +150,15 @@ export function getTime(type: number) {
  * @description 获取浏览器默认语言
  */
 export function getBrowserLang() {
-	let browserLang = navigator.language ? navigator.language : (navigator as any).browserLanguage;
+	let browserLang = navigator.language
+		? navigator.language
+		: (navigator as any).browserLanguage;
 	let defaultBrowserLang = "";
-	if (browserLang.toLowerCase() === "cn" || browserLang.toLowerCase() === "zh" || browserLang.toLowerCase() === "zh-cn") {
+	if (
+		browserLang.toLowerCase() === "cn" ||
+		browserLang.toLowerCase() === "zh" ||
+		browserLang.toLowerCase() === "zh-cn"
+	) {
 		defaultBrowserLang = "zh";
 	} else {
 		defaultBrowserLang = "en";
@@ -176,7 +198,9 @@ export const handleCopyClick = (e: string) => {
 export function formatChartsData(obj: { [key: string]: any[] | any[][] }) {
 	let memo = {} as any;
 	for (const [key, value] of Object.entries(obj)) {
-		const ch = value.map((item) => dayjs(item[0]).format("YYYY[年]M[月]D[日] HH:mm"));
+		const ch = value.map((item) =>
+			dayjs(item[0]).format("YYYY[年]M[月]D[日] HH:mm")
+		);
 		const en = value.map((item) => dayjs(item[0]).format("D MMM HH:mm"));
 		const y = value.map((item) => (item[1] == "NaN" ? 0 : Number(item[1])));
 		memo[key] = {
@@ -211,4 +235,15 @@ export function formatBytes(bytes: number): string {
 		// (bytes < _m(5))
 		return `${_f3(bytes / _m(4))} TB`;
 	}
+}
+
+/**
+ * 10000 => "10,000"
+ * @param {number} num
+ */
+export function toThousandFilter(date: number | string) {
+	date = date ? Number(date) : 0;
+	return date
+		.toString()
+		.replace(/^-?\d+/g, (m) => m.replace(/(?=(?!\b)(\d{3})+$)/g, ","));
 }

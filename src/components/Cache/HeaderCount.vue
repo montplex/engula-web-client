@@ -1,22 +1,22 @@
 <template>
 	<div class="bg-gray-100 py-8">
 		<div class="container mx-auto !max-w-screen-xl px-4">
-			<h3 class="m-0 text-base">Usage For Current Billing</h3>
+			<h3 class="m-0 text-base">{{ $t("redis.count.title") }}</h3>
 			<div class="mt-4 grid gap-2 sm:grid-cols-3 sm:gap-4">
 				<!-- <div class="rounded-lg px-5 pt-4 pb-3 shadow-sm bg-white">
 					<el-statistic title="" :value="62" />
 				</div> -->
 				<div class="cu-items">
-					<div class="title">Read Bytes</div>
-					<div class="meat">{{ fee?.readByte ?? 0 }}<span>B</span></div>
+					<div class="title">{{ $t("redis.count.readBytes") }}</div>
+					<div class="meat">{{ fee?.readByte ?? 0 }}</div>
 				</div>
 				<div class="cu-items">
-					<div class="title">Write Bytes</div>
-					<div class="meat">{{ fee?.writeByte ?? 0 }}<span>B</span></div>
+					<div class="title">{{ $t("redis.count.writeBytes") }}</div>
+					<div class="meat">{{ fee?.writeByte ?? 0 }}</div>
 				</div>
 
 				<div class="cu-items">
-					<div class="title">Fee</div>
+					<div class="title">{{ $t("redis.count.fee") }}</div>
 					<div class="meat">{{ fee?.fee ?? 0 }}<span>$</span></div>
 				</div>
 			</div>
@@ -26,12 +26,13 @@
 
 <script setup lang="ts">
 import { getFeeOrgList } from "@/api/cache";
+import { formatBytes, toThousandFilter } from "@/utils/util";
 import { ref } from "vue";
 
 type Fee = {
-	readByte: number;
-	writeByte: number;
-	fee: number;
+	readByte: number | string;
+	writeByte: number | string;
+	fee: number | string;
 };
 const fee = ref<Fee>();
 
@@ -52,8 +53,7 @@ function sumOrg(arr: any): Fee {
 		writeByte += arr[i].writeByte;
 		fee += arr[i].fee;
 	}
-
-	return { readByte, writeByte, fee };
+	return { readByte: formatBytes(readByte), writeByte: formatBytes(writeByte), fee: toThousandFilter(fee) };
 }
 </script>
 

@@ -1,11 +1,15 @@
-import en from "./en/home";
-import zh from "./zh-CN/home";
+import homeEn from "./en/home";
+import homeZh from "./zh-CN/home";
+import redisEn from "./en/redis";
+import redisZh from "./zh-CN/redis";
 
 export default {
 	en: {
-		home: en // 添加对应的key
+		home: homeEn,
+		redis: redisEn
 	},
 	zh: {
-		home: zh
+		home: homeZh,
+		redis: redisZh
 	}
 };

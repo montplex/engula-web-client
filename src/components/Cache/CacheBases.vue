@@ -27,7 +27,7 @@
 						</el-icon>
 					</el-button>
 				</el-tooltip>
-				<el-button type="success" @click="createCache"> Create cache service </el-button>
+				<el-button type="success" @click="createCache"> Create</el-button>
 			</div>
 		</div>
 		<!-- Sraech and AddButton End -->
@@ -105,11 +105,11 @@
 			:rules="createCacheRules"
 		>
 			<el-form-item label="Name" prop="name">
-				<el-input v-model="addForm.name" />
+				<el-input v-model="addForm.name" placeholder="Cache sercice name" />
 			</el-form-item>
 
 			<el-form-item label="Describes" prop="des">
-				<el-input v-model="addForm.des" />
+				<el-input v-model="addForm.des" placeholder="Describes" />
 			</el-form-item>
 
 			<el-form-item label="Cloud Provider" prop="cloudProvider">
@@ -156,7 +156,7 @@
 							<i-ep:loading />
 						</el-icon>
 					</template>
-					Confirm
+					Create
 				</el-button>
 			</span>
 		</template>

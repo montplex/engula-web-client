@@ -73,8 +73,8 @@ export default [
 					cacheServiceId: 48,
 					cacheServiceName: "DBTEST-mo",
 					monthStr: "2023-03",
-					readByte: 141,
-					writeByte: 116,
+					readByte: 141345345,
+					writeByte: 116345345,
 					fee: 0,
 					isPaid: false
 				},
