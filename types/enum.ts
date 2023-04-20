@@ -1,8 +1,8 @@
 export const CachestatusTo = {
-	0: "created", // 创建中
-	1: "running", // 运行中
-	20: "limited", // 限制
-	200: "reject", // 废弃
+	"0": "created", // 创建中
+	"1": "running", // 运行中
+	"20": "limited", // 限制
+	"200": "reject", // 废弃
 	"-1": "stopped", // 停用
 	"-10": "terminated" // 停止
 } as const;

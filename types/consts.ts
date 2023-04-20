@@ -1,3 +1,31 @@
+const statusMap = {
+	zh_CN: {
+		"0": "创建中",
+		"1": "运行中",
+		"20": "已上限",
+		"200": "已废弃",
+		"-1": "已停用",
+		"-10": "已停止"
+	},
+	en: {
+		"0": "created",
+		"1": "running",
+		"20": "limited",
+		"200": "reject",
+		"-1": "stopped",
+		"-10": "terminated"
+	}
+};
+
+const statusStyle = {
+	"0": "#00b173",
+	"1": "#00b173",
+	"20": "#f16538",
+	"200": "#6b7280",
+	"-1": "#f16538",
+	"-10": "#f16538"
+};
+
 let country = {
 	AF: "Afghanistan",
 	AL: "Albania",
@@ -259,4 +287,4 @@ const tableStyle: any = {
 	}
 };
 
-export { country, countryList, tableStyle };
+export { country, countryList, tableStyle, statusMap, statusStyle };

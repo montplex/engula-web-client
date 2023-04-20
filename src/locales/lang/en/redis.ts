@@ -7,6 +7,7 @@ export default {
 	},
 	cacheList: {
 		title: "Cache Services",
+		search: "Search ...",
 		refresh: {
 			name: "Refresh",
 			refreshSuccess: "success",
@@ -14,32 +15,28 @@ export default {
 			refreshTip: "Refresh"
 		},
 		new: "Create",
-		createFrom: {
-			title: "Create Cache Service",
-			name: {
-				label: "Name",
-				placeholder: "Please enter the name"
-			},
-			describes: {
-				label: "Describes",
-				placeholder: "Please enter the describes"
-			},
-			cloudProvider: {
-				label: "Cloud Provider",
-				placeholder: "Please select the cloud provider"
-			},
-			region: {
-				label: "Region",
-				placeholder: "Please select the region"
-			},
-			primaryZone: {
-				label: "Primary Zone",
-				placeholder: "Please select the primary zone"
-			}
+		select: {
+			running: "Running",
+			terminated: "Terminated"
 		},
-		btn: {
-			confirm: "Create",
-			cancel: "Cancel"
-		}
+		regional: "Regional",
+		status: "Status"
+	},
+	add: {
+		title: "Create Cache Service",
+		name: "Name",
+		describes: "Describes",
+		cloudProvider: "Cloud Provider",
+		region: "Region",
+		primaryZone: "Primary Zone",
+		confirm: "Create",
+		cancel: "Cancel"
+	},
+	pl: {
+		name: "Please enter the name",
+		describes: "Please enter the describes",
+		cloudProvider: "Please select the cloud provider",
+		region: "Please select the region",
+		primaryZone: "Please select the primary zone"
 	}
 };

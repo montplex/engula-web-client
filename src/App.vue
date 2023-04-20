@@ -9,11 +9,11 @@ const { t, locale } = useI18n();
 
 useTheme();
 
-// <el-dropdown-item @click="handleLang('en')">English</el-dropdown-item>
-// <el-dropdown-item @click="handleLang('zh_CN')">简体中文</el-dropdown-item>
-function handleLang(val: string) {
+function handleLang(val: "zh_CN" | "en") {
 	locale.value = val;
 	console.log(val, locale.value);
 	// localStorage.setItem('language', val)
 }
+
+handleLang("zh_CN");
 </script>

@@ -2,7 +2,7 @@
 	<div class="base-port" v-if="cache">
 		<div class="gr-box">
 			<div>
-				<div class="title">Region</div>
+				<div class="title">{{ $t("redis.cacheList.regional") }}</div>
 				<div class="info copy-text">
 					<div class="mr-1">{{ cache.region }}</div>
 				</div>

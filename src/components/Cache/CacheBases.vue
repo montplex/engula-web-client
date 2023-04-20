@@ -1,23 +1,28 @@
 <template>
 	<div class="container mx-auto !max-w-screen-xl px-4 pt-8 pb-20">
-		<h1 class="text-3xl mt-2 text-[#3f3f46]">Cache Services</h1>
+		<h1 class="text-3xl mt-2 text-[#3f3f46]">{{ $t("redis.cacheList.title") }}</h1>
 		<!-- Sraech and AddButton Start -->
 		<div class="mt-6 flex grid-cols-2 items-center gap-2 sm:grid sm:gap-8">
 			<div class="flex">
 				<div class="flex-1 w-full">
-					<el-input @input="handleSearch" @change="handleSearch" v-model="searchVal" placeholder="Search..." />
+					<el-input
+						@input="handleSearch"
+						@change="handleSearch"
+						v-model="searchVal"
+						:placeholder="$t('redis.cacheList.search')"
+					/>
 				</div>
 				<div class="ml-9">
 					<el-select v-model="selectVal" placeholder="Filter..." @change="rStatusChange">
-						<el-option label="Running" :value="1" />
-						<el-option label="Terminated" value="-10" />
+						<el-option :label="$t('redis.cacheList.select.running')" :value="1" />
+						<el-option :label="$t('redis.cacheList.select.terminated')" value="-10" />
 					</el-select>
 				</div>
 			</div>
 
 			<div class="flex items-center justify-end gap-2">
 				<!-- Refresh -->
-				<el-tooltip class="box-item" effect="dark" content="Refresh databases" placement="top-start">
+				<el-tooltip class="box-item" effect="dark" :content="$t('redis.cacheList.refresh.refreshTip')" placement="top-start">
 					<el-button
 						@click="refresh"
 						class="!flex w-[32px] shrink-0 items-center justify-center !py-0 text-gray-400 sm:flex base-btn-hover"
@@ -27,7 +32,7 @@
 						</el-icon>
 					</el-button>
 				</el-tooltip>
-				<el-button type="success" @click="createCache"> Create</el-button>
+				<el-button type="success" @click="createCache">{{ $t("redis.cacheList.new") }}</el-button>
 			</div>
 		</div>
 		<!-- Sraech and AddButton End -->
@@ -46,15 +51,15 @@
 							{{ item.name }}
 						</h3>
 						<span class="mt-1.5 flex items-center gap-1.5 opacity-50">
-							<span>Regional</span> {{ item.cloudProvider }} <span></span>{{ item.region }}
+							<span>{{ $t("redis.cacheList.regional") }}</span> {{ item.cloudProvider }} <span></span>{{ item.region }}
 						</span>
 						<div class="mt-1.5 flex items-center justify-between gap-1.5">
-							<span class="flex-1 opacity-50">Status</span>
+							<span class="flex-1 opacity-50">{{ $t("redis.cacheList.status") }}</span>
 
 							<StatusIcon :status="item.status" />
 
 							<span :style="{ color: statusStyle[item.status] }" class="text-base">
-								{{ CachestatusTo[item.status] }}
+								{{ statusObj[item.status] }}
 							</span>
 						</div>
 					</header>
@@ -93,145 +98,33 @@
 		<!-- dbList End -->
 		<cacheEmpty @btn-click="createCache" v-else />
 	</div>
-
-	<!-- add-dialog Start -->
-	<el-dialog v-model="addVisible" title=" Create Cache Service " width="520px" style="border-radius: 8px">
-		<el-form
-			label-position="top"
-			label-width="100px"
-			ref="addFormRef"
-			:model="addForm"
-			style="max-width: 460px"
-			:rules="createCacheRules"
-		>
-			<el-form-item label="Name" prop="name">
-				<el-input v-model="addForm.name" placeholder="Cache sercice name" />
-			</el-form-item>
-
-			<el-form-item label="Describes" prop="des">
-				<el-input v-model="addForm.des" placeholder="Describes" />
-			</el-form-item>
-
-			<el-form-item label="Cloud Provider" prop="cloudProvider">
-				<el-select
-					v-model="addForm.cloudProvider"
-					@change="addForm.region = ''"
-					clearable
-					filterable
-					placeholder="Select cloud provider"
-					class="w-full"
-				>
-					<el-option
-						v-for="item in store.regionList"
-						:key="item.cloudProvider"
-						:label="item.cloudProvider"
-						:value="item.cloudProvider"
-					/>
-				</el-select>
-			</el-form-item>
-
-			<el-form-item label="Region" prop="region" v-show="addForm.cloudProvider">
-				<el-select v-model="addForm.region" placeholder="Select region" class="w-full" @change="addForm.primaryZone = ''">
-					<el-option v-for="(item, index) in region[addForm.cloudProvider]" :key="index" :label="item" :value="item" />
-				</el-select>
-			</el-form-item>
-
-			<!-- <div class="my-2 text-xs">
-				<p class="text-gray-500">For best performance, select the region that is closer to your application.</p>
-			</div> -->
-
-			<el-form-item label="Primary Zone" prop="primaryZone" v-show="addForm.region">
-				<el-select v-model="addForm.primaryZone" placeholder="Select Zones" class="w-full" :allow-create="true">
-					<el-option v-for="(item, index) in zoneList[addForm.region as any]" :key="index" :label="item" :value="item" />
-				</el-select>
-			</el-form-item>
-		</el-form>
-
-		<template #footer>
-			<span class="dialog-footer">
-				<el-button @click="addVisible = false">Cancel</el-button>
-				<el-button :loading="addLoading" type="primary" @click="submit(addFormRef, addCallback)">
-					<template #loading>
-						<el-icon class="el-icon--left is-loading" size="16">
-							<i-ep:loading />
-						</el-icon>
-					</template>
-					Create
-				</el-button>
-			</span>
-		</template>
-	</el-dialog>
-	<!-- add-dialog End -->
-	<!-- 超出创建数量限制 -->
-	<el-dialog v-model="cross" width="26%" :lock-scroll="false" :show-close="false" class="br-8">
-		<template #header="{ titleId }">
-			<div class="flex">
-				<i-ep:warning-filled class="text-2xl text-[#faad14]" />
-				<h4 :id="titleId" class="font-semibold ml-2">You can create 5 cache service in free tier.</h4>
-			</div>
-		</template>
-		<div class="text-info-88 pl-9 text-start pb-0 text-sm">
-			You can <a class="is-link" href="#">add a payment method</a> to upgrade your plan and create more cache services.
-		</div>
-		<template #footer>
-			<span class="dialog-footer">
-				<el-button color="#67c23a" style="color: #ffffff" @click="cross = false"> OK </el-button>
-			</span>
-		</template>
-	</el-dialog>
+	<!-- 新增缓存实例 -->
+	<addDialog v-model="addVisible" ref="addDialogRef" />
+	<!-- cache 数量超出限制 -->
+	<CrossDialog v-model="cross" />
 </template>
 
 <script setup lang="ts">
 import cacheEmpty from "./cacheEmpty.vue";
+import CrossDialog from "./CrossDialog.vue";
 import StatusIcon from "@/components/Cache/StatusIcon.vue";
+import addDialog from "./addDialog.vue";
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import { cacheStore } from "@/stores/cache";
-import { addCache } from "@/api/cache";
-import { AddCacheParams } from "#/cache";
-import { createCacheRules, resetForm, submit } from "@/utils/rules";
-import { ElMessage, ElNotification, FormInstance } from "element-plus";
-import { CachestatusTo, statusStyle } from "#/enum";
-import { useIntervalFn } from "@vueuse/core";
+import { ElMessage } from "element-plus";
+import { statusMap, statusStyle } from "#/consts";
+import { useI18n } from "vue-i18n";
+const { t, locale } = useI18n();
 
-// 控制新建cache后60s内轮询(更新cache状态)
-const counDown = ref(0);
+const statusObj = computed(() => {
+	// @ts-expect-error
+	return statusMap[locale.value];
+});
 
 const store = cacheStore();
 const router = useRouter();
-const addLoading = ref(false);
-
-const addForm = ref<AddCacheParams>({
-	cloudProvider: "",
-	name: "",
-	region: "",
-	des: "",
-	primaryZone: ""
-});
-const { pause, resume } = useIntervalFn(
-	async () => {
-		if (counDown.value <= 0) pause();
-		else {
-			counDown.value -= 3;
-			await store.setCacheList(false);
-			if (store.serviceList.length > 0) {
-				const cache = store.serviceList.find((item) => item.name === addForm.value.name);
-				if (cache!.status === 1) {
-					pause();
-					createSuccessMsg();
-				}
-			}
-		}
-	},
-	3000,
-	{ immediate: false }
-);
-const region = computed(() => {
-	let regionObj: any = {};
-	store.regionList.map((item) => item.regions && (regionObj[item.cloudProvider] = item.regions));
-	return regionObj;
-});
-const zoneList = computed(() => store.zoneList);
+const addDialogRef = ref();
 
 const cross = ref(false); // 控制超出创建限制 (显示弹窗)
 
@@ -239,11 +132,10 @@ const isRefresh = ref(false); // 刷新按钮 laoding
 const addVisible = ref(false); // 新建弹窗
 const searchVal = ref(""); // 搜索
 const selectVal = ref<string | number>(1);
-const addFormRef = ref<FormInstance>();
 
 /* 新建 Cache  */
 const createCache = async () => {
-	resetForm(addFormRef.value);
+	addDialogRef.value.reset();
 	/* 最多只能创建五个正在运行的 cache */
 	const isCreate = store.serviceList.reduce((sum, item) => (item.status === 1 ? sum + 1 : sum + 0), 0);
 	if (isCreate >= 5) cross.value = true;
@@ -251,42 +143,6 @@ const createCache = async () => {
 		store.setCloudProviderList();
 		addVisible.value = true;
 	}
-};
-
-const addCallback = () => {
-	addLoading.value = true;
-	addCache(addForm.value)
-		.then((res) => {
-			if (res.id) {
-				creattingMsg();
-				counDown.value = 36;
-				store.setCacheList(false);
-				resume();
-			}
-		})
-		.catch(() => ElMessage.error("request failure"))
-		.finally(() => {
-			addVisible.value = false;
-			addLoading.value = false;
-		});
-};
-
-const createSuccessMsg = () => {
-	ElNotification({
-		title: "Success",
-		message: "create successfully",
-		position: "bottom-right",
-		type: "success"
-	});
-};
-
-const creattingMsg = () => {
-	ElNotification({
-		title: "Success",
-		message: "Database is being prepared for you...",
-		type: "success",
-		position: "bottom-right"
-	});
 };
 
 /* 去详情页 */
@@ -300,13 +156,17 @@ const handleSearch = (e: string) => {
 };
 
 /* 刷新按钮  */
-function refresh() {
+async function refresh() {
 	isRefresh.value = true;
-	store.setCacheList(true);
-	setTimeout(() => {
-		isRefresh.value = false;
-		ElMessage.success("Refresh successfully");
-	}, 1000);
+	const res = await store.setCacheList(true);
+	if (res) {
+		setTimeout(() => {
+			isRefresh.value = false;
+			ElMessage.success(t("msg.refreshSuccess"));
+		}, 1000);
+	} else {
+		ElMessage.success(t("msg.refreshFail"));
+	}
 }
 
 function rStatusChange(val: any) {

@@ -8,6 +8,7 @@ import {
 	CacheByIdParams
 } from "#/cache";
 import { getCloudProviderList } from "@/api/cache";
+import { ElMessage } from "element-plus";
 
 interface IcacheStore {
 	filterList: ICacheListItem[];
