@@ -59,7 +59,7 @@
 			style="max-width: 460px"
 		>
 			<el-form-item :label="$t('redis.token.mode')" prop="mode">
-				<el-select v-model="fromUpdate.mode" filterable :placeholder="$t('redis.token.select')" class="w-full">
+				<el-select v-model="from.mode" filterable :placeholder="$t('redis.token.select')" class="w-full">
 					<el-option :label="$t('redis.token.readOnly')" value="ro" />
 					<el-option :label="$t('redis.token.readWrite')" value="rw" />
 				</el-select>
