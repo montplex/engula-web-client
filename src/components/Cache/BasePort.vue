@@ -2,24 +2,24 @@
 	<div class="base-port" v-if="cache">
 		<div class="gr-box">
 			<div>
-				<div class="title">{{ $t("redis.cacheList.regional") }}</div>
+				<div class="title">{{ $t("redis.regional") }}</div>
 				<div class="info copy-text">
 					<div class="mr-1">{{ cache.region }}</div>
 				</div>
 			</div>
 
-			<div>
-				<div class="title">Status</div>
+			<!-- <div>
+				<div class="title">{{ $t("redis.status") }}</div>
 				<div class="info copy-text">
 					<StatusIcon :status="cache.status" />
 					<div class="mx-1" :style="{ color: statusStyle[cache.status] }">
 						{{ CachestatusTo[cache.status] }}
 					</div>
 				</div>
-			</div>
+			</div> -->
 
 			<div>
-				<div class="title">Endpoint</div>
+				<div class="title">{{ $t("redis.endpoint") }}</div>
 				<div class="copy-text group w-full">
 					<p class="mr-1 inline-block">{{ host }}</p>
 					<span class="inline-block min-w-[40px]" v-copy v-if="cache.status === 1">
@@ -33,7 +33,7 @@
 			</div>
 
 			<div>
-				<div class="title">Password</div>
+				<div class="title">{{ $t("redis.password") }}</div>
 				<div class="copy-text info group min-w-[100px]">
 					<div class="mr-1">•••••••••</div>
 					<div class="hidden group-hover:block" v-copy v-if="cache.status === 1" @click="handleCopyClick(password)">
@@ -45,7 +45,7 @@
 			</div>
 
 			<div>
-				<div class="text-gray-500">Port</div>
+				<div class="text-gray-500">{{ $t("redis.port") }}</div>
 				<div class="copy-text info group min-w-[100px]">
 					<div class="mr-1">{{ store.port }}</div>
 					<div class="hidden group-hover:block" v-copy v-if="cache.status === 1">
@@ -57,15 +57,10 @@
 			</div>
 		</div>
 
-		<div class="url" v-if="cache.status !== 1">
-			<div class="_copy">
-				<p class="pr-2">redis://**********@{{ host }}:{{ store.port }}</p>
-			</div>
-		</div>
-		<el-tooltip effect="dark" placement="top" content="Copy" :show-after="300" v-else>
-			<div class="url" @click="handleCopyClick(`redis://${password}@${host}:${store.port}`)">
+		<el-tooltip effect="dark" placement="top" content="Copy" :show-after="300">
+			<div class="url" @click="handleCopyClick(`redis-cli -h ${store.oneCache.host} -p ${store.port} -a ${password}`)">
 				<div class="_copy">
-					<p class="pr-2">redis://**********@{{ host }}:{{ store.port }}</p>
+					<p class="pr-2">{{ rcode }}</p>
 					<svgIcon icon="copy" class="text-[#1677ff] text-sm" />
 				</div>
 			</div>
@@ -78,9 +73,13 @@ import StatusIcon from "@/components/Cache/StatusIcon.vue";
 import { useRoute } from "vue-router";
 import { cacheStore } from "@/stores/cache";
 import { handleCopyClick } from "@/utils/util";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { ICacheListItem } from "#/cache";
 import { CachestatusTo, statusStyle } from "#/enum";
+
+const rcode = computed(() => {
+	return `redis-cli -h ${store.oneCache.host} -p ${store.port} -a **********`;
+});
 
 defineProps({
 	cache: {

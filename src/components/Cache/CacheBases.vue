@@ -1,6 +1,6 @@
 <template>
 	<div class="container mx-auto !max-w-screen-xl px-4 pt-8 pb-20">
-		<h1 class="text-3xl mt-2 text-[#3f3f46]">{{ $t("redis.cacheList.title") }}</h1>
+		<h1 class="text-3xl mt-2 text-[#3f3f46]">{{ $t("redis.cache.title") }}</h1>
 		<!-- Sraech and AddButton Start -->
 		<div class="mt-6 flex grid-cols-2 items-center gap-2 sm:grid sm:gap-8">
 			<div class="flex">
@@ -9,20 +9,20 @@
 						@input="handleSearch"
 						@change="handleSearch"
 						v-model="searchVal"
-						:placeholder="$t('redis.cacheList.search')"
+						:placeholder="$t('redis.cache.search')"
 					/>
 				</div>
 				<div class="ml-9">
 					<el-select v-model="selectVal" placeholder="Filter..." @change="rStatusChange">
-						<el-option :label="$t('redis.cacheList.select.running')" :value="1" />
-						<el-option :label="$t('redis.cacheList.select.terminated')" value="-10" />
+						<el-option :label="$t('redis.cache.select.running')" :value="1" />
+						<el-option :label="$t('redis.cache.select.terminated')" value="-10" />
 					</el-select>
 				</div>
 			</div>
 
 			<div class="flex items-center justify-end gap-2">
 				<!-- Refresh -->
-				<el-tooltip class="box-item" effect="dark" :content="$t('redis.cacheList.refresh.refreshTip')" placement="top-start">
+				<el-tooltip class="box-item" effect="dark" :content="$t('redis.cache.refresh.refreshTip')" placement="top-start">
 					<el-button
 						@click="refresh"
 						class="!flex w-[32px] shrink-0 items-center justify-center !py-0 text-gray-400 sm:flex base-btn-hover"
@@ -32,7 +32,7 @@
 						</el-icon>
 					</el-button>
 				</el-tooltip>
-				<el-button type="success" @click="createCache">{{ $t("redis.cacheList.new") }}</el-button>
+				<el-button type="success" @click="createCache">{{ $t("redis.cache.new") }}</el-button>
 			</div>
 		</div>
 		<!-- Sraech and AddButton End -->
@@ -51,10 +51,10 @@
 							{{ item.name }}
 						</h3>
 						<span class="mt-1.5 flex items-center gap-1.5 opacity-50">
-							<span>{{ $t("redis.cacheList.regional") }}</span> {{ item.cloudProvider }} <span></span>{{ item.region }}
+							<span>{{ $t("redis.regional") }}</span> {{ item.cloudProvider }} <span></span>{{ item.region }}
 						</span>
 						<div class="mt-1.5 flex items-center justify-between gap-1.5">
-							<span class="flex-1 opacity-50">{{ $t("redis.cacheList.status") }}</span>
+							<span class="flex-1 opacity-50">{{ $t("redis.status") }}</span>
 
 							<StatusIcon :status="item.status" />
 

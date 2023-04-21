@@ -3,7 +3,10 @@
 	<base-info :cache="cache" @update="updateName" />
 	<div class="container mx-auto !max-w-screen-xl px-4 pt-8 pb-20">
 		<el-tabs v-model="activeTab" @tab-click="tabClick">
-			<el-tab-pane v-for="(item, index) in tabs" :label="item" :name="item.toLowerCase()" :key="index" :lazy="true" />
+			<el-tab-pane :label="$t('redis.tabs.details')" name="details" />
+			<el-tab-pane :label="$t('redis.tabs.usages')" name="usages" />
+			<el-tab-pane :label="$t('redis.tabs.cli')" name="cli" />
+			<el-tab-pane :label="$t('redis.tabs.token')" name="token" />
 			<router-view />
 		</el-tabs>
 	</div>
@@ -22,7 +25,6 @@ const router = useRouter(),
 	route = useRoute(),
 	store = cacheStore(),
 	activeTab = ref("details"),
-	tabs = ref(["Details", "Usages", "Cli", "Token"]),
 	cache = ref<ICacheListItem>();
 
 function tabClick({ paneName }: any) {

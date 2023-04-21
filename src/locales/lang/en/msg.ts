@@ -10,5 +10,7 @@ export default {
 	viewAll: "View All",
 	close: "close",
 	edit: "Confirm",
-	cancel: "cancel"
+	confirm: "Confirm",
+	cancel: "Cancel",
+	delete: "Delete"
 };

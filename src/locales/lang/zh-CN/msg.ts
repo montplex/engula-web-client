@@ -10,5 +10,7 @@ export default {
 	viewAll: "查看全部",
 	close: "关闭",
 	edit: "修改",
-	cancel: "取消"
+	cancel: "取消",
+	confirm: "确认",
+	delete: "删除"
 };

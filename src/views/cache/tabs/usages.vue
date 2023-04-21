@@ -4,31 +4,37 @@
 			<!-- <h3 class="text-bold m-0 text-base">Current Month</h3> -->
 			<div class="grid-card">
 				<div class="items">
-					<div class="title">Storage Bytes</div>
+					<div class="title">{{ $t("redis.storageBytes") }}</div>
 					<div class="meat">{{ cards?.storageBytes ?? 0 }}</div>
 				</div>
 				<div class="items">
-					<div class="title">Read Bytes</div>
+					<div class="title">{{ $t("redis.readBytes") }}</div>
 					<div class="meat">{{ cards?.readBytes ?? 0 }}</div>
 				</div>
 
 				<div class="items">
-					<div class="title">write Bytes</div>
+					<div class="title">{{ $t("redis.writeBytes") }}</div>
 					<div class="meat">{{ cards?.writeBytes ?? 0 }}</div>
 				</div>
 				<div class="items">
-					<div class="title">Fee</div>
+					<div class="title">{{ $t("redis.fee") }}</div>
 					<div class="meat">{{ cards?.fee ?? 0 }}<span>$</span></div>
 				</div>
 			</div>
 		</div>
 
 		<div class="flex items-center">
-			<h4 class="text-base">Filter Data</h4>
+			<h4 class="text-base">{{ $t("redis.filterData") }}</h4>
 			<div class="ml-auto">
 				<!-- select -->
-				<el-select v-model="unit" @change="timeChange" filterable placeholder="Select cloud provider" class="w-full">
-					<el-option v-for="item in unitSelectList" :key="item.value" :label="item.label" :value="item.value" />
+				<el-select v-model="unit" @change="timeChange" filterable class="w-full">
+					<!-- <el-option v-for="item in unitSelectList" :key="item.value" :label="item.label" :value="item.value" /> -->
+					<el-option :label="$t('redis.usages.pastHour')" value="hour" />
+					<el-option :label="$t('redis.usages.past3Hours')" value="hour,3" />
+					<el-option :label="$t('redis.usages.past12Hours')" value="hour,12" />
+					<el-option :label="$t('redis.usages.pastDay')" value="day" />
+					<el-option :label="$t('redis.usages.past3Days')" value="day,3" />
+					<el-option :label="$t('redis.usages.pastWeek')" value="week" />
 				</el-select>
 			</div>
 		</div>
@@ -115,14 +121,14 @@ function mergeData(value: any) {
 	};
 	return res;
 }
-const unitSelectList = reactive([
+/* const unitSelectList = reactive([
 	{ label: "Past hour", value: "hour" },
 	{ label: "Past 3 hours", value: "hour,3" },
 	{ label: "Past 12 hours", value: "hour,12" },
 	{ label: "Past day", value: "day" },
 	{ label: "Past 3 days", value: "day,3" },
 	{ label: "Past week", value: "week" }
-]);
+]); */
 
 const setMap = new Map([
 	["hour", "3m"],

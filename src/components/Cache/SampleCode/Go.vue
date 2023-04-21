@@ -21,7 +21,10 @@ const goCode = computed(() => {
 	return `
   var ctx = context.Background()
   func main() {
-    opt, _ := redis.ParseURL("redis://default:**********@${store.oneCache.host}:${store.port}")
+	opt := redis.NewClient(&redis.Options{
+		Addr:	  "${store.oneCache.host}:${store.port}",
+		Password: "**********"
+	})
     client := redis.NewClient(opt)
 
     client.Set(ctx, "foo", "bar", 0)

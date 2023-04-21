@@ -26,6 +26,21 @@ const statusStyle = {
 	"-10": "#f16538"
 };
 
+const chartTitleMap = {
+	zh_CN: {
+		memory_used_bytes: "客户端命令总访问量",
+		db_keys: "内存使用量",
+		client_commands_total: "缓存指令总量",
+		hit_rate: "命中率"
+	},
+	en: {
+		memory_used_bytes: "Memory Used Bytes",
+		db_keys: "Db keys",
+		client_commands_total: "Client Commands Total",
+		hit_rate: "Hit Rate"
+	}
+};
+
 let country = {
 	AF: "Afghanistan",
 	AL: "Albania",
@@ -287,4 +302,11 @@ const tableStyle: any = {
 	}
 };
 
-export { country, countryList, tableStyle, statusMap, statusStyle };
+export {
+	country,
+	countryList,
+	tableStyle,
+	statusMap,
+	statusStyle,
+	chartTitleMap
+};

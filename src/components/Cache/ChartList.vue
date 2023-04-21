@@ -1,7 +1,7 @@
 <template>
 	<div class="chart-item" v-for="(value, key) in metrics" :key="key">
 		<header>
-			<h4>{{ ChartTitle[key] }}</h4>
+			<h4>{{ chatTitle[key] }}</h4>
 		</header>
 		<div style="width: 100%; height: 300px">
 			<Echarts width="100%" height="300px" :options="value" />
@@ -11,7 +11,15 @@
 
 <script setup lang="ts">
 import { Metrics } from "#/cache";
-import { PropType } from "vue";
+import { PropType, computed } from "vue";
+import { chartTitleMap } from "#/consts";
+import { useI18n } from "vue-i18n";
+const { locale } = useI18n();
+
+const chatTitle = computed(() => {
+	// @ts-expect-error
+	return chartTitleMap[locale.value];
+});
 
 defineProps({
 	metrics: {
@@ -19,13 +27,6 @@ defineProps({
 		default: () => ({})
 	}
 });
-
-enum ChartTitle {
-	memory_used_bytes = "Memory Used Bytes",
-	db_keys = "Db keys",
-	client_commands_total = "Client Commands Total",
-	hit_rate = "Hit Rate"
-}
 </script>
 
 <style lang="scss" scoped>

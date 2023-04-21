@@ -1,7 +1,8 @@
 <template>
 	<div key="redis-cli">
-		<CodeHight :code="code" language="shell" />
+		<CodeHight :code="rcode" language="shell" />
 		<!-- footer tips -->
+		<!-- redis-cli -h host -p port -a password -->
 		<div class="info-warning mt-6 code-library">
 			redis-cli supports TLS starting with version 6. If you are using version 5 or earlier, you should use
 			<a href="https://www.stunnel.org/">
@@ -24,8 +25,9 @@ import { computed, ref } from "vue";
 import { cacheStore } from "@/stores/cache";
 
 const store = cacheStore();
-const code = computed(() => {
-	return `redis-cli -u redis://default:**********@${store.oneCache.host}:${store.port}`;
+
+const rcode = computed(() => {
+	return `redis-cli -h ${store.oneCache.host} -p ${store.port} -a **********`;
 });
 </script>
 

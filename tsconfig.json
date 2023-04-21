@@ -5,8 +5,8 @@
 		"module": "esnext",
 		"moduleResolution": "node",
 		// "allowJs": false,
-		// element 类型提示
-		"types": ["element-plus/global", "vite/client"],
+		// element 类型提示 element-plus/global
+		"types": ["vite/client"],
 		"strict": true /* Enable all strict type-checking options. */,
 		"jsx": "preserve",
 		"sourceMap": true,

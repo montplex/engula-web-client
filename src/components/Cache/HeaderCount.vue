@@ -1,22 +1,22 @@
 <template>
 	<div class="bg-gray-100 py-8">
 		<div class="container mx-auto !max-w-screen-xl px-4">
-			<h3 class="m-0 text-base">{{ $t("redis.count.title") }}</h3>
+			<h3 class="m-0 text-base">{{ $t("redis.countTitle") }}</h3>
 			<div class="mt-4 grid gap-2 sm:grid-cols-3 sm:gap-4">
 				<!-- <div class="rounded-lg px-5 pt-4 pb-3 shadow-sm bg-white">
 					<el-statistic title="" :value="62" />
 				</div> -->
 				<div class="cu-items">
-					<div class="title">{{ $t("redis.count.readBytes") }}</div>
+					<div class="title">{{ $t("redis.readBytes") }}</div>
 					<div class="meat">{{ fee?.readByte ?? 0 }}</div>
 				</div>
 				<div class="cu-items">
-					<div class="title">{{ $t("redis.count.writeBytes") }}</div>
+					<div class="title">{{ $t("redis.writeBytes") }}</div>
 					<div class="meat">{{ fee?.writeByte ?? 0 }}</div>
 				</div>
 
 				<div class="cu-items">
-					<div class="title">{{ $t("redis.count.fee") }}</div>
+					<div class="title">{{ $t("redis.fee") }}</div>
 					<div class="meat">{{ fee?.fee ?? 0 }}<span>$</span></div>
 				</div>
 			</div>

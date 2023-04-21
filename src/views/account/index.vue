@@ -7,13 +7,14 @@
 	</div>
 	<div class="container mx-auto !max-w-screen-xl px-4">
 		<div class="mt-8">
-			<el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
+			<Billing />
+			<!-- <el-tabs v-model="activeName"  @tab-click="handleClick">
 				<el-tab-pane label="Billing" name="billing">
 					<Billing v-if="activeName === 'billing'" />
 				</el-tab-pane>
 				<el-tab-pane label="Cost Explorer" name="const">Cost Explorer</el-tab-pane>
 				<el-tab-pane label="Settings" name="setting">Settings</el-tab-pane>
-			</el-tabs>
+			</el-tabs> -->
 		</div>
 	</div>
 </template>

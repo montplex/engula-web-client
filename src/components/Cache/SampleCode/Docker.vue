@@ -32,7 +32,7 @@ onMounted(() => {
 });
 const store = cacheStore();
 const code = computed(() => {
-	return `docker run -it redis:alpine redis-cli -u redis://default:**********@${store.oneCache.host}:${store.port}`;
+	return `docker run -it redis:alpine redis-cli -h ${store.oneCache.host} -p ${store.port} -a **********`;
 });
 </script>
 

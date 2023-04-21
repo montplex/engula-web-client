@@ -22,21 +22,23 @@
 
 	<div class="container mx-auto !max-w-screen-xl py-10 bg-white">
 		<el-table :data="tableListData" v-bind="tableStyle">
-			<el-table-column prop="cacheServiceName" label="Name" />
-			<el-table-column prop="date" label="Date">
+			<el-table-column prop="cacheServiceName" :label="$t('redis.pay.table.name')" />
+			<el-table-column prop="date" :label="$t('redis.pay.table.date')">
 				<template #default="{ row }"> {{ dayjs(row.monthStr).format("YYYY MMM") }}</template>
 			</el-table-column>
 
 			<!-- <el-table-column prop="readByte" label="Readbyte" /> -->
 
-			<el-table-column prop="fee" label="Fee">
+			<el-table-column prop="fee" :label="$t('redis.pay.table.fee')">
 				<template #default="scope"> $ {{ scope.row.fee }}</template>
 			</el-table-column>
 
-			<el-table-column prop="isPaid" label="IS Paid">
+			<el-table-column prop="isPaid" :label="$t('redis.pay.table.isPaid')">
 				<template #default="{ row }">
-					<el-button v-if="row.isPaid" type="info" disable text>success</el-button>
-					<el-button v-else type="success" plain @click="handlePayFor(row)"> Pay </el-button>
+					<el-button v-if="row.isPaid" type="info" disable text>
+						{{ $t("redis.pay.table.success") }}
+					</el-button>
+					<el-button v-else type="success" plain @click="handlePayFor(row)"> {{ $t("redis.pay.table.paid") }} </el-button>
 				</template>
 			</el-table-column>
 		</el-table>

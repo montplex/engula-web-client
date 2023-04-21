@@ -1,9 +1,9 @@
 <template>
 	<el-dialog :modelValue="modelValue" width="26%" :lock-scroll="false" :show-close="false" class="br-8">
-		<template #header="{ titleId }">
+		<template #header>
 			<div class="flex">
 				<i-ep:warning-filled class="text-2xl text-[#faad14]" />
-				<h4 :id="titleId" class="font-semibold ml-2">
+				<h4 class="font-semibold ml-2">
 					{{ lang ? "You can create 5 cache services in the free layer." : "您可以在免费层中创建5个缓存服务。" }}
 				</h4>
 			</div>

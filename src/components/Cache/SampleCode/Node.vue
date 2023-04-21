@@ -31,7 +31,13 @@ const store = cacheStore();
 const ioredis = computed(() => {
 	return `
   const Redis = require("ioredis");
-  let client = new Redis("redis://default:**********@${store.oneCache.host}:${store.port}");
+	
+  let client = new Redis({
+	port: ${store.port},
+  	host: "${store.oneCache.host}",
+  	password: "**********"
+  });
+
   client.set('foo', 'bar');
   `;
 });

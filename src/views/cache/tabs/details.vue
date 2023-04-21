@@ -4,7 +4,7 @@
 		<base-port :cache="cache.one" :host="cache.host" />
 		<div class="section-connect">
 			<div class="col-span-1">
-				<h3 class="text-xl font-normal">Connect to your cache service</h3>
+				<h3 class="text-xl font-normal">{{ $t("redis.connect") }}</h3>
 			</div>
 			<div class="overflow-x-auto sm:overflow-hidden">
 				<el-radio-group v-model="tabPosition" size="large" fill="#21cc93">
@@ -20,9 +20,11 @@
 
 		<div class="section-connect grid-cols-3 !border-red-200 bg-red-50">
 			<div class="col-span-2">
-				<h4 class="text-lg">Delete this Cache Service</h4>
+				<h4 class="text-lg">{{ $t("redis.del.alert.title") }}</h4>
 				<div class="text-gray-600">
-					<p>Once you delete a cache service, there is no going back. Please be certain.</p>
+					<p>
+						{{ $t("redis.del.alert.info") }}
+					</p>
 				</div>
 			</div>
 			<div class="overflow-x-auto sm:overflow-hidden">
@@ -33,7 +35,7 @@
 								<i-ep:loading />
 							</el-icon>
 						</template>
-						Delete</el-button
+						{{ $t("msg.delete") }}</el-button
 					>
 				</div>
 			</div>
@@ -41,30 +43,39 @@
 	</div>
 
 	<!-- Delete-dialog Start -->
-	<el-dialog v-model="delVisible" title="Delete Cache Service" width="520px" style="border-radius: 8px">
+	<el-dialog v-model="delVisible" :title="$t('redis.del.dialog.title')" width="520px" style="border-radius: 8px">
 		<div class="space-y-4">
 			<div>
-				<p>All data will be deleted permanently.</p>
-				<div class="alert-base danger px-4 mt-2 text-red-500">This action cannot be undone.</div>
+				<p>{{ $t("redis.del.dialog.meta") }}</p>
+				<div class="alert-base danger px-4 mt-2 text-red-500">
+					{{ $t("redis.del.dialog.alert") }}
+				</div>
 			</div>
 			<div class="space-y-2 rounded-lg bg-gray-100 px-6 py-5">
-				<p>
+				<p class="mb-2" v-if="lang">
 					Please type
-					<span class="c-tag">
-						<code
-							><strong>{{ cache.one.name }}</strong></code
-						>
-					</span>
+					<span class="c-tag font-semibold"
+						><code>{{ cache.one.name }}</code></span
+					>
 					to confirm.
 				</p>
-				<el-input @input="nameInput" v-model="repeatedName" placeholder="Enter the name of the database" />
+				<p class="mb-2" v-else>
+					请输入
+					<span class="c-tag font-semibold"
+						><code>{{ cache.one.name }}</code></span
+					>
+					再次确认
+				</p>
+				<el-input @input="nameInput" v-model="repeatedName" :placeholder="$t('redis.del.dialog.placeholder')" />
 			</div>
 		</div>
 
 		<template #footer>
 			<span class="dialog-footer">
-				<el-button @click="delVisible = false">Cancel</el-button>
-				<el-button :disabled="isdel" :type="isdel ? '' : 'danger'" @click="delCache"> delete </el-button>
+				<el-button @click="delVisible = false">{{ $t("msg.cancel") }}</el-button>
+				<el-button :disabled="isdel" :type="isdel ? '' : 'danger'" @click="delCache">
+					{{ $t("msg.delete") }}
+				</el-button>
 			</span>
 		</template>
 	</el-dialog>
@@ -82,8 +93,13 @@ import { cacheStore } from "@/stores/cache";
 import { cacheOne } from "@/api/cache";
 import { ICacheOneRes } from "#/cache";
 
+import { useI18n } from "vue-i18n";
+const { locale } = useI18n();
+
+const lang = computed(() => locale.value == "en");
+
 let codeRadioGroup = reactive([
-	{ name: "redis-cli", com: "CodeRedis" },
+	{ name: "Redis-cli", com: "CodeRedis" },
 	{ name: "Node", com: "CodeNode" },
 	{ name: "PHP", com: "CodePhp" },
 	{ name: "Python", com: "CodePython" },
