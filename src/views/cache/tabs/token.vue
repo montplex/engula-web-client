@@ -14,7 +14,8 @@
 							<SvgIcon icon="copy" class="!inline !text-lg text-gray-500 hover:text-blue-600" />
 						</div>
 					</li>
-					<li class="text-info-4 py-1">Added on {{ dayjs(item.createdDate).format("MMM D, YYYY") }}</li>
+					<li class="text-info-4 py-1" v-if="lang">Added on {{ dayjs(item.createdDate).format("MMM D, YYYY") }}</li>
+					<li class="text-info-4 py-1" v-else>创建日期 {{ dayjs(item.createdDate).format("YYYY年MM月DD日") }}</li>
 					<li class="flex items-center">
 						<h3 class="text-base">{{ $t("redis.token.mode") }}:</h3>
 						<span class="pl-2 text-info-8">{{

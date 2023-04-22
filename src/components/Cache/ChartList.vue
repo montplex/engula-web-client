@@ -21,12 +21,24 @@ const chatTitle = computed(() => {
 	return chartTitleMap[locale.value];
 });
 
-defineProps({
+const props = defineProps({
 	metrics: {
 		type: Object as PropType<Metrics>,
 		default: () => ({})
+	},
+	line: {
+		type: Boolean,
+		default: false
+	},
+	data: {
+		type: Object,
+		default: () => ({})
 	}
 });
+
+
+
+
 </script>
 
 <style lang="scss" scoped>

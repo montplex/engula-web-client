@@ -3,10 +3,12 @@ export default {
 		docs: "Docs",
 		blog: "Blog",
 		about: "About",
-		careers: "Careers"
+		careers: "Careers",
+		console: "Console"
 	},
 	banner: {
-		title: "Serverless Cache for Global Business",
+		title: "Serverless Cache",
+		subTitle: "for Global Business",
 		button: "GET STARTED"
 	},
 	cards: {

@@ -1,12 +1,16 @@
+import { submit } from "./../../../utils/rules";
 export default {
 	nav: {
 		docs: "文档",
 		blog: "博客",
 		about: "关于",
-		careers: "服务"
+		careers: "服务",
+		console: "控制台"
 	},
 	banner: {
-		title: "适用于全球业务的无服务器缓存。",
+		title: "无服务器缓存。",
+		subTitle:
+			"Engula是一个强大的多模型数据库，专为云构建，旨在改进传统和现代应用程序的开发过程。",
 		button: "立即体验"
 	},
 	cards: {

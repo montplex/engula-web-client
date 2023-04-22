@@ -15,5 +15,5 @@ function handleLang(val: "zh_CN" | "en") {
 	// localStorage.setItem('language', val)
 }
 
-// handleLang("zh_CN");
+handleLang("zh_CN");
 </script>

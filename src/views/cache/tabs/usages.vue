@@ -39,7 +39,7 @@
 			</div>
 		</div>
 
-		<chart-list :metrics="metrics" />
+		<chart-list :metrics="metrics" :line="true" :data="lineData" />
 	</div>
 </template>
 
@@ -56,7 +56,8 @@ import { formatBytes, toThousandFilter } from "@/utils/util";
 const route = useRoute(),
 	unit = ref("hour"),
 	metrics = ref<Metrics>(),
-	cards = ref<Cards>();
+	cards = ref<Cards>(),
+	lineData = ref();
 
 const params = reactive<ChartParams>({
 	cacheServiceId: route.query.id as string,
@@ -73,12 +74,14 @@ function formatCharts(res: ChartRes) {
 			const x = value.map((item) => dayjs(item[0] * 1000).format("D MMM HH:mm"));
 			const y = value.map((item) => (item[1] == "NaN" ? 0 : Number(item[1])));
 			const item = mergeData({ x, y });
+			lineData.value = { x:value.map((item) => item[0]), y };
 			memo[key] = item;
 		} else {
 			card[key] = key == "fee" ? toThousandFilter(value) : formatBytes(value);
 			// card[key] = toThousandFilter(value);
 		}
 	}
+	console.log(lineData.value);
 	return { memo, card };
 }
 
