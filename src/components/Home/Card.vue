@@ -86,7 +86,7 @@
 							</svg>
 						</div>
 						<div class="meta">
-							<div class="meta_title text-[22px]">{{ $t("home.cards.list.effort") }}</div>
+							<div class="meta_title font-semibold text-[22px]">{{ $t("home.cards.list.effort") }}</div>
 							<!-- <div class="meta_body">
                 When we find a vulnerability or incompatibility, we create a fix, test it, and
                 release it within 14 days of discovery
@@ -114,7 +114,7 @@
 							</svg>
 						</div>
 						<div class="meta">
-							<div class="meta_title text-[22px]">{{ $t("home.cards.list.cloud") }}</div>
+							<div class="meta_title font-semibold text-[22px]">{{ $t("home.cards.list.cloud") }}</div>
 							<!-- <div class="meta_body">
                 With our on-prem license delivery, you don’t have to worry about any package data
                 leaving your network when you install NES Vue 2.

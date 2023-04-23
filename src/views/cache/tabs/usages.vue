@@ -39,19 +39,23 @@
 			</div>
 		</div>
 
-		<chart-list :metrics="metrics" :line="true" :data="lineData" />
+		<chart-list :metrics="metrics" />
 	</div>
 </template>
 
 <script setup lang="ts">
 import ChartList from "@/components/Cache/ChartList.vue";
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
 import { getChart } from "@/api/cache";
 import { ChartParams, ChartRes, Metrics, Cards } from "#/cache";
-import { dayjs } from "element-plus";
 import { watchEffect } from "vue";
 import { useRoute } from "vue-router";
 import { formatBytes, toThousandFilter } from "@/utils/util";
+import { useI18n } from "vue-i18n";
+import { dayjs } from "element-plus";
+
+const { locale } = useI18n();
+const lang = computed(() => locale.value == "en");
 
 const route = useRoute(),
 	unit = ref("hour"),
@@ -71,10 +75,14 @@ function formatCharts(res: ChartRes) {
 	let card = {} as any;
 	for (const [key, value] of Object.entries(res)) {
 		if (value instanceof Array) {
-			const x = value.map((item) => dayjs(item[0] * 1000).format("D MMM HH:mm"));
+			const x = value.map((item) => {
+				const formatStr = lang.value ? "D MMM HH:mm" : "YYYY年MM月DD日 HH:mm";
+				return dayjs(item[0] * 1000).format(formatStr);
+			});
+
 			const y = value.map((item) => (item[1] == "NaN" ? 0 : Number(item[1])));
 			const item = mergeData({ x, y });
-			lineData.value = { x:value.map((item) => item[0]), y };
+
 			memo[key] = item;
 		} else {
 			card[key] = key == "fee" ? toThousandFilter(value) : formatBytes(value);
@@ -98,7 +106,7 @@ watchEffect(() => {
 });
 
 function mergeData(value: any) {
-	const res = {
+	/* const resc = {
 		xAxis: {
 			type: "category",
 			data: value.x
@@ -121,17 +129,45 @@ function mergeData(value: any) {
 				}
 			}
 		]
+	}; */
+	const res = {
+		xAxis: { type: "category", boundaryGap: false, data: value.x },
+		yAxis: {
+			type: "value",
+			// splitNumber: 5,  //刻度的数量
+			axisLine: { show: false }, //不显示坐标抽轴线
+			axisTick: { show: false }, //不显示坐标轴刻度
+			// 网格线样式
+			splitLine: {
+				show: true,
+				lineStyle: {
+					color: "#E5E9ED"
+					// 	opacity:0.1
+				}
+			}
+		},
+		// 悬浮提示相关
+		tooltip: { trigger: "axis" },
+		//图表边界控制
+		grid: {
+			left: "3%",
+			right: "4%",
+			bottom: "3%",
+			containLabel: true
+		},
+		series: [
+			{
+				data: value.y,
+				type: "line",
+				smooth: true, // 平滑曲线
+				symbol: "none",
+				lineStyle: { color: "#5470C6", width: 3 },
+				areaStyle: { color: "#5470C6", opacity: 0.1 }
+			}
+		]
 	};
 	return res;
 }
-/* const unitSelectList = reactive([
-	{ label: "Past hour", value: "hour" },
-	{ label: "Past 3 hours", value: "hour,3" },
-	{ label: "Past 12 hours", value: "hour,12" },
-	{ label: "Past day", value: "day" },
-	{ label: "Past 3 days", value: "day,3" },
-	{ label: "Past week", value: "week" }
-]); */
 
 const setMap = new Map([
 	["hour", "3m"],

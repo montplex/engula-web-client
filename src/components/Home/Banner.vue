@@ -1,4 +1,5 @@
 <template>
+	<Count />
 	<div class="sunsetWrapper">
 		<div class="hdClients">
 			<div class="sunset">
@@ -20,6 +21,7 @@
 <script setup lang="ts">
 import Card from "./Card.vue";
 import CuttingLine from "./vectors-wrapper.vue";
+import Count from "./Count.vue";
 </script>
 
 <style lang="scss"></style>
