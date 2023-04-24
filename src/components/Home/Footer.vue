@@ -61,9 +61,11 @@
 					</a>
 				</div>
 				<ul class="quick-list text-2xl">
-					<li class="flex">
-						<span class="text-block">Contact Us</span>
-						<svgIcon icon="right45" class="!h-5 !w-5 -rotate-45" />
+					<li>
+						<a class="flex" href="https://dev.montplex.com/docs/docs/support/contact-us" target="_blank">
+							<span class="text-block">Contact Us</span>
+							<svgIcon icon="right45" class="!h-5 !w-5 -rotate-45" />
+						</a>
 					</li>
 
 					<li class="flex">

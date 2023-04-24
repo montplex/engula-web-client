@@ -3,7 +3,7 @@
 		<CodeHight :code="rcode" language="shell" />
 		<!-- footer tips -->
 		<!-- redis-cli -h host -p port -a password -->
-		<div class="info-warning mt-6 code-library">
+		<!-- <div class="info-warning mt-6 code-library">
 			redis-cli supports TLS starting with version 6. If you are using version 5 or earlier, you should use
 			<a href="https://www.stunnel.org/">
 				Stunnel
@@ -15,7 +15,7 @@
 			>
 				<svg-icon icon="share" />
 			</a>
-		</div>
+		</div> -->
 	</div>
 </template>
 

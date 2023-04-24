@@ -43,7 +43,7 @@
         </p>
       </div> -->
 			<div class="mt-16 mx-auto text-center">
-				<a class="play-btn" href="https://dev.montplex.com" target="_blank">{{ $t("home.banner.button") }}</a>
+				<a class="play-btn" href="https://dev.montplex.com/console" target="_blank">{{ $t("home.banner.button") }}</a>
 			</div>
 		</div>
 	</section>

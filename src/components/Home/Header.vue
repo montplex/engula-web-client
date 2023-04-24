@@ -42,7 +42,7 @@
 						</button>
 					</div>
 					<nav class="nav-group">
-						<a href="https://dev.montplex.com/docs" target="_blank" class="group nav-link">
+						<a href="https://dev.montplex.com/docs/docs/overall/create" target="_blank" class="group nav-link">
 							<span>{{ t("home.nav.docs") }}</span>
 							<span class="ml-2">
 								<svgIcon icon="right45-write" class="!h-5 !w-5 ml-2 -rotate-45 group-hover:hidden" />
@@ -59,7 +59,7 @@
 						<!-- <div class="group nav-link" @click="scrollToAnchor('bander-about')">
 							<span>{{ t("home.nav.about") }}</span>
 						</div> -->
-						<a href="https://dev.montplex.com/docs" target="_blank" class="group nav-link">
+						<a href="https://dev.montplex.com/docs/docs/support/contact-us" target="_blank" class="group nav-link">
 							<span>{{ t("home.nav.careers") }}</span>
 							<span class="ml-2" target="_blank">
 								<svgIcon icon="right45-write" class="!h-5 !w-5 ml-2 -rotate-45 group-hover:hidden" />
@@ -110,7 +110,7 @@
 					>
 						<div class="nav-list" v-if="open">
 							<nav class="flex flex-col">
-								<a href="https://dev.montplex.com/docs" target="_blank" class="group nav-link">
+								<a href="https://dev.montplex.com/docs/docs/overall/create" target="_blank" class="group nav-link">
 									<span>{{ t("home.nav.docs") }}</span>
 									<span class="ml-2">
 										<svgIcon icon="right45-write" class="!h-5 !w-5 ml-2 -rotate-45 group-hover:hidden" />
@@ -127,7 +127,7 @@
 								<!-- <div class="group nav-link" @click="scrollToAnchor('bander-about')">
 									<span>{{ t("home.nav.about") }}</span>
 								</div> -->
-								<a href="https://dev.montplex.com/docs/support" target="_blank" class="group nav-link">
+								<a href="https://dev.montplex.com/docs/docs/support/contact-us" target="_blank" class="group nav-link">
 									<span>{{ t("home.nav.careers") }}</span>
 									<span class="ml-2">
 										<svgIcon icon="right45-write" class="!h-5 !w-5 ml-2 -rotate-45 group-hover:hidden" />
