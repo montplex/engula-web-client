@@ -68,7 +68,7 @@
 						</a>
 					</li>
 
-					<li class="flex">
+					<li class="flex" @click="handlePrivacy('Policy')">
 						<span class="text-block">Privacy Policy</span>
 						<svgIcon icon="right45" class="!h-5 !w-5 -rotate-45" />
 					</li>
@@ -94,7 +94,12 @@
 	</footer>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+function handlePrivacy(str: string) {
+	console.log(str);
+	window.open("/pdf.html", "_blank");
+}
+</script>
 
 <style lang="scss" scoped>
 .home-footer {

@@ -27,22 +27,21 @@ const router = useRouter(),
 	activeTab = ref("details"),
 	cache = ref<ICacheListItem>();
 
-function tabClick({ paneName }: any) {
-	activeTab.value = paneName;
-	const toPage = (path: string) => router.replace({ path, query: { id: route.query.id } });
-	toPage(`/redis/${paneName}`);
-}
-
 // tab切换时,每次都会重新请求数据
 /* watchEffect(async () => {
 	store.setOneCache({ id: route.query.id as string }).then((res) => {
 		cache.value = res.one;
 	});
 }); */
-
 store.setOneCache({ id: route.query.id as string }).then((res) => {
 	cache.value = res.one;
 });
+
+function tabClick({ paneName }: any) {
+	activeTab.value = paneName;
+	const toPage = (path: string) => router.replace({ path, query: { id: route.query.id } });
+	toPage(`/redis/${paneName}`);
+}
 
 /* 监听路由变化,切换子路由页面时保持tab选中状态 */
 watch(

@@ -95,7 +95,7 @@
 								<el-dropdown-item command="account" divided>
 									<el-icon size="16"> <i-ep:credit-card /> </el-icon> {{ $t("redis.set.account") }}
 								</el-dropdown-item>
-								<!-- <el-dropdown-item>  {{ $t("redis.set.settings") }}  </el-dropdown-item> -->
+								<el-dropdown-item command="pdfview"> {{ $t("redis.set.settings") }} </el-dropdown-item>
 								<el-dropdown-item command="out" divided>
 									<el-icon size="16"> <i-ep:switch-button /> </el-icon> {{ $t("redis.set.out") }}
 								</el-dropdown-item>
@@ -129,7 +129,7 @@
 								<el-dropdown-item command="account" divided>
 									<el-icon size="16"> <i-ep:credit-card /> </el-icon> {{ $t("redis.set.account") }}
 								</el-dropdown-item>
-								<!-- <el-dropdown-item>  {{ $t("redis.set.settings") }}  </el-dropdown-item> -->
+								<el-dropdown-item command="pdfview"> {{ $t("redis.set.settings") }} </el-dropdown-item>
 								<el-dropdown-item command="out" divided>
 									<el-icon size="16"> <i-ep:switch-button /> </el-icon> {{ $t("redis.set.out") }}
 								</el-dropdown-item>
