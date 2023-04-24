@@ -31,7 +31,7 @@
 			<div class="flex flex-col">
 				<div class="text-center">
 					<span class="!text-white text-5xl mb-12">
-						<span class="text-block">The Future of Cache</span>
+						<span class="text-block">{{ $t("home.aboutTitle") }}</span>
 						<!-- 	<svg
 							xmlns="http://www.w3.org/2000/svg"
 							fill="currentColor"

@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 import { getCacheList, cacheOne, getTokenList, deleteToken } from "@/api/cache";
+import i18n from "@/locales";
+
 import {
 	ICacheOneRes,
 	ICacheListItem,
@@ -19,6 +21,9 @@ interface IcacheStore {
 	tokenList: ItokenItem[];
 	port: string;
 }
+
+const { t } = i18n.global;
+
 export const cacheStore = defineStore({
 	id: "cacheStore",
 	state: (): IcacheStore => ({
@@ -83,8 +88,8 @@ export const cacheStore = defineStore({
 			this.tokenList = this.tokenList.filter((item) => item.id !== id);
 			deleteToken(id).then((res) => {
 				res.ok
-					? ElMessage.success("Delete completed")
-					: ElMessage.error("Delete failed");
+					? ElMessage.success(t("msg.delSuccess"))
+					: ElMessage.error(t("msg.delFail"));
 			});
 		},
 		getTokenByid(id: number) {

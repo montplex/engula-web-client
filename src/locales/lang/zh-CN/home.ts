@@ -1,4 +1,3 @@
-import { submit } from "./../../../utils/rules";
 export default {
 	nav: {
 		docs: "文档",
@@ -8,14 +7,12 @@ export default {
 		console: "控制台"
 	},
 	banner: {
-		// 无服务器缓存全球业务
-		title: "无服务器缓存。",
+		title: "无服务器缓存",
 		subTitle: "全球业务",
 		button: "立即体验"
 	},
 	cards: {
-		title:
-			"Engula提供低延迟数据、易用性和按量计费方式，是无服务器缓存方案的绝佳选择。",
+		title: "可信赖的无服务缓存。",
 
 		list: {
 			redis: "redis生态支持",
@@ -23,6 +20,7 @@ export default {
 			cloud: "任何规模，且全球高可用"
 		}
 	},
+	aboutTitle: "未来缓存服务的趋势",
 	about:
 		"Montplex无服务器缓存是一项尖端技术，专为云环境而设计，提供动态扩展、按需付费定价和卓越的性能。作为下一代缓存解决方案，Montplex 对于寻求可扩展、经济高效和高性能的企业或个人是个绝佳的选择。",
 	team: {

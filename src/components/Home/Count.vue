@@ -2,26 +2,24 @@
 	<div class="container mx-auto px-8 max-w-2xl py-20">
 		<div class="grid grid-cols-2 gap-8">
 			<div class="count">
-				<p class="text-3xl">30,76</p>
+				<p class="text-3xl">687</p>
 				<p class="title">
 					<span class="dbi1"></span>
-					Usears
+					Users
 				</p>
 			</div>
 			<div class="count">
-				<p class="text-3xl">45,886</p>
+				<p class="text-3xl">1586</p>
 				<p class="title">
 					<span class="dbi1"></span>
-					Databases
+					Cache Service
 				</p>
 			</div>
 		</div>
 	</div>
 </template>
 
-<script setup lang="ts">
-import CountTo from "./Count.vue";
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped>
 .count {
@@ -29,8 +27,6 @@ import CountTo from "./Count.vue";
 	position: relative;
 	background: rgba(255, 255, 255, 0.02);
 	color: #fff;
-	// background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.05) 100%);
-
 	&::before {
 		content: "";
 		pointer-events: none;

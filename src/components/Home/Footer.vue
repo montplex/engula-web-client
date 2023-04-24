@@ -8,8 +8,7 @@
 				<div class="flex items-center mt-6">
 					<img width="54" src="@/assets/images/main-logo.png" alt="" />
 					<div class="flex items-center pl-2 font-semibold text-5xl">
-						<span class="text-block">Mont</span>
-						<span class="text-block">plex</span>
+						<span class="text-block">Montplex</span>
 					</div>
 				</div>
 

@@ -140,9 +140,9 @@ function updateMode() {
 		.then((res) => {
 			if (res.ok) {
 				store.setTokenList(route.query.id as any);
-				return ElMessage.success("Update completed");
+				return ElMessage.success(t("msg.updateSuccess"));
 			}
-			ElMessage.error("Update failed");
+			ElMessage.error(t("msg.updateFail"));
 		})
 		.finally(() => {
 			update.value = false;

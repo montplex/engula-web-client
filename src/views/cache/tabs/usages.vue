@@ -27,14 +27,13 @@
 			<h4 class="text-base">{{ $t("redis.filterData") }}</h4>
 			<div class="ml-auto">
 				<!-- select -->
-				<el-select v-model="unit" @change="timeChange" filterable class="w-full">
-					<!-- <el-option v-for="item in unitSelectList" :key="item.value" :label="item.label" :value="item.value" /> -->
-					<el-option :label="$t('redis.usages.pastHour')" value="hour" />
-					<el-option :label="$t('redis.usages.past3Hours')" value="hour,3" />
-					<el-option :label="$t('redis.usages.past12Hours')" value="hour,12" />
-					<el-option :label="$t('redis.usages.pastDay')" value="day" />
-					<el-option :label="$t('redis.usages.past3Days')" value="day,3" />
-					<el-option :label="$t('redis.usages.pastWeek')" value="week" />
+				<el-select v-model="unit" @change="timeChange" class="w-full">
+					<el-option :label="$t('redis.usages.past_hour')" value="hour" />
+					<el-option :label="$t('redis.usages.past_3_hours')" value="hour,3" />
+					<el-option :label="$t('redis.usages.past_12_hours')" value="hour,12" />
+					<el-option :label="$t('redis.usages.past_day')" value="day" />
+					<el-option :label="$t('redis.usages.past_3_days')" value="day,3" />
+					<el-option :label="$t('redis.usages.past_week')" value="week" />
 				</el-select>
 			</div>
 		</div>

@@ -12,5 +12,11 @@ export default {
 	edit: "修改",
 	cancel: "取消",
 	confirm: "确认",
-	delete: "删除"
+	delete: "删除",
+	updateSuccess: "修改成功",
+	updateFail: "修改失败",
+	delSuccess: "删除成功",
+	delFail: "删除失败",
+	// 語言
+	language: "语言"
 };

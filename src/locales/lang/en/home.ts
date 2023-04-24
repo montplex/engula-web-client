@@ -21,6 +21,7 @@ export default {
 			cloud: "Any Scale , Global Availability"
 		}
 	},
+	aboutTitle: "The Future of Cache",
 	about:
 		"Montplex serverless cache, a cutting-edge technology, is specifically designed for cloud environments, providing dynamic scaling, pay-as-you-go pricing, and exceptional performance. As the next-generation cache solution, Montplex is an excellent choice for those seeking a scalable, cost-efficient, and high-performing option.",
 	team: {

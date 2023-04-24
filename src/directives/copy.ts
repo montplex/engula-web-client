@@ -1,3 +1,4 @@
+import { ElMessage } from "element-plus";
 import { DirectiveBinding } from "vue";
 
 interface ElType extends HTMLElement {
@@ -28,9 +29,6 @@ function handleCopyClick(e: string) {
 	input.select();
 	document.execCommand("Copy");
 	document.body.removeChild(input);
-	ElMessage({
-		message: "复制成功",
-		type: "success"
-	});
+	ElMessage({ message: "复制成功", type: "success" });
 }
 export default copy;

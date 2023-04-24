@@ -12,5 +12,9 @@ export default {
 	edit: "Confirm",
 	confirm: "Confirm",
 	cancel: "Cancel",
-	delete: "Delete"
+	delete: "Delete",
+	updateSuccess: "Update Success",
+	updateFail: "Update Fail",
+	delSuccess: "Delete Success",
+	delFail: "Delete Fail"
 };
