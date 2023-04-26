@@ -2,24 +2,28 @@
 	<div class="container mx-auto px-8 max-w-2xl py-20">
 		<div class="grid grid-cols-2 gap-8">
 			<div class="count">
-				<p class="text-3xl">687</p>
+				<p class="text-3xl">{{ store.usersNum.userNumber }}</p>
 				<p class="title">
 					<span class="dbi1"></span>
-					Users
+					{{ $t("home.cards.users") }}
 				</p>
 			</div>
 			<div class="count">
-				<p class="text-3xl">1586</p>
+				<p class="text-3xl">{{ store.usersNum.cacheServiceNumber }}</p>
 				<p class="title">
 					<span class="dbi1"></span>
-					Cache Service
+					{{ $t("home.cards.caches") }}
 				</p>
 			</div>
 		</div>
 	</div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { userStore } from "@/stores/user";
+const store = userStore();
+store.usersNumber();
+</script>
 
 <style lang="scss" scoped>
 .count {

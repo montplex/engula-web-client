@@ -60,30 +60,30 @@
 						</svg>
 					</a>
 				</div>
-				<ul class="quick-list text-2xl">
+				<ul class="quick-list text-xl">
 					<li>
 						<a class="flex" href="https://dev.montplex.com/docs/docs/support/contact-us" target="_blank">
-							<span class="text-block">Contact Us</span>
+							<span class="text-block">{{ $t("home.contact") }}</span>
 							<svgIcon icon="right45" class="!h-5 !w-5 -rotate-45" />
 						</a>
 					</li>
 
-					<li class="flex" @click="handlePrivacy('Policy')">
-						<span class="text-block">Privacy Policy</span>
+					<li class="flex" @click="handlePrivacy('policy')">
+						<span class="text-block">{{ $t("home.footer.privacyPolicy") }}</span>
 						<svgIcon icon="right45" class="!h-5 !w-5 -rotate-45" />
 					</li>
 
-					<li class="flex">
-						<span class="text-block">Terms of Service</span>
+					<li class="flex" @click="handlePrivacy('service')">
+						<span class="text-block">{{ $t("home.footer.termsofService") }}</span>
 						<svgIcon icon="right45" class="!h-5 !w-5 -rotate-45" />
 					</li>
 				</ul>
-				<div class="md:my-10 py-6 text-2xl text-white">© 2022 Montplex, Inc. All rights reserved</div>
+				<div class="md:my-10 py-6 text-xl text-white">© 2022 Montplex, Inc. All rights reserved</div>
 				<div
-					class="hidden px-40 text-center text-xs- md:block font-light"
+					class="hidden px-40 text-center text-sm md:block font-light"
 					:style="{ color: 'rgb(255 255 255 / 36%)', fontFamily: 'Airbnbcereal book' }"
 				>
-					<p class="max-w-2xl">
+					<p class="max-w-2xl" v-if="locale === 'en'">
 						Redis is a trademark of Redis Labs Ltd. Any rights therein are reserved to Redis Ltd. Any use by Montplex is for
 						referential purposes only and does not indicate any sponsorship, endorsement or affiliation between Redis and
 						Montplex.
@@ -95,9 +95,13 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from "vue-i18n";
+import { useRouter } from "vue-router";
+const { locale } = useI18n();
+const router = useRouter();
+
 function handlePrivacy(str: string) {
-	console.log(str);
-	window.open("/pdf.html", "_blank");
+	router.push({ path: "/pdf", query: { type: str } });
 }
 </script>
 
@@ -129,7 +133,8 @@ function handlePrivacy(str: string) {
 
 .quick-list {
 	@apply flex items-center flex-col md:flex-row gap-12;
-	li {
+	li,
+	li a {
 		@apply flex items-center gap-1 cursor-pointer;
 		span {
 			border-bottom: 1px dashed transparent;

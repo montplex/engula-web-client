@@ -35,4 +35,3 @@ defineProps({ modelValue: { type: Boolean, default: false } });
 defineEmits(["update:modelValue"]);
 </script>
 
-<style lang="scss"></style>

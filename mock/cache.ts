@@ -302,8 +302,8 @@ export default [
 				one: {
 					id: 21,
 					orgId: 2,
-					name: "DBTEST-004",
-					des: "desc",
+					name: "Cache Service Test",
+					des: "This is a Cache Service Test",
 					status: 1,
 					cloudProvider: "aws",
 					region: "ap-northeast-1",

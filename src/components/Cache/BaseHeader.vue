@@ -96,6 +96,7 @@
 									<el-icon size="16"> <i-ep:credit-card /> </el-icon> {{ $t("redis.set.account") }}
 								</el-dropdown-item>
 								<el-dropdown-item command="pdfview"> {{ $t("redis.set.settings") }} </el-dropdown-item>
+								<el-dropdown-item command="coll"> 动态路由测试 </el-dropdown-item>
 								<el-dropdown-item command="out" divided>
 									<el-icon size="16"> <i-ep:switch-button /> </el-icon> {{ $t("redis.set.out") }}
 								</el-dropdown-item>
@@ -223,6 +224,9 @@ const handleMineCommand = (command: string) => {
 			break;
 		case "pdfview":
 			router.push({ path: "/pdf" });
+			break;
+		case "coll":
+			router.push({ name: "Coll", params: { id: 123456 } });
 			break;
 		default:
 			break;

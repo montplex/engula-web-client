@@ -63,7 +63,7 @@ const route = useRoute(),
 	lineData = ref();
 
 const params = reactive<ChartParams>({
-	cacheServiceId: route.query.id as string,
+	cacheServiceId: route.params.id as string,
 	start: getTimeAgo("hour") / 1000,
 	end: new Date().getTime() / 1000,
 	step: "3m"

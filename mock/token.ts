@@ -96,5 +96,15 @@ export default [
 					"pk_test_51McKuKHLx89RNo7rjmtJAY6EJBzQtPYDtHx9mTOzDelZuMX3QLHJC0QKw1JzsUGAABkAZJlgGl9Rs0YUmnS07Fmc009HFDgNL6"
 			};
 		}
+	},
+	{
+		url: "/engula/home/user_cache_service/number",
+		method: "get",
+		response: () => {
+			return {
+				userNumber: 153,
+				cacheServiceNumber: 273
+			};
+		}
 	}
 ] as MockMethod[];

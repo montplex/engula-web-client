@@ -201,7 +201,7 @@
 			<div class="cardItem gradient-border">
 				<div class="cardBox text-white !px-0">
 					<div class="px-7 pt-10 text-center">
-						<h3 class="text-block text-[26px] font-medium">Pay as you go</h3>
+						<h3 class="text-block text-[26px] font-medium">{{ $t("home.price.payas") }}</h3>
 						<svg
 							width="100"
 							height="4"
@@ -232,44 +232,56 @@
 						</svg>
 					</div>
 					<div class="grid grid-cols-2 w-full px-8">
-						<div class="table-item !justify-start !text-lable-70">Commands Limit</div>
-						<div class="table-item">Unlimited</div>
+						<div class="table-item !justify-start !text-lable-70">
+							{{ $t("home.price.commands") }}
+						</div>
+						<div class="table-item">{{ $t("home.price.unlimited") }}</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">Encryption (TLS)</div>
+						<div class="table-item !justify-start !text-lable-70">{{ $t("home.price.tls") }}</div>
 						<div class="table-item">
 							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">Multi Zone Replication</div>
+						<div class="table-item !justify-start !text-lable-70">
+							{{ $t("home.price.zone") }}
+						</div>
 						<div class="table-item">
 							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">VPC Peering</div>
+						<div class="table-item !justify-start !text-lable-70">
+							{{ $t("home.price.vpc") }}
+						</div>
 						<div class="table-item">
 							<svgIcon icon="none" class="!h-5 !w-5" />
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">Professional Support</div>
-						<div class="table-item">Optional</div>
+						<div class="table-item !justify-start !text-lable-70">
+							{{ $t("home.price.ps") }}
+						</div>
+						<div class="table-item">{{ $t("home.price.optional") }}</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 					</div>
 					<div class="table-item">
-						<p class="text-center">$0.15 per GB read write throughput, up to $160 monthly max.</p>
+						<p class="text-center">
+							{{ $t("home.price.dj") }}
+						</p>
 					</div>
 					<div class="px-8 w-full flex justify-center">
-						<a class="ck-button w-full login" href="https://dev.montplex.com/console" target="_blank"> Login </a>
+						<a class="ck-button w-full login" href="https://dev.montplex.com/console" target="_blank">
+							{{ $t("home.login") }}
+						</a>
 					</div>
 				</div>
 			</div>
 			<div class="cardItem gradient-border">
 				<div class="cardBox text-white !px-0">
 					<div class="px-7 pt-10 text-center">
-						<h3 class="text-block text-[26px] font-medium">Enterprise</h3>
+						<h3 class="text-block text-[26px] font-medium">{{ $t("home.price.enterprise") }}</h3>
 						<svg
 							width="100"
 							height="4"
@@ -300,35 +312,35 @@
 						</svg>
 					</div>
 					<div class="grid grid-cols-2 w-full px-8">
-						<div class="table-item !justify-start !text-lable-70">Commands Limit</div>
+						<div class="table-item !justify-start !text-lable-70">{{ $t("home.price.commands") }}</div>
 						<div class="table-item">Unlimited</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">Encryption (TLS)</div>
+						<div class="table-item !justify-start !text-lable-70">{{ $t("home.price.tls") }}</div>
 						<div class="table-item">
 							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">Multi Zone Replication</div>
+						<div class="table-item !justify-start !text-lable-70">{{ $t("home.price.zone") }}</div>
 						<div class="table-item">
 							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">VPC Peering</div>
+						<div class="table-item !justify-start !text-lable-70">{{ $t("home.price.vpc") }}</div>
 						<div class="table-item">
 							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">Professional Support</div>
-						<div class="table-item">Optional</div>
+						<div class="table-item !justify-start !text-lable-70">{{ $t("home.price.ps") }}</div>
+						<div class="table-item">{{ $t("home.price.optional") }}</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 					</div>
-					<div class="table-item">Custom</div>
+					<div class="table-item">{{ $t("home.price.custom") }}</div>
 					<div class="px-8 w-full flex justify-center">
-						<a class="ck-button w-full" href="https://dev.montplex.com/console" target="_blank"> Contact Us </a>
+						<a class="ck-button w-full" href="https://dev.montplex.com/console" target="_blank"> {{ $t("home.contact") }}</a>
 					</div>
 				</div>
 			</div>

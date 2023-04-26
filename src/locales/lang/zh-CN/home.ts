@@ -4,7 +4,8 @@ export default {
 		blog: "博客",
 		about: "关于",
 		careers: "服务",
-		console: "控制台"
+		console: "控制台",
+		pricing: "定价"
 	},
 	banner: {
 		title: "无服务器缓存",
@@ -13,7 +14,8 @@ export default {
 	},
 	cards: {
 		title: "可信赖的无服务缓存。",
-
+		users: "用户",
+		caches: "缓存数量",
 		list: {
 			redis: "redis生态支持",
 			effort: "按量计费，降低成本",
@@ -32,5 +34,26 @@ export default {
 			role: "创始人",
 			meat: "Xuhui is a software engineer and the founder of Engula. He has been working on distributed systems for over 10 years. He is passionate about building cloud-native database and serverless computing."
 		}
+	},
+	footer: {
+		privacyPolicy: "隐私政策",
+		termsofService: "服务条款"
+	},
+	login: "登录",
+	contact: "联系我们",
+	price: {
+		title: "定价方案",
+		subTitle: "按请求定价付费。",
+		payas: "预付费",
+		enterprise: "企业方案",
+		commands: "命令限制",
+		tls: "加密（TLS）",
+		zone: "多区域复制",
+		vpc: "垮区域通讯",
+		ps: "技术支持",
+		custom: "自定义",
+		unlimited: "无限制",
+		optional: "可选",
+		dj: "每月最高$160，每GB读写流量$0.15"
 	}
 };

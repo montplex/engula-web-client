@@ -1,11 +1,12 @@
 import { defineStore } from "pinia";
 import cookie from "@/utils/cookie";
 import { CacheEnum } from "#/enum";
-import { IUserInfo, userInfo } from "@/api/auth";
+import { IUserInfo, userInfo, getUsers, IUsers } from "@/api/auth";
 import Cookies from "js-cookie";
 
 type User = {
 	info: null | IUserInfo;
+	usersNum: IUsers;
 };
 
 export const userStore = defineStore({
@@ -15,7 +16,8 @@ export const userStore = defineStore({
 		storage: localStorage
 	},
 	state: (): User => ({
-		info: {} as null | IUserInfo
+		info: {} as null | IUserInfo,
+		usersNum: {} as IUsers
 	}),
 	actions: {
 		async getUserInfo() {
@@ -28,6 +30,11 @@ export const userStore = defineStore({
 					this.info = res;
 				}
 			}
+		},
+		async usersNumber() {
+			const res = await getUsers();
+			this.usersNum = res;
+			return res;
 		}
 	}
 });

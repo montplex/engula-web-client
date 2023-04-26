@@ -62,8 +62,8 @@ const routes = [
 		} */
 	},
 	{
-		path: "/redis",
-		name: "Redis",
+		path: "/cache/:id",
+		name: "Cache",
 		meta: { auth: true },
 		component: Cache,
 		redirect: { name: "Details" },
@@ -90,7 +90,6 @@ const routes = [
 			}
 		]
 	},
-
 	{
 		path: "/404",
 		meta: { auth: true },

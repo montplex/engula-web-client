@@ -107,9 +107,6 @@ let codeRadioGroup = reactive([
 	{ name: "Go", com: "CodeGo" },
 	{ name: "Docker", com: "CodeDocker" }
 ]);
-
-// const status = computed(() => cache.value.one.status);
-
 const tabPosition = ref("CodeRedis"),
 	route = useRoute(),
 	router = useRouter(),
@@ -122,7 +119,6 @@ const tabPosition = ref("CodeRedis"),
 
 watchEffect(async () => {
 	cache.value = store.oneCache;
-	// cache.value = await store.setOneCache({ id: route.query.id as string });
 });
 
 function nameInput(e: string) {
@@ -132,12 +128,8 @@ function nameInput(e: string) {
 function delCache() {
 	delLoading.value = true;
 	delVisible.value = false;
-	/* if (Number(cache!.value.one.status) === 1) {
-		ElMessage.error("Please stop the service first");
-		delLoading.value = false;
-		return;
-	} */
-	cacheOne({ id: route.query.id as any, opt: "terminate" })
+
+	cacheOne({ id: route.params.id as any, opt: "terminate" })
 		.then((res) => {
 			if (res.one) {
 				store.updateOneCache(res);

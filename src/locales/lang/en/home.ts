@@ -4,7 +4,8 @@ export default {
 		blog: "Blog",
 		about: "About",
 		careers: "Careers",
-		console: "Console"
+		console: "Console",
+		pricing: "Pricing"
 	},
 	banner: {
 		title: "Serverless Cache",
@@ -13,7 +14,8 @@ export default {
 	},
 	cards: {
 		title: "Bilieve in Serverless",
-
+		users: "Users",
+		caches: "Databases",
 		button: "Learn More",
 		list: {
 			redis: "Redis API Compatible",
@@ -33,5 +35,26 @@ export default {
 			role: "CEO",
 			meat: "Xuhui is a software engineer and the founder of Engula. He has been working on distributed systems for over 10 years. He is passionate about building cloud-native database and serverless computing."
 		}
+	},
+	footer: {
+		privacyPolicy: "Privacy Policy",
+		termsofService: "Terms of Service"
+	},
+	contact: "Contact Us",
+	login: "Login",
+	price: {
+		title: "Plans & Pricing ",
+		subTitle: "Pay only for what you use with per-request pricing.",
+		payas: "Pay as you go",
+		enterprise: "Enterprise",
+		commands: "Commands Limit",
+		tls: "Encryption (TLS)",
+		zone: "Multi Zone Replication",
+		vpc: "VPC Peering",
+		ps: "Professional Support",
+		custom: "Custom",
+		unlimited: "Unlimited",
+		optional: "Optional",
+		dj: "$0.15 per GB read write throughput, up to $160 monthly max."
 	}
 };

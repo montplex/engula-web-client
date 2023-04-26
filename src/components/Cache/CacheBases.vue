@@ -5,12 +5,7 @@
 		<div class="mt-6 flex grid-cols-2 items-center gap-2 sm:grid sm:gap-8">
 			<div class="flex">
 				<div class="flex-1 w-full">
-					<el-input
-						@input="handleSearch"
-						@change="handleSearch"
-						v-model="searchVal"
-						:placeholder="$t('redis.cache.search')"
-					/>
+					<el-input @input="handleSearch" @change="handleSearch" v-model="searchVal" :placeholder="$t('redis.cache.search')" />
 				</div>
 				<div class="ml-9">
 					<el-select v-model="selectVal" placeholder="Filter..." @change="rStatusChange">
@@ -98,6 +93,7 @@
 		<!-- dbList End -->
 		<cacheEmpty @btn-click="createCache" v-else />
 	</div>
+
 	<!-- 新增缓存实例 -->
 	<addDialog v-model="addVisible" ref="addDialogRef" />
 	<!-- cache 数量超出限制 -->
@@ -105,10 +101,12 @@
 </template>
 
 <script setup lang="ts">
-import cacheEmpty from "./cacheEmpty.vue";
 import CrossDialog from "./CrossDialog.vue";
-import StatusIcon from "@/components/Cache/StatusIcon.vue";
 import addDialog from "./addDialog.vue";
+
+import cacheEmpty from "./cacheEmpty.vue";
+import StatusIcon from "@/components/Cache/StatusIcon.vue";
+
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import { cacheStore } from "@/stores/cache";
@@ -147,7 +145,8 @@ const createCache = async () => {
 
 /* 去详情页 */
 const goDetail = (id: number) => {
-	router.push({ path: "/redis/details", query: { id } });
+	router.push({ name: "Cache", params: { id } });
+	// router.push({ path: "/redis/details", query: { id } });
 };
 
 /* 搜索 */

@@ -97,7 +97,7 @@ import { resetForm, addTokenRules, submit } from "@/utils/rules";
 import type { FormInstance } from "element-plus";
 import { useRoute } from "vue-router";
 import { handleCopyClick } from "@/utils/util";
-import router from "@/router";
+
 import { useI18n } from "vue-i18n";
 
 type TMode = "ro" | "rw";
@@ -111,10 +111,10 @@ const route = useRoute(),
 	addFormRef = ref<FormInstance>(),
 	update = ref(false);
 
-store.setTokenList(route.query.id as any);
+store.setTokenList(route.params.id as any);
 
 const from = reactive({
-	cacheServiceId: route.query.id as string,
+	cacheServiceId: route.params.id as string,
 	mode: "" as TMode
 });
 
@@ -139,7 +139,7 @@ function updateMode() {
 	updateToken(fromUpdate)
 		.then((res) => {
 			if (res.ok) {
-				store.setTokenList(route.query.id as any);
+				store.setTokenList(route.params.id as any);
 				return ElMessage.success(t("msg.updateSuccess"));
 			}
 			ElMessage.error(t("msg.updateFail"));
@@ -151,7 +151,7 @@ function updateMode() {
 
 function addTokenCallback() {
 	addToken(from).then((res) => {
-		store.setTokenList(route.query.id as any);
+		store.setTokenList(route.params.id as any);
 		addVisible.value = false;
 	});
 }
@@ -169,15 +169,9 @@ function deleteToken(id: number) {
 		cancelButtonText: t("msg.cancel"),
 		confirmButtonClass: "el-button--danger",
 		type: "error"
-	})
-		.then(() => {
-			store.deleteTokenList(id);
-		})
-		.catch(() => {});
-}
-
-function powerCache() {
-	router.go(-1);
+	}).then(() => {
+		store.deleteTokenList(id);
+	});
 }
 </script>
 

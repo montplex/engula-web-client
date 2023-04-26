@@ -1,11 +1,11 @@
 <template>
-	<section class="ly-box">
+	<section class="ly-box" id="bander-pricing">
 		<div class="top-rect"></div>
 		<div class="content">
 			<header>
-				<h2 class="text-5xl inline-block font-bold text-white leading-normal">Plans &amp; Pricing</h2>
+				<h2 class="text-5xl inline-block font-bold text-white leading-normal">{{ $t("home.price.title") }}</h2>
 				<p class="mt-2">
-					<span class="inline-block text-xl text-block"> Pay only for what you use with per-request pricing. </span>
+					<span class="inline-block text-xl text-block"> {{ $t("home.price.subTitle") }}</span>
 				</p>
 				<svg
 					width="100"
