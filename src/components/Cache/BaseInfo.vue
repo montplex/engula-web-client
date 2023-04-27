@@ -87,6 +87,7 @@ import { ICacheListItem } from "#/cache";
 import { cacheRename } from "@/api/cache";
 import { useRoute } from "vue-router";
 import { ElMessage } from "element-plus";
+import router from "@/router";
 
 const props = defineProps({
 	cache: {
@@ -112,7 +113,7 @@ function nameInput(e: string) {
 
 async function confirmName(name: string) {
 	if (cacheNewName.value && cacheNewName.value !== name) {
-		const body = { id: route.query.id as any, name: cacheNewName.value };
+		const body = { id: route.params.id as any, name: cacheNewName.value };
 		const res = await cacheRename(body);
 		if (res.id) {
 			ElMessage.success("Rename success");

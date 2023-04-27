@@ -97,8 +97,8 @@ const store = cacheStore(),
 	password = ref<string>("");
 
 async function init() {
-	await store.setTokenList(route.query.id as any);
-	password.value = store.getTokenByid(route.query.id as any as number);
+	await store.setTokenList(route.params.id as any);
+	password.value = store.getTokenByid(route.params.id as any as number);
 }
 
 init();
