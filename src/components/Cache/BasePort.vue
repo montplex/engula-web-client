@@ -20,9 +20,9 @@
 
 			<div>
 				<div class="title">{{ $t("redis.endpoint") }}</div>
-				<div class="copy-text group w-full">
-					<p class="mr-1 inline-block">{{ host }}</p>
-					<span class="inline-block min-w-[40px]" v-copy v-if="cache.status === 1">
+				<div class="copy-text group">
+					<p class="mr-1 inline-block truncate max-w-[220px]">{{ host }}</p>
+					<span class="inline-block min-w-[40px]" @click="handleCopyClick(host)" v-if="cache.status === 1">
 						<span class="hidden group-hover:inline-block">
 							<el-tooltip effect="dark" placement="top" content="Copy" :show-after="200">
 								<svgIcon icon="copy" class="!inline !text-xl" />
@@ -36,7 +36,7 @@
 				<div class="title">{{ $t("redis.password") }}</div>
 				<div class="copy-text info group min-w-[100px]">
 					<div class="mr-1">•••••••••</div>
-					<div class="hidden group-hover:block" v-copy v-if="cache.status === 1" @click="handleCopyClick(password)">
+					<div class="hidden group-hover:block" v-if="cache.status === 1" @click="handleCopyClick(password)">
 						<el-tooltip effect="dark" placement="top" content="Copy" :show-after="200">
 							<svgIcon icon="copy" class="!inline !text-xl" />
 						</el-tooltip>
@@ -48,7 +48,7 @@
 				<div class="text-gray-500">{{ $t("redis.port") }}</div>
 				<div class="copy-text info group min-w-[100px]">
 					<div class="mr-1">{{ store.port }}</div>
-					<div class="hidden group-hover:block" v-copy v-if="cache.status === 1">
+					<div class="hidden group-hover:block" @click="handleCopyClick(store.port)" v-if="cache.status === 1">
 						<el-tooltip effect="dark" placement="top" content="Copy" :show-after="200">
 							<svgIcon icon="copy" class="!inline !text-xl" />
 						</el-tooltip>
@@ -75,7 +75,6 @@ import { cacheStore } from "@/stores/cache";
 import { handleCopyClick } from "@/utils/util";
 import { computed, ref } from "vue";
 import { ICacheListItem } from "#/cache";
-import { CachestatusTo, statusStyle } from "#/enum";
 
 const rcode = computed(() => {
 	return `redis-cli -h ${store.oneCache.host} -p ${store.port} -a **********`;

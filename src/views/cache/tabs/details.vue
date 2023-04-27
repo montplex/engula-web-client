@@ -11,7 +11,7 @@
 					<el-radio-button v-for="item in codeRadioGroup" :key="item.name" :label="item.com">{{ item.name }}</el-radio-button>
 				</el-radio-group>
 			</div>
-			<component :is="tabPosition"></component>
+			<Component :is="tabPosition" />
 		</div>
 		<!-- <configuration /> -->
 		<!-- 收费标准 Start -->
@@ -86,6 +86,7 @@
 import BillingStandards from "@/components/Cache/BillingStandards.vue";
 import Configuration from "@/components/Cache/Configuration.vue";
 import BasePort from "@/components/Cache/BasePort.vue";
+import { ElMessage } from "element-plus";
 
 import { ref, watchEffect, reactive, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -150,7 +151,7 @@ import CodePython from "@/components/Cache/SampleCode/Python.vue";
 import CodeJava from "@/components/Cache/SampleCode/Java.vue";
 import CodeGo from "@/components/Cache/SampleCode/Go.vue";
 import CodeDocker from "@/components/Cache/SampleCode/Docker.vue";
-import { ElMessage } from "element-plus";
+
 export default {
 	components: {
 		// eslint-disable-next-line vue/no-unused-components
