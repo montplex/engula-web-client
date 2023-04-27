@@ -215,12 +215,6 @@ import About from "./About.vue";
 		letter-spacing: 0;
 	}
 }
-
-.gradient-border {
-	padding: 2px;
-	background-image: linear-gradient(90.27deg, rgb(249 38 225 / 0.12) 0.22%, rgb(42 181 251 / 0.12) 99.76%);
-}
-
 .division-line {
 	padding: 1px 1px 0;
 	width: 100%;

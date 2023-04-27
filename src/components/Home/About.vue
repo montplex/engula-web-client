@@ -54,7 +54,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="gradient-border division-line"></div>
+		<div class="gradient-border division-line" style="padding: 1px"></div>
 		<!-- <Team /> -->
 	</div>
 </template>
