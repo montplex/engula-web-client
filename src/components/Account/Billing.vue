@@ -35,10 +35,13 @@
 
 			<el-table-column prop="isPaid" :label="$t('redis.pay.table.isPaid')">
 				<template #default="{ row }">
-					<el-button v-if="row.isPaid" type="info" disable text>
+					<el-button v-if="row.isPaid && row.fee >= 0" type="success" text>
 						{{ $t("redis.pay.table.success") }}
 					</el-button>
-					<el-button v-else type="success" plain @click="handlePayFor(row)"> {{ $t("redis.pay.table.paid") }} </el-button>
+					<el-button v-if="row.fee == 0" type="info" text> No Fee </el-button>
+					<el-button v-if="!row.isPaid && row.fee > 0" type="warning" text @click="handlePayFor(row)">
+						{{ $t("redis.pay.table.paid") }}
+					</el-button>
 				</template>
 			</el-table-column>
 		</el-table>

@@ -108,9 +108,9 @@ export default {
 			name: "Name",
 			date: "Date",
 			fee: "Fee",
-			isPaid: "Is Paid",
-			success: "success",
-			paid: "payed"
+			isPaid: "Payment Status",
+			success: "Success",
+			paid: "PAYMENT"
 		}
 	}
 };
