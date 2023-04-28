@@ -6,7 +6,7 @@
 		"moduleResolution": "node",
 		// "allowJs": false,
 		// element 类型提示 element-plus/global
-		"types": ["vite/client"],
+		"types": ["vite/client", "element-plus/global"],
 		"strict": true /* Enable all strict type-checking options. */,
 		"jsx": "preserve",
 		"sourceMap": true,

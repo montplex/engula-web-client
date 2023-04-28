@@ -36,8 +36,7 @@
 		<div class="mt-6 sm:mt-10" v-if="store.filterList && store.filterList.length">
 			<div cy-id="redis-db-list" class="grid gap-6 sm:grid-cols-2 sm:gap-8">
 				<div
-					v-for="item in store.filterList"
-					:key="item.id"
+					v-for="item in store.filterList" :key="item.id"
 					class="flex flex-col rounded-lg border border-gray-200 shadow-sm"
 					:class="{ 'cursor-not-allowed': item.status == '-10' }"
 				>
