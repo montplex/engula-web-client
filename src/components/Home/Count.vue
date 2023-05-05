@@ -2,15 +2,19 @@
 	<div class="container mx-auto px-8 max-w-4xl py-16">
 		<div class="grid grid-cols-2 gap-12">
 			<div class="count">
-				<p class="text-4xl font-semibold">{{ store.usersNum.userNumber }}</p>
+				<p class="num text-center">
+					<span class="text-block">{{ store.usersNum.userNumber }}</span>
+				</p>
 				<p class="title">
 					<span class="dbi1"></span>
 					{{ $t("home.cards.users") }}
 				</p>
 			</div>
 			<div class="count">
-				<p class="text-4xl font-semibold">
-					{{ store.usersNum.cacheServiceNumber }}
+				<p class="num text-center">
+					<span class="text-block">{{
+						store.usersNum.cacheServiceNumber
+					}}</span>
 				</p>
 				<p class="title">
 					<span class="dbi1"></span>
@@ -49,9 +53,13 @@ store.usersNumber();
 			linear-gradient(black, black);
 		-webkit-mask-composite: xor;
 	}
-
+	.num {
+		font-weight: 700;
+		font-size: 72px;
+	}
 	.title {
-		@apply mt-5 flex items-center justify-center text-xl;
+		@apply mt-2 flex items-center justify-center  font-semibold;
+		font-size: 26px;
 	}
 
 	.dbi1 {

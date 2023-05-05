@@ -15,7 +15,7 @@ export default {
 	cards: {
 		title: "Bilieve in Serverless",
 		users: "Users",
-		caches: "Databases",
+		caches: "Cache Services",
 		button: "Learn More",
 		list: {
 			redis: "Redis API Compatible",

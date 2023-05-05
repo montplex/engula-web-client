@@ -18,3 +18,4 @@ userStore().getUserInfo();
 
 store.setCacheList(true);
 </script>
+

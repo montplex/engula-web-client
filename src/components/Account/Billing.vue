@@ -22,9 +22,14 @@
 
 	<div class="container mx-auto !max-w-screen-xl py-10 bg-white">
 		<el-table :data="tableListData" v-bind="tableStyle">
-			<el-table-column prop="cacheServiceName" :label="$t('redis.pay.table.name')" />
+			<el-table-column
+				prop="cacheServiceName"
+				:label="$t('redis.pay.table.name')"
+			/>
 			<el-table-column prop="date" :label="$t('redis.pay.table.date')">
-				<template #default="{ row }"> {{ dayjs(row.monthStr).format("YYYY MMM") }}</template>
+				<template #default="{ row }">
+					{{ dayjs(row.monthStr).format("YYYY MMM") }}</template
+				>
 			</el-table-column>
 
 			<!-- <el-table-column prop="readByte" label="Readbyte" /> -->
@@ -39,7 +44,12 @@
 						{{ $t("redis.pay.table.success") }}
 					</el-button>
 					<el-button v-if="row.fee == 0" type="info" text> No Fee </el-button>
-					<el-button v-if="!row.isPaid && row.fee > 0" type="warning" text @click="handlePayFor(row)">
+					<el-button
+						v-if="!row.isPaid && row.fee > 0"
+						type="warning"
+						text
+						@click="handlePayFor(row)"
+					>
 						{{ $t("redis.pay.table.paid") }}
 					</el-button>
 				</template>
@@ -68,10 +78,7 @@ const tableListData = ref();
 const pk = ref("");
 const addCardRef = ref();
 
-getFeeOrgList().then((res) => {
-	console.log("getFeeOrgList >>>", res);
-	tableListData.value = res;
-});
+getFeeOrgList().then((res) => (tableListData.value = res));
 striptPk().then((res) => (pk.value = res.pk));
 
 function handlePayFor(row: FeeOrg) {
@@ -92,8 +99,10 @@ function addCardhandle() {
 }
 
 // publishable API key
-const key = "pk_test_51MdVvdKtlgGSFCEP8CGyhnrD0ve2sxuVjdF7AMrmYdoJxXDGwEdHbXqlJY2IkKWy21xsEDdr9ZSiIrVDZHvjSkDt000ZkK5hih";
-const clientSecret = "pi_3MrF95KtlgGSFCEP02yKPSIs_secret_Gltf2AZjucRdxr5CICLNB15Tz";
+const key =
+	"pk_test_51MdVvdKtlgGSFCEP8CGyhnrD0ve2sxuVjdF7AMrmYdoJxXDGwEdHbXqlJY2IkKWy21xsEDdr9ZSiIrVDZHvjSkDt000ZkK5hih";
+const clientSecret =
+	"pi_3MrF95KtlgGSFCEP02yKPSIs_secret_Gltf2AZjucRdxr5CICLNB15Tz";
 </script>
 
 <style lang="scss">

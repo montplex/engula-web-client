@@ -3,9 +3,13 @@
 		<div class="top-rect"></div>
 		<div class="content">
 			<header>
-				<h2 class="text-5xl inline-block font-bold text-white leading-normal">{{ $t("home.price.title") }}</h2>
+				<h2 class="text-5xl inline-block font-bold text-block leading-normal">
+					{{ $t("home.price.title") }}
+				</h2>
 				<p class="mt-2">
-					<span class="inline-block text-xl text-block"> {{ $t("home.price.subTitle") }}</span>
+					<span class="inline-block text-xl text-white">
+						{{ $t("home.price.subTitle") }}</span
+					>
 				</p>
 				<svg
 					width="100"
@@ -16,7 +20,12 @@
 					xmlns="http://www.w3.org/2000/svg"
 				>
 					<g clip-path="url(#clip0_404_3106)">
-						<rect width="100" height="4" rx="2" fill="url(#paint0_linear_404_3106)" />
+						<rect
+							width="100"
+							height="4"
+							rx="2"
+							fill="url(#paint0_linear_404_3106)"
+						/>
 					</g>
 					<defs>
 						<linearGradient
@@ -38,7 +47,10 @@
 			</header>
 			<PricingChild />
 			<!-- meat -->
-			<div class="flex items-center flex-col text-white mb-28" style="font-family: 'Airbnbcereal book'">
+			<div
+				class="flex items-center flex-col text-white mb-28"
+				style="font-family: 'Airbnbcereal book'"
+			>
 				<!-- <p>Read write throughput cost is $0.15 per GB per month.</p> -->
 				<!-- 	<p>
 					Each plan has

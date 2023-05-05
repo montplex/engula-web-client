@@ -59,7 +59,5 @@ function titleCase(str: string | undefined) {
 	return str.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase());
 }
 
-function updateName(name: string) {
-	cache.value!.name = name;
-}
+const updateName = (name: string) => (cache.value!.name = name);
 </script>

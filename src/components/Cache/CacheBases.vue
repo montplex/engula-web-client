@@ -5,19 +5,36 @@
 		<div class="mt-6 flex grid-cols-2 items-center gap-2 sm:grid sm:gap-8">
 			<div class="flex">
 				<div class="flex-1 w-full">
-					<el-input @input="handleSearch" @change="handleSearch" v-model="searchVal" :placeholder="$t('redis.cache.search')" />
+					<el-input
+						@input="handleSearch"
+						@change="handleSearch"
+						v-model="searchVal"
+						:placeholder="$t('redis.cache.search')"
+					/>
 				</div>
 				<div class="ml-9">
-					<el-select v-model="selectVal" placeholder="Filter..." @change="rStatusChange">
+					<el-select
+						v-model="selectVal"
+						placeholder="Filter..."
+						@change="rStatusChange"
+					>
 						<el-option :label="$t('redis.cache.select.running')" :value="1" />
-						<el-option :label="$t('redis.cache.select.terminated')" value="-10" />
+						<el-option
+							:label="$t('redis.cache.select.terminated')"
+							value="-10"
+						/>
 					</el-select>
 				</div>
 			</div>
 
 			<div class="flex items-center justify-end gap-2">
 				<!-- Refresh -->
-				<el-tooltip class="box-item" effect="dark" :content="$t('redis.cache.refresh.refreshTip')" placement="top-start">
+				<el-tooltip
+					class="box-item"
+					effect="dark"
+					:content="$t('redis.cache.refresh.refreshTip')"
+					placement="top-start"
+				>
 					<el-button
 						@click="refresh"
 						class="!flex w-[32px] shrink-0 items-center justify-center !py-0 text-gray-400 sm:flex base-btn-hover"
@@ -27,32 +44,48 @@
 						</el-icon>
 					</el-button>
 				</el-tooltip>
-				<el-button type="success" @click="createCache">{{ $t("redis.cache.new") }}</el-button>
+				<el-button type="success" @click="createCache">{{
+					$t("redis.cache.new")
+				}}</el-button>
 			</div>
 		</div>
 		<!-- Sraech and AddButton End -->
 
 		<!-- dbList Start -->
-		<div class="mt-6 sm:mt-10" v-if="store.filterList && store.filterList.length">
+		<div
+			class="mt-6 sm:mt-10"
+			v-if="store.filterList && store.filterList.length"
+		>
 			<div cy-id="redis-db-list" class="grid gap-6 sm:grid-cols-2 sm:gap-8">
 				<div
-					v-for="item in store.filterList" :key="item.id"
+					v-for="item in store.filterList"
+					:key="item.id"
 					class="flex flex-col rounded-lg border border-gray-200 shadow-sm"
 					:class="{ 'cursor-not-allowed': item.status == '-10' }"
 				>
-					<header class="p-4 sm:p-6 sm:pt-6 sm:pb-6" :class="{ 'pointer-events-none  opacity-70': item.status == '-10' }">
-						<h3 class="text-lg font-semibold text-[#3f3f46] cursor-pointer" @click="goDetail(item.id)">
+					<header
+						class="p-4 sm:p-6 sm:pt-6 sm:pb-6"
+						:class="{ 'pointer-events-none  opacity-70': item.status == '-10' }"
+					>
+						<h3
+							class="text-lg font-semibold text-[#3f3f46] cursor-pointer"
+							@click="goDetail(item)"
+						>
 							{{ item.name }}
 						</h3>
 						<span class="mt-1.5 flex items-center gap-1.5 opacity-50">
-							<span>{{ $t("redis.regional") }}</span> {{ item.cloudProvider }} <span></span>{{ item.region }}
+							<span>{{ $t("redis.regional") }}</span> {{ item.cloudProvider }}
+							<span></span>{{ item.region }}
 						</span>
 						<div class="mt-1.5 flex items-center justify-between gap-1.5">
 							<span class="flex-1 opacity-50">{{ $t("redis.status") }}</span>
 
 							<StatusIcon :status="item.status" />
 
-							<span :style="{ color: statusStyle[item.status] }" class="text-base">
+							<span
+								:style="{ color: statusStyle[item.status] }"
+								class="text-base"
+							>
 								{{ statusObj[item.status] }}
 							</span>
 						</div>
@@ -80,7 +113,13 @@
 					<!-- hidden sm:block -->
 					<footer class="cb-tip">
 						<div class="cb-tip bg-[#34d399eb]" v-if="item.status === 0">
-							<el-progress :percentage="100" :stroke-width="6" :text-inside="true" :indeterminate="true" :duration="10">
+							<el-progress
+								:percentage="100"
+								:stroke-width="6"
+								:text-inside="true"
+								:indeterminate="true"
+								:duration="10"
+							>
 								<span></span>
 							</el-progress>
 						</div>
@@ -97,14 +136,16 @@
 	<addDialog v-model="addVisible" ref="addDialogRef" />
 	<!-- cache 数量超出限制 -->
 	<CrossDialog v-model="cross" />
+
+	<HasCreate v-model="hasCreate" />
 </template>
 
 <script setup lang="ts">
 import CrossDialog from "./CrossDialog.vue";
 import addDialog from "./addDialog.vue";
-
 import cacheEmpty from "./cacheEmpty.vue";
 import StatusIcon from "@/components/Cache/StatusIcon.vue";
+import HasCreate from "./HasCreate.vue";
 
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
@@ -122,6 +163,7 @@ const statusObj = computed(() => {
 const store = cacheStore();
 const router = useRouter();
 const addDialogRef = ref();
+const hasCreate = ref(true); // 是否有在创建
 
 const cross = ref(false); // 控制超出创建限制 (显示弹窗)
 
@@ -134,7 +176,10 @@ const selectVal = ref<string | number>(1);
 const createCache = async () => {
 	addDialogRef.value.reset();
 	/* 最多只能创建五个正在运行的 cache */
-	const isCreate = store.serviceList.reduce((sum, item) => (item.status === 1 ? sum + 1 : sum + 0), 0);
+	const isCreate = store.serviceList.reduce(
+		(sum, item) => (item.status === 1 ? sum + 1 : sum + 0),
+		0
+	);
 	if (isCreate >= 5) cross.value = true;
 	else {
 		store.setCloudProviderList();
@@ -143,9 +188,12 @@ const createCache = async () => {
 };
 
 /* 去详情页 */
-const goDetail = (id: number) => {
-	router.push({ name: "Cache", params: { id } });
-	// router.push({ path: "/redis/details", query: { id } });
+const goDetail = (item: any) => {
+	if (item.status == 0) {
+		hasCreate.value = true;
+		return;
+	}
+	router.push({ name: "Cache", params: { id: item.id } });
 };
 
 /* 搜索 */
@@ -191,7 +239,11 @@ function rStatusChange(val: any) {
 		background-color: transparent;
 	}
 	.el-progress-bar__inner {
-		background-image: linear-gradient(to right, rgb(167, 243, 208) 0%, rgb(5, 150, 105) 100%);
+		background-image: linear-gradient(
+			to right,
+			rgb(167, 243, 208) 0%,
+			rgb(5, 150, 105) 100%
+		);
 	}
 }
 

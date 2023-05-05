@@ -37,7 +37,6 @@ type Fee = {
 const fee = ref<Fee>();
 
 getFeeOrgList().then((res) => {
-	console.log(res);
 	if (!res[0]) return;
 	fee.value = sumOrg(res);
 });
@@ -53,7 +52,11 @@ function sumOrg(arr: any): Fee {
 		writeByte += arr[i].writeByte;
 		fee += arr[i].fee;
 	}
-	return { readByte: formatBytes(readByte), writeByte: formatBytes(writeByte), fee: toThousandFilter(fee) };
+	return {
+		readByte: formatBytes(readByte),
+		writeByte: formatBytes(writeByte),
+		fee: toThousandFilter(fee)
+	};
 }
 </script>
 
