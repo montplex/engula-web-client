@@ -3,7 +3,9 @@
 		<div class="grid grid-cols-2 gap-12">
 			<div class="count">
 				<p class="num text-center">
-					<span class="text-block">{{ store.usersNum.userNumber }}</span>
+					<span class="text-block">{{
+						store?.usersNum?.userNumber ?? 173
+					}}</span>
 				</p>
 				<p class="title">
 					<span class="dbi1"></span>
@@ -13,7 +15,7 @@
 			<div class="count">
 				<p class="num text-center">
 					<span class="text-block">{{
-						store.usersNum.cacheServiceNumber
+						store?.usersNum?.cacheServiceNumber ?? 412
 					}}</span>
 				</p>
 				<p class="title">
