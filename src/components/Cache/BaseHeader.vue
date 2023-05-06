@@ -2,8 +2,11 @@
 	<header class="hidden bg-black py-4 text-white shadow sm:block">
 		<div class="container mx-auto !max-w-screen-xl px-4">
 			<div class="flex items-center gap-6">
-				<h3 class="flex items-center gap-1 text-white cursor-pointer h-8 text-xl font-semibold" @click="$router.push('/')">
-					<img src="@/assets/images/main-logo.png" alt="logo" class="h-[30px]" />
+				<h3
+					class="flex items-center gap-1 text-white cursor-pointer h-8 text-xl font-semibold"
+					@click="$router.push('/')"
+				>
+					<!-- <img src="@/assets/images/main-logo.png" alt="logo" class="h-[30px]" /> -->
 					<span class="text-block">Montplex</span>
 				</h3>
 				<nav cy-id="master-nav" class="flex items-center gap-2">
@@ -19,7 +22,12 @@
 							@click="openSort = !openSort"
 							class="flex text-white items-center justify-start font-semibold focus-visible:outline-none"
 						>
-							<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+							<svg
+								viewBox="0 0 24 24"
+								width="20"
+								height="20"
+								aria-hidden="true"
+							>
 								<path
 									fill="currentColor"
 									d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"
@@ -55,7 +63,13 @@
 						<svgIcon icon="question" class="text-2xl" />
 					</button>
 
-					<el-popover :offset="16" popper-style="border-radius: 8px;" trigger="click" placement="bottom" :width="360">
+					<el-popover
+						:offset="16"
+						popper-style="border-radius: 8px;"
+						trigger="click"
+						placement="bottom"
+						:width="360"
+					>
 						<template #reference>
 							<button
 								type="button"
@@ -68,7 +82,10 @@
 							<div class="py-8 text-center">
 								<p class="text-gray-500">{{ $t("msg.notice") }}</p>
 								<div class="flex items-center justify-center">
-									<svgIcon icon="refresh" class="mt-2 text-2xl text-[#3388ff] hover:text-blue-300 cursor-pointer" />
+									<svgIcon
+										icon="refresh"
+										class="mt-2 text-2xl text-[#3388ff] hover:text-blue-300 cursor-pointer"
+									/>
 								</div>
 							</div>
 							<div class="border-t border-gray-100">
@@ -85,20 +102,34 @@
 					</el-popover>
 
 					<el-dropdown trigger="hover" @command="handleMineCommand">
-						<el-avatar class="focus-visible:outline-none" :size="32" :src="info?.picture" />
+						<el-avatar
+							class="focus-visible:outline-none"
+							:size="32"
+							:src="info?.picture"
+						/>
 						<template #dropdown>
 							<el-dropdown-menu>
 								<el-dropdown-item>
-									<el-icon size="16"> <i-ep:user /> </el-icon> {{ info?.nickname }}
+									<el-icon size="16"> <i-ep:user /> </el-icon>
+									{{ info?.nickname }}
 								</el-dropdown-item>
-								<el-dropdown-item v-if="info?.email"> {{ info?.email }} </el-dropdown-item>
+								<el-dropdown-item v-if="info?.email">
+									{{ info?.email }}
+								</el-dropdown-item>
 								<el-dropdown-item command="account" divided>
-									<el-icon size="16"> <i-ep:credit-card /> </el-icon> {{ $t("redis.set.account") }}
+									<el-icon size="16"> <i-ep:credit-card /> </el-icon>
+									{{ $t("redis.set.account") }}
 								</el-dropdown-item>
-								<el-dropdown-item command="pdfview"> {{ $t("redis.set.settings") }} </el-dropdown-item>
-								<el-dropdown-item command="coll"> 动态路由测试 </el-dropdown-item>
+
+								<el-dropdown-item command="pdfview">
+									{{ $t("redis.set.settings") }}
+								</el-dropdown-item>
+								<el-dropdown-item command="coll">
+									动态路由测试
+								</el-dropdown-item>
 								<el-dropdown-item command="out" divided>
-									<el-icon size="16"> <i-ep:switch-button /> </el-icon> {{ $t("redis.set.out") }}
+									<el-icon size="16"> <i-ep:switch-button /> </el-icon>
+									{{ $t("redis.set.out") }}
 								</el-dropdown-item>
 							</el-dropdown-menu>
 						</template>
@@ -111,28 +142,44 @@
 	<header class="relative z-50 bg-black py-4 text-white shadow sm:hidden">
 		<div class="container mx-auto !max-w-screen-lg px-4">
 			<div class="flex items-center">
-				<div class="flex items-center gap-1 cursor-pointer h-8" @click="$router.push('/')">
-					<img src="@/assets/images/main-logo.png" alt="logo" class="h-[24px]" />
+				<div
+					class="flex items-center gap-1 cursor-pointer h-8"
+					@click="$router.push('/')"
+				>
+					<img
+						src="@/assets/images/main-logo.png"
+						alt="logo"
+						class="h-[24px]"
+					/>
 					<span class="text-block font-semibold text-lg">Montplex</span>
 				</div>
 				<div class="ml-auto flex items-center h-9 px-2 rounded bg-[#3f3f46]">
 					<el-dropdown trigger="click" @command="handleMineCommand">
 						<div class="flex items-center">
 							<el-avatar class="mr-3" :size="26" :src="info?.picture" />
-							<i-ant-design:caret-down-outlined class="!text-[12px] text-w-80" />
+							<i-ant-design:caret-down-outlined
+								class="!text-[12px] text-w-80"
+							/>
 						</div>
 						<template #dropdown>
 							<el-dropdown-menu>
 								<el-dropdown-item>
-									<el-icon size="16"> <i-ep:user /> </el-icon> {{ info?.nickname }}
+									<el-icon size="16"> <i-ep:user /> </el-icon>
+									{{ info?.nickname }}
 								</el-dropdown-item>
-								<el-dropdown-item v-if="info?.email"> {{ info?.email }} </el-dropdown-item>
+								<el-dropdown-item v-if="info?.email">
+									{{ info?.email }}
+								</el-dropdown-item>
 								<el-dropdown-item command="account" divided>
-									<el-icon size="16"> <i-ep:credit-card /> </el-icon> {{ $t("redis.set.account") }}
+									<el-icon size="16"> <i-ep:credit-card /> </el-icon>
+									{{ $t("redis.set.account") }}
 								</el-dropdown-item>
-								<el-dropdown-item command="pdfview"> {{ $t("redis.set.settings") }} </el-dropdown-item>
+								<el-dropdown-item command="pdfview">
+									{{ $t("redis.set.settings") }}
+								</el-dropdown-item>
 								<el-dropdown-item command="out" divided>
-									<el-icon size="16"> <i-ep:switch-button /> </el-icon> {{ $t("redis.set.out") }}
+									<el-icon size="16"> <i-ep:switch-button /> </el-icon>
+									{{ $t("redis.set.out") }}
 								</el-dropdown-item>
 							</el-dropdown-menu>
 						</template>
@@ -142,7 +189,11 @@
 		</div>
 	</header>
 
-	<el-dialog v-model="question" :title="$t('redis.more.title')" class="br-8 sm:!w-[520px]">
+	<el-dialog
+		v-model="question"
+		:title="$t('redis.more.title')"
+		class="br-8 sm:!w-[520px]"
+	>
 		<div class="more-dialog">
 			<a href="#" target="_blank" class="more-link is-link">
 				<svgIcon icon="description" class="!text-[20px]" />
@@ -212,7 +263,9 @@ const { info } = storeToRefs(store);
 const question = ref(false);
 const openSort = ref(false);
 
-const langName = computed(() => (locale.value == "en" ? "English" : "简体中文"));
+const langName = computed(() =>
+	locale.value == "en" ? "English" : "简体中文"
+);
 
 const handleMineCommand = (command: string) => {
 	switch (command) {
@@ -238,7 +291,9 @@ function logout() {
 	if (import.meta.env.MODE === "development") {
 		router.push({ path: "/", replace: true });
 	} else {
-		window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/logout");
+		window.location.replace(
+			import.meta.env.VITE_API_URL + "/engula/auth0/logout"
+		);
 	}
 }
 
@@ -263,7 +318,13 @@ h5 {
 }
 .text-block {
 	font-weight: 700;
-	background-image: -webkit-gradient(linear, left top, right top, from(#c947e7), to(#2ab5fb));
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		right top,
+		from(#c947e7),
+		to(#2ab5fb)
+	);
 	background-image: linear-gradient(90deg, #c947e7, #2ab5fb);
 	background-clip: text;
 	-webkit-text-fill-color: transparent;

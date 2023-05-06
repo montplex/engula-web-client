@@ -8,7 +8,7 @@ const statusMap = {
 		"-10": "已停止"
 	},
 	en: {
-		"0": "created",
+		"0": "creating",
 		"1": "running",
 		"20": "limited",
 		"200": "reject",

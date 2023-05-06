@@ -7,7 +7,7 @@
 					<div class="logo">
 						<a href="#" class="flex items-center">
 							<span class="sr-only">MontPlex</span>
-							<img src="@/assets/images/main-logo.png" alt="" />
+							<!-- <img src="@/assets/images/main-logo.png" alt="" /> -->
 							<div
 								class="flex items-center pl-2 font-semibold text-2xl text-block"
 							>

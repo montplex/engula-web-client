@@ -1,6 +1,6 @@
 <template>
 	<div class="container mx-auto !max-w-screen-xl px-4 pt-8 pb-20">
-		<h1 class="text-3xl mt-2 text-[#3f3f46]">{{ $t("redis.cache.title") }}</h1>
+		<h1 class="text-2xl mt-2">{{ $t("redis.cache.title") }}</h1>
 		<!-- Sraech and AddButton Start -->
 		<div class="mt-6 flex grid-cols-2 items-center gap-2 sm:grid sm:gap-8">
 			<div class="flex">
@@ -67,10 +67,7 @@
 						class="p-4 sm:p-6 sm:pt-6 sm:pb-6"
 						:class="{ 'pointer-events-none  opacity-70': item.status == '-10' }"
 					>
-						<h3
-							class="text-lg font-semibold text-[#3f3f46] cursor-pointer"
-							@click="goDetail(item)"
-						>
+						<h3 class="text-lg cursor-pointer" @click="goDetail(item)">
 							{{ item.name }}
 						</h3>
 						<span class="mt-1.5 flex items-center gap-1.5 opacity-50">
@@ -136,7 +133,6 @@
 	<addDialog v-model="addVisible" ref="addDialogRef" />
 	<!-- cache 数量超出限制 -->
 	<CrossDialog v-model="cross" />
-
 	<HasCreate v-model="hasCreate" />
 </template>
 
@@ -163,7 +159,7 @@ const statusObj = computed(() => {
 const store = cacheStore();
 const router = useRouter();
 const addDialogRef = ref();
-const hasCreate = ref(false); // 是否有在创建
+const hasCreate = ref(false); // 是否正在创建
 
 const cross = ref(false); // 控制超出创建限制 (显示弹窗)
 

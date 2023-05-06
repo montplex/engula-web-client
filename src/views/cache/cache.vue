@@ -61,3 +61,10 @@ function titleCase(str: string | undefined) {
 
 const updateName = (name: string) => (cache.value!.name = name);
 </script>
+
+<style lang="scss">
+.el-tabs__item {
+	color: #000000;
+	font-size: 16px;
+}
+</style>

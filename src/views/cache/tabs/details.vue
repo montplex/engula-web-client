@@ -8,7 +8,12 @@
 			</div>
 			<div class="overflow-x-auto sm:overflow-hidden">
 				<el-radio-group v-model="tabPosition" size="large" fill="#21cc93">
-					<el-radio-button v-for="item in codeRadioGroup" :key="item.name" :label="item.com">{{ item.name }}</el-radio-button>
+					<el-radio-button
+						v-for="item in codeRadioGroup"
+						:key="item.name"
+						:label="item.com"
+						>{{ item.name }}</el-radio-button
+					>
 				</el-radio-group>
 			</div>
 			<Component :is="tabPosition" />
@@ -29,7 +34,11 @@
 			</div>
 			<div class="overflow-x-auto sm:overflow-hidden">
 				<div class="flex h-full items-center justify-end">
-					<el-button type="danger" :loading="delLoading" @click="delVisible = true">
+					<el-button
+						type="danger"
+						:loading="delLoading"
+						@click="delVisible = true"
+					>
 						<template #loading>
 							<el-icon class="el-icon--left is-loading" size="16">
 								<i-ep:loading />
@@ -43,7 +52,12 @@
 	</div>
 
 	<!-- Delete-dialog Start -->
-	<el-dialog v-model="delVisible" :title="$t('redis.del.dialog.title')" width="520px" style="border-radius: 8px">
+	<el-dialog
+		v-model="delVisible"
+		:title="$t('redis.del.dialog.title')"
+		width="520px"
+		style="border-radius: 8px"
+	>
 		<div class="space-y-4">
 			<div>
 				<p>{{ $t("redis.del.dialog.meta") }}</p>
@@ -66,14 +80,24 @@
 					>
 					再次确认
 				</p>
-				<el-input @input="nameInput" v-model="repeatedName" :placeholder="$t('redis.del.dialog.placeholder')" />
+				<el-input
+					@input="nameInput"
+					v-model="repeatedName"
+					:placeholder="$t('redis.del.dialog.placeholder')"
+				/>
 			</div>
 		</div>
 
 		<template #footer>
 			<span class="dialog-footer">
-				<el-button @click="delVisible = false">{{ $t("msg.cancel") }}</el-button>
-				<el-button :disabled="isdel" :type="isdel ? '' : 'danger'" @click="delCache">
+				<el-button @click="delVisible = false">{{
+					$t("msg.cancel")
+				}}</el-button>
+				<el-button
+					:disabled="isdel"
+					:type="isdel ? '' : 'danger'"
+					@click="delCache"
+				>
 					{{ $t("msg.delete") }}
 				</el-button>
 			</span>
@@ -174,9 +198,8 @@ export default {
 <style lang="scss">
 .copy-text {
 	font-size: 15px;
-	font-weight: 550;
+	// font-weight: 550;
 	line-height: 1.9rem;
-	color: rgb(0 0 0 / 0.88);
 	svg {
 		&:focus {
 			opacity: 0.7;

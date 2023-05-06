@@ -1,13 +1,13 @@
 <template>
-	<div class="bg-gray-50 py-6 shadow border-b-0" style="position: sticky; top: 0; z-index: 99" v-if="cache">
+	<div class="py-6 shadow border-b-0 bg-[#fafafa]" style="position: sticky; top: 0; z-index: 99" v-if="cache">
 		<div class="container mx-auto !max-w-screen-xl px-4">
 			<div class="flex items-center">
 				<div>
-					<h1 class="m-0 flex items-center text-2xl font-bold leading-none">
+					<h1 class="m-0 flex items-center text-2xl leading-none">
 						<span>{{ cache.name }}</span>
 						<el-tooltip effect="dark" :content="$t('redis.renameTips')" placement="top-start">
 							<button type="button" @click="editName(cache.name)" class="ml-3 inline-flex h-auto items-center !p-0">
-								<svgIcon icon="edit" class="text-gray-400" />
+								<svgIcon icon="edit" class="text-gray-300" />
 							</button>
 						</el-tooltip>
 					</h1>

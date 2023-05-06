@@ -5,11 +5,15 @@
 		<div class="grid grid-cols-4">
 			<!-- 第一行 -->
 			<div class="flex items-center justify-center p-4"></div>
-			<div class="table-item"><h5 class="text-3xl font-bold text-block">Free</h5></div>
+			<div class="table-item">
+				<h5 class="text-3xl font-bold text-block">Free</h5>
+			</div>
 			<div class="table-item bg-ly-check" style="border-radius: 16px 16px 0 0">
 				<h5 class="text-3xl font-bold text-block">Pay as you go</h5>
 			</div>
-			<div class="table-item"><h5 class="text-3xl font-bold text-block">Enterprise</h5></div>
+			<div class="table-item">
+				<h5 class="text-3xl font-bold text-block">Enterprise</h5>
+			</div>
 			<div class="col-span-4"><div class="h-[1px] bg-ly-line"></div></div>
 
 			<!-- 第二行 -->
@@ -25,7 +29,9 @@
 			<div class="table-item bg-ly-check">
 				<span>Unlimited</span>
 			</div>
-			<div class="table-item"><span class="chakra-text css-0">Unlimited</span></div>
+			<div class="table-item">
+				<span class="chakra-text css-0">Unlimited</span>
+			</div>
 			<div class="col-span-4"><div class="h-[1px] bg-ly-line"></div></div>
 
 			<!-- 第四行 -->
@@ -103,7 +109,9 @@
 				<span>Free (No credit card required)</span>
 			</div>
 			<div class="table-item bg-ly-check">
-				<span>$0.15 per GB read write throughput, up to $160 monthly max..</span>
+				<span
+					>$0.15 per GB read write throughput, up to $160 monthly max..</span
+				>
 			</div>
 			<div class="table-item"><span>Custom</span></div>
 			<div class="col-span-4"><div class="h-[1px] bg-ly-line"></div></div>
@@ -111,13 +119,30 @@
 			<!-- 第十行 底部按钮 -->
 			<div class="table-item"></div>
 			<div class="table-item">
-				<a class="ck-button" href="https://dev.montplex.com/console" target="_blank"> Start for free </a>
+				<a
+					class="ck-button"
+					href="https://dev.montplex.com/console"
+					target="_blank"
+				>
+					Start for free
+				</a>
 			</div>
 			<div class="table-item bg-ly-check" style="border-radius: 0 0 16px 16px">
-				<a class="ck-button login" href="https://dev.montplex.com/console" target="_blank">Login</a>
+				<a
+					class="ck-button login"
+					href="https://dev.montplex.com/console"
+					target="_blank"
+					>Login</a
+				>
 			</div>
 			<div class="table-item">
-				<a class="ck-button" href="https://docs.upstash.com/docs/help/support" target="_blank"> Contact Us </a>
+				<a
+					class="ck-button"
+					href="https://docs.upstash.com/docs/help/support"
+					target="_blank"
+				>
+					Contact Us
+				</a>
 			</div>
 		</div>
 	</div>
@@ -201,7 +226,9 @@
 			<div class="cardItem gradient-border">
 				<div class="cardBox text-white !px-0">
 					<div class="px-7 pt-10 text-center">
-						<h3 class="text-block text-[26px] font-medium">{{ $t("home.price.payas") }}</h3>
+						<h3 class="text-block text-[26px] font-medium">
+							{{ $t("home.price.payas") }}
+						</h3>
 						<svg
 							width="100"
 							height="4"
@@ -211,7 +238,12 @@
 							xmlns="http://www.w3.org/2000/svg"
 						>
 							<g clip-path="url(#clip0_404_3106)">
-								<rect width="100" height="4" rx="2" fill="url(#paint0_linear_404_3106)" />
+								<rect
+									width="100"
+									height="4"
+									rx="2"
+									fill="url(#paint0_linear_404_3106)"
+								/>
 							</g>
 							<defs>
 								<linearGradient
@@ -238,7 +270,9 @@
 						<div class="table-item">{{ $t("home.price.unlimited") }}</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">{{ $t("home.price.tls") }}</div>
+						<div class="table-item !justify-start !text-lable-70">
+							{{ $t("home.price.tls") }}
+						</div>
 						<div class="table-item">
 							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>
@@ -267,12 +301,14 @@
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 					</div>
 					<div class="table-item">
-						<p class="text-center">
-							{{ $t("home.price.dj") }}
-						</p>
+						<p class="text-center"><!-- {{ $t("home.price.dj") }} --></p>
 					</div>
 					<div class="px-8 w-full flex justify-center">
-						<a class="ck-button w-full login" href="https://dev.montplex.com/console" target="_blank">
+						<a
+							class="ck-button w-full login"
+							href="https://dev.montplex.com/console"
+							target="_blank"
+						>
 							{{ $t("home.login") }}
 						</a>
 					</div>
@@ -281,7 +317,9 @@
 			<div class="cardItem gradient-border">
 				<div class="cardBox text-white !px-0">
 					<div class="px-7 pt-10 text-center">
-						<h3 class="text-block text-[26px] font-medium">{{ $t("home.price.enterprise") }}</h3>
+						<h3 class="text-block text-[26px] font-medium">
+							{{ $t("home.price.enterprise") }}
+						</h3>
 						<svg
 							width="100"
 							height="4"
@@ -291,7 +329,12 @@
 							xmlns="http://www.w3.org/2000/svg"
 						>
 							<g clip-path="url(#clip0_404_3106)">
-								<rect width="100" height="4" rx="2" fill="url(#paint0_linear_404_3106)" />
+								<rect
+									width="100"
+									height="4"
+									rx="2"
+									fill="url(#paint0_linear_404_3106)"
+								/>
 							</g>
 							<defs>
 								<linearGradient
@@ -312,35 +355,51 @@
 						</svg>
 					</div>
 					<div class="grid grid-cols-2 w-full px-8">
-						<div class="table-item !justify-start !text-lable-70">{{ $t("home.price.commands") }}</div>
+						<div class="table-item !justify-start !text-lable-70">
+							{{ $t("home.price.commands") }}
+						</div>
 						<div class="table-item">Unlimited</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">{{ $t("home.price.tls") }}</div>
+						<div class="table-item !justify-start !text-lable-70">
+							{{ $t("home.price.tls") }}
+						</div>
 						<div class="table-item">
 							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">{{ $t("home.price.zone") }}</div>
+						<div class="table-item !justify-start !text-lable-70">
+							{{ $t("home.price.zone") }}
+						</div>
 						<div class="table-item">
 							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">{{ $t("home.price.vpc") }}</div>
+						<div class="table-item !justify-start !text-lable-70">
+							{{ $t("home.price.vpc") }}
+						</div>
 						<div class="table-item">
 							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">{{ $t("home.price.ps") }}</div>
+						<div class="table-item !justify-start !text-lable-70">
+							{{ $t("home.price.ps") }}
+						</div>
 						<div class="table-item">{{ $t("home.price.optional") }}</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 					</div>
 					<div class="table-item">{{ $t("home.price.custom") }}</div>
 					<div class="px-8 w-full flex justify-center">
-						<a class="ck-button w-full" href="https://dev.montplex.com/console" target="_blank"> {{ $t("home.contact") }}</a>
+						<a
+							class="ck-button w-full"
+							href="https://dev.montplex.com/console"
+							target="_blank"
+						>
+							{{ $t("home.contact") }}</a
+						>
 					</div>
 				</div>
 			</div>

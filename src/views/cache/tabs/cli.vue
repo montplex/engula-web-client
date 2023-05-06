@@ -1,6 +1,8 @@
 <template>
 	<!-- flex flex-col w-full p-4 font-mono text-gray-100 rounded-lg -->
-	<div class="flex flex-col w-full py-4 bg-[#191b24] font-mono text-gray-100 rounded-lg !mt-6">
+	<div
+		class="flex flex-col w-full py-4 bg-[#191b24] font-mono text-gray-100 rounded-lg !mt-6"
+	>
 		<div id="tmi">
 			<Terminal
 				name="my-terminal"
@@ -36,7 +38,12 @@ const initLog = [
 function onExecCmd(
 	key: string,
 	command: any,
-	success: (arg0: { type: string; class?: string; tag?: string; content: any }) => void,
+	success: (arg0: {
+		type: string;
+		class?: string;
+		tag?: string;
+		content: any;
+	}) => void,
 	failed: (arg0: string) => void
 ) {
 	if (key === "fail") {
@@ -97,7 +104,7 @@ function onExecCmd(
 		}
 	}
 	.cmd-init-title {
-		font-size: 18px;
+		font-size: 16px;
 		color: #00e994;
 	}
 }

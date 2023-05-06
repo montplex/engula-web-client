@@ -19,7 +19,10 @@
 			</el-form-item>
 
 			<el-form-item :label="$t('redis.add.describes')" prop="des">
-				<el-input v-model="addForm.des" :placeholder="$t('redis.pl.describes')" />
+				<el-input
+					v-model="addForm.des"
+					:placeholder="$t('redis.pl.describes')"
+				/>
 			</el-form-item>
 
 			<el-form-item :label="$t('redis.add.cloudProvider')" prop="cloudProvider">
@@ -40,28 +43,57 @@
 				</el-select>
 			</el-form-item>
 
-			<el-form-item :label="$t('redis.add.region')" prop="region" v-show="addForm.cloudProvider">
+			<el-form-item
+				:label="$t('redis.add.region')"
+				prop="region"
+				v-show="addForm.cloudProvider"
+			>
 				<el-select
 					v-model="addForm.region"
 					:placeholder="$t('redis.pl.region')"
 					class="w-full"
 					@change="addForm.primaryZone = ''"
 				>
-					<el-option v-for="(item, index) in region[addForm.cloudProvider]" :key="index" :label="item" :value="item" />
+					<el-option
+						v-for="(item, index) in region[addForm.cloudProvider]"
+						:key="index"
+						:label="item"
+						:value="item"
+					/>
 				</el-select>
 			</el-form-item>
 
-			<el-form-item :label="$t('redis.add.primaryZone')" prop="primaryZone" v-show="addForm.region">
-				<el-select v-model="addForm.primaryZone" :placeholder="$t('redis.pl.primaryZone')" class="w-full" :allow-create="true">
-					<el-option v-for="(item, index) in zoneList[addForm.region as any]" :key="index" :label="item" :value="item" />
+			<el-form-item
+				:label="$t('redis.add.primaryZone')"
+				prop="primaryZone"
+				v-show="addForm.region"
+			>
+				<el-select
+					v-model="addForm.primaryZone"
+					:placeholder="$t('redis.pl.primaryZone')"
+					class="w-full"
+					:allow-create="true"
+				>
+					<el-option
+						v-for="(item, index) in zoneList[addForm.region as any]"
+						:key="index"
+						:label="item"
+						:value="item"
+					/>
 				</el-select>
 			</el-form-item>
 		</el-form>
 
 		<template #footer>
 			<span class="dialog-footer">
-				<el-button @click="$emit('update:modelValue', false)">{{ $t("redis.add.cancel") }}</el-button>
-				<el-button :loading="addLoading" type="primary" @click="submit(addFormRef, addCallback)">
+				<el-button @click="$emit('update:modelValue', false)">{{
+					$t("redis.add.cancel")
+				}}</el-button>
+				<el-button
+					:loading="addLoading"
+					type="primary"
+					@click="submit(addFormRef, addCallback)"
+				>
 					<template #loading>
 						<el-icon class="el-icon--left is-loading" size="16">
 							<i-ep:loading />
@@ -71,6 +103,23 @@
 				</el-button>
 			</span>
 		</template>
+	</el-dialog>
+	<el-dialog
+		v-model="createOk"
+		width="26%"
+		:lock-scroll="false"
+		:show-close="false"
+		:title="$t('redis.add.title')"
+		class="br-8"
+	>
+		创建成功，点击开始使用吧！
+		<div class="flex flex-col gap-2">
+			<div class="mt-4">
+				<el-button type="primary" size="large" style="font-size: 14px"
+					>Go!</el-button
+				>
+			</div>
+		</div>
 	</el-dialog>
 </template>
 
@@ -99,10 +148,13 @@ const addFormRef = ref<FormInstance>(),
 	});
 
 const { t } = useI18n();
+const createOk = ref(false);
 
 const region = computed(() => {
 		let regionObj: any = {};
-		store.regionList.map((item) => item.regions && (regionObj[item.cloudProvider] = item.regions));
+		store.regionList.map(
+			(item) => item.regions && (regionObj[item.cloudProvider] = item.regions)
+		);
 		return regionObj;
 	}),
 	zoneList = computed(() => store.zoneList);
@@ -114,9 +166,12 @@ const { pause, resume } = useIntervalFn(
 			counDown.value -= 3;
 			await store.setCacheList(false);
 			if (store.serviceList.length > 0) {
-				const cache = store.serviceList.find((item) => item.name === addForm.value.name);
+				const cache = store.serviceList.find(
+					(item) => item.name === addForm.value.name
+				);
 				if (cache!.status === 1) {
 					pause();
+					createOk.value = true;
 					ElMessage.success(t("msg.creationSuccess"));
 				}
 			}
