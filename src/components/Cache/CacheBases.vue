@@ -163,7 +163,7 @@ const statusObj = computed(() => {
 const store = cacheStore();
 const router = useRouter();
 const addDialogRef = ref();
-const hasCreate = ref(true); // 是否有在创建
+const hasCreate = ref(false); // 是否有在创建
 
 const cross = ref(false); // 控制超出创建限制 (显示弹窗)
 

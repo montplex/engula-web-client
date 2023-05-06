@@ -60,7 +60,7 @@
 			<span>
 				{{
 					lang
-						? "Your cache will be ready once this becomesAVAILABLE"
+						? "Your cache will be ready once this becomes available"
 						: "缓存服务将在创建后可用,请稍后..."
 				}}
 			</span>

@@ -78,7 +78,7 @@
 		"billing": 0
 	},
 	"redis": {
-		"request": 591,
+		"request": 661,
 		"storage": 0,
 		"billing": 0
 	}
