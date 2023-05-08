@@ -47,6 +47,7 @@
 				<el-button type="success" @click="createCache">{{
 					$t("redis.cache.new")
 				}}</el-button>
+				<!-- <el-button type="success" @click.prevent.stop="guide('#cache15')">提示</el-button> -->
 			</div>
 		</div>
 		<!-- Sraech and AddButton End -->
@@ -60,6 +61,7 @@
 				<div
 					v-for="item in store.filterList"
 					:key="item.id"
+					:id="'cache' + item.id"
 					class="flex flex-col rounded-lg border border-gray-200 shadow-sm"
 					:class="{ 'cursor-not-allowed': item.status == '-10' }"
 				>
@@ -120,7 +122,6 @@
 								<span></span>
 							</el-progress>
 						</div>
-						<!-- <div>121312</div> -->
 					</footer>
 				</div>
 			</div>
@@ -142,6 +143,28 @@ import addDialog from "./addDialog.vue";
 import cacheEmpty from "./cacheEmpty.vue";
 import StatusIcon from "@/components/Cache/StatusIcon.vue";
 import HasCreate from "./HasCreate.vue";
+
+import Driver from "driver.js";
+import "driver.js/dist/driver.min.css";
+
+const guide = (id: any) => {
+	const driver = new Driver({
+		allowClose: true,
+		doneBtnText: "结束",
+		closeBtnText: "关闭",
+		nextBtnText: "下一步",
+		prevBtnText: "上一步"
+	});
+	driver.highlight({
+		element: id,
+		popover: {
+			title: "开始使用",
+			description: "点击下一步开始使用",
+			position: "right"
+		}
+	});
+	// driver.start();
+};
 
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";

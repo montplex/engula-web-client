@@ -5,6 +5,7 @@ export default {
 	writeBytes: "Write Bytes",
 	filterData: "Filter Data",
 	fee: "Fee",
+	
 	cache: {
 		title: "Cache Services",
 		search: "Search ...",
@@ -77,7 +78,8 @@ export default {
 	},
 	tabs: {
 		details: "Details",
-		usages: "Usages",
+		connect: "Connect",
+		usages: "Metrics",
 		cli: "Cli",
 		token: "Token"
 	},

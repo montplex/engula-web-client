@@ -4,7 +4,7 @@
 		<TopDescription />
 		<Banner />
 		<Pricing />
-		<!-- <CloudMap /> -->
+		<CloudMap />
 		<Footer />
 	</div>
 </template>

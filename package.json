@@ -52,6 +52,7 @@
 		"autoprefixer": "^10.4.13",
 		"commitizen": "^4.2.4",
 		"cz-git": "^1.3.2",
+		"driver.js": "^0.9.8",
 		"element-plus": "^2.3.1",
 		"eslint": "^8.14.0",
 		"eslint-config-prettier": "^8.5.0",

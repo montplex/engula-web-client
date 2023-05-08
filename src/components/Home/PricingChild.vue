@@ -157,34 +157,7 @@
 					<div class="px-7 pt-10 text-center">
 						<h3 class="text-block text-[26px] font-medium">Free</h3>
 						<div class="text-base">Cost by quantity</div>
-						<svg
-							width="100"
-							height="4"
-							class="vectors-wrapper mt-4 mx-auto"
-							viewBox="0 0 100 4"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<g clip-path="url(#clip0_404_3106)">
-								<rect width="100" height="4" rx="2" fill="url(#paint0_linear_404_3106)" />
-							</g>
-							<defs>
-								<linearGradient
-									id="paint0_linear_404_3106"
-									x1="-3.5269e-08"
-									y1="1.84615"
-									x2="98.6286"
-									y2="13.5533"
-									gradientUnits="userSpaceOnUse"
-								>
-									<stop stop-color="#F926E1" />
-									<stop offset="1" stop-color="#2AB5FB" />
-								</linearGradient>
-								<clipPath id="clip0_404_3106">
-									<rect width="100" height="4" fill="white" />
-								</clipPath>
-							</defs>
-						</svg>
+						<VectorsWrapper class="mt-4 mx-auto" />
 					</div>
 					<div class="grid grid-cols-2 w-full px-8">
 						<div class="table-item !justify-start !text-lable-70">Commands Limit</div>
@@ -229,39 +202,7 @@
 						<h3 class="text-block text-[26px] font-medium">
 							{{ $t("home.price.payas") }}
 						</h3>
-						<svg
-							width="100"
-							height="4"
-							class="vectors-wrapper mt-4 mx-auto"
-							viewBox="0 0 100 4"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<g clip-path="url(#clip0_404_3106)">
-								<rect
-									width="100"
-									height="4"
-									rx="2"
-									fill="url(#paint0_linear_404_3106)"
-								/>
-							</g>
-							<defs>
-								<linearGradient
-									id="paint0_linear_404_3106"
-									x1="-3.5269e-08"
-									y1="1.84615"
-									x2="98.6286"
-									y2="13.5533"
-									gradientUnits="userSpaceOnUse"
-								>
-									<stop stop-color="#F926E1" />
-									<stop offset="1" stop-color="#2AB5FB" />
-								</linearGradient>
-								<clipPath id="clip0_404_3106">
-									<rect width="100" height="4" fill="white" />
-								</clipPath>
-							</defs>
-						</svg>
+						<VectorsWrapper class="mt-4 mx-auto" />
 					</div>
 					<div class="grid grid-cols-2 w-full px-8">
 						<div class="table-item !justify-start !text-lable-70">
@@ -320,39 +261,7 @@
 						<h3 class="text-block text-[26px] font-medium">
 							{{ $t("home.price.enterprise") }}
 						</h3>
-						<svg
-							width="100"
-							height="4"
-							class="vectors-wrapper mt-4 mx-auto"
-							viewBox="0 0 100 4"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<g clip-path="url(#clip0_404_3106)">
-								<rect
-									width="100"
-									height="4"
-									rx="2"
-									fill="url(#paint0_linear_404_3106)"
-								/>
-							</g>
-							<defs>
-								<linearGradient
-									id="paint0_linear_404_3106"
-									x1="-3.5269e-08"
-									y1="1.84615"
-									x2="98.6286"
-									y2="13.5533"
-									gradientUnits="userSpaceOnUse"
-								>
-									<stop stop-color="#F926E1" />
-									<stop offset="1" stop-color="#2AB5FB" />
-								</linearGradient>
-								<clipPath id="clip0_404_3106">
-									<rect width="100" height="4" fill="white" />
-								</clipPath>
-							</defs>
-						</svg>
+						<VectorsWrapper class="mt-4 mx-auto" />
 					</div>
 					<div class="grid grid-cols-2 w-full px-8">
 						<div class="table-item !justify-start !text-lable-70">
@@ -391,7 +300,8 @@
 						<div class="table-item">{{ $t("home.price.optional") }}</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 					</div>
-					<div class="table-item">{{ $t("home.price.custom") }}</div>
+					<!-- {{ $t("home.price.custom") }} -->
+					<div class="table-item"></div>
 					<div class="px-8 w-full flex justify-center">
 						<a
 							class="ck-button w-full"
@@ -408,7 +318,9 @@
 	<!-- Pricing Mobie End -->
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import VectorsWrapper from "./vectors-wrapper.vue";
+</script>
 
 <style lang="scss" scoped>
 .table-item {

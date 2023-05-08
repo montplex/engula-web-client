@@ -54,7 +54,6 @@ export default {
 		ps: "Professional Support",
 		custom: "Custom",
 		unlimited: "Unlimited",
-		optional: "Optional",
-		dj: "$0.15 per GB read write throughput, up to $160 monthly max."
+		optional: "Optional"
 	}
 };

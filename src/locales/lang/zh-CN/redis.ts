@@ -77,6 +77,7 @@ export default {
 	},
 	tabs: {
 		details: "实例详情",
+		connect: "连接方式",
 		usages: "使用统计",
 		cli: "在线调试",
 		token: "秘钥管理"

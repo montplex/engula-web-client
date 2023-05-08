@@ -4,9 +4,10 @@
 	<div class="container mx-auto !max-w-screen-xl px-4 pt-8 pb-20">
 		<el-tabs v-model="activeTab" @tab-click="tabClick">
 			<el-tab-pane :label="$t('redis.tabs.details')" name="Details" />
-			<el-tab-pane :label="$t('redis.tabs.usages')" name="Usages" />
+			<el-tab-pane :label="$t('redis.tabs.connect')" name="Connect" />
 			<el-tab-pane :label="$t('redis.tabs.cli')" name="Cli" />
 			<el-tab-pane :label="$t('redis.tabs.token')" name="Token" />
+			<el-tab-pane :label="$t('redis.tabs.usages')" name="Metrics" />
 			<router-view />
 		</el-tabs>
 	</div>

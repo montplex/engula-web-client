@@ -74,8 +74,13 @@ const routes = [
 				component: () => import("@/views/cache/tabs/details.vue")
 			},
 			{
-				path: "usages",
-				name: "Usages",
+				path: "connect",
+				name: "Connect",
+				component: () => import("@/views/cache/tabs/connect.vue")
+			},
+			{
+				path: "metrics",
+				name: "Metrics",
 				component: () => import("@/views/cache/tabs/usages.vue")
 			},
 			{

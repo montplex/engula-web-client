@@ -1,16 +1,14 @@
 <template>
-	<Count />
 	<div class="sunsetWrapper">
 		<div class="hdClients">
 			<div class="sunset">
 				<div class="sunsetEclipse"></div>
 				<div class="divBlock70"></div>
 			</div>
-			<div class="container mx-auto md:px-4 px-6 flex pt-20 flex-col justify-center items-center gap-3">
+			<div
+				class="container mx-auto md:px-4 px-6 flex pt-20 flex-col justify-center items-center gap-3"
+			>
 				<div class="text-block text-5xl">{{ $t("home.cards.title") }}</div>
-				<!-- <div class="md:w-[600px] text-center pb-2" style="color: var(--my-text-main-color)">
-					{{ $t("home.cards.title") }}
-				</div> -->
 				<CuttingLine class="mt-2" />
 			</div>
 		</div>
@@ -21,7 +19,6 @@
 <script setup lang="ts">
 import Card from "./Card.vue";
 import CuttingLine from "./vectors-wrapper.vue";
-import Count from "./Count.vue";
 </script>
 
 <style lang="scss"></style>

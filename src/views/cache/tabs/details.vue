@@ -2,7 +2,7 @@
 <template>
 	<div class="mt-8 grid grid-cols-1 gap-8" v-if="cache">
 		<base-port :cache="cache.one" :host="cache.host" />
-		<div class="section-connect">
+		<!-- <div class="section-connect">
 			<div class="col-span-1">
 				<h3 class="text-xl font-normal">{{ $t("redis.connect") }}</h3>
 			</div>
@@ -17,7 +17,7 @@
 				</el-radio-group>
 			</div>
 			<Component :is="tabPosition" />
-		</div>
+		</div> -->
 		<!-- <configuration /> -->
 		<!-- 收费标准 Start -->
 		<!-- <billing-standards /> -->
@@ -123,17 +123,7 @@ const { locale } = useI18n();
 
 const lang = computed(() => locale.value == "en");
 
-let codeRadioGroup = reactive([
-	{ name: "Redis-cli", com: "CodeRedis" },
-	{ name: "Node", com: "CodeNode" },
-	{ name: "PHP", com: "CodePhp" },
-	{ name: "Python", com: "CodePython" },
-	{ name: "Java", com: "CodeJava" },
-	{ name: "Go", com: "CodeGo" },
-	{ name: "Docker", com: "CodeDocker" }
-]);
-const tabPosition = ref("CodeRedis"),
-	route = useRoute(),
+const route = useRoute(),
 	router = useRouter(),
 	store = cacheStore(),
 	delVisible = ref(false),
@@ -167,34 +157,6 @@ function delCache() {
 }
 </script>
 
-<script lang="ts">
-import CodeRedis from "@/components/Cache/SampleCode/Redis.vue";
-import CodeNode from "@/components/Cache/SampleCode/Node.vue";
-import CodePhp from "@/components/Cache/SampleCode/Php.vue";
-import CodePython from "@/components/Cache/SampleCode/Python.vue";
-import CodeJava from "@/components/Cache/SampleCode/Java.vue";
-import CodeGo from "@/components/Cache/SampleCode/Go.vue";
-import CodeDocker from "@/components/Cache/SampleCode/Docker.vue";
-
-export default {
-	components: {
-		// eslint-disable-next-line vue/no-unused-components
-		CodeRedis,
-		// eslint-disable-next-line vue/no-unused-components
-		CodeNode,
-		// eslint-disable-next-line vue/no-unused-components
-		CodePhp,
-		// eslint-disable-next-line vue/no-unused-components
-		CodePython,
-		// eslint-disable-next-line vue/no-unused-components
-		CodeJava,
-		// eslint-disable-next-line vue/no-unused-components
-		CodeGo,
-		// eslint-disable-next-line vue/no-unused-components
-		CodeDocker
-	}
-};
-</script>
 <style lang="scss">
 .copy-text {
 	font-size: 15px;
