@@ -1,6 +1,5 @@
 {
 	"editor.fontSize": 16,
-	"editor.fontFamily": "Fira Code",
 	"editor.tabSize": 2,
 	"editor.renderWhitespace": "selection",
 	"editor.mouseWheelZoom": true,
@@ -16,6 +15,20 @@
 	"gitlens.views.fileHistory.files.compact": true,
 	"todo-tree.tree.disableCompactFolders": true,
 	"explorer.compactFolders": false,
-	"path-intellisense.absolutePathTo": " \"@\": \"${workspaceRoot}/src\"",
-	"vue.features.codeActions.enable": false
+	"files.autoSave": "onFocusChange",
+	"editor.autoClosingBrackets": "always",
+	"scss.lint.unknownAtRules": "ignore",
+	"css.lint.unknownAtRules": "ignore",
+	"editor.lineNumbers": "interval",
+	"editor.minimap.autohide": true,
+	"editor.minimap.maxColumn": 100,
+	"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+	"editor.colorDecorators": true,
+	"git.terminalGitEditor": true,
+	"debug.console.fontFamily": "DroidSansMono Nerd Font",
+	"terminal.integrated.copyOnSelection": true,
+	"terminal.integrated.enablePersistentSessions": true,
+	"terminal.integrated.fontFamily": "DroidSansMono Nerd Font",
+	"files.autoSaveDelay": 3000,
+	"files.refactoring.autoSave": false
 }

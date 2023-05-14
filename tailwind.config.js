@@ -11,8 +11,22 @@ module.exports = {
 				"info-88": "rgba(0, 0, 0, 0.88)",
 				"w-80": "rgba(255, 255, 255, 0.8)",
 				"w-60": "rgba(255, 255, 255, 0.8)",
+				"w-64": "rgba(255, 255, 255, 0.64)",
+				"w-48": "rgba(255, 255, 255, 0.48)",
 				label: "rgba(132, 133, 135, 1)",
 				"lable-70": "#ffffffa3"
+			},
+			screens: {
+				"3xl": "1920px"
+			},
+			gridTemplateRows: {
+				auto: "minmax(auto,.25fr) auto"
+			},
+			letterSpacing: {
+				tight: "-.025em",
+				normal: "0",
+				wide: ".025em",
+				h2: "-.72px"
 			},
 			width: {
 				"25r": "25rem",

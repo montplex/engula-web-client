@@ -247,3 +247,16 @@ export function toThousandFilter(date: number | string) {
 		.toString()
 		.replace(/^-?\d+/g, (m) => m.replace(/(?=(?!\b)(\d{3})+$)/g, ","));
 }
+
+/**
+ * 平滑滚动
+ * @param {string} 元素id
+ */
+export function scrollToAnchor(anchorName: string) {
+	if (!anchorName) return;
+	// 找到锚点
+	const anchorElement = document.getElementById(anchorName);
+	// 如果对应id的锚点存在，就跳转到锚点
+	if (!anchorElement) return;
+	anchorElement.scrollIntoView({ behavior: "smooth", block: "start" });
+}

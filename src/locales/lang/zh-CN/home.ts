@@ -23,6 +23,7 @@ export default {
 		}
 	},
 	aboutTitle: "未来缓存服务的趋势",
+	multiCloud: "多云支持",
 	about:
 		"Montplex无服务器缓存是一项尖端技术，专为云环境而设计，提供动态扩展、按需付费定价和卓越的性能。作为下一代缓存解决方案，Montplex 对于寻求可扩展、经济高效和高性能的企业或个人是个绝佳的选择。",
 	team: {

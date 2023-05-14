@@ -1,66 +1,133 @@
 <template>
-	<section className="py-14 bg-ly-mian">
-		<div class="container mx-auto md:px-4 mt-[9rem]">
-			<!-- <div class="mt-[9rem]">
-				<div class="flex mt-16 justify-center items-stretch">
-					<img width="110" class="" src="@/assets/images/main-logo.png" alt="" />
-					<div class="flex items-center pl-2 font-semibold !text-8xl">
-						<span class="text-block">Mont</span>
-						<span class="text-block">plex</span>
-					</div>
-				</div>
-			</div> -->
-			<div class="flex mt-14 justify-center flex-col text-8xl gap-3 font-bold text-center">
-				<!-- Serverless Cache for Global Business -->
-				<div class="flex justify-center flex-col md:flex-row text-block">
+	<section className="pt-10 3xl:py-14 bg-ly-mian">
+		<div class="container mx-auto md:px-4 3xl:mt-[9rem]">
+			<div
+				class="flex mt-14 justify-center flex-col gap-3 font-bold text-center text-7xl 3xl:text-8xl"
+			>
+				<div class="flex justify-center flex-col md:flex-row">
 					<div>
 						<span class="text-block">
 							{{ $t("home.banner.title") }}
 						</span>
 					</div>
-					<!-- <div><span class="text-block">Serverless</span></div> -->
-					<!-- <div><span class="pl-4">Cache</span></div> -->
 				</div>
-				<div></div>
+
 				<div class="mb-8">
-					<span class="text-block" style="background-image: linear-gradient(-120deg, #f926e1, #2ab5fb)">
+					<span
+						class="text-block"
+						style="background-image: linear-gradient(-120deg, #f926e1, #2ab5fb)"
+					>
 						{{ $t("home.banner.subTitle") }}
 					</span>
 				</div>
-				<!-- <h3 class="md:text-4xl text-[26px] text-white text-center"></h3> -->
 			</div>
 
-			<!--  <div
-        class="md:w-[600px] mt-6 mx-auto ml-auto text-base text-center"
-        style="color: 'color: hsla(0,0%,100%,.7)'"
-      >
-        <p className="pt-3 text-white text-center opacity-70 text-base ">
-          On December 31st, Vue 2 will reach its end of life.
-          <br />
-          <br />
-          But don't worry about migrating all your code to Vue 3 by then – get NES Vue 2 and stay on
-          supported, secured Vue 2 for as long as you need.
-        </p>
-      </div> -->
-			<div class="mt-16 mx-auto text-center">
-				<a class="play-btn" href="https://dev.montplex.com/console" target="_blank">{{ $t("home.banner.button") }}</a>
+			<div class="3xl:mt-16 mt-4 mx-auto text-center">
+				<a
+					class="play-btn"
+					href="https://dev.montplex.com/console"
+					target="_blank"
+					>{{ $t("home.banner.button") }}</a
+				>
+			</div>
+		</div>
+		<div class="users 3xl:max-w-4xl max-w-2xl 3xl:pt-20 pt-12">
+			<div class="grid_box grid-cols-1 md:grid-cols-2">
+				<div class="grid_item py-6 3xl:py-10">
+					<p class="font-semibold 3xl:text-5xl text-4xl">
+						<span class="text-block">{{
+							store?.usersNum?.userNumber ?? 173
+						}}</span>
+					</p>
+					<p class="s-title text-xl">
+						<span class="dbi1" style="width: 10px; height: 10px"></span>
+						{{ $t("home.cards.users") }}
+					</p>
+				</div>
+				<div class="grid_item py-6 3xl:py-10">
+					<p class="font-semibold 3xl:text-5xl text-4xl">
+						<span class="text-block">
+							{{ store?.usersNum?.cacheServiceNumber ?? 412 }}
+						</span>
+					</p>
+					<p class="s-title text-xl">
+						<span class="dbi1" style="width: 10px; height: 10px"></span>
+						{{ $t("home.cards.caches") }}
+					</p>
+				</div>
 			</div>
 		</div>
 	</section>
 </template>
 
-<script lang="ts" setup>
-import { onMounted } from "vue";
-
-onMounted(() => {
-	// typeWriter();
-});
-/* function typeWriter() {
-	const typeWriter = document.getElementById("typewriter-text");
-	const text: string = "Global Business";
-	typeWriter!.innerHTML = text;
-	typeWriter!.style.setProperty("--characters", text.length.toString());
-} */
+<script setup lang="ts">
+import { userStore } from "@/stores/user";
+const store = userStore();
+store.usersNumber();
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.users {
+	padding-inline-start: 2rem;
+	padding-inline-end: 2rem;
+	width: 100%;
+	margin-inline-start: auto;
+	margin-inline-end: auto;
+	.grid_box {
+		display: grid;
+		grid-gap: 3rem;
+		.grid_item {
+			/* background-color: #fff;
+			color: #171923;
+			box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
+				rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px; */
+			border-radius: 1rem;
+			text-align: center;
+			position: relative;
+			background: rgba(255, 255, 255, 0.02);
+			color: #fff;
+			&::before {
+				content: "";
+				pointer-events: none;
+				user-select: none;
+				position: absolute;
+				inset: 0px;
+				border-radius: inherit;
+				padding: 1px;
+				background: linear-gradient(
+					rgba(255, 255, 255, 0.1),
+					rgba(255, 255, 255, 0.07)
+				);
+				-webkit-mask: linear-gradient(black, black) content-box content-box,
+					linear-gradient(black, black);
+				-webkit-mask-composite: xor;
+			}
+
+			.s-title {
+				margin-top: 1rem;
+				color: #718096;
+				line-height: 1;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+	}
+}
+
+.dbi1 {
+	margin-right: 0.5rem;
+	display: inline-flex;
+	width: 15px;
+	height: 15px;
+	background-color: #00e9a3;
+	border-radius: 999px;
+	animation: 1s ease 0s infinite alternate none running online;
+}
+
+@keyframes online {
+	0% {
+		opacity: 0;
+	}
+}
+</style>

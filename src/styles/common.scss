@@ -21,9 +21,9 @@ body {
 }
 
 // 解决 h1 标签在 webkit 内核浏览器中文字大小失效问题
-:-webkit-any(article, aside, nav, section) h1 {
+/* :-webkit-any(article, aside, nav, section) h1 {
 	font-size: 2em;
-}
+} */
 
 /* 
 ::-webkit-scrollbar {
@@ -161,7 +161,6 @@ body {
 	}
 }
 
-
 .ly-tag {
 	display: inline-block;
 	height: auto;
@@ -191,4 +190,17 @@ body {
 		background: #fff7e6;
 		border-color: #ffd591;
 	}
+}
+
+.m-inline-auto {
+	margin-inline-start: auto;
+	margin-inline-end: auto;
+}
+.m-start-auto {
+	-webkit-margin-start: auto;
+	margin-inline-start: auto;
+}
+.m-end-auto {
+	-webkit-margin-end: auto;
+	margin-inline-end: auto;
 }

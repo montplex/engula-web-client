@@ -1,11 +1,9 @@
 <template>
-	<div class="container mx-auto px-8 text-center">
+	<div class="container mx-auto px-8 text-center" style="padding-bottom: 140px">
 		<h2 class="text-5xl inline-block font-bold text-block leading-normal">
-			Users and Multi-Cloud
+			{{ $t("home.multiCloud") }}
 		</h2>
-
 		<VectorsWrapper class="mt-4 mx-auto" />
-		<Count />
 		<div id="mapsvg" class="pt-10">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -1078,28 +1076,7 @@
 				</g>
 				<!-- custom forms -->
 
-				<g>
-					<circle
-						cx="710"
-						cy="346"
-						r="6"
-						fill="#FDA830"
-						stroke="white"
-						stroke-width="2"
-					/>
-					<text
-						x="722"
-						y="350"
-						fill="#fff"
-						text-anchor="start"
-						font-family="Verdana"
-						font-size="14"
-					>
-						cn-northwest-1
-					</text>
-				</g>
-
-				<g>
+				<!-- 	<g>
 					<circle
 						cx="738"
 						cy="366"
@@ -1117,6 +1094,80 @@
 					>
 						cn-northwest-2
 					</text>
+				</g> -->
+
+				<g fill="none" fill-rule="evenodd">
+					<circle id="circle" cx="738" cy="366" r="1">
+						<animate
+							attributeName="r"
+							begin="-0.9s"
+							dur="1.8s"
+							values="1; 12"
+							calcMode="spline"
+							keyTimes="0; 1"
+							keySplines="0.165, 0.84, 0.44, 1"
+							repeatCount="indefinite"
+						/>
+						<animate
+							attributeName="fill-opacity"
+							begin="-0.9s"
+							dur="1.8s"
+							values="1; 0"
+							calcMode="spline"
+							keyTimes="0; 1"
+							keySplines="0.3, 0.61, 0.355, 1"
+							repeatCount="indefinite"
+						/>
+					</circle>
+
+					<circle id="circle" cx="738" cy="366" r="5" />
+					<text
+						x="750"
+						y="370"
+						fill="#fff"
+						text-anchor="start"
+						font-family="Verdana"
+						font-size="14"
+					>
+						aws-cn-northwest-2
+					</text>
+				</g>
+
+				<g fill="none" fill-rule="evenodd">
+					<circle id="circle" cx="710" cy="346" r="1">
+						<animate
+							attributeName="r"
+							begin="-0.9s"
+							dur="1.8s"
+							values="1; 12"
+							calcMode="spline"
+							keyTimes="0; 1"
+							keySplines="0.165, 0.84, 0.44, 1"
+							repeatCount="indefinite"
+						/>
+						<animate
+							attributeName="fill-opacity"
+							begin="-0.9s"
+							dur="1.8s"
+							values="1; 0"
+							calcMode="spline"
+							keyTimes="0; 1"
+							keySplines="0.3, 0.61, 0.355, 1"
+							repeatCount="indefinite"
+						/>
+					</circle>
+
+					<circle id="circle" cx="710" cy="346" r="5" />
+					<text
+						x="722"
+						y="350"
+						fill="#fff"
+						text-anchor="start"
+						font-family="Verdana"
+						font-size="14"
+					>
+						aws-cn-northwest-1
+					</text>
 				</g>
 			</svg>
 		</div>
@@ -1124,7 +1175,6 @@
 </template>
 
 <script setup lang="ts">
-import Count from "./Count.vue";
 let regions = [
 	{
 		name: "China",
@@ -1174,6 +1224,9 @@ let regions = [
 			fill: #fda830;
 			stroke: white;
 			stroke-width: 2;
+		}
+		#circle {
+			fill: #00e9a3;
 		}
 	}
 }

@@ -1,6 +1,6 @@
 <template>
 	<div class="container mx-auto relative z-10 md:!px-8 px-6">
-		<section class="see" style="padding-bottom: 140px">
+		<section class="see">
 			<!-- <div class="__title">
         <div class="text-block text-sm">OVERVIEW</div>
         <div class="s-header">Stay secure without migrating</div>
@@ -177,13 +177,34 @@
 					</div>
 				</div>
 			</div>
-			<About />
+			<div class="container mx-auto py-20 px-6 text-white" id="bander-about">
+				<div class="pb-24 w-full">
+					<div class="flex flex-col">
+						<div class="text-center">
+							<span class="!text-white text-5xl mb-12">
+								<span class="text-block">{{ $t("home.aboutTitle") }}</span>
+							</span>
+							<CuttingLine class="mt-5 mx-auto mb-6" />
+						</div>
+						<!-- <span class="inline-block h-1 w-10 rounded bg-indigo-500 mb-12"></span> -->
+
+						<div class="py-6 md:w-3/4 w-full text-center mx-auto">
+							<p class="leading-relaxed text-2xl">
+								{{ $t("home.about") }}
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="gradient-border division-line" style="padding: 1px"></div>
+				<!-- <Team /> -->
+			</div>
 		</section>
 	</div>
 </template>
 
 <script setup lang="ts">
-import About from "./About.vue";
+// import Team from "./Team.vue";
+import CuttingLine from "./vectors-wrapper.vue";
 </script>
 
 <style lang="scss" scoped>

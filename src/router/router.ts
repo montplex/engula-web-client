@@ -1,15 +1,15 @@
 import { RouteRecordRaw } from "vue-router";
 import Home from "@/views/home/index.vue";
 import Cache from "@/views/cache/cache.vue";
-import { CacheEnum } from "#/enum";
-import Cookies from "js-cookie";
+// import { CacheEnum } from "#/enum";
+// import Cookies from "js-cookie";
 
 const routes = [
 	{
 		path: "/",
 		name: "Home",
-		component: Home
-		/* children: [
+		component: Home,
+		children: [
 			{
 				path: "/",
 				name: "Home",
@@ -25,7 +25,7 @@ const routes = [
 				name: "Careers",
 				component: () => import("@/views/home/careers.vue")
 			}
-		] */
+		]
 	},
 	{
 		path: "/login",

@@ -5,7 +5,7 @@
 			<div class="navbar-pc">
 				<div class="nav-box">
 					<div class="logo">
-						<a href="#" class="flex items-center">
+						<a href="/" class="flex items-center">
 							<span class="sr-only">MontPlex</span>
 							<!-- <img src="@/assets/images/main-logo.png" alt="" /> -->
 							<div
@@ -54,10 +54,7 @@
 						</button>
 					</div>
 					<nav class="nav-group">
-						<div
-							class="group nav-link"
-							@click="scrollToAnchor('bander-pricing')"
-						>
+						<div class="group nav-link" @click="handlePricing">
 							<span>{{ t("home.nav.pricing") }}</span>
 						</div>
 						<a
@@ -77,7 +74,7 @@
 								/>
 							</span>
 						</a>
-						<a
+						<!-- <a
 							href="https://dev.montplex.com/docs/blog"
 							target="_blank"
 							class="group nav-link"
@@ -93,17 +90,14 @@
 									class="hidden !h-5 !w-5 ml-2 -rotate-45 group-hover:block"
 								/>
 							</span>
-						</a>
-						<!-- <div class="group nav-link" @click="scrollToAnchor('bander-about')">
-							<span>{{ t("home.nav.about") }}</span>
-						</div> -->
-						<!-- <a href="https://dev.montplex.com/docs/docs/support/contact-us" target="_blank" class="group nav-link">
-							<span>{{ t("home.nav.careers") }}</span>
-							<span class="ml-2" target="_blank">
-								<svgIcon icon="right45-write" class="!h-5 !w-5 ml-2 -rotate-45 group-hover:hidden" />
-								<svgIcon icon="right45" class="hidden !h-5 !w-5 ml-2 -rotate-45 group-hover:block" />
-							</span>
 						</a> -->
+						<div class="group nav-link" @click="$router.push('/about')">
+							<span>{{ t("home.nav.about") }}</span>
+						</div>
+
+						<div class="group nav-link" @click="$router.push('/careers')">
+							<span>{{ t("home.nav.careers") }}</span>
+						</div>
 					</nav>
 					<div class="conlose">
 						<el-dropdown trigger="click">
@@ -190,9 +184,9 @@
 										/>
 									</span>
 								</a>
-								<!-- <div class="group nav-link" @click="scrollToAnchor('bander-about')">
+								<div class="group nav-link" @click="$router.push('/about')">
 									<span>{{ t("home.nav.about") }}</span>
-								</div> -->
+								</div>
 								<a
 									href="https://dev.montplex.com/docs/docs/support/contact-us"
 									target="_blank"
@@ -226,10 +220,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { nextTick, ref } from "vue";
 import { env } from "@/utils/util";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
+import { scrollToAnchor } from "@/utils/util";
+
+async function handlePricing() {
+	const path = window?.location?.pathname;
+	if (path === "/") {
+		scrollToAnchor("bander-pricing");
+	} else {
+		await router.push({ path: "/", state: { mid: "bander-pricing" } });
+		console.log(history.state.mid);
+		setTimeout(() => {
+			scrollToAnchor(history.state.mid);
+		}, 300);
+	}
+}
+
 const { t, locale } = useI18n();
 
 const open = ref(false),
@@ -242,16 +251,6 @@ const handleConsole = () => {
 		window.location.href = env().VITE_API_URL + "/engula/auth0/login";
 	}
 };
-
-// 平滑滚动
-function scrollToAnchor(anchorName: string) {
-	if (!anchorName) return;
-	// 找到锚点
-	const anchorElement = document.getElementById(anchorName);
-	// 如果对应id的锚点存在，就跳转到锚点
-	if (!anchorElement) return;
-	anchorElement.scrollIntoView({ behavior: "smooth", block: "start" });
-}
 
 function handleLang(val: "zh_CN" | "en") {
 	locale.value = val;
