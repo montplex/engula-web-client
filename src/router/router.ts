@@ -24,9 +24,15 @@ const routes = [
 				path: "careers",
 				name: "Careers",
 				component: () => import("@/views/home/careers.vue")
+			},
+			{
+				path: "careers/:jobName",
+				name: "Jobs",
+				component: () => import("@/views/home/job-posting.vue")
 			}
 		]
 	},
+
 	{
 		path: "/login",
 		name: "Login",
@@ -52,14 +58,6 @@ const routes = [
 		name: "Console",
 		meta: { auth: true },
 		component: () => import("@/views/cache/index.vue")
-		/* beforeEnter: (to, from) => {
-			console.log("路由独享守卫--------->", to, from);
-			if (Cookies.get(CacheEnum.COOKIE)) {
-				return true;
-			} else {
-				window.location.href = import.meta.env.VITE_API_URL + "/engula/auth0/login";
-			}
-		} */
 	},
 	{
 		path: "/cache/:id",

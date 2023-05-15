@@ -30,7 +30,7 @@
 					<div class="w-dyn-list">
 						<div role="list" class="w-dyn-items flex flex-col">
 							<div class="collection-item group" v-for="(job, idx) in jobsList" :key="idx">
-								<a @click.prevent="handleJobClick(job)" class="job_herf cursor-pointer"
+								<router-link :to="{ name: 'Jobs', params: { jobName: job.path } }" class="job_herf cursor-pointer"
 									><div class="lf fill">
 										<div>{{ job.team }}</div>
 									</div>
@@ -40,7 +40,7 @@
 									<div class="dl">
 										<svgIcon icon="right45-write" class="!w-6 group-hover:hidden" />
 										<svgIcon icon="right45" class="hidden !w-6 group-hover:block" /></div
-								></a>
+								></router-link>
 							</div>
 						</div>
 					</div>
@@ -87,10 +87,10 @@
 
 <script setup lang="ts">
 const jobsList = [
-	{ team: "Operations Engineer", position: "Engineering", herf: "" },
-	{ team: "Product Manager", position: "Engineering", herf: "" },
-	{ team: "Sales specialist", position: "Sales", herf: "" },
-	{ team: "Account Executive", position: "Sales", herf: "" }
+	{ team: "Product Marketing Manager", position: "Engineering", path: "product-marketing-manager" },
+	{ team: "Operations Engineer", position: "Engineering", path: "operations-engineer" },
+	{ team: "Sales Specialist", position: "Sales", path: "sales-specialist" },
+	{ team: "Account Executive", position: "Sales", path: "account-executive" }
 ];
 
 function handleJobClick(job: any) {
