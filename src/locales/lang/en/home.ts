@@ -18,7 +18,7 @@ export default {
 		caches: "Cache Services",
 		button: "Learn More",
 		list: {
-			redis: "Redis API Compatible",
+			redis: "Redis® API Compatible",
 			effort: "Lower Cost With Zero Effort",
 			cloud: "Any Scale , Global Availability"
 		}
