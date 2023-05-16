@@ -66,7 +66,7 @@
 			</div>
 		</section>
 
-		<section class="mb-40 py-36 relative z-10 overflow-hidden text-center bg-[#050505]">
+		<section class="pb-40 py-36 relative z-10 overflow-hidden text-center bg-[#050505]">
 			<div
 				class="absolute top-0 w-[3000px] h-[1400px] rounded-full"
 				style="
@@ -78,7 +78,8 @@
 			></div>
 			<div class="px-8 m-inline-auto max-w-6xl">
 				<header>
-					<h2 class="text-5xl font-bold text-white">Our investors</h2>
+					<!-- <h2 class="text-5xl font-bold text-white">Our investors</h2> -->
+					<h2 class="text-5xl font-bold text-white">Our investor</h2>
 					<div class="px-8 m-inline-auto max-w-3xl">
 						<p class="text-xl mt-3 text-w-48">
 							We are fortunate to work with some of the best investors in the world. Chances are you are already using the
@@ -88,19 +89,23 @@
 				</header>
 				<div class="mt-20">
 					<ul class="c-wrap__list">
-						<li class="c-wrap__listitem" v-for="(item, idx) in list" :key="idx">
-							<div>
+						<a class="w-auto flex items-center" target="_blank" rel="noopener" href="https://www.hillhouseinvestment.com/zh-hans">
+							<img class="!w-12 !h-12" src="@/assets/images/HH.png" alt="HILLHOUSE" />
+							<h3 class="font-bold w-full text-white text-3xl">HILLHOUSE</h3>
+						</a>
+						<!-- <li class="c-wrap__listitem" v-for="(item, idx) in list" :key="idx">
+							<div class="w-auto">
 								<a target="_blank" rel="noopener" class="chakra-link" :href="item.herf">
-									<span class="chakra-avatar">
+									<span class="chakra-avatar !w-12 !h-12">
 										<img :src="`./avatar/${idx + 1}.png`" :alt="item.name" />
 									</span>
 								</a>
 								<h5 class="font-bold text-xl mt-4">
 									<a target="_blank" rel="noopener" class="chakra-link" :href="item.herf">{{ item.name }}</a>
 								</h5>
-								<p class="mt-4 text-w-48">{{ item.info }}</p>
+								<p class="text-w-48" v-if="item?.info">{{ item?.info }}</p>
 							</div>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 			</div>
@@ -111,12 +116,12 @@
 <script setup lang="ts">
 const list = [
 	{
-		herf: "https://twitter.com/liaoyia",
-		avatar: "robin.jpeg",
-		name: "Robin Vasan",
-		info: "Founder, Mango Capital"
-	},
-	{
+		herf: "https://www.hillhouseinvestment.com/zh-hans",
+		avatar: "./HH.png",
+		name: "HillHouse",
+		info: "Hillhouse Capital Group"
+	}
+	/* {
 		herf: "https://twitter.com/naval",
 		avatar: "robin.jpeg",
 		name: "Naval Ravikant",
@@ -176,7 +181,7 @@ const list = [
 		avatar: "jfagnan.webp",
 		name: "Jeff Fagnan",
 		info: "Founder, Accomplice"
-	}
+	} */
 ];
 </script>
 
