@@ -55,29 +55,9 @@
 					<h2 class="text-[36px] leading-tight tracking-h2 font-bold">Perks and Benefits</h2>
 				</div>
 				<div class="perks-grid">
-					<div class="perk">
-						<div class="text-block">01</div>
-						<div class="perk-title">Work from anywhere</div>
-					</div>
-					<div class="perk">
-						<div class="text-block">02</div>
-						<div class="perk-title">Health + Vision +&nbsp;Dental</div>
-					</div>
-					<div class="perk">
-						<div class="text-block">03</div>
-						<div class="perk-title">Unlimited PTO</div>
-					</div>
-					<div class="perk">
-						<div class="text-block">04</div>
-						<div class="perk-title">Free Lunch Fridays</div>
-					</div>
-					<div class="perk">
-						<div class="text-block">05</div>
-						<div class="perk-title">Home&nbsp;Office Stipend</div>
-					</div>
-					<div class="perk">
-						<div class="text-block">06</div>
-						<div class="perk-title">Tickets to NG-Conf</div>
+					<div class="perk" v-for="(num, index) in benefits" :key="index">
+						<div class="text-block">0{{ index + 1 }}</div>
+						<div class="perk-title">{{ num.title }}</div>
 					</div>
 				</div>
 			</div>
@@ -88,9 +68,18 @@
 <script setup lang="ts">
 const jobsList = [
 	{ team: "Product Marketing Manager", position: "Engineering", path: "product-marketing-manager" },
-	{ team: "Operations Engineer", position: "Engineering", path: "operations-engineer" },
-	{ team: "Sales Specialist", position: "Sales", path: "sales-specialist" },
-	{ team: "Account Executive", position: "Sales", path: "account-executive" }
+	{ team: "Operations Engineer", position: "Engineering", path: "operations-engineer" }
+	// { team: "Sales Specialist", position: "Sales", path: "sales-specialist" },
+	// { team: "Account Executive", position: "Sales", path: "account-executive" }
+];
+
+const benefits = [
+	{ title: "Work from anywhere", description: "We are a remote first company. Work from anywhere in the world." },
+	{ title: "Whole Set Of Social Benefits", description: "We offer a whole set of social benefits." },
+	{ title: "Home Office Stipend", description: "We offer a home office stipend." }
+	/* { title: "Unlimited PTO", description: "We offer unlimited PTO." },
+	{ title: "Free Lunch Fridays", description: "We offer free lunch on Fridays." },
+	{ title: "Tickets to NG-Conf", description: "We offer tickets to NG-Conf." } */
 ];
 
 function handleJobClick(job: any) {
