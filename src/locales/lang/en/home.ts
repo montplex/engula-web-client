@@ -20,7 +20,7 @@ export default {
 		list: {
 			redis: "Redis® API Compatible",
 			effort: "Lower Cost With Zero Effort",
-			cloud: "Any Scale , Global Availability"
+			cloud: "Global Availability"
 		}
 	},
 	aboutTitle: "Why Montplex",

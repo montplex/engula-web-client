@@ -1,15 +1,14 @@
 <template>
 	<!-- Pricing PC Start -->
-	<!-- md:block -->
-	<div class="mt-20 hidden">
+	<div class="mt-20 hidden md:block">
 		<div class="grid grid-cols-4">
 			<!-- 第一行 -->
 			<div class="flex items-center justify-center p-4"></div>
 			<div class="table-item">
-				<h5 class="text-3xl font-bold text-block">Free</h5>
+				<h5 class="text-3xl font-bold text-block">Start</h5>
 			</div>
 			<div class="table-item bg-ly-check" style="border-radius: 16px 16px 0 0">
-				<h5 class="text-3xl font-bold text-block">Pay as you go</h5>
+				<h5 class="text-3xl font-bold text-block">Pro</h5>
 			</div>
 			<div class="table-item">
 				<h5 class="text-3xl font-bold text-block">Enterprise</h5>
@@ -17,14 +16,20 @@
 			<div class="col-span-4"><div class="h-[1px] bg-ly-line"></div></div>
 
 			<!-- 第二行 -->
-			<div class="table-item text-left !text-lable-70">
-				<span class="flex items-center">
+			<div class="table-item text-left !text-lable-70 group">
+				<span class="w-full relative z-10">
 					Commands Limit
 					<svgIcon icon="info-line" class="!inline ml-2 text-xl" />
+					<!-- <div
+						style="left: 0px; bottom: 30px"
+						class="text-[#171923] bg-[#cbd5e0] text-sm px-3 py-4 min-w-[200px] z-40 absolute rounded-sm text-center animate-[fadeIn] transition-all duration-300 opacity-0 group-hover:opacity-100"
+					>
+						This is just an example of what you can do using a CSS tooltip, feel free to get creative and produce your own!
+					</div> -->
 				</span>
 			</div>
 			<div class="table-item">
-				<span>Max 10,000 Commands Daily</span>
+				<span>Unlimited</span>
 			</div>
 			<div class="table-item bg-ly-check">
 				<span>Unlimited</span>
@@ -34,16 +39,16 @@
 			</div>
 			<div class="col-span-4"><div class="h-[1px] bg-ly-line"></div></div>
 
-			<!-- 第四行 -->
+			<!-- 第3行 -->
 			<div class="col-span-4"><div class="h-[1px] bg-ly-line"></div></div>
 			<div class="table-item text-left !text-lable-70">
-				<span class="flex items-center">
+				<span class="w-full">
 					Encryption (TLS)
 					<svgIcon icon="info-line" class="!inline ml-2 text-xl" />
 				</span>
 			</div>
 			<div class="table-item">
-				<svgIcon icon="true" class="!h-5 !w-5" />
+				<svgIcon icon="none" class="!h-5 !w-5" />
 			</div>
 			<div class="table-item bg-ly-check">
 				<svgIcon icon="true" class="!h-5 !w-5" />
@@ -55,8 +60,8 @@
 
 			<!-- 第五行 -->
 			<div class="table-item text-left !text-lable-70">
-				<span class="flex items-center">
-					Multi Zone Replication
+				<span class="w-full">
+					Multi-AZ High Availablity
 					<svgIcon icon="info-line" class="!inline ml-2 text-xl" />
 				</span>
 			</div>
@@ -74,8 +79,25 @@
 
 			<!-- 第六行 -->
 			<div class="table-item text-left !text-lable-70">
-				<span class="flex items-center">
-					VPC Peering
+				<span class="w-full">
+					Professional Support
+					<svgIcon icon="info-line" class="!inline ml-2 text-xl" />
+				</span>
+			</div>
+			<div class="table-item">
+				<svgIcon icon="none" class="!h-5 !w-5" />
+			</div>
+			<div class="table-item bg-ly-check">
+				<svgIcon icon="true" class="!h-5 !w-5" />
+			</div>
+			<div class="table-item">
+				<svgIcon icon="true" class="!h-5 !w-5" />
+			</div>
+			<div class="col-span-4"><div class="h-[1px] bg-ly-line"></div></div>
+
+			<div class="table-item text-left !text-lable-70">
+				<span class="w-full">
+					BYOC （Bring Your Own Cloud）
 					<svgIcon icon="info-line" class="!inline ml-2 text-xl" />
 				</span>
 			</div>
@@ -90,28 +112,13 @@
 			</div>
 			<div class="col-span-4"><div class="h-[1px] bg-ly-line"></div></div>
 
-			<div class="table-item text-left !text-lable-70">
-				<span class="flex items-center">
-					Professional Support
-					<svgIcon icon="info-line" class="!inline ml-2 text-xl" />
-				</span>
-			</div>
-			<div class="table-item">
-				<svgIcon icon="none" class="!h-5 !w-5" />
-			</div>
-			<div class="table-item bg-ly-check">Optional</div>
-			<div class="table-item">Optional</div>
-			<div class="col-span-4"><div class="h-[1px] bg-ly-line"></div></div>
-
 			<!-- 第九行 -->
 			<div class="table-item text-left !text-lable-70"></div>
 			<div class="table-item">
-				<span>Free (No credit card required)</span>
+				<span>Free</span>
 			</div>
 			<div class="table-item bg-ly-check">
-				<span
-					>$0.15 per GB read write throughput, up to $160 monthly max..</span
-				>
+				<span>GB / Hour</span>
 			</div>
 			<div class="table-item"><span>Custom</span></div>
 			<div class="col-span-4"><div class="h-[1px] bg-ly-line"></div></div>
@@ -119,137 +126,106 @@
 			<!-- 第十行 底部按钮 -->
 			<div class="table-item"></div>
 			<div class="table-item">
-				<a
-					class="ck-button"
-					href="https://dev.montplex.com/console"
-					target="_blank"
-				>
-					Start for free
-				</a>
+				<a class="ck-button" href="https://dev.montplex.com/console" target="_blank"> Start for free </a>
 			</div>
 			<div class="table-item bg-ly-check" style="border-radius: 0 0 16px 16px">
-				<a
-					class="ck-button login"
-					href="https://dev.montplex.com/console"
-					target="_blank"
-					>Login</a
-				>
+				<a class="ck-button login" href="https://dev.montplex.com/console" target="_blank">Login</a>
 			</div>
 			<div class="table-item">
-				<a
-					class="ck-button"
-					href="https://docs.upstash.com/docs/help/support"
-					target="_blank"
-				>
-					Contact Us
-				</a>
+				<a class="ck-button" href="https://docs.upstash.com/docs/help/support" target="_blank"> Contact Us </a>
 			</div>
 		</div>
 	</div>
 	<!-- Pricing PC End -->
 
 	<!-- Pricing Mobie Start -->
-	<!-- md:hidden block -->
-	<div class="">
+
+	<div class="md:hidden block">
 		<div class="cardContent md:flex-row flex-col md:!px-4 px-0 !mb-10">
-			<!-- <div class="cardItem gradient-border">
+			<div class="cardItem gradient-border">
 				<div class="cardBox text-white !px-0">
 					<div class="px-7 pt-10 text-center">
-						<h3 class="text-block text-[26px] font-medium">Free</h3>
-						<div class="text-base">Cost by quantity</div>
+						<h3 class="text-block text-[26px] font-medium">Start</h3>
 						<VectorsWrapper class="mt-4 mx-auto" />
 					</div>
 					<div class="grid grid-cols-2 w-full px-8">
-						<div class="table-item !justify-start !text-lable-70">Commands Limit</div>
+						<div class="table-item !text-lable-70">Commands Limit</div>
 						<div class="table-item">
-							<p class="text-center">Max 10,000 Commands Daily</p>
+							<p class="text-center">Unlimited</p>
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">Encryption (TLS)</div>
-						<div class="table-item">
-							<svgIcon icon="true" class="!h-5 !w-5" />
-						</div>
-						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
-
-						<div class="table-item !justify-start !text-lable-70">Multi Zone Replication</div>
+						<div class="table-item !text-lable-70">Encryption (TLS)</div>
 						<div class="table-item">
 							<svgIcon icon="none" class="!h-5 !w-5" />
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">VPC Peering</div>
+						<div class="table-item !text-lable-70">Multi-AZ High Availablity</div>
 						<div class="table-item">
 							<svgIcon icon="none" class="!h-5 !w-5" />
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">Professional Support</div>
+						<div class="table-item !text-lable-70">Professional Support</div>
+						<div class="table-item">
+							<svgIcon icon="none" class="!h-5 !w-5" />
+						</div>
+						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
+
+						<div class="table-item !text-lable-70">BYOC （Bring Your Own Cloud</div>
 						<div class="table-item">
 							<svgIcon icon="none" class="!h-5 !w-5" />
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 					</div>
-					<div class="table-item">Free (No credit card required)</div>
+					<div class="table-item">Free</div>
 					<div class="px-8 w-full flex justify-center">
 						<a class="ck-button w-full" href="https://dev.montplex.com/console" target="_blank"> Start for free </a>
 					</div>
 				</div>
-			</div> -->
+			</div>
+
 			<div class="cardItem gradient-border">
 				<div class="cardBox text-white !px-0">
 					<div class="px-7 pt-10 text-center">
-						<h3 class="text-block text-[26px] font-medium">
-							{{ $t("home.price.payas") }}
-						</h3>
+						<h3 class="text-block text-[26px] font-medium">Pro</h3>
 						<VectorsWrapper class="mt-4 mx-auto" />
 					</div>
 					<div class="grid grid-cols-2 w-full px-8">
-						<div class="table-item !justify-start !text-lable-70">
-							{{ $t("home.price.commands") }}
-						</div>
-						<div class="table-item">{{ $t("home.price.unlimited") }}</div>
+						<div class="table-item !text-lable-70">Commands Limit</div>
+						<div class="table-item">Unlimited</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">
-							{{ $t("home.price.tls") }}
-						</div>
+						<div class="table-item !text-lable-70">Encryption (TLS)</div>
 						<div class="table-item">
 							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">
-							{{ $t("home.price.zone") }}
-						</div>
+						<div class="table-item !text-lable-70">Multi-AZ High Availablity</div>
 						<div class="table-item">
 							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">
-							{{ $t("home.price.vpc") }}
+						<div class="table-item !text-lable-70">Professional Support</div>
+						<div class="table-item">
+							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>
+						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
+
+						<div class="table-item !text-lable-70">BYOC （Bring Your Own Cloud）</div>
 						<div class="table-item">
 							<svgIcon icon="none" class="!h-5 !w-5" />
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
-
-						<div class="table-item !justify-start !text-lable-70">
-							{{ $t("home.price.ps") }}
-						</div>
-						<div class="table-item">{{ $t("home.price.optional") }}</div>
-						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 					</div>
 					<div class="table-item">
-						<p class="text-center"><!-- {{ $t("home.price.dj") }} --></p>
+						<p class="text-center">GB / Hour</p>
 					</div>
 					<div class="px-8 w-full flex justify-center">
-						<a
-							class="ck-button w-full login"
-							href="https://dev.montplex.com/console"
-							target="_blank"
-						>
+						<a class="ck-button w-full login" href="https://dev.montplex.com/console" target="_blank">
 							{{ $t("home.login") }}
 						</a>
 					</div>
@@ -258,58 +234,41 @@
 			<div class="cardItem gradient-border">
 				<div class="cardBox text-white !px-0">
 					<div class="px-7 pt-10 text-center">
-						<h3 class="text-block text-[26px] font-medium">
-							{{ $t("home.price.enterprise") }}
-						</h3>
+						<h3 class="text-block text-[26px] font-medium">Enterprise</h3>
 						<VectorsWrapper class="mt-4 mx-auto" />
 					</div>
 					<div class="grid grid-cols-2 w-full px-8">
-						<div class="table-item !justify-start !text-lable-70">
-							{{ $t("home.price.commands") }}
-						</div>
+						<div class="table-item !text-lable-70">Commands Limit</div>
 						<div class="table-item">Unlimited</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">
-							{{ $t("home.price.tls") }}
-						</div>
+						<div class="table-item !text-lable-70">Encryption (TLS)</div>
 						<div class="table-item">
 							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">
-							{{ $t("home.price.zone") }}
-						</div>
+						<div class="table-item !text-lable-70">Multi-AZ High Availablity</div>
 						<div class="table-item">
 							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">
-							{{ $t("home.price.vpc") }}
-						</div>
+						<div class="table-item !text-lable-70">Professional Support</div>
 						<div class="table-item">
 							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !justify-start !text-lable-70">
-							{{ $t("home.price.ps") }}
+						<div class="table-item !text-lable-70">BYOC （Bring Your Own Cloud）</div>
+						<div class="table-item">
+							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>
-						<div class="table-item">{{ $t("home.price.optional") }}</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 					</div>
-					<!-- {{ $t("home.price.custom") }} -->
-					<div class="table-item"></div>
+					<div class="table-item">Custom</div>
 					<div class="px-8 w-full flex justify-center">
-						<a
-							class="ck-button w-full"
-							href="https://dev.montplex.com/console"
-							target="_blank"
-						>
-							{{ $t("home.contact") }}</a
-						>
+						<a class="ck-button w-full" href="https://dev.montplex.com/console" target="_blank"> {{ $t("home.contact") }}</a>
 					</div>
 				</div>
 			</div>
@@ -323,6 +282,22 @@ import VectorsWrapper from "./vectors-wrapper.vue";
 </script>
 
 <style lang="scss" scoped>
+li:hover .content {
+	animation: ani 0.5s forwards;
+}
+@keyframes ani {
+	0% {
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(-30px);
+	}
+	100% {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+}
+
 .table-item {
 	display: flex;
 	justify-content: center;
