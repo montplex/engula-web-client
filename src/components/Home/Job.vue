@@ -13,7 +13,7 @@
 			</div>
 		</section>
 
-		<section class="container mx-auto text-center bg-[#050505] px-6 pb-20">
+		<section class="container mx-auto text-center bg-[#050505] px-6 pb-20 md:px-20">
 			<div class="w-full flex justify-center items-center overflow-hidden text-white">
 				<div class="max-w-full flex-1">
 					<div class="rounded-lg px-11 text-sm">
@@ -48,7 +48,7 @@
 			</div>
 		</section>
 
-		<section class="container mx-auto flex justify-center items-center mt-32 mb-10 px-20">
+		<section class="container mx-auto flex justify-center items-center mt-32 mb-10 md:px-20">
 			<div class="flex-1 flex flex-col justify-start items-center text-white">
 				<h1 class="text-block mb-3 text-sm">WHY JOIN US?</h1>
 				<div class="text-center">
@@ -103,8 +103,8 @@ function handleJobClick(job: any) {
 		}
 	}
 	.job_herf {
-		grid-column-gap: 100px;
-		grid-row-gap: 100px;
+		// grid-column-gap: 100px;
+		// grid-row-gap: 100px;
 		width: 100%;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 		align-items: center;
@@ -125,9 +125,9 @@ function handleJobClick(job: any) {
 	}
 }
 .perks-grid {
-	@apply w-full grid gap-x-10 gap-y-6 grid-cols-3 grid-rows-auto auto-cols-fr;
+	@apply w-full grid gap-x-10 gap-y-6 grid-cols-1 md:grid-cols-3 grid-rows-auto auto-cols-fr md:px-12 pt-12 md:pb-20 px-8;
 	margin-top: 16px;
-	padding: 50px 50px 80px;
+	// padding: 50px 50px 80px;
 	.perk {
 		display: flex;
 		flex-direction: column;

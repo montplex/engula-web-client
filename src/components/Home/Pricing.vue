@@ -7,19 +7,15 @@
 					{{ $t("home.price.title") }}
 				</h2>
 				<p class="mt-2">
-					<span class="inline-block text-xl text-white">
-						{{ $t("home.price.subTitle") }}</span
-					>
+					<span class="inline-block text-xl text-white"> {{ $t("home.price.subTitle") }}</span>
 				</p>
 				<VectorsWrapper class="mt-4 mx-auto" />
 			</header>
 			<PricingChild />
 			<!-- meat -->
-			<div
-				class="flex items-center flex-col text-white mb-28"
-				style="font-family: 'Airbnbcereal book'">
-				<!-- <p>Read write throughput cost is $0.15 per GB per month.</p> -->
-				<!-- 	<p>
+			<div class="flex items-center flex-col text-white mb-28 mt-20" style="font-family: 'Airbnbcereal book'">
+				<!-- 	<p>Read write throughput cost is $0.15 per GB per month.</p>
+				<p>
 					Each plan has
 					<a
 						target="_blank"
@@ -30,14 +26,14 @@
 						quotas
 					</a>
 					for fair use of resources.
-				</p>
+				</p> -->
 				<p>
 					See
 					<a
 						target="_blank"
 						rel="noopener"
 						class="inline-flex items-center text-[#41a5f8] cursor-pointer hover:underline"
-						href="https://docs.upstash.com/redis/overall/pricing"
+						href="https://dev.montplex.com/docs/docs/overall/Pricing"
 					>
 						pricing page
 					</a>
@@ -49,12 +45,12 @@
 						target="_blank"
 						rel="noopener"
 						class="inline-flex items-center text-[#41a5f8] cursor-pointer hover:underline"
-						href="https://docs.upstash.com/docs/help/support"
+						href="https://dev.montplex.com/docs/docs/overall/usecases"
 					>
 						us
 					</a>
 					for advanced needs.
-				</p> -->
+				</p>
 			</div>
 		</div>
 	</section>
