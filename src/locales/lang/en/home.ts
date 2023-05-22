@@ -45,7 +45,7 @@ export default {
 	login: "Login",
 	price: {
 		title: "Plans & Pricing ",
-		subTitle: "Pay only for what you use with per-request pricing.",
+		subTitle: "Pay only for what you use with usages pricing.",
 		payas: "Pay as you go",
 		enterprise: "Enterprise",
 		commands: "Commands Limit",

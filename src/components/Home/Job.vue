@@ -1,13 +1,13 @@
 <template>
 	<main class="h-full" style="font-family: Airbnbcereal, sans-serif">
-		<section class="pt-44 pb-24 text-center">
-			<div class="px-8 m-inline-auto max-w-3xl text-white flex gap-8 flex-col">
-				<h1 class="!text-5xl font-bold" style="line-height: 120%">
+		<section class="pt-40 pb-24 text-center">
+			<div class="px-8 m-inline-auto 3xl:max-w-4xl max-w-3xl text-white flex gap-8 flex-col">
+				<h1 class="3xl:text-6xl text-5xl font-bold" style="line-height: 128%">
 					We are looking for super powered
 					<span class="text-block">problem solvers</span>
 				</h1>
 
-				<div class="text-2xl text-w-80">
+				<div class="text-xl text-w-80">
 					<p>Come join our super team.</p>
 				</div>
 			</div>
@@ -17,7 +17,7 @@
 			<div class="w-full flex justify-center items-center overflow-hidden text-white">
 				<div class="max-w-full flex-1">
 					<div class="rounded-lg px-11 text-sm">
-						<div class="gap-y-24 gap-x-24 items-center py-6 flex text-xs font-medium">
+						<div class="gap-y-24 gap-x-24 items-center py-6 flex text-base font-medium">
 							<div class="w-full text-left">
 								<div>POSITION</div>
 							</div>
@@ -34,7 +34,7 @@
 									><div class="lf fill">
 										<div>{{ job.team }}</div>
 									</div>
-									<div class="text-left text-base">
+									<div class="lf fill">
 										<div>{{ job.position }}</div>
 									</div>
 									<div class="dl">

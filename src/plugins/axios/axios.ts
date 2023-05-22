@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-import { IRequestConfig } from "#/axios";
+import { IRequestConfig, IResponseData } from "#/axios";
 import { ElLoading, ElMessage } from "element-plus";
 
 import { LoadingInstance } from "element-plus/lib/components/loading/src/loading";
@@ -10,6 +10,7 @@ import { userStore } from "@/stores/user";
 import "element-plus/theme-chalk/el-message.css";
 
 const DEFAULT_LOADING = true;
+
 class Request {
 	private instance: AxiosInstance;
 	private showLoading: boolean;
@@ -33,11 +34,10 @@ class Request {
 		);
 		// 创建全局请求拦截器
 		this.instance.interceptors.request.use(
-			(config) => {
-				/*    */
-				console.log("--------全局请求拦截器 success--------", config);
+			(config: IRequestConfig) => {
+				config.metadata = { startTime: new Date() };
+				console.log("全局请求拦截器 res=========", config);
 				if (this.showLoading) {
-					// console.log("loadding.....");
 					// 添加加载loading
 					this.loading = ElLoading.service({
 						lock: true,
@@ -48,64 +48,26 @@ class Request {
 				return config;
 			},
 			(err) => {
-				console.log("--------全局请求拦截器 err--------", err);
+				console.log("全局请求拦截器 err=========", err);
 				this.loading?.close();
 				return err;
 			}
 		);
 		// 创建全局响应拦截器
 		this.instance.interceptors.response.use(
-			(config) => {
-				// console.log("--------全局响应拦截器 success--------", config);
-				console.log("全局响应拦截器------", config.status, config);
+			(res: any) => {
+				/* --------------- 全局响应拦截器 success ------------ */
+				const statusCode = res?.response !== undefined ? res.status || res?.response.status : null;
+				showMessage(statusCode);
+				console.log("全局响应拦截器 res=========", statusCode, res);
 				this.loading?.close();
-				return config;
+				return res;
 			},
 			(err) => {
 				// console.log("--------全局响应拦截器 err--------", err);
-				let message = "";
-				console.log("全局响应拦截器-err------", err);
-				console.log("err.response.status", err.response.status);
-				switch (err.response.status) {
-					case 400:
-						message = "请求错误(400)";
-						break;
-					case 401:
-						message = "身份已过期，请重新登录";
-						logout();
-						break;
-					case 403:
-						message = "拒绝访问(403)";
-						logout();
-						break;
-					case 404:
-						message = "网络开小差了(404)";
-						break;
-					case 408:
-						message = "请求超时(408)";
-						break;
-					case 500:
-						message = "服务器错误(500)";
-						break;
-					case 501:
-						message = "服务未实现(501)";
-						break;
-					case 502:
-						message = "网络错误(502)";
-						break;
-					case 503:
-						message = "服务不可用(503)";
-						break;
-					case 504:
-						message = "网络超时(504)";
-						break;
-					case 505:
-						message = "HTTP版本不受支持(505)";
-						break;
-					default:
-						message = `连接出错(${err.response.status})!`;
-				}
-				ElMessage({ message, type: "error", showClose: true });
+				const statusCode = err.response !== undefined ? err.status || err.response.status : null;
+				console.log("==============全局响应拦截器 err=========", statusCode, err);
+				showMessage(statusCode);
 				this.loading?.close();
 				return err;
 			}
@@ -122,7 +84,6 @@ class Request {
 			// 创建单个请求的请求拦截器
 			if (config.interceptors?.requestSuccessInterceptor) {
 				// 直接调用，然后将处理后的config返回
-
 				config = config.interceptors.requestSuccessInterceptor(config);
 			}
 			this.instance
@@ -168,6 +129,56 @@ class Request {
 function logout() {
 	userStore().info = null;
 	window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/login");
+}
+
+function showMessage(statusCode: number) {
+	switch (statusCode) {
+		case 400:
+			$Toast("请求错误 400");
+			break;
+		case 401:
+			$Toast("身份已过期，请重新登录");
+			logout();
+			break;
+		case 403:
+			$Toast("拒绝访问 403");
+			logout();
+			break;
+		case 404:
+			$Toast("网络开小差了 404");
+			break;
+		case 408:
+			$Toast("请求超时 408");
+			break;
+		case 500:
+			$Toast("服务器错误 500");
+			break;
+		case 501:
+			$Toast("服务未实现 501");
+			break;
+		case 502:
+			$Toast("网络错误 502");
+			break;
+		case 503:
+			$Toast("服务不可用 503");
+			break;
+		case 504:
+			$Toast("网络超时 504");
+			break;
+		case 505:
+			$Toast("HTTP版本不受支持 505");
+			break;
+		default:
+			break;
+	}
+}
+function $Toast(message: string) {
+	ElMessage({
+		message,
+		type: "error",
+		showClose: true,
+		duration: 2000
+	});
 }
 
 export default Request;

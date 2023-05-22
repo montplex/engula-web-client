@@ -25,33 +25,30 @@ export const http = new Request({
 	...defaultConfig,
 	interceptors: {
 		requestSuccessInterceptor(config) {
-			// console.log("Request实例请求成功的拦截器---->");
+			// console.log("Request实例请求成功的拦截器---->", config);
 			return config;
 		},
 		requestErrorInterceptor(err) {
-			// console.log("Request实例请求失败的拦截器---->");
+			// console.log("Request实例请求失败的拦截器---->", err);
 			return err;
 		},
 		responseSuccessInterceptor(res) {
-			// responseLog(res);
-			// console.log("Request实例响应成功的拦截器---->");
+			// console.log("Request实例响应成功的拦截器---->", res);
 			return res.data;
 		},
 		responseErrorInterceptor(err) {
-			// console.log("Request实例响应失败的拦截器--->");
-			console.log(err);
+			// console.log("Request实例响应失败的拦截器--->", err);
 			return err;
 		}
 	}
 });
 
 /* 辅助函数 */
-function responseLog(res: AxiosResponse): void {
+function responseLog(res: any): void {
 	if (process.env.NODE_ENV === "development") {
 		const randomColor = `rgba(${Math.round(Math.random() * 255)},${Math.round(Math.random() * 255)},${Math.round(
 			Math.random() * 255
 		)})`;
-
 		const payload = res.config.method === "POST" ? res.config.data : res.config.params;
 
 		console.log("%c┍------------------------------------------------------------------┑", `color:${randomColor};`);

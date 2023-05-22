@@ -19,4 +19,14 @@ export interface IRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 	interceptors?: IRequestInterceptors<T>;
 	// 是否显示loading
 	showLoading?: boolean;
+	metadata?: {
+		startTime: Date;
+		endTime?: Date;
+	};
+	forceLogin?: boolean;
+	showToast?: boolean;
+}
+
+export interface IResponseData extends AxiosResponse {
+	config: IRequestConfig;
 }

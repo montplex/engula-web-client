@@ -9,33 +9,8 @@ import {
 	ITokenListRes,
 	addTokenParams,
 	updateTokenParams,
-	ICacheOneRes,
-	ChartParams,
-	ChartRes,
-	FeeRes,
-	FeeOrgList
+	ICacheOneRes
 } from "#/cache";
-
-/**
- * Get Fee list
- */
-export const getFeeList = (cacheServiceId: number) => {
-	return http.get<FeeRes>({
-		url: "/fee/list",
-		showLoading: false,
-		params: { cacheServiceId }
-	});
-};
-
-/**
- * Get Fee Org list
- */
-export const getFeeOrgList = () => {
-	return http.get<FeeOrgList[]>({
-		url: "/fee/org/list",
-		showLoading: false
-	});
-};
 
 /**
  * Get list cache service
@@ -133,34 +108,3 @@ export const updateToken = (params: updateTokenParams) => {
 		params
 	});
 };
-
-/**
- * query metrics
- */
-export const getChart = (params: ChartParams) => {
-	return http.get<ChartRes>({
-		url: `/metric/query`,
-		params
-	});
-};
-
-export const testPut = () => {
-	http.request({
-		url: "/engula/cache_service/list",
-		method: "put"
-	});
-};
-/* http
-	.get<IRequestData>({
-		url: "/engula/cache_service/list?id=3",
-		showLoading: true,
-		interceptors: {
-			requestSuccessInterceptor(config) {
-				console.log("get请求的拦截器");
-				return config;
-			}
-		}
-	})
-	.then(res => {
-		console.log("res ====", res);
-	}); */

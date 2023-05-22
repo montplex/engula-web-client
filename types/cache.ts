@@ -1,6 +1,7 @@
 import { Cachestatus } from "#/enum";
 
 type StrTest = (typeof Cachestatus)[keyof typeof Cachestatus];
+
 export interface ICacheListItem {
 	id: number;
 	name: string;
@@ -29,9 +30,37 @@ export interface FeeOrg extends FeeItem {
 	cacheServiceName: string;
 	isPaid: boolean;
 }
-export type FeeOrgList = FeeOrg[];
 
-export type ICacheList = { list: ICacheListItem[] };
+// export type ICacheList = { list: ICacheListItem[] };
+
+export interface FeeListOrg {
+	detailList: DetailList[];
+	summaryList: SummaryList[];
+}
+
+export interface SummaryList {
+	monthStr: string;
+	fee: number;
+}
+
+export interface DetailList {
+	cacheServiceId: number;
+	cacheServiceName: string;
+	monthStr: string;
+	monthStr_en?: string;
+	avgMb: number;
+	fee: number;
+}
+
+export type FeeByDayParams = { cacheServiceId?: number; monthStr?: string } | undefined;
+
+export interface FeeByDayRes {
+	cacheServiceId: number;
+	monthStr: string;
+	cacheServiceName: string;
+	dayStr: string;
+	fee: number;
+}
 
 export interface ICacheListRes {
 	list: ICacheListItem[];
@@ -95,8 +124,7 @@ export interface addTokenParams {
 type Tcommand = "set" | "get" | "del" | "keys" | "exists" | "expire" | "ttl";
 
 // get a / set a 100
-const Fcommand = (instruct: Tcommand, params: any): string =>
-	`${instruct} ${params}`;
+const Fcommand = (instruct: Tcommand, params: any): string => `${instruct} ${params}`;
 
 export interface CommandParams {
 	cacheServiceId: number | string;

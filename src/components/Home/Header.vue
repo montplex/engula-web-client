@@ -61,7 +61,7 @@
 						</div>
 					</nav>
 					<div class="conlose">
-						<el-dropdown trigger="click">
+						<!-- <el-dropdown trigger="click">
 							<span class="text-white focus-visible:outline-none mr-10">
 								<svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="30" height="30" data-v-12008bb2="">
 									<path
@@ -70,7 +70,7 @@
 									></path>
 								</svg>
 							</span>
-							<!-- <template #dropdown>
+						<template #dropdown>
 								<el-dropdown-menu>
 									<el-dropdown-item @click="handleLang('en')"
 										>English</el-dropdown-item
@@ -79,8 +79,8 @@
 										>简体中文</el-dropdown-item
 									>
 								</el-dropdown-menu>
-							</template> -->
-						</el-dropdown>
+							</template>
+						</el-dropdown> -->
 
 						<div class="cos-btn-home">
 							<div class="button-space items-center" @click="handleConsole">

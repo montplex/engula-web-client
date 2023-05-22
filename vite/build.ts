@@ -1,8 +1,8 @@
 import { ESBuildOptions, BuildOptions } from "vite";
 
 export const setEsbuild = (env: ImportMetaEnv): ESBuildOptions => ({
-	pure: env.VITE_DROP_CONSOLE ? ["console.log", "debugger"] : []
-	// pure: []
+	// pure: env.VITE_DROP_CONSOLE ? ["console.log", "debugger"] : []
+	pure: []
 });
 
 export const build: BuildOptions = {

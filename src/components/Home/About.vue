@@ -1,12 +1,13 @@
 <template>
 	<main>
-		<section class="3xl:py-40 py-24 text-center">
+		<section class="3xl:py-40 pt-24 pb-40 text-center">
 			<div class="px-8 m-inline-auto max-w-3xl text-white">
-				<h1 class="!text-6xl font-bold">Make Data the Easiest Part of Your Job</h1>
+				<!-- <h1 class="!text-6xl font-bold">Make Data the Easiest Part of Your Job</h1> -->
+				<h1 class="!text-6xl font-bold">Make Data Simple</h1>
 				<div class="text-2xl mt-6 text-w-64">
-					<p>We manage everything for you.</p>
-					<p>You focus on more important things.</p>
-					<p>With per-request pricing, you pay only for what you use.</p>
+					<p>We take care of data，you focus on the big picture.</p>
+					<!-- <p>You focus on more important things.</p> -->
+					<!-- <p>With per-request pricing, you pay only for what you use.</p> -->
 				</div>
 			</div>
 			<div class="px-8 m-inline-auto mt-20 max-w-4xl">
@@ -79,11 +80,12 @@
 			<div class="px-8 m-inline-auto max-w-6xl">
 				<header>
 					<!-- <h2 class="text-5xl font-bold text-white">Our investors</h2> -->
-					<h2 class="text-5xl font-bold text-white">Our investor</h2>
+					<h2 class="text-5xl font-bold text-white">Our Investor</h2>
 					<div class="px-8 m-inline-auto max-w-3xl">
 						<p class="text-xl mt-3 text-w-48">
-							We are fortunate to work with some of the best investors in the world. Chances are you are already using the
-							products they helped to create.
+							<!-- We are fortunate to work with some of the best investors in the world. Chances are you are already using the
+							products they helped to create. -->
+							We are honored to partner with top investors globally.
 						</p>
 					</div>
 				</header>

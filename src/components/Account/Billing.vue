@@ -22,7 +22,7 @@
 
 	<div class="container mx-auto !max-w-screen-xl py-10 bg-white">
 		<el-table :data="tableListData" v-bind="tableStyle">
-			<el-table-column prop="cacheServiceName" :label="$t('redis.pay.table.name')" />
+			<!-- <el-table-column prop="cacheServiceName" :label="$t('redis.pay.table.name')" /> -->
 			<el-table-column prop="date" :label="$t('redis.pay.table.date')">
 				<template #default="{ row }"> {{ dayjs(row.monthStr).format("YYYY MMM") }}</template>
 			</el-table-column>
@@ -59,7 +59,7 @@ import { ref } from "vue";
 import { dayjs } from "element-plus";
 import { tableStyle } from "#/consts";
 import { FeeOrg } from "#/cache";
-import { getCacheList, getFeeOrgList } from "@/api/cache";
+import { getFeeOrgList } from "@/api/fee";
 import { striptPk, getClientSecret } from "@/api/stript";
 import CardDialog from "./CardDialog.vue";
 
@@ -68,7 +68,11 @@ const tableListData = ref();
 const pk = ref("");
 const addCardRef = ref();
 
-getFeeOrgList().then((res) => (tableListData.value = res));
+getFeeOrgList().then((res) => {
+	console.log("getFeeOrgList >>>", res);
+	console.log("getFeeOrgList >>>", res);
+	tableListData.value = res.summaryList;
+});
 striptPk().then((res) => (pk.value = res.pk));
 
 function handlePayFor(row: FeeOrg) {
@@ -94,6 +98,10 @@ const clientSecret = "pi_3MrF95KtlgGSFCEP02yKPSIs_secret_Gltf2AZjucRdxr5CICLNB15
 </script>
 
 <style lang="scss">
+.el-table__inner-wrapper::before {
+	background-color: #ebeef521;
+}
+
 .el-pagination.is-background .el-pager li {
 	background-color: transparent;
 	border: 1px solid #d9d9d9;

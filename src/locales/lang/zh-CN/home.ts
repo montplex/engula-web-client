@@ -28,8 +28,7 @@ export default {
 		"Montplex无服务器缓存是一项尖端技术，专为云环境而设计，提供动态扩展、按需付费定价和卓越的性能。作为下一代缓存解决方案，Montplex 对于寻求可扩展、经济高效和高性能的企业或个人是个绝佳的选择。",
 	team: {
 		title: "Team",
-		subTitle:
-			"我们是一支由工程师、设计师和产品经理组成的团队，他们热衷于构建下一代云原生数据库。",
+		subTitle: "我们是一支由工程师、设计师和产品经理组成的团队，他们热衷于构建下一代云原生数据库。",
 		bai: {
 			name: "白旭辉",
 			role: "创始人",
@@ -44,7 +43,7 @@ export default {
 	contact: "联系我们",
 	price: {
 		title: "定价方案",
-		subTitle: "按请求定价付费。",
+		subTitle: "按使用量计费。",
 		payas: "预付费",
 		enterprise: "企业方案",
 		commands: "命令限制",

@@ -5,7 +5,7 @@ export default {
 	writeBytes: "Write Bytes",
 	filterData: "Filter Data",
 	fee: "Fee",
-	
+
 	cache: {
 		title: "Cache Services",
 		search: "Search ...",
@@ -110,7 +110,7 @@ export default {
 			name: "Name",
 			date: "Date",
 			fee: "Fee",
-			isPaid: "Payment Status",
+			isPaid: "Status",
 			success: "Success",
 			paid: "PAYMENT"
 		}

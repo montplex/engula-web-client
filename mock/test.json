@@ -1,85 +1,35 @@
 {
-	"details": [
+	"detailList": [
 		{
-			"database_id": "20312754-de72-4620-8d7f-eecc07077cf8",
-			"database_name": "dn",
-			"type": "free",
-			"resource_type": "redis",
-			"request": 1,
-			"storage": 0,
-			"billing": 0,
-			"kafka_produced": 0,
-			"kafka_consumed": 0,
-			"kafka_billing": 0,
-			"kafka_storage": 0
+			"cacheServiceId": 5,
+			"cacheServiceName": "阶出还能存",
+			"monthStr": "aute eiusmod elit veniam",
+			"avgMb": 50,
+			"fee": 67
 		},
 		{
-			"database_id": "82d2f8ad-5e16-43ce-949a-7fcf1e4bf4a9",
-			"database_name": "certain-snail-5088",
-			"type": "free",
-			"resource_type": "kafka",
-			"request": 0,
-			"storage": 0,
-			"billing": 0,
-			"kafka_produced": 0,
-			"kafka_consumed": 0,
-			"kafka_billing": 0,
-			"kafka_storage": 0
+			"cacheServiceId": 19,
+			"cacheServiceName": "商海西气验",
+			"monthStr": "commodo laboris sit ipsum dolore",
+			"avgMb": 52,
+			"fee": 58
 		},
 		{
-			"database_id": "3cf13146-91b8-4424-a432-c59b6b4cadfa",
-			"database_name": "DB-TEST",
-			"type": "free",
-			"resource_type": "redis",
-			"request": 0,
-			"storage": 0,
-			"billing": 0,
-			"kafka_produced": 0,
-			"kafka_consumed": 0,
-			"kafka_billing": 0,
-			"kafka_storage": 0
-		},
-		{
-			"database_id": "",
-			"database_name": "",
-			"type": "paid",
-			"resource_type": "qStash",
-			"request": 0,
-			"storage": 0,
-			"billing": 0,
-			"kafka_produced": 0,
-			"kafka_consumed": 0,
-			"kafka_billing": 0,
-			"kafka_storage": 0
-		},
-		{
-			"database_id": "bb6a0604-b244-4530-b70d-70a8926ae6bb",
-			"database_name": "Db",
-			"type": "free",
-			"resource_type": "redis",
-			"request": 590,
-			"storage": 0,
-			"billing": 0,
-			"kafka_produced": 0,
-			"kafka_consumed": 0,
-			"kafka_billing": 0,
-			"kafka_storage": 0
+			"cacheServiceId": 26,
+			"cacheServiceName": "非说所须样计少",
+			"monthStr": "ipsum commodo mollit esse",
+			"avgMb": 93,
+			"fee": 80
 		}
 	],
-	"kafka": {
-		"produced": 0,
-		"consumed": 0,
-		"storage": 0,
-		"billing": 0
-	},
-	"qStash": {
-		"request": 0,
-		"daily_request": 0,
-		"billing": 0
-	},
-	"redis": {
-		"request": 661,
-		"storage": 0,
-		"billing": 0
-	}
+	"summaryList": [
+		{
+			"monthStr": "enim non",
+			"fee": 61
+		},
+		{
+			"monthStr": "in eiusmod",
+			"fee": 59
+		}
+	]
 }

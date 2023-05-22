@@ -45,7 +45,7 @@
 <script setup lang="ts">
 import ChartList from "@/components/Cache/ChartList.vue";
 import { computed, reactive, ref } from "vue";
-import { getChart } from "@/api/cache";
+import { getChart } from "@/api/fee";
 import { ChartParams, ChartRes, Metrics, Cards } from "#/cache";
 import { watchEffect } from "vue";
 import { useRoute } from "vue-router";

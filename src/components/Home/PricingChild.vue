@@ -5,7 +5,7 @@
 			<!-- 第一行 -->
 			<div class="flex items-center justify-center p-4"></div>
 			<div class="table-item">
-				<h5 class="text-3xl font-bold text-block">Start</h5>
+				<h5 class="text-3xl font-bold text-block">Free</h5>
 			</div>
 			<div class="table-item bg-ly-check" style="border-radius: 16px 16px 0 0">
 				<h5 class="text-3xl font-bold text-block">Pro</h5>
@@ -126,7 +126,7 @@
 			<!-- 第十行 底部按钮 -->
 			<div class="table-item"></div>
 			<div class="table-item">
-				<a class="ck-button" href="https://dev.montplex.com/console" target="_blank"> Start for free </a>
+				<a class="ck-button" href="https://dev.montplex.com/console" target="_blank"> Start </a>
 			</div>
 			<div class="table-item bg-ly-check" style="border-radius: 0 0 16px 16px">
 				<a class="ck-button login" href="https://dev.montplex.com/console" target="_blank">Login</a>
