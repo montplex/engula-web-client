@@ -16,5 +16,6 @@ export default {
 	updateSuccess: "Update Success",
 	updateFail: "Update Fail",
 	delSuccess: "Delete Success",
-	delFail: "Delete Fail"
+	delFail: "Delete Fail",
+	create: "Create",
 };

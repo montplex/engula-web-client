@@ -110,9 +110,14 @@ import addDialog from "./addDialog.vue";
 import cacheEmpty from "./cacheEmpty.vue";
 import StatusIcon from "@/components/Cache/StatusIcon.vue";
 import HasCreate from "./HasCreate.vue";
-
 import Driver from "driver.js";
 import "driver.js/dist/driver.min.css";
+import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
+import { cacheStore } from "@/stores/cache";
+import { ElMessage } from "element-plus";
+import { statusMap, statusStyle } from "#/consts";
+import { useI18n } from "vue-i18n";
 
 const guide = (id: any) => {
 	const driver = new Driver({
@@ -132,13 +137,6 @@ const guide = (id: any) => {
 	});
 	// driver.start();
 };
-
-import { ref, computed } from "vue";
-import { useRouter } from "vue-router";
-import { cacheStore } from "@/stores/cache";
-import { ElMessage } from "element-plus";
-import { statusMap, statusStyle } from "#/consts";
-import { useI18n } from "vue-i18n";
 const { t, locale } = useI18n();
 
 const statusObj = computed(() => {

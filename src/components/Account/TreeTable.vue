@@ -49,14 +49,8 @@ const currentMonthList = computed(() => {
 
 // 过滤出列表里的月份，组成一个不重复的数组，用于下拉筛选
 const selectList = computed(() => {
-	return Array.from(
-		new Set(
-			detailList.value?.map((item) => ({
-				label: item.monthStr_en,
-				value: item.monthStr
-			}))
-		)
-	);
+	const list = detailList.value?.map((item) => ({ label: item.monthStr_en, value: item.monthStr }));
+	return Array.from(new Set(list));
 });
 
 onMounted(async () => {
@@ -72,15 +66,16 @@ function initChart() {
 	getFeeListByDay({
 		monthStr: dayjs(month.value).format("YYYY-MM")
 	}).then((res) => {
-		const x = res?.map((item) => item.dayStr);
-		const y = res?.map((item) => item.fee);
-		chartOptions.value = currentMonthOption({ x, y });
+		if (res) {
+			const x = res?.map((item) => item.dayStr);
+			const y = res?.map((item) => item.fee);
+			chartOptions.value = currentMonthOption({ x, y });
+		}
 	});
 }
 
 function handleDetail(row: DetailList) {
 	cacheName.value = row.cacheServiceName;
-	console.log("handleDetail", row);
 	cacheRef.value.initData(row.cacheServiceId, row.monthStr);
 	dialogTableVisible.value = true;
 }

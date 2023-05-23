@@ -1,5 +1,11 @@
 <template>
-	<div ref="chartRef" id="my-eharts" :class="props.className" :style="{ height: props.height, width: props.width }" />
+	<div
+		v-if="props.options"
+		ref="chartRef"
+		id="my-eharts"
+		:class="props.className"
+		:style="{ height: props.height, width: props.width }"
+	/>
 </template>
 
 <script lang="ts" setup>
@@ -26,6 +32,15 @@ const props = defineProps({
 	// 图表参数
 	options: {
 		type: Object,
+		default: () => ({})
+	},
+	// 图表是否具有点击事件
+	isClick: {
+		type: Boolean,
+		default: false
+	},
+	base: {
+		type: Object,
 		default: () => ({
 			xAxis: {
 				type: "category",
@@ -50,11 +65,6 @@ const props = defineProps({
 				}
 			]
 		})
-	},
-	// 图表是否具有点击事件
-	isClick: {
-		type: Boolean,
-		default: false
 	}
 });
 const chartRef = ref<HTMLCanvasElement | null>(null);

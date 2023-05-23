@@ -69,18 +69,13 @@ const pk = ref("");
 const addCardRef = ref();
 
 getFeeOrgList().then((res) => {
-	console.log("getFeeOrgList >>>", res);
-	console.log("getFeeOrgList >>>", res);
 	tableListData.value = res.summaryList;
 });
 striptPk().then((res) => (pk.value = res.pk));
 
 function handlePayFor(row: FeeOrg) {
 	const { cacheServiceId, monthStr, fee, isPaid } = row;
-	getClientSecret({ cacheServiceId, monthStr }).then((res) => {
-		console.log("getClientSecret >>>", res);
-	});
-	// console.log("handlePayFor >>>", row, cacheServiceId, monthStr, fee, isPaid);
+	getClientSecret({ cacheServiceId, monthStr }).then((res) => {});
 }
 
 function showDialog() {

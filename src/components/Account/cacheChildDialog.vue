@@ -36,9 +36,11 @@ function initData(cacheServiceId: number, monthStr: string) {
 	getFeeListByDay({
 		monthStr: dayjs(monthStr).format("YYYY-MM")
 	}).then((res) => {
-		const x = res?.map((item) => item.dayStr);
-		const y = res?.map((item) => item.fee);
-		chartOptions.value = currentMonthOption({ x, y });
+		if (res) {
+			const x = res?.map((item) => item.dayStr);
+			const y = res?.map((item) => item.fee);
+			chartOptions.value = currentMonthOption({ x, y });
+		}
 	});
 }
 

@@ -100,9 +100,9 @@
 									{{ $t("redis.set.account") }}
 								</el-dropdown-item>
 
-								<!-- <el-dropdown-item command="pdfview">
+								<el-dropdown-item command="pdfview">
 									{{ $t("redis.set.settings") }}
-								</el-dropdown-item> -->
+								</el-dropdown-item>
 
 								<el-dropdown-item command="out" divided>
 									<el-icon size="16"> <i-ep:switch-button /> </el-icon>
@@ -111,6 +111,91 @@
 							</el-dropdown-menu>
 						</template>
 					</el-dropdown>
+
+					<!-- TODO Add Team   -->
+					<!-- <div class="flex items-center gap-[3px]">
+				
+						<span
+							ref="teamRef"
+							v-click-outside="teamOnClickOutside"
+							class="flex h-10 items-center rounded-l bg-[#3f3f46] pl-3 pr-2 cursor-pointer"
+						>
+							<div class="leading-none">
+								<div class="text-xs text-[#a1a1aa]">Team</div>
+								<div class="text-[14px] leading-none text-white">Personal</div>
+							</div>
+							<el-icon class="ml-2" color="#fff" size="16">
+								<i-ep:caret-bottom />
+							</el-icon>
+						</span>
+
+						<el-popover
+							:width="130"
+							ref="teamPopoverRef"
+							placement="bottom"
+							:virtual-ref="teamRef"
+							trigger="click"
+							virtual-triggering
+						>
+							<span>
+								<div class="pop-item">Create Team</div>
+								<el-popover placement="right" trigger="hover" :width="100">
+									<span>
+										<div class="pop-item">Personal</div>
+										<div class="pop-item">liaoyi Team</div>
+										<div class="pop-item">test Team</div>
+									</span>
+									<template #reference>
+										<div class="pop-item" style="display: flex; align-items: center">
+											<span> Switch Team </span>
+											<el-icon><i-ep:arrow-right-bold class="text-[#959595]" /></el-icon>
+										</div>
+									</template>
+								</el-popover>
+							</span>
+						</el-popover>
+
+					
+						<div
+							ref="userRef"
+							v-click-outside="userOnClickOutside"
+							class="flex h-10 items-center rounded-r bg-[#3f3f46] pl-3 pr-2 cursor-pointer"
+						>
+							<el-badge class="flex items-center justify-center">
+								<el-avatar :size="30" :src="info?.picture" />
+							</el-badge>
+							<el-icon class="ml-2" color="#fff" size="16"><i-ep:caret-bottom /></el-icon>
+						</div>
+
+						<el-popover
+							width="220"
+							ref="userPopoverRef"
+							placement="bottom"
+							:virtual-ref="userRef"
+							trigger="click"
+							virtual-triggering
+						>
+							<span>
+								<div class="pop-item flex-col !p-3">
+									<div class="text-black">Yi oaiL</div>
+									<div class="">2417276459@qq.com</div>
+								</div>
+								<div class="pop-item items-center" @click="router.push('/account')">
+									<el-icon size="16"> <i-ep:credit-card /> </el-icon>
+									{{ $t("redis.set.account") }}
+								</div>
+						
+								<div class="pop-item gap-1 items-center">
+									<el-icon size="16"> <i-ep:setting /> </el-icon>
+									Settings
+								</div>
+								<div class="pop-item gap-1 items-center" @click="logout">
+									<el-icon size="16"> <i-ep:switch-button /> </el-icon>
+									{{ $t("redis.set.out") }}
+								</div>
+							</span>
+						</el-popover>
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -120,7 +205,7 @@
 		<div class="container mx-auto !max-w-screen-lg px-4">
 			<div class="flex items-center">
 				<div class="flex items-center gap-1 cursor-pointer h-8" @click="$router.push('/')">
-					<img src="@/assets/images/main-logo.png" alt="logo" class="h-[24px]" />
+					<!-- <img src="@/assets/images/main-logo.png" alt="logo" class="h-[24px]" /> -->
 					<span class="text-block font-semibold text-lg">Montplex</span>
 				</div>
 				<div class="ml-auto flex items-center h-9 px-2 rounded bg-[#3f3f46]">
@@ -156,6 +241,19 @@
 			</div>
 		</div>
 	</header>
+
+	<el-dialog v-model="addTeamVisible" title="Create Team" width="520px" style="border-radius: 8px">
+		<label class="dialog-label my-3">Team Name</label>
+		<el-input v-model="newTeamName" />
+		<template #footer>
+			<span class="dialog-footer">
+				<el-button @click="addTeamVisible = false">{{ $t("msg.cancel") }}</el-button>
+				<el-button :disabled="false" type="primary">
+					{{ $t("msg.create") }}
+				</el-button>
+			</span>
+		</template>
+	</el-dialog>
 
 	<el-dialog v-model="question" :title="$t('redis.more.title')" class="br-8 sm:!w-[520px]">
 		<div class="more-dialog">
@@ -214,13 +312,23 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, unref } from "vue";
 import { storeToRefs } from "pinia";
 import { userStore } from "@/stores/user";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
-const { t, locale } = useI18n();
+import { ClickOutside as vClickOutside } from "element-plus";
 
+const userRef = ref();
+const teamRef = ref();
+
+const teamPopoverRef = ref();
+const userPopoverRef = ref();
+
+const userOnClickOutside = () => unref(userPopoverRef).popperRef?.delayHide?.();
+const teamOnClickOutside = () => unref(teamPopoverRef).popperRef?.delayHide?.();
+
+const { t, locale } = useI18n();
 const store = userStore();
 const router = useRouter();
 const { info } = storeToRefs(store);
@@ -228,7 +336,8 @@ const question = ref(false);
 const openSort = ref(false);
 
 const langName = computed(() => (locale.value == "en" ? "English" : "简体中文"));
-
+const addTeamVisible = ref(false);
+const newTeamName = ref("");
 const handleMineCommand = (command: string) => {
 	switch (command) {
 		case "out":
@@ -238,10 +347,8 @@ const handleMineCommand = (command: string) => {
 			router.push({ path: "/account" });
 			break;
 		case "pdfview":
+			// addTeamVisible.value = true;
 			router.push({ path: "/pdf" });
-			break;
-		case "coll":
-			router.push({ name: "Coll", params: { id: 123456 } });
 			break;
 		default:
 			break;
@@ -264,6 +371,17 @@ function handleLang(val: "zh_CN" | "en") {
 </script>
 
 <style lang="scss">
+.pop-item {
+	font-size: 14px;
+	display: flex;
+	gap: 4px;
+
+	border-radius: 8px;
+	padding: 6px;
+	&:hover {
+		background-color: #f5f5f5;
+	}
+}
 .br-8 {
 	border-radius: 8px;
 }
@@ -299,5 +417,13 @@ h5 {
 		line-height: 36px;
 		padding: 3px 22px;
 	}
+}
+
+.el-badge {
+	display: inline-flex;
+}
+.el-popover.el-popper {
+	padding: 4px !important;
+	min-width: auto !important;
 }
 </style>

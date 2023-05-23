@@ -17,6 +17,7 @@ export default {
 	updateFail: "修改失败",
 	delSuccess: "删除成功",
 	delFail: "删除失败",
+	create: "创建",
 	// 語言
 	language: "语言"
 };
