@@ -202,7 +202,6 @@ export default [
 	{
 		url: "/engula/cache_service/add",
 		method: "put",
-		// statusCode: 400,
 		response: () => {
 			return {
 				id: 13,

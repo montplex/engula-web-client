@@ -6,13 +6,6 @@
 					<!-- <img src="@/assets/images/main-logo.png" alt="logo" class="h-[30px]" /> -->
 					<span class="text-block">Montplex</span>
 				</h3>
-				<nav cy-id="master-nav" class="flex items-center gap-2">
-					<!-- <RouterLink
-						class="inline-flex h-11 items-center gap-1 rounded-md px-3 hover:bg-gray-700 hover:text-white !bg-white font-semibold !text-black"
-						to="/mycli"
-						>Redis</RouterLink
-					> -->
-				</nav>
 				<div class="ml-auto flex items-center gap-3">
 					<el-dropdown popper-class="lang-menu" @command="handleLang">
 						<button

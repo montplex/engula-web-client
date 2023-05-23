@@ -1,5 +1,4 @@
 <template>
-	<!-- empty Start -->
 	<div class="mt-6 sm:mt-10">
 		<el-empty class="rounded-lg bg-gray-50 !p-14">
 			<template #image>
@@ -16,7 +15,6 @@
 			</template>
 		</el-empty>
 	</div>
-	<!-- empty End -->
 </template>
 
 <script setup lang="ts">

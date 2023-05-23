@@ -7,35 +7,13 @@
 					<div class="mr-1">{{ cache.region }}</div>
 				</div>
 			</div>
-
-			<!-- <div>
-				<div class="title">{{ $t("redis.status") }}</div>
-				<div class="info copy-text">
-					<StatusIcon :status="cache.status" />
-					<div class="mx-1" :style="{ color: statusStyle[cache.status] }">
-						{{ CachestatusTo[cache.status] }}
-					</div>
-				</div>
-			</div> -->
-
 			<div>
 				<div class="title">{{ $t("redis.endpoint") }}</div>
 				<div class="copy-text group flex items-center">
-					<span class="mr-1 inline-block truncate max-w-[220px]">{{
-						host
-					}}</span>
-					<span
-						class="inline-block min-w-[40px]"
-						@click="handleCopyClick(host)"
-						v-if="cache.status === 1"
-					>
+					<span class="mr-1 inline-block truncate max-w-[220px]">{{ host }}</span>
+					<span class="inline-block min-w-[40px]" @click="handleCopyClick(host)" v-if="cache.status === 1">
 						<span class="hidden group-hover:block">
-							<el-tooltip
-								effect="dark"
-								placement="top"
-								content="Copy"
-								:show-after="200"
-							>
+							<el-tooltip effect="dark" placement="top" content="Copy" :show-after="200">
 								<svgIcon icon="copy" class="!inline !text-base" />
 							</el-tooltip>
 						</span>
@@ -47,17 +25,8 @@
 				<div class="title">{{ $t("redis.password") }}</div>
 				<div class="copy-text info group min-w-[100px]">
 					<div class="mr-1">•••••••••</div>
-					<div
-						class="hidden group-hover:block"
-						v-if="cache.status === 1"
-						@click="handleCopyClick(password)"
-					>
-						<el-tooltip
-							effect="dark"
-							placement="top"
-							content="Copy"
-							:show-after="200"
-						>
+					<div class="hidden group-hover:block" v-if="cache.status === 1" @click="handleCopyClick(password)">
+						<el-tooltip effect="dark" placement="top" content="Copy" :show-after="200">
 							<svgIcon icon="copy" class="!inline !text-base" />
 						</el-tooltip>
 					</div>
@@ -68,17 +37,8 @@
 				<div class="text-gray-500">{{ $t("redis.port") }}</div>
 				<div class="copy-text info group min-w-[100px]">
 					<div class="mr-1">{{ store.port }}</div>
-					<div
-						class="hidden group-hover:block"
-						@click="handleCopyClick(store.port)"
-						v-if="cache.status === 1"
-					>
-						<el-tooltip
-							effect="dark"
-							placement="top"
-							content="Copy"
-							:show-after="200"
-						>
+					<div class="hidden group-hover:block" @click="handleCopyClick(store.port)" v-if="cache.status === 1">
+						<el-tooltip effect="dark" placement="top" content="Copy" :show-after="200">
 							<svgIcon icon="copy" class="!inline !text-base" />
 						</el-tooltip>
 					</div>
@@ -87,14 +47,7 @@
 		</div>
 
 		<el-tooltip effect="dark" placement="top" content="Copy" :show-after="300">
-			<div
-				class="url"
-				@click="
-					handleCopyClick(
-						`redis-cli -h ${store.oneCache.host} -p ${store.port} -a ${password}`
-					)
-				"
-			>
+			<div class="url" @click="handleCopyClick(`redis-cli -h ${store.oneCache.host} -p ${store.port} -a ${password}`)">
 				<div class="_copy">
 					<p class="pr-2">{{ rcode }}</p>
 					<svgIcon icon="copy" class="text-[#1677ff] text-sm" />
@@ -105,7 +58,6 @@
 </template>
 
 <script setup lang="ts">
-import StatusIcon from "@/components/Cache/StatusIcon.vue";
 import { useRoute } from "vue-router";
 import { cacheStore } from "@/stores/cache";
 import { handleCopyClick } from "@/utils/util";

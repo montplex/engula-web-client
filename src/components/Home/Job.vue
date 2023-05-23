@@ -69,17 +69,12 @@
 const jobsList = [
 	{ team: "Product Marketing Manager", position: "Engineering", path: "product-marketing-manager" },
 	{ team: "Operations Engineer", position: "Engineering", path: "operations-engineer" }
-	// { team: "Sales Specialist", position: "Sales", path: "sales-specialist" },
-	// { team: "Account Executive", position: "Sales", path: "account-executive" }
 ];
 
 const benefits = [
 	{ title: "Work from anywhere", description: "We are a remote first company. Work from anywhere in the world." },
 	{ title: "Whole Set Of Social Benefits", description: "We offer a whole set of social benefits." },
 	{ title: "Home Office Stipend", description: "We offer a home office stipend." }
-	/* { title: "Unlimited PTO", description: "We offer unlimited PTO." },
-	{ title: "Free Lunch Fridays", description: "We offer free lunch on Fridays." },
-	{ title: "Tickets to NG-Conf", description: "We offer tickets to NG-Conf." } */
 ];
 
 function handleJobClick(job: any) {
@@ -103,8 +98,6 @@ function handleJobClick(job: any) {
 		}
 	}
 	.job_herf {
-		// grid-column-gap: 100px;
-		// grid-row-gap: 100px;
 		width: 100%;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 		align-items: center;
@@ -127,7 +120,6 @@ function handleJobClick(job: any) {
 .perks-grid {
 	@apply w-full grid gap-x-10 gap-y-6 grid-cols-1 md:grid-cols-3 grid-rows-auto auto-cols-fr md:px-12 pt-12 md:pb-20 px-8;
 	margin-top: 16px;
-	// padding: 50px 50px 80px;
 	.perk {
 		display: flex;
 		flex-direction: column;

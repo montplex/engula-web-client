@@ -282,22 +282,6 @@ import VectorsWrapper from "./vectors-wrapper.vue";
 </script>
 
 <style lang="scss" scoped>
-li:hover .content {
-	animation: ani 0.5s forwards;
-}
-@keyframes ani {
-	0% {
-		opacity: 0;
-		visibility: hidden;
-		transform: translateY(-30px);
-	}
-	100% {
-		opacity: 1;
-		visibility: visible;
-		transform: translateY(0);
-	}
-}
-
 .table-item {
 	display: flex;
 	justify-content: center;
@@ -331,27 +315,5 @@ li:hover .content {
 			background-image: linear-gradient(90deg, #2ab5fb, #f926e1);
 		}
 	}
-}
-
-.pricing-right {
-	background-color: #ffffff;
-	border: 1px solid rgb(0 0 0 / 0.05);
-	border-radius: 12px;
-	box-shadow: 0 0 18px 4px rgb(249 38 225 / 0.07);
-	object-fit: fill;
-}
-
-.talk-button {
-	padding: 16px 32px;
-	margin-top: 12px;
-	margin-bottom: 12px;
-	width: 100%;
-	font-size: 16px;
-	text-align: left;
-	color: #ffffff;
-	background-color: #3898ec;
-	border-radius: 14px;
-	cursor: pointer;
-	background-image: linear-gradient(90deg, #f926e1, #2ab5fb);
 }
 </style>

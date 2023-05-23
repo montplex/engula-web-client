@@ -1,11 +1,6 @@
 <template>
 	<div class="container mx-auto relative z-10 md:!px-8 px-6">
 		<section class="see">
-			<!-- <div class="__title">
-        <div class="text-block text-sm">OVERVIEW</div>
-        <div class="s-header">Stay secure without migrating</div>
-      	<VectorsWrapper class="mt-4 mx-auto" />
-      </div>  -->
 			<div class="cardContent md:flex-row flex-col">
 				<div class="cardItem gradient-border">
 					<div class="cardBox card">
@@ -33,10 +28,6 @@
 							<div class="meta_title font-semibold text-[22px]">
 								{{ $t("home.cards.list.redis") }}
 							</div>
-							<!-- <div class="meta_body text-base">
-                Our proprietary scanning tools monitor for security vulnerabilities continuously, so
-                you can rest easy knowing your Vue 2 application remains secure
-              </div> -->
 						</div>
 					</div>
 				</div>
@@ -64,10 +55,6 @@
 							<div class="meta_title font-semibold text-[22px]">
 								{{ $t("home.cards.list.effort") }}
 							</div>
-							<!-- <div class="meta_body">
-                When we find a vulnerability or incompatibility, we create a fix, test it, and
-                release it within 14 days of discovery
-              </div> -->
 						</div>
 					</div>
 				</div>
@@ -94,10 +81,6 @@
 							<div class="meta_title font-semibold text-[22px]">
 								{{ $t("home.cards.list.cloud") }}
 							</div>
-							<!-- <div class="meta_body">
-                With our on-prem license delivery, you don’t have to worry about any package data
-                leaving your network when you install NES Vue 2.
-              </div> -->
 						</div>
 					</div>
 				</div>
@@ -111,7 +94,6 @@
 							</span>
 							<CuttingLine class="mt-5 mx-auto mb-6" />
 						</div>
-						<!-- <span class="inline-block h-1 w-10 rounded bg-indigo-500 mb-12"></span> -->
 
 						<div class="py-6 md:w-3/4 w-full text-center mx-auto">
 							<p class="leading-relaxed text-2xl max-w-4xl mx-auto">
@@ -121,14 +103,12 @@
 					</div>
 				</div>
 				<div class="gradient-border division-line" style="padding: 1px"></div>
-				<!-- <Team /> -->
 			</div>
 		</section>
 	</div>
 </template>
 
 <script setup lang="ts">
-// import Team from "./Team.vue";
 import CuttingLine from "./vectors-wrapper.vue";
 </script>
 
@@ -137,31 +117,9 @@ import CuttingLine from "./vectors-wrapper.vue";
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
-	// padding-top: 120px;
 	font-family: "Airbnbcereal", sans-serif;
 	background-color: var(--my-bg-light);
 	flex-direction: column;
-
-	// background-color: #fff;
-	.__title {
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-		max-width: 600px;
-		flex-direction: column;
-		grid-gap: 16px;
-		font-weight: 600;
-
-		.s-header {
-			@apply text-[32px] md:text-[40px];
-			text-align: center;
-			color: var(--my-text-main-color);
-
-			line-height: 120%;
-			letter-spacing: -0.005em;
-		}
-	}
 }
 .cardItem > .cardBox {
 	&.card {
@@ -192,9 +150,6 @@ import CuttingLine from "./vectors-wrapper.vue";
 .meta {
 	display: flex;
 	flex-direction: column;
-
-	/* justify-content: flex-start;
-        align-items: flex-start; */
 	grid-gap: 12px;
 	align-items: center;
 	width: 100%;

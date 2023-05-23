@@ -2,12 +2,9 @@
 	<main>
 		<section class="3xl:py-40 pt-24 pb-40 text-center">
 			<div class="px-8 m-inline-auto max-w-3xl text-white">
-				<!-- <h1 class="!text-6xl font-bold">Make Data the Easiest Part of Your Job</h1> -->
 				<h1 class="!text-6xl font-bold">Make Data Simple</h1>
 				<div class="text-2xl mt-6 text-w-64">
 					<p>We take care of data，you focus on the big picture.</p>
-					<!-- <p>You focus on more important things.</p> -->
-					<!-- <p>With per-request pricing, you pay only for what you use.</p> -->
 				</div>
 			</div>
 			<div class="px-8 m-inline-auto mt-20 max-w-4xl">
@@ -79,14 +76,9 @@
 			></div>
 			<div class="px-8 m-inline-auto max-w-6xl">
 				<header>
-					<!-- <h2 class="text-5xl font-bold text-white">Our investors</h2> -->
 					<h2 class="text-5xl font-bold text-white">Our Investor</h2>
 					<div class="px-8 m-inline-auto max-w-3xl">
-						<p class="text-xl mt-3 text-w-48">
-							<!-- We are fortunate to work with some of the best investors in the world. Chances are you are already using the
-							products they helped to create. -->
-							We are honored to partner with top investors globally.
-						</p>
+						<p class="text-xl mt-3 text-w-48">We are honored to partner with top investors globally.</p>
 					</div>
 				</header>
 				<div class="mt-20">
@@ -95,19 +87,6 @@
 							<img class="!w-12 !h-12" src="@/assets/images/HH.png" alt="HILLHOUSE" />
 							<h3 class="font-bold w-full text-white text-3xl">HILLHOUSE</h3>
 						</a>
-						<!-- <li class="c-wrap__listitem" v-for="(item, idx) in list" :key="idx">
-							<div class="w-auto">
-								<a target="_blank" rel="noopener" class="chakra-link" :href="item.herf">
-									<span class="chakra-avatar !w-12 !h-12">
-										<img :src="`./avatar/${idx + 1}.png`" :alt="item.name" />
-									</span>
-								</a>
-								<h5 class="font-bold text-xl mt-4">
-									<a target="_blank" rel="noopener" class="chakra-link" :href="item.herf">{{ item.name }}</a>
-								</h5>
-								<p class="text-w-48" v-if="item?.info">{{ item?.info }}</p>
-							</div>
-						</li> -->
 					</ul>
 				</div>
 			</div>
@@ -115,116 +94,9 @@
 	</main>
 </template>
 
-<script setup lang="ts">
-const list = [
-	{
-		herf: "https://www.hillhouseinvestment.com/zh-hans",
-		avatar: "./HH.png",
-		name: "HillHouse",
-		info: "Hillhouse Capital Group"
-	}
-	/* {
-		herf: "https://twitter.com/naval",
-		avatar: "robin.jpeg",
-		name: "Naval Ravikant",
-		info: "Founder, AngelList"
-	},
-	{
-		herf: "https://twitter.com/rauchg",
-		avatar: "rauchg.jpeg",
-		name: "Guillermo Rauch",
-		info: "CEO, Vercel"
-	},
-	{
-		herf: "https://www.linkedin.com/in/csertoglu",
-		avatar: "cem-sertoglu.jpg",
-		name: "Cem Sertoglu",
-		info: "Partner, Earlybird"
-	},
-	{
-		herf: "https://twitter.com/woloski",
-		avatar: "dscape.jpeg",
-		name: "Matias Woloski",
-		info: "Founder, Auth0"
-	},
-	{
-		herf: "https://twitter.com/dilekdayinlarli",
-		avatar: "andreas-klinger.jpeg",
-		name: "Dilek Dayinlarli",
-		info: "Partner, ScaleX Ventures"
-	},
-	{
-		herf: "https://twitter.com/dscape",
-		avatar: "joseph-abebe.jpeg",
-		name: "Nuno Job",
-		info: "Ground Control Ventures"
-	},
-	{
-		herf: "https://twitter.com/andreasklinger",
-		avatar: "mgonto.jpeg",
-		name: "Andreas Klinger",
-		info: "Remote First Capital"
-	},
-
-	{
-		herf: "https://twitter.com/josephaabebe",
-		avatar: "dilekdayinlarli.jpeg",
-		name: "Joseph Abebe",
-		info: "Investor/Advisor (ex-Slack)"
-	},
-	{
-		herf: "https://twitter.com/andreasklinger",
-		avatar: "jake-zeller.jpeg",
-		name: "Gontovnikas",
-		info: "Co-Founder, HyperGrowth Partners"
-	},
-	{
-		herf: "https://twitter.com/andreasklinger",
-		avatar: "jfagnan.webp",
-		name: "Jeff Fagnan",
-		info: "Founder, Accomplice"
-	} */
-];
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped>
-.collection-item {
-	@apply rounded-lg px-11;
-	&:hover {
-		// -webkit-text-fill-color: transparent;
-		background-color: #fff !important;
-		/* background-image: linear-gradient(
-			90deg,
-			#f926e1,
-			#2ab5fb 19%,
-			#2ab5fb 54%,
-			#f926e1 94%,
-			#2ab5fb 96%
-		);
-		-webkit-background-clip: text;
-		background-clip: text; */
-		box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
-	}
-	.job_herf {
-		grid-column-gap: 100px;
-		grid-row-gap: 100px;
-		width: 100%;
-		border-bottom: 1px solid #c4c4c4;
-		align-items: center;
-		padding-top: 25px;
-		padding-bottom: 25px;
-		display: flex;
-		> div {
-			width: 100%;
-		}
-		.lf {
-			@apply text-lg text-left;
-		}
-		.dl {
-			text-align: right;
-		}
-	}
-}
 .c-wrap__list {
 	--chakra-wrap-x-spacing: 40px;
 	--chakra-wrap-y-spacing: 40px;
@@ -232,53 +104,9 @@ const list = [
 	--wrap-y-spacing: calc(var(--chakra-wrap-y-spacing) / 2);
 	display: flex;
 	flex-wrap: wrap;
-	-webkit-box-pack: center;
 	justify-content: center;
 	list-style-type: none;
 	padding: 0px;
 	margin: calc(var(--wrap-y-spacing) * -1) calc(var(--wrap-x-spacing) * -1);
-	.c-wrap__listitem {
-		padding: calc(var(--wrap-y-spacing) / 2) calc(var(--wrap-x-spacing) / 2);
-		width: calc(33% - 40px);
-		display: flex;
-		align-items: flex-start;
-		justify-content: center;
-		.chakra-link {
-			background-color: transparent;
-			cursor: pointer;
-			text-decoration: none;
-			outline: 2px solid transparent;
-			outline-offset: 2px;
-			color: #fff;
-		}
-		.chakra-avatar {
-			border-radius: 100%;
-			display: inline-flex;
-			-webkit-box-align: center;
-			align-items: center;
-			-webkit-box-pack: center;
-			justify-content: center;
-			text-align: center;
-			text-transform: uppercase;
-			font-weight: 500;
-			position: relative;
-			flex-shrink: 0;
-
-			color: #fff;
-			border-color: #1a202c;
-			vertical-align: top;
-			width: 4rem;
-			height: 4rem;
-			font-size: calc(1.6rem);
-			img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				border-radius: 100%;
-				display: block;
-				border-style: none;
-			}
-		}
-	}
 }
 </style>

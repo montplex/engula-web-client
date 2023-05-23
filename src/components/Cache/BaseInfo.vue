@@ -87,7 +87,6 @@ import { ICacheListItem } from "#/cache";
 import { cacheRename } from "@/api/cache";
 import { useRoute } from "vue-router";
 import { ElMessage } from "element-plus";
-import router from "@/router";
 
 const props = defineProps({
 	cache: {

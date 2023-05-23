@@ -137,7 +137,6 @@ function addCallback() {
 				ElMessage.success(t("msg.creating"));
 				counDown.value = 36;
 				store.setCacheList(false);
-				// guide("cache" + res.id);
 				resume();
 			}
 		})
@@ -150,5 +149,3 @@ function addCallback() {
 
 defineExpose({ reset: () => resetForm(addFormRef.value) });
 </script>
-
-<style lang="scss"></style>
