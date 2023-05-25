@@ -11,6 +11,7 @@
 				</p>
 				<VectorsWrapper class="mt-4 mx-auto" />
 			</header>
+			<!-- <PricingNew /> -->
 			<PricingChild />
 			<!-- meat -->
 			<div class="flex items-center flex-col text-white mb-28 mt-20" style="font-family: 'Airbnbcereal book'">
@@ -57,5 +58,6 @@
 </template>
 
 <script setup lang="ts">
+import PricingNew from "./PricingNew.vue";
 import PricingChild from "./PricingChild.vue";
 </script>
