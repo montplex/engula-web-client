@@ -14,7 +14,7 @@
 
 		<el-table :data="currentMonthList" v-bind="tableStyle">
 			<el-table-column fixed prop="cacheServiceName" label="Name"> </el-table-column>
-			<el-table-column prop="avgMB" label="avg MB"></el-table-column>
+			<el-table-column prop="avgMb" label="avg MB"></el-table-column>
 			<el-table-column prop="fee" label="Fee" sortable />
 			<el-table-column prop="id">
 				<template #default="scope">
