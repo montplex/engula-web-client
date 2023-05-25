@@ -7,7 +7,7 @@
 					<div class="max-w-xs">
 						<span class="text-block text-4xl">Montplex</span>
 						<div class="pt-8">
-							<a href="mailto:hello@herodevs.com" class="flex items-start gap-3" target="_blank">
+							<span class="flex items-start gap-3">
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 									<g clip-path="url(#clip0_48_1807)">
 										<path
@@ -32,8 +32,8 @@
 										</clipPath>
 									</defs>
 								</svg>
-								<div class="text-block-22">hello@montplex.com</div></a
-							>
+								<div class="text-block-22">support@montplex.com</div>
+							</span>
 						</div>
 					</div>
 					<!-- <form class="pt-8" @submit.prevent="onSubmit">
@@ -82,7 +82,7 @@
 					</div>
 
 					<div class="meta-list">
-						<a href="#" class="mb-7 block max-w-full hover:text-white" target="_blank">
+						<a href="https://twitter.com/MontplexDB" class="mb-7 block max-w-full hover:text-white" target="_blank">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="24"
@@ -113,7 +113,7 @@
 				class="mt-8 py-6 items-center justify-between sm:flex"
 				style="border-top: 1px solid rgba(255, 255, 255, 0.08); color: rgb(138, 143, 152)"
 			>
-				<div class="mt-4 sm:mt-0">&copy; 2022 Montplex All rights reserved.</div>
+				<div class="mt-4 sm:mt-0">&copy; 2023 Montplex All rights reserved.</div>
 				<div class="mt-6 sm:mt-0">Privacy Policy | Terms of Service</div>
 			</div>
 		</section>

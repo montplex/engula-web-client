@@ -243,7 +243,7 @@ export function scrollToAnchor(anchorName: string) {
  * 当前缓存月视图折线图
  * @param {string} 元素id
  */
-export function currentMonthOption({ x, y }: any) {
+export function curren_month_option({ x, y }: any) {
 	let option = {
 		grid: {
 			top: "30px",
@@ -350,4 +350,56 @@ export function currentMonthOption({ x, y }: any) {
 	};
 
 	return option;
+}
+
+/* 当月缓存每日总计 折线图 */
+export function get_chart_data(arr: any) {
+	let meno: any = {};
+	let c_array = [];
+	arr.forEach((item: any) => {
+		if (!meno[item.dayStr]) {
+			meno[item.dayStr] = [];
+		}
+		meno[item.dayStr].push({ dayStr: item.dayStr, fee: item.fee });
+	});
+	for (const [key, value] of Object.entries(meno)) {
+		// @ts-expect-error
+		const fee_list = (value as any).sort((a, b) => new Date(a.dayStr) - new Date(b.dayStr));
+		c_array.push({
+			data: key,
+			sum: fee_list
+				.map((_v: any) => _v.fee)
+				.reduce((a: number, b: number) => a + b)
+				.toFixed(2)
+		});
+	}
+	return {
+		x: c_array.map((i) => i.data),
+		y: c_array.map((i) => i.sum)
+	};
+}
+
+/* 堆叠折线图 */
+export function get_stacked_chart_data(arr: any) {
+	let meno: any = {};
+	let c_array = [];
+	arr.forEach((item: any) => {
+		if (!meno[item.cacheServiceName]) {
+			meno[item.cacheServiceName] = [];
+		}
+		meno[item.cacheServiceName].push({ dayStr: item.dayStr, fee: item.fee });
+	});
+	for (const [key, value] of Object.entries(meno)) {
+		// @ts-expect-error
+		const fee_list = value.sort((a, b) => new Date(a.dayStr) - new Date(b.dayStr));
+
+		if (fee_list < 6) {
+			c_array.push({
+				name: key,
+				type: "line",
+				data: fee_list.map((_v: any) => _v.fee.toFixed(2))
+			});
+		}
+	}
+	return c_array;
 }

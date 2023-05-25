@@ -17,11 +17,11 @@
 import { getFeeListByDay } from "@/api/fee";
 import { dayjs } from "element-plus";
 import { ref } from "vue";
-import { currentMonthOption } from "@/utils/util";
+import { curren_month_option, get_chart_data } from "@/utils/util";
 
 const chartOptions = ref();
 
-defineProps({
+const props = defineProps({
 	modelValue: {
 		type: Boolean,
 		default: false
@@ -37,9 +37,9 @@ function initData(cacheServiceId: number, monthStr: string) {
 		monthStr: dayjs(monthStr).format("YYYY-MM")
 	}).then((res) => {
 		if (res) {
-			const x = res?.map((item) => item.dayStr);
-			const y = res?.map((item) => item.fee);
-			chartOptions.value = currentMonthOption({ x, y });
+			const currentMonthList = res.filter((item) => item.cacheServiceName === props.cacheName);
+			const data = get_chart_data(currentMonthList);
+			chartOptions.value = curren_month_option(data);
 		}
 	});
 }

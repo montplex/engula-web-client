@@ -93,9 +93,9 @@
 									{{ $t("redis.set.account") }}
 								</el-dropdown-item>
 
-								<el-dropdown-item command="pdfview">
+								<!-- <el-dropdown-item command="pdfview">
 									{{ $t("redis.set.settings") }}
-								</el-dropdown-item>
+								</el-dropdown-item> -->
 
 								<el-dropdown-item command="out" divided>
 									<el-icon size="16"> <i-ep:switch-button /> </el-icon>

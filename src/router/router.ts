@@ -51,7 +51,30 @@ const routes = [
 	{
 		path: "/account",
 		name: "Account",
-		component: () => import("@/views/account/index.vue")
+		component: () => import("@/views/account/index.vue"),
+		redirect: { name: "Billing" },
+		children: [
+			{
+				path: "teams",
+				name: "Teams",
+				component: () => import("@/views/account/teams.vue")
+			},
+			{
+				path: "billing",
+				name: "Billing",
+				component: () => import("@/views/account/billing.vue")
+			},
+			{
+				path: "cost-explorer",
+				name: "CostExplorer",
+				component: () => import("@/views/account/cost-explorer.vue")
+			},
+			{
+				path: "settings",
+				name: "Settings",
+				component: () => import("@/views/account/settings.vue")
+			}
+		]
 	},
 	{
 		path: "/console",

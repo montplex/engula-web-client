@@ -26,7 +26,7 @@ export default {
 	aboutTitle: "Why Montplex",
 	multiCloud: "Multi-Cloud",
 	about:
-		"Montplex serverless cache, a cutting-edge technology, is specifically designed for cloud environments, providing dynamic scaling, pay-as-you-go pricing, and exceptional performance. As the next-generation cache solution, Montplex is an excellent choice for those seeking a scalable, cost-efficient, and high-performing option.",
+		"Montplex serverless cache, a cutting-edge technology, is specifically designed for cloud environments, providing dynamic scaling, pay-as-you-go pricing, and exceptional performance.  As the next-generation cache solution, Montplex is an excellent choice for those seeking a scalable, cost-efficient, and high-performing option.",
 	team: {
 		title: "Meet the team",
 		subTitle:
@@ -44,8 +44,8 @@ export default {
 	contact: "Contact Us",
 	login: "Login",
 	price: {
-		title: "Plans & Pricing ",
-		subTitle: "Pay only for what you use with usages pricing.",
+		title: "Plans & Pricing",
+		subTitle: "Pay only for what you use",
 		payas: "Pay as you go",
 		enterprise: "Enterprise",
 		commands: "Commands Limit",

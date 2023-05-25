@@ -16,6 +16,9 @@ module.exports = {
 				label: "rgba(132, 133, 135, 1)",
 				"lable-70": "#ffffffa3"
 			},
+			fontFamily: {
+				"inter": ["Inter", "sans-serif"]
+			},
 			screens: {
 				"3xl": "1920px"
 			},

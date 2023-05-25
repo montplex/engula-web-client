@@ -21,17 +21,17 @@
 <script setup lang="ts">
 import { getFeeListByDay } from "@/api/fee";
 import { ref } from "vue";
-import { currentMonthOption } from "@/utils/util";
+import { curren_month_option, get_chart_data } from "@/utils/util";
 
 const chartVal = ref();
 const fee = ref();
 
-// @ts-expect-error
-getFeeListByDay().then((res) => {
-	const x = res?.map((item) => item.dayStr);
-	const y = res?.map((item) => item.fee);
-	fee.value = res?.reduce((prev, cur) => prev + cur.fee, 0);
-	chartVal.value = currentMonthOption({ x, y });
+getFeeListByDay({}).then((res) => {
+	if (res) {
+		fee.value = res.reduce((a, b) => a + b.fee, 0).toFixed(2);
+		const data = get_chart_data(res);
+		chartVal.value = curren_month_option(data);
+	}
 });
 </script>
 

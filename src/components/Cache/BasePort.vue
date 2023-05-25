@@ -106,7 +106,7 @@ init();
 	.url {
 		@apply relative mt-6 cursor-pointer justify-center rounded-b-lg bg-[#fafafa] py-4 text-center hover:bg-gray-100 sm:mt-6 sm:flex;
 		._copy {
-			@apply font-mono text-sm flex items-center;
+			@apply text-sm flex items-center;
 		}
 	}
 }

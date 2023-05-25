@@ -33,7 +33,7 @@ import { curren_month_option, get_chart_data } from "@/utils/util";
 import { computed, onMounted, ref } from "vue";
 import { dayjs } from "element-plus";
 import type { DetailList } from "#/cache";
-import cacheByidDialog from "./cacheChildDialog.vue";
+import cacheByidDialog from "@/components/Account/cacheChildDialog.vue";
 
 const month = ref(dayjs().format("YYYY MMM"));
 const chartOptions = ref();

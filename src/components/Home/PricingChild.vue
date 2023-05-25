@@ -5,10 +5,10 @@
 			<!-- 第一行 -->
 			<div class="flex items-center justify-center p-4"></div>
 			<div class="table-item">
-				<h5 class="text-3xl font-bold text-block">Free</h5>
+				<h5 class="text-3xl font-bold text-block">Pro</h5>
 			</div>
 			<div class="table-item bg-ly-check" style="border-radius: 16px 16px 0 0">
-				<h5 class="text-3xl font-bold text-block">Pro</h5>
+				<h5 class="text-3xl font-bold text-block">Free</h5>
 			</div>
 			<div class="table-item">
 				<h5 class="text-3xl font-bold text-block">Enterprise</h5>
@@ -48,10 +48,10 @@
 				</span>
 			</div>
 			<div class="table-item">
-				<svgIcon icon="none" class="!h-5 !w-5" />
+				<svgIcon icon="true" class="!h-5 !w-5" />
 			</div>
 			<div class="table-item bg-ly-check">
-				<svgIcon icon="true" class="!h-5 !w-5" />
+				<svgIcon icon="none" class="!h-5 !w-5" />
 			</div>
 			<div class="table-item">
 				<svgIcon icon="true" class="!h-5 !w-5" />
@@ -61,16 +61,16 @@
 			<!-- 第五行 -->
 			<div class="table-item text-left !text-lable-70">
 				<span class="w-full">
-					Multi-AZ High Availablity
+					High Availablity
 					<svgIcon icon="info-line" class="!inline ml-2 text-xl" />
 				</span>
 			</div>
 			<div class="table-item">
-				<svgIcon icon="none" class="!h-5 !w-5" />
+				<svgIcon icon="true" class="!h-5 !w-5" />
 				<!-- <svgIcon icon="none" class="!h-5 !w-5" /> -->
 			</div>
 			<div class="table-item bg-ly-check">
-				<svgIcon icon="true" class="!h-5 !w-5" />
+				<svgIcon icon="none" class="!h-5 !w-5" />
 			</div>
 			<div class="table-item">
 				<svgIcon icon="true" class="!h-5 !w-5" />
@@ -85,10 +85,10 @@
 				</span>
 			</div>
 			<div class="table-item">
-				<svgIcon icon="none" class="!h-5 !w-5" />
+				<svgIcon icon="true" class="!h-5 !w-5" />
 			</div>
 			<div class="table-item bg-ly-check">
-				<svgIcon icon="true" class="!h-5 !w-5" />
+				<svgIcon icon="none" class="!h-5 !w-5" />
 			</div>
 			<div class="table-item">
 				<svgIcon icon="true" class="!h-5 !w-5" />
@@ -96,7 +96,7 @@
 			<div class="col-span-4"><div class="h-[1px] bg-ly-line"></div></div>
 
 			<div class="table-item text-left !text-lable-70">
-				<span class="w-full">
+				<span class="w-full flex items-center">
 					BYOC （Bring Your Own Cloud）
 					<svgIcon icon="info-line" class="!inline ml-2 text-xl" />
 				</span>
@@ -115,22 +115,27 @@
 			<!-- 第九行 -->
 			<div class="table-item text-left !text-lable-70"></div>
 			<div class="table-item">
-				<span>Free</span>
+				<!-- <span>GB / Hour</span> -->
+				<span>Coming Soon</span>
 			</div>
 			<div class="table-item bg-ly-check">
-				<span>GB / Hour</span>
+				<span>Free</span>
 			</div>
+
 			<div class="table-item"><span>Custom</span></div>
 			<div class="col-span-4"><div class="h-[1px] bg-ly-line"></div></div>
 
 			<!-- 第十行 底部按钮 -->
 			<div class="table-item"></div>
 			<div class="table-item">
-				<a class="ck-button" href="https://dev.montplex.com/console" target="_blank"> Start </a>
+				<a class="ck-button" href="https://dev.montplex.com/console" target="_blank">Login</a>
+				<!-- <a class="ck-button" href="https://dev.montplex.com/console" target="_blank">watting..</a> -->
 			</div>
+
 			<div class="table-item bg-ly-check" style="border-radius: 0 0 16px 16px">
-				<a class="ck-button login" href="https://dev.montplex.com/console" target="_blank">Login</a>
+				<a class="ck-button login" href="https://dev.montplex.com/console" target="_blank"> Start </a>
 			</div>
+
 			<div class="table-item">
 				<a class="ck-button" href="https://docs.upstash.com/docs/help/support" target="_blank"> Contact Us </a>
 			</div>
@@ -161,7 +166,8 @@
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !text-lable-70">Multi-AZ High Availablity</div>
+						<div class="table-item !text-lable-70">High Availablity</div>
+						<!-- <div class="table-item !text-lable-70">Multi-AZ High Availablity</div> -->
 						<div class="table-item">
 							<svgIcon icon="none" class="!h-5 !w-5" />
 						</div>
@@ -179,6 +185,7 @@
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 					</div>
+					<!-- <div class="table-item">Free</div> -->
 					<div class="table-item">Free</div>
 					<div class="px-8 w-full flex justify-center">
 						<a class="ck-button w-full" href="https://dev.montplex.com/console" target="_blank"> Start for free </a>
@@ -203,7 +210,7 @@
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !text-lable-70">Multi-AZ High Availablity</div>
+						<div class="table-item !text-lable-70">High Availablity</div>
 						<div class="table-item">
 							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>
@@ -248,7 +255,7 @@
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !text-lable-70">Multi-AZ High Availablity</div>
+						<div class="table-item !text-lable-70">High Availablity</div>
 						<div class="table-item">
 							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>

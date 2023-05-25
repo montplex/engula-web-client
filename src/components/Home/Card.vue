@@ -97,7 +97,12 @@
 
 						<div class="py-6 md:w-3/4 w-full text-center mx-auto">
 							<p class="leading-relaxed text-2xl max-w-4xl mx-auto">
-								{{ $t("home.about") }}
+								<!-- {{ $t("home.about") }} -->
+								Montplex serverless cache, a cutting-edge technology, is specifically designed for cloud environments, providing
+								dynamic scaling, pay-as-you-go pricing, and exceptional performance.
+								<br />
+								As the next-generation cache solution, Montplex is an excellent choice for those seeking a scalable,
+								cost-efficient, and high-performing option.
 							</p>
 						</div>
 					</div>
