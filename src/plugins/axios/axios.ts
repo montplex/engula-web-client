@@ -58,18 +58,21 @@ class Request {
 			(res: any) => {
 				/* --------------- 全局响应拦截器 success ------------ */
 				const statusCode = res?.response !== undefined ? res.status || res?.response.status : null;
-				showMessage(statusCode);
 				console.log("全局响应拦截器 res=========", statusCode, res);
 				this.loading?.close();
 				return res;
 			},
 			(err) => {
-				// console.log("--------全局响应拦截器 err--------", err);
 				const statusCode = err.response !== undefined ? err.status || err.response.status : null;
 				console.log("==============全局响应拦截器 err=========", statusCode, err);
-				showMessage(statusCode);
-				this.loading?.close();
-				return err;
+				if (statusCode === 200) {
+					this.loading?.close();
+					return err;
+				} else {
+					showMessage(statusCode, err);
+					this.loading?.close();
+					return null;
+				}
 			}
 		);
 	}
@@ -131,45 +134,17 @@ function logout() {
 	window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/login");
 }
 
-function showMessage(statusCode: number) {
+function showMessage(statusCode: number, res: any) {
 	switch (statusCode) {
-		case 400:
-			$Toast("请求错误 400");
-			break;
-		case 401:
+		case 403:
 			$Toast("身份已过期，请重新登录");
 			logout();
 			break;
-		case 403:
-			$Toast("拒绝访问 403");
-			logout();
-			break;
 		case 404:
-			$Toast("网络开小差了 404");
-			break;
-		case 408:
-			$Toast("请求超时 408");
-			break;
-		case 500:
-			$Toast("服务器错误 500");
-			break;
-		case 501:
-			$Toast("服务未实现 501");
-			break;
-		case 502:
-			$Toast("网络错误 502");
-			break;
-		case 503:
-			$Toast("服务不可用 503");
-			break;
-		case 504:
-			$Toast("网络超时 504");
-			break;
-		case 505:
-			$Toast("HTTP版本不受支持 505");
+			$Toast("404 Not Found");
 			break;
 		default:
-			break;
+			$Toast(res);
 	}
 }
 function $Toast(message: string) {

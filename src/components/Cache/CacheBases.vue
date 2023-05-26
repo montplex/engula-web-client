@@ -110,15 +110,16 @@ import addDialog from "./addDialog.vue";
 import cacheEmpty from "./cacheEmpty.vue";
 import StatusIcon from "@/components/Cache/StatusIcon.vue";
 import HasCreate from "./HasCreate.vue";
-import Driver from "driver.js";
-import "driver.js/dist/driver.min.css";
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import { cacheStore } from "@/stores/cache";
 import { ElMessage } from "element-plus";
 import { statusMap, statusStyle } from "#/consts";
 import { useI18n } from "vue-i18n";
+import { userStore } from "@/stores/user";
 
+/* import Driver from "driver.js";
+import "driver.js/dist/driver.min.css";
 const guide = (id: any) => {
 	const driver = new Driver({
 		allowClose: true,
@@ -136,19 +137,17 @@ const guide = (id: any) => {
 		}
 	});
 	// driver.start();
-};
+}; */
+
 const { t, locale } = useI18n();
 
-const statusObj = computed(() => {
-	// @ts-expect-error
-	return statusMap[locale.value];
-});
+// @ts-expect-error
+const statusObj = computed(() => statusMap[locale.value]);
 
 const store = cacheStore();
 const router = useRouter();
 const addDialogRef = ref();
 const hasCreate = ref(false); // 是否正在创建
-
 const cross = ref(false); // 控制超出创建限制 (显示弹窗)
 
 const isRefresh = ref(false); // 刷新按钮 laoding
@@ -156,16 +155,21 @@ const addVisible = ref(false); // 新建弹窗
 const searchVal = ref(""); // 搜索
 const selectVal = ref<string | number>(1);
 
+const user = userStore();
+
+// TODO 接口更新，暂时不用前端判断缓存数组的长度
 /* 新建 Cache  */
 const createCache = async () => {
-	addDialogRef.value.reset();
-	/* 最多只能创建五个正在运行的 cache */
-	const isCreate = store.serviceList.reduce((sum, item) => (item.status === 1 ? sum + 1 : sum + 0), 0);
-	if (isCreate >= 5) cross.value = true;
-	else {
-		store.setCloudProviderList();
-		addVisible.value = true;
+	if (user.info?.canCreateCacheService === false) {
+		ElMessage.error("您没有权限创建缓存服务");
+		return;
 	}
+	/* 最多只能创建五个正在运行的 cache */
+	// const isCreate = store.serviceList.reduce((sum, item) => (item.status === 1 ? sum + 1 : sum + 0), 0);
+	// if (isCreate >= 5) cross.value = true;
+	addDialogRef.value.reset();
+	store.setCloudProviderList();
+	addVisible.value = true;
 };
 
 /* 去详情页 */

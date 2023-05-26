@@ -11,9 +11,7 @@ export const getChart = (params: ChartParams) => {
 	});
 };
 
-/**
- * Get Fee list
- */
+// XXX Get Fee list 已废弃
 export const getFeeList = (cacheServiceId: number) => {
 	return http.get<FeeRes>({
 		url: "/fee/list",

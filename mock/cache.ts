@@ -5,11 +5,13 @@ export default [
 		method: "get",
 		response: () => {
 			return {
-				id: 13,
-				nickname: "liaoyi",
-				roles: ["irure", "dolore Excepteur", "irure", "consectetur sed nostrud", "quis consequat"],
-				picture: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-				lastLoginTime: 1597001997524
+				"id": 211,
+				"nickname": "a2417276459@gmail.com",
+				"picture": "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+				"roles": ["engula_user"],
+				"feeType": 0,
+				"canCreateCacheService": false,
+				"lastLoginTime": 1685097892000
 			};
 		}
 	},

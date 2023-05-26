@@ -7,8 +7,8 @@
 		</div>
 
 		<div class="grid grid-cols-1 rounded-lg border border-gray-200 p-2 sm:px-4 sm:py-4 mb-6">
-			<div style="width: 100%; height: 140px">
-				<Echarts width="100%" height="140px" :options="chartOptions" />
+			<div style="width: 100%; height: 220px">
+				<Echarts width="100%" height="220px" :options="chartOptions" />
 			</div>
 		</div>
 
@@ -29,7 +29,7 @@
 <script lang="ts" setup>
 import { tableStyle } from "#/consts";
 import { getFeeOrgList, getFeeListByDay } from "@/api/fee";
-import { curren_month_option, get_chart_data } from "@/utils/util";
+import { get_stacked_chart_data } from "@/utils/util";
 import { computed, onMounted, ref } from "vue";
 import { dayjs } from "element-plus";
 import type { DetailList } from "#/cache";
@@ -69,18 +69,107 @@ function get_month_select_ist(arr: any) {
 }
 
 function initChart() {
-	getFeeListByDay({
-		monthStr: dayjs(month.value).format("YYYY-MM")
-	}).then((res) => {
+	getFeeListByDay({ monthStr: dayjs(month.value).format("YYYY-MM") }).then((res) => {
 		if (res) {
-			const data = get_chart_data(res);
-			chartOptions.value = curren_month_option(data);
+			const list = get_stacked_chart_data(res);
+			chartOptions.value = filterOption(list);
+			console.log(chartOptions.value);
 		}
 	});
 }
 
+function filterOption({ x, series, legend }: any) {
+	const option = {
+		grid: {
+			top: "10px",
+			bottom: "60px",
+			left: "10px",
+			right: "20px",
+			containLabel: true
+		},
+		legend: {
+			data: legend,
+			bottom: 0,
+			marginTop: 10,
+			icon: "roundRect",
+			itemGap: 30
+		},
+		tooltip: {
+			trigger: "axis",
+			axisPointer: { type: "shadow" },
+			formatter: function (params: any) {
+				let str = "";
+				console.log(params);
+				params.forEach((item: any) => {
+					str += `<div style="display: flex;justify-content: space-between;align-items: center;gap:30px;">
+						<span>${item.marker} ${item.seriesName}</span>
+						<span style="font-weight: 600;"> $ ${item.value}</span>
+						</div>`;
+				});
+				return `
+				<div style="padding-bottom:10px">${params[0].axisValue}</div>
+				${str}
+				`;
+			}
+		},
+		xAxis: [
+			{
+				data: x,
+				axisLabel: {
+					show: true,
+					type: "time",
+					margin: 10,
+					color: "#1e324f",
+					formatter: function (value: string) {
+						return dayjs(value).format("DD");
+					}
+					// 格式化时间显示
+					/* formatter: function (value: string) {
+						return dayjs(value).format("DD");
+					} */
+				},
+				axisLine: {
+					// show:false
+					lineStyle: {
+						color: "rgba(39, 76, 129, 0.11)",
+						width: 0.5
+					}
+				},
+				splitLine: {
+					show: false
+				},
+				axisTick: { show: false } // 刻度格子线
+			}
+		],
+		yAxis: [
+			{
+				axisLine: {
+					show: false //隐藏y轴线
+				},
+				axisTick: {
+					show: false //隐藏刻度线
+				},
+				axisLabel: {
+					show: false //隐藏刻度值
+				},
+				splitLine: {
+					show: true,
+					lineStyle: {
+						color: "rgba(39, 76, 129, 0.11)",
+						type: "dashed",
+						width: 0.5
+					}
+				}
+			}
+		],
+		series
+	};
+	return option;
+}
+
 function handleDetail(row: DetailList) {
 	cacheName.value = row.cacheServiceName;
+	console.log(row.cacheServiceId, row.monthStr);
 	cacheRef.value.initData(row.cacheServiceId, row.monthStr);
 	dialogTableVisible.value = true;
 }

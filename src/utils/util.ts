@@ -382,7 +382,8 @@ export function get_chart_data(arr: any) {
 /* 堆叠折线图 */
 export function get_stacked_chart_data(arr: any) {
 	let meno: any = {};
-	let c_array = [];
+	let series = [];
+	const x = Array.from(new Set(arr.map((v: any) => v.dayStr)));
 	arr.forEach((item: any) => {
 		if (!meno[item.cacheServiceName]) {
 			meno[item.cacheServiceName] = [];
@@ -392,14 +393,19 @@ export function get_stacked_chart_data(arr: any) {
 	for (const [key, value] of Object.entries(meno)) {
 		// @ts-expect-error
 		const fee_list = value.sort((a, b) => new Date(a.dayStr) - new Date(b.dayStr));
-
-		if (fee_list < 6) {
-			c_array.push({
-				name: key,
-				type: "line",
-				data: fee_list.map((_v: any) => _v.fee.toFixed(2))
-			});
-		}
+		series.push({
+			name: key,
+			type: "line",
+			stack: "Total",
+			symbol: "circle", //数值点设定为实心点
+			symbolSize: 6, // 折线的点的大小
+			animation: true,
+			data: fee_list.map((_v: any) => _v.fee.toFixed(2))
+		});
 	}
-	return c_array;
+	return {
+		x,
+		legend: Object.keys(meno),
+		series
+	};
 }

@@ -2,12 +2,12 @@
 	<header class="hidden bg-black py-4 text-white shadow sm:block">
 		<div class="container mx-auto !max-w-screen-xl px-4">
 			<div class="flex items-center gap-6">
-				<h3 class="flex items-center gap-1 text-white cursor-pointer h-8 text-xl font-semibold" @click="$router.push('/')">
+				<h3 class="flex items-center gap-1 text-white cursor-pointer h-8 text-xl font-semibold" @click="$router.push('/console')">
 					<!-- <img src="@/assets/images/main-logo.png" alt="logo" class="h-[30px]" /> -->
 					<span class="text-block">Montplex</span>
 				</h3>
 				<div class="ml-auto flex items-center gap-3">
-					<el-dropdown popper-class="lang-menu" @command="handleLang">
+					<!-- <el-dropdown popper-class="lang-menu" @command="handleLang">
 						<button
 							@click="openSort = !openSort"
 							class="flex text-white items-center justify-start font-semibold focus-visible:outline-none"
@@ -39,7 +39,7 @@
 								<el-dropdown-item command="zh_CN">简体中文</el-dropdown-item>
 							</el-dropdown-menu>
 						</template>
-					</el-dropdown>
+					</el-dropdown> -->
 					<button
 						@click="question = true"
 						type="button"
@@ -96,6 +96,13 @@
 								<!-- <el-dropdown-item command="pdfview">
 									{{ $t("redis.set.settings") }}
 								</el-dropdown-item> -->
+
+								<el-dropdown-item command="home">
+									<el-icon size="16">
+										<i-ant-design:home-outlined />
+									</el-icon>
+									Home
+								</el-dropdown-item>
 
 								<el-dropdown-item command="out" divided>
 									<el-icon size="16"> <i-ep:switch-button /> </el-icon>
@@ -220,9 +227,17 @@
 									<el-icon size="16"> <i-ep:credit-card /> </el-icon>
 									{{ $t("redis.set.account") }}
 								</el-dropdown-item>
-								<el-dropdown-item command="pdfview">
-									{{ $t("redis.set.settings") }}
+
+								<el-dropdown-item command="home">
+									<el-icon size="16">
+										<i-ant-design:home-outlined />
+									</el-icon>
+									Home
 								</el-dropdown-item>
+
+								<!-- <el-dropdown-item command="pdfview">
+									{{ $t("redis.set.settings") }}
+								</el-dropdown-item> -->
 								<el-dropdown-item command="out" divided>
 									<el-icon size="16"> <i-ep:switch-button /> </el-icon>
 									{{ $t("redis.set.out") }}
@@ -338,6 +353,9 @@ const handleMineCommand = (command: string) => {
 			break;
 		case "account":
 			router.push({ path: "/account" });
+			break;
+		case "home":
+			router.push({ path: "/" });
 			break;
 		case "pdfview":
 			// addTeamVisible.value = true;

@@ -136,8 +136,8 @@ export default [
 	{
 		url: "/engula/fee/org/detail-list-by-day",
 		method: "get",
-		response: () => {
-			return [
+		response: ({ query }) => {
+			let data = [
 				{
 					"cacheServiceId": "186",
 					"cacheServiceName": "test-211",
@@ -790,6 +790,13 @@ export default [
 					"fee": 1.9
 				}
 			];
+			const { cacheServiceId } = query;
+			// console.log(cacheServiceId, monthStr);
+			if (cacheServiceId) {
+				console.log("cacheServiceId ===>", cacheServiceId);
+				return data.filter((item) => item.cacheServiceId == cacheServiceId);
+			}
+			return data;
 		}
 	}
 ] as MockMethod[];

@@ -15,7 +15,6 @@
 
 <script lang="ts" setup>
 import { getFeeListByDay } from "@/api/fee";
-import { dayjs } from "element-plus";
 import { ref } from "vue";
 import { curren_month_option, get_chart_data } from "@/utils/util";
 
@@ -33,12 +32,9 @@ const props = defineProps({
 });
 
 function initData(cacheServiceId: number, monthStr: string) {
-	getFeeListByDay({
-		monthStr: dayjs(monthStr).format("YYYY-MM")
-	}).then((res) => {
+	getFeeListByDay({ cacheServiceId, monthStr }).then((res) => {
 		if (res) {
-			const currentMonthList = res.filter((item) => item.cacheServiceName === props.cacheName);
-			const data = get_chart_data(currentMonthList);
+			const data = get_chart_data(res);
 			chartOptions.value = curren_month_option(data);
 		}
 	});

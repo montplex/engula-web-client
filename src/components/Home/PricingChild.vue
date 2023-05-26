@@ -133,7 +133,7 @@
 			</div>
 
 			<div class="table-item" style="border-radius: 0 0 16px 16px">
-				<a class="ck-button" href="https://dev.montplex.com/console" target="_blank"> Login </a>
+				<a class="ck-button" href="https://dev.montplex.com/console" target="_blank"> Waiting List </a>
 			</div>
 
 			<div class="table-item">
@@ -233,7 +233,8 @@
 					</div>
 					<div class="px-8 w-full flex justify-center">
 						<a class="ck-button w-full login" href="https://dev.montplex.com/console" target="_blank">
-							{{ $t("home.login") }}
+							<!-- {{ $t("home.login") }} -->
+							Waiting List
 						</a>
 					</div>
 				</div>

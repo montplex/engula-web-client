@@ -1,12 +1,14 @@
 import { http } from "@/plugins/axios";
 
 export interface IUserInfo {
+	canCreateCacheService: boolean; // 是否可以创建缓存服务
+	feeType: number; // 0/1/2 free/pro/enterprise
 	id: number;
-	nickname: string;
-	roles: string[];
-	picture: string;
 	email?: string;
 	lastLoginTime: number;
+	nickname: string;
+	picture: string;
+	roles: string[];
 }
 
 export interface IUsers {
