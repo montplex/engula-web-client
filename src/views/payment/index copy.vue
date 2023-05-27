@@ -102,7 +102,6 @@ async function initStripe() {
 	cardElement.mount("#card");
 
 	cardElement.on("change", (e) => {
-		console.log(111);
 		console.log(e.value);
 	});
 	/* // Create the Address Element in billing mode
@@ -151,7 +150,6 @@ async function handleSubmit(e: any) {
 	} else {
 		showMessage("An unexpected error occurred.");
 	} */
-	// console.log(error);
 }
 initStripe();
 </script>
@@ -171,8 +169,7 @@ initStripe();
 		width: 30vw;
 		min-width: 500px;
 		border-radius: 7px;
-		box-shadow: 0 0 0 0.5px rgb(50 50 93 / 0.1), 0 2px 5px 0 rgb(50 50 93 / 0.1),
-			0 1px 1.5px 0 rgb(0 0 0 / 0.07);
+		box-shadow: 0 0 0 0.5px rgb(50 50 93 / 0.1), 0 2px 5px 0 rgb(50 50 93 / 0.1), 0 1px 1.5px 0 rgb(0 0 0 / 0.07);
 		align-self: center;
 	}
 }

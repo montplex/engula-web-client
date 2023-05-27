@@ -128,7 +128,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 const email = ref("");
 function onSubmit(e: any) {
-	console.log(e.srcElement[0].value);
+	// e.srcElement[0].value
 }
 
 // https://forms.gle/WV4bXKdXKZcUMskE7
@@ -156,7 +156,6 @@ const linkList = [
 ];
 
 function handleLinkClick(item: any) {
-	console.log("clicked", item);
 	if (item.id) {
 		handlePricing();
 		return;
@@ -177,7 +176,6 @@ async function handlePricing() {
 		scrollToAnchor("bander-pricing");
 	} else {
 		await router.push({ path: "/", state: { mid: "bander-pricing" } });
-		console.log(history.state.mid);
 		setTimeout(() => {
 			scrollToAnchor(history.state.mid);
 		}, 300);

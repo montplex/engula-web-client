@@ -101,7 +101,6 @@ async function initStripe() {
 	addressElement.mount("#address");
 
 	addressElement.on("change", (e) => {
-		console.log(address);
 		console.log("addressElement--->", e);
 	});
 }

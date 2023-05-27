@@ -78,9 +78,7 @@
 							</svg>
 						</div>
 						<div class="meta">
-							<div class="meta_title font-semibold text-[22px]">
-								{{ $t("home.cards.list.cloud") }}
-							</div>
+							<div class="meta_title font-semibold text-[22px]">Any Where</div>
 						</div>
 					</div>
 				</div>

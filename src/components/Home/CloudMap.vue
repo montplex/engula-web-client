@@ -1,8 +1,6 @@
 <template>
 	<div class="container mx-auto px-8 text-center" style="padding-bottom: 140px">
-		<h2 class="text-5xl inline-block font-bold text-block leading-normal">
-			{{ $t("home.multiCloud") }}
-		</h2>
+		<h2 class="text-5xl inline-block font-bold text-block leading-normal">Global Availability</h2>
 		<VectorsWrapper class="mt-4 mx-auto" />
 		<div id="mapsvg" class="pt-10">
 			<svg
@@ -1121,16 +1119,7 @@
 					</circle>
 
 					<circle id="circle" cx="738" cy="366" r="5" />
-					<text
-						x="750"
-						y="370"
-						fill="#fff"
-						text-anchor="start"
-						font-family="Verdana"
-						font-size="14"
-					>
-						aws-cn-northwest-2
-					</text>
+					<text x="750" y="370" fill="#fff" text-anchor="start" font-family="Verdana" font-size="14">aws-cn-northwest-2</text>
 				</g>
 
 				<g fill="none" fill-rule="evenodd">
@@ -1158,16 +1147,7 @@
 					</circle>
 
 					<circle id="circle" cx="710" cy="346" r="5" />
-					<text
-						x="722"
-						y="350"
-						fill="#fff"
-						text-anchor="start"
-						font-family="Verdana"
-						font-size="14"
-					>
-						aws-cn-northwest-1
-					</text>
+					<text x="722" y="350" fill="#fff" text-anchor="start" font-family="Verdana" font-size="14">aws-cn-northwest-1</text>
 				</g>
 			</svg>
 		</div>
@@ -1178,13 +1158,7 @@
 let regions = [
 	{
 		name: "China",
-		regionList: [
-			"cn-northwest-1",
-			"cn-north-4",
-			"cn-east-1",
-			"cn-east-2",
-			"cn-southwest-2"
-		]
+		regionList: ["cn-northwest-1", "cn-north-4", "cn-east-1", "cn-east-2", "cn-southwest-2"]
 	},
 	{
 		name: "United States",

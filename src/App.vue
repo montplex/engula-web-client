@@ -11,7 +11,7 @@ useTheme();
 
 function handleLang(val: "zh_CN" | "en") {
 	locale.value = val;
-	console.log(val, locale.value);
+	// console.log(val, locale.value);
 	// localStorage.setItem('language', val)
 }
 

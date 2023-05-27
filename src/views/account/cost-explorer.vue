@@ -44,6 +44,7 @@ const cacheRef = ref();
 const currentMonthList = ref();
 
 const selectList = computed(() => get_month_select_ist(detailList.value));
+
 onMounted(async () => {
 	const res = await getFeeOrgList();
 	if (res.detailList) {
@@ -73,7 +74,6 @@ function initChart() {
 		if (res) {
 			const list = get_stacked_chart_data(res);
 			chartOptions.value = filterOption(list);
-			console.log(chartOptions.value);
 		}
 	});
 }
@@ -94,12 +94,12 @@ function filterOption({ x, series, legend }: any) {
 			icon: "roundRect",
 			itemGap: 30
 		},
+		// TAG 优化图表显示
 		tooltip: {
 			trigger: "axis",
 			axisPointer: { type: "shadow" },
 			formatter: function (params: any) {
 				let str = "";
-				console.log(params);
 				params.forEach((item: any) => {
 					str += `<div style="display: flex;justify-content: space-between;align-items: center;gap:30px;">
 						<span>${item.marker} ${item.seriesName}</span>
@@ -123,7 +123,7 @@ function filterOption({ x, series, legend }: any) {
 					formatter: function (value: string) {
 						return dayjs(value).format("DD");
 					}
-					// 格式化时间显示
+					// TAG 格式化时间显示
 					/* formatter: function (value: string) {
 						return dayjs(value).format("DD");
 					} */
@@ -169,16 +169,14 @@ function filterOption({ x, series, legend }: any) {
 
 function handleDetail(row: DetailList) {
 	cacheName.value = row.cacheServiceName;
-	console.log(row.cacheServiceId, row.monthStr);
 	cacheRef.value.initData(row.cacheServiceId, row.monthStr);
 	dialogTableVisible.value = true;
 }
 
 function handleChange(val: string) {
-	console.log(val);
 	month.value = val;
 	currentMonthList.value = detailList.value.filter((item: DetailList) => item.monthStr === val || item.monthStr_en === val);
-	// initChart();
+	initChart();
 }
 </script>
 

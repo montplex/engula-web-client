@@ -124,7 +124,6 @@ async function handlePricing() {
 		scrollToAnchor("bander-pricing");
 	} else {
 		await router.push({ path: "/", state: { mid: "bander-pricing" } });
-		console.log(history.state.mid);
 		setTimeout(() => {
 			scrollToAnchor(history.state.mid);
 		}, 300);

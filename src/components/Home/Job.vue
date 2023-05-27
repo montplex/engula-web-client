@@ -76,10 +76,6 @@ const benefits = [
 	{ title: "Whole Set Of Social Benefits", description: "We offer a whole set of social benefits." },
 	{ title: "Home Office Stipend", description: "We offer a home office stipend." }
 ];
-
-function handleJobClick(job: any) {
-	console.log("clicked", job);
-}
 </script>
 
 <style lang="scss" scoped>
