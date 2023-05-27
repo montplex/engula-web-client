@@ -29,7 +29,9 @@
 						</el-icon>
 					</el-button>
 				</el-tooltip>
-				<el-button type="success" @click="createCache">{{ $t("redis.cache.new") }}</el-button>
+				<el-button type="success" :disabled="!user.info?.canCreateCacheService" @click="createCache">{{
+					$t("redis.cache.new")
+				}}</el-button>
 				<!-- <el-button type="success" @click.prevent.stop="guide('#cache15')">提示</el-button> -->
 			</div>
 		</div>
@@ -160,8 +162,9 @@ const user = userStore();
 // TODO 接口更新，暂时不用前端判断缓存数组的长度
 /* 新建 Cache  */
 const createCache = async () => {
-	if (user.info?.canCreateCacheService === false) {
-		ElMessage.error("您没有权限创建缓存服务");
+	/* 如果是免费用户，且已经创建了一个正在运行的 cache */
+	if (store.filterList?.length > 1 && user.info?.feeType === 0) {
+		cross.value = true;
 		return;
 	}
 	/* 最多只能创建五个正在运行的 cache */

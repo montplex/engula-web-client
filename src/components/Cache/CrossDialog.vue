@@ -4,7 +4,7 @@
 			<div class="flex">
 				<i-ep:warning-filled class="text-2xl text-[#faad14]" />
 				<h4 class="font-semibold ml-2">
-					{{ lang ? "You can create 5 cache services in the free layer." : "您可以在免费层中创建5个缓存服务。" }}
+					{{ lang ? "You can create 1 cache services in the free layer." : "您可以在免费层中创建1个缓存服务。" }}
 				</h4>
 			</div>
 		</template>
@@ -34,4 +34,3 @@ const lang = computed(() => locale.value == "en");
 defineProps({ modelValue: { type: Boolean, default: false } });
 defineEmits(["update:modelValue"]);
 </script>
-

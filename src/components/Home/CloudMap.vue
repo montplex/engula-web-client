@@ -1075,27 +1075,27 @@
 				<!-- custom forms -->
 
 				<!-- 	<g>
-					<circle
-						cx="738"
-						cy="366"
-						r="6"
-						fill="#FDA830"
-						stroke="white"
-						stroke-width="2"
-					/>
-					<text
-						x="750"
-						y="370"
-						fill="#fff"
-						font-family="Verdana"
-						font-size="14"
-					>
-						cn-northwest-2
-					</text>
-				</g> -->
+            <circle
+              cx="738"
+              cy="366"
+              r="6"
+              fill="#FDA830"
+              stroke="white"
+              stroke-width="2"
+            />
+            <text
+              x="750"
+              y="370"
+              fill="#fff"
+              font-family="Verdana"
+              font-size="14"
+            >
+              cn-northwest-2
+            </text>
+          </g> -->
 
 				<g fill="none" fill-rule="evenodd">
-					<circle id="circle" cx="738" cy="366" r="1">
+					<circle id="circle" cx="764" cy="453" r="1">
 						<animate
 							attributeName="r"
 							begin="-0.9s"
@@ -1118,12 +1118,12 @@
 						/>
 					</circle>
 
-					<circle id="circle" cx="738" cy="366" r="5" />
-					<text x="750" y="370" fill="#fff" text-anchor="start" font-family="Verdana" font-size="14">aws-cn-northwest-2</text>
+					<circle id="circle" cx="764" cy="453" r="5" />
+					<text x="776" y="457" fill="#fff" text-anchor="start" font-family="Verdana" font-size="14">aws-ap-southeast-1</text>
 				</g>
 
 				<g fill="none" fill-rule="evenodd">
-					<circle id="circle" cx="710" cy="346" r="1">
+					<circle id="circle" cx="785" cy="405" r="1">
 						<animate
 							attributeName="r"
 							begin="-0.9s"
@@ -1146,26 +1146,43 @@
 						/>
 					</circle>
 
-					<circle id="circle" cx="710" cy="346" r="5" />
-					<text x="722" y="350" fill="#fff" text-anchor="start" font-family="Verdana" font-size="14">aws-cn-northwest-1</text>
+					<circle id="circle" cx="785" cy="405" r="5" />
+					<text x="797" y="409" fill="#fff" text-anchor="start" font-family="Verdana" font-size="14">aws-ap-east-1</text>
+				</g>
+
+				<g fill="none" fill-rule="evenodd">
+					<circle id="circle" cx="248" cy="347" r="1">
+						<animate
+							attributeName="r"
+							begin="-0.9s"
+							dur="1.8s"
+							values="1; 12"
+							calcMode="spline"
+							keyTimes="0; 1"
+							keySplines="0.165, 0.84, 0.44, 1"
+							repeatCount="indefinite"
+						/>
+						<animate
+							attributeName="fill-opacity"
+							begin="-0.9s"
+							dur="1.8s"
+							values="1; 0"
+							calcMode="spline"
+							keyTimes="0; 1"
+							keySplines="0.3, 0.61, 0.355, 1"
+							repeatCount="indefinite"
+						/>
+					</circle>
+
+					<circle id="circle" cx="248" cy="347" r="5" />
+					<text x="260" y="351" fill="#fff" text-anchor="start" font-family="Verdana" font-size="14">aws-us-east-1</text>
 				</g>
 			</svg>
 		</div>
 	</div>
 </template>
 
-<script setup lang="ts">
-let regions = [
-	{
-		name: "China",
-		regionList: ["cn-northwest-1", "cn-north-4", "cn-east-1", "cn-east-2", "cn-southwest-2"]
-	},
-	{
-		name: "United States",
-		regionList: ["us-east-1", "us-north-4"]
-	}
-];
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss">
 #mapsvg {
