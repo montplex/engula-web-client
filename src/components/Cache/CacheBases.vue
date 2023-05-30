@@ -5,14 +5,28 @@
 		<div class="mt-6 flex grid-cols-2 items-center gap-2 sm:grid sm:gap-8">
 			<div class="flex flex-1">
 				<div class="flex-1 w-full">
-					<div class="hidden md:block">
+					<div class="hidden md:block max-w-[330px]">
 						<el-input @input="handleSearch" @change="handleSearch" v-model="searchVal" :placeholder="$t('redis.cache.search')" />
 					</div>
 				</div>
-				<div class="ml-9">
+				<div class="ml-9" v-show="store.filterList?.length">
 					<el-select v-model="selectVal" placeholder="Filter..." @change="rStatusChange">
-						<el-option :label="$t('redis.cache.select.running')" :value="1" />
-						<el-option :label="$t('redis.cache.select.terminated')" value="-10" />
+						<template #prefix>
+							<span class="w-2 h-2 rounded-full" :style="{ background: selectVal == 1 ? '#00b173' : '#f16538' }"></span>
+						</template>
+
+						<el-option :value="1" :label="$t('redis.cache.select.running')">
+							<div class="flex items-center">
+								<span class="w-2 h-2 block rounded-full bg-[#00b173] mr-2"></span>
+								{{ $t("redis.cache.select.running") }}
+							</div>
+						</el-option>
+						<el-option value="-10" :label="$t('redis.cache.select.terminated')">
+							<div class="flex items-center">
+								<span class="w-2 h-2 block rounded-full bg-[#f16538] mr-2"></span>
+								{{ $t("redis.cache.select.terminated") }}
+							</div>
+						</el-option>
 					</el-select>
 				</div>
 			</div>
@@ -96,7 +110,7 @@
 			</div>
 		</div>
 		<!-- dbList End -->
-		<cacheEmpty @btn-click="createCache" v-else />
+		<cacheEmpty @btn-click="createCache" :select="selectVal" v-else />
 	</div>
 
 	<!-- 新增缓存实例 -->
@@ -195,9 +209,10 @@ async function refresh() {
 	const res = await store.setCacheList(true);
 	if (res) {
 		setTimeout(() => {
+			selectVal.value = 1;
 			isRefresh.value = false;
 			ElMessage.success(t("msg.refreshSuccess"));
-		}, 1000);
+		}, 800);
 	} else {
 		ElMessage.success(t("msg.refreshFail"));
 	}

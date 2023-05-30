@@ -21,13 +21,12 @@
 			</template>
 			<template #description>
 				<div class="mx-auto my-4 max-w-screen-sm text-gray-600">
-					<h3>Create a Cache Service</h3>
-					<div>{{ store.filterList }} {{ user.info?.canCreateCacheService }}</div>
-					<div>
+					<h3>{{ select != 1 ? "Data Not Found" : "Create a Cache Service" }}</h3>
+					<div v-if="select == 1">
 						<p>We manage the cache service for you and you only pay what you use.</p>
 					</div>
 				</div>
-				<el-button @click="$emit('btnClick')" type="success">Create cache service</el-button>
+				<el-button v-if="select == 1" @click="$emit('btnClick')" type="success">Create cache service</el-button>
 			</template>
 		</el-empty>
 	</div>
@@ -36,6 +35,13 @@
 <script setup lang="ts">
 import { cacheStore } from "@/stores/cache";
 import { userStore } from "@/stores/user";
+
+defineProps({
+	select: {
+		type: [Number, String],
+		default: 1
+	}
+});
 
 const store = cacheStore();
 const user = userStore();
