@@ -5,11 +5,12 @@
 		<div class="mt-6 flex grid-cols-2 items-center gap-2 sm:grid sm:gap-8">
 			<div class="flex flex-1">
 				<div class="flex-1 w-full">
-					<div class="hidden md:block max-w-[330px]">
+					<div class="hidden md:block max-w-[300px]">
 						<el-input @input="handleSearch" @change="handleSearch" v-model="searchVal" :placeholder="$t('redis.cache.search')" />
 					</div>
 				</div>
-				<div class="ml-9" v-show="store.filterList?.length">
+				<!-- v-show="seletShow?.length" -->
+				<div class="ml-9">
 					<el-select v-model="selectVal" placeholder="Filter..." @change="rStatusChange">
 						<template #prefix>
 							<span class="w-2 h-2 rounded-full" :style="{ background: selectVal == 1 ? '#00b173' : '#f16538' }"></span>
@@ -159,6 +160,10 @@ const { t, locale } = useI18n();
 
 // @ts-expect-error
 const statusObj = computed(() => statusMap[locale.value]);
+
+const seletShow = computed(() => {
+	return store.serviceList.filter((item) => item.status == "-10" || item.status == "-1");
+});
 
 const store = cacheStore();
 const router = useRouter();
