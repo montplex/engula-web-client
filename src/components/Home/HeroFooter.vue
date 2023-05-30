@@ -98,7 +98,7 @@
 							</svg>
 						</a>
 
-						<a href="#" class="mb-7 block max-w-full hover:text-white" target="_blank">
+						<a href="https://discord.gg/Z7AeCwVn" class="mb-7 block max-w-full hover:text-white" target="_blank">
 							<svg role="img" width="24" height="24" class="text-2xl" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 								<path
 									fill="currentColor"
@@ -109,12 +109,13 @@
 					</div>
 				</div>
 			</div>
+			<!-- TODO 隐私与服务条款 -->
 			<div
 				class="mt-8 py-6 items-center justify-between sm:flex"
 				style="border-top: 1px solid rgba(255, 255, 255, 0.08); color: rgb(138, 143, 152)"
 			>
 				<div class="mt-4 sm:mt-0">&copy; 2023 Montplex All rights reserved.</div>
-				<div class="mt-6 sm:mt-0">Privacy Policy | Terms of Service</div>
+				<!-- <div class="mt-6 sm:mt-0">Privacy Policy | Terms of Service</div> -->
 			</div>
 		</section>
 	</footer>
