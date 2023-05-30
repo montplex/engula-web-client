@@ -3,8 +3,8 @@
 		<header>
 			<h4>{{ chatTitle[key] }}</h4>
 		</header>
-		<div style="width: 100%; height: 300px">
-			<Echarts width="100%" height="300px" :options="value" />
+		<div style="width: 100%; height: 260px">
+			<Echarts width="100%" height="260px" :options="value" />
 		</div>
 	</div>
 </template>

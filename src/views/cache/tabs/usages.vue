@@ -105,63 +105,76 @@ watchEffect(() => {
 });
 
 function mergeData(value: any) {
-	/* const resc = {
-		xAxis: {
-			type: "category",
-			data: value.x
-		},
-		yAxis: {
-			type: "value"
-		},
+	const res = {
+		// 悬浮提示相关
 		tooltip: {
 			trigger: "axis"
 		},
-		series: [
-			{
-				data: value.y,
-				type: "line",
-				smooth: true,
-				symbol: "none",
+		//图表边界控制
+		/* grid: {
+			top: "10px",
+			bottom: "10px",
+			left: "10px",
+			right: "10px",
+			containLabel: true
+		}, */
+		grid: {
+			left: "0",
+			right: "0",
+			bottom: "2%",
+			top: "10px",
+			containLabel: true
+		},
+		xAxis: {
+			type: "category",
+			axisLabel: {
+				show: true,
+				margin: 10,
+				color: "#1e324f"
+			},
+			data: value.x,
+			axisLine: {
+				// show:false
 				lineStyle: {
-					color: "#5470C6",
-					width: 3
+					color: "rgba(39, 76, 129, 0.11)",
+					width: 0.5
 				}
-			}
-		]
-	}; */
-	const res = {
-		xAxis: { type: "category", boundaryGap: false, data: value.x },
+			},
+			splitLine: {
+				show: false
+			},
+			axisTick: { show: false } //不显示坐标轴刻度
+		},
 		yAxis: {
 			type: "value",
-			// splitNumber: 5,  //刻度的数量
+
 			axisLine: { show: false }, //不显示坐标抽轴线
 			axisTick: { show: false }, //不显示坐标轴刻度
-			// 网格线样式
 			splitLine: {
 				show: true,
 				lineStyle: {
-					color: "#E5E9ED"
-					// 	opacity:0.1
+					color: "rgba(39, 76, 129, 0.11)",
+					type: "dashed",
+					width: 0.5
 				}
 			}
 		},
-		// 悬浮提示相关
-		tooltip: { trigger: "axis" },
-		//图表边界控制
-		grid: {
-			left: "3%",
-			right: "4%",
-			bottom: "3%",
-			containLabel: true
-		},
+
 		series: [
 			{
 				data: value.y,
 				type: "line",
-				smooth: true, // 平滑曲线
-				symbol: "none",
-				lineStyle: { color: "#5470C6", width: 3 },
-				areaStyle: { color: "#5470C6", opacity: 0.1 }
+				smooth: false,
+				symbol: "circle",
+				symbolSize: 6,
+				animation: true,
+				areaStyle: {
+					color: "rgba(128, 255, 165,0.2)"
+				},
+				lineStyle: { color: "#67c23a", width: 3 },
+				itemStyle: {
+					color: "#67c23a"
+				}
 			}
 		]
 	};
