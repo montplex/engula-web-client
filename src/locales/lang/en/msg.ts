@@ -3,7 +3,7 @@ export default {
 	err: "Request Error",
 	refreshSuccess: "Refresh Success",
 	refreshFail: "Refresh Fail",
-	creating: "Cache sercice is being prepared for you...",
+	creating: "Creating ...",
 	creationFailed: "Creation Failed",
 	creationSuccess: "Creation Success",
 	notice: "You have no new notifications.",
@@ -17,5 +17,5 @@ export default {
 	updateFail: "Update Fail",
 	delSuccess: "Delete Success",
 	delFail: "Delete Fail",
-	create: "Create",
+	create: "Create"
 };

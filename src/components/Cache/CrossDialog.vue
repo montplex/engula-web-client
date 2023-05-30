@@ -1,10 +1,17 @@
 <template>
-	<el-dialog :modelValue="modelValue" width="26%" :lock-scroll="false" :show-close="false" class="br-8">
+	<el-dialog
+		:modelValue="modelValue"
+		width="26%"
+		:lock-scroll="false"
+		:show-close="false"
+		class="br-8"
+		:before-close="() => $emit('update:modelValue', false)"
+	>
 		<template #header>
 			<div class="flex">
 				<i-ep:warning-filled class="text-2xl text-[#faad14]" />
 				<h4 class="font-semibold ml-2">
-					{{ lang ? "You can create 1 cache services in the free layer." : "您可以在免费层中创建1个缓存服务。" }}
+					{{ lang ? "You can create 5 cache services in the free layer." : "您最多可创建5个缓存服务。" }}
 				</h4>
 			</div>
 		</template>

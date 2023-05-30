@@ -177,7 +177,7 @@ const user = userStore();
 /* 新建 Cache  */
 const createCache = async () => {
 	/* 如果是免费用户，且已经创建了一个正在运行的 cache */
-	if (store.filterList?.length > 1 && user.info?.feeType === 0) {
+	if (store.serviceList?.length > 5 && user.info?.feeType === 0) {
 		cross.value = true;
 		return;
 	}
