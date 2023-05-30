@@ -78,7 +78,7 @@
 							</svg>
 						</div>
 						<div class="meta">
-							<div class="meta_title font-semibold text-[22px]">Any Sales</div>
+							<div class="meta_title font-semibold text-[22px]">Any Scale</div>
 						</div>
 					</div>
 				</div>
