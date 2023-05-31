@@ -18,8 +18,8 @@ export default {
 		caches: "Cache Services",
 		button: "Learn More",
 		list: {
-			redis: "Redis® API Compatible",
-			effort: "Lower Cost With Zero Effort",
+			redis: "Redis® Compatible",
+			effort: "Lower Cost",
 			cloud: "Global Availability"
 		}
 	},

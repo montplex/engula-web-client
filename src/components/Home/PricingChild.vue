@@ -116,14 +116,16 @@
 			<div class="table-item text-left !text-lable-70"></div>
 			<div class="table-item bg-ly-check">
 				<!-- <span>GB / Hour</span> -->
-				<span>Free</span>
+				<!-- <span>Free</span> -->
 			</div>
 			<div class="table-item">
-				<span>Coming Soon</span>
+				<!-- <span>Coming Soon</span> -->
 			</div>
 
-			<div class="table-item"><span>Custom</span></div>
-			<div class="col-span-4"><div class="h-[1px] bg-ly-line"></div></div>
+			<div class="table-item">
+				<!-- <span>Custom</span> -->
+			</div>
+			<!-- <div class="col-span-4"><div class="h-[1px] bg-ly-line"></div></div> -->
 
 			<!-- 第十行 底部按钮 -->
 			<div class="table-item"></div>
@@ -132,12 +134,14 @@
 				<!-- <a class="ck-button" href="https://dev.montplex.com/console" target="_blank">watting..</a> -->
 			</div>
 
-			<div class="table-item" style="border-radius: 0 0 16px 16px">
-				<a class="ck-button" href="https://dev.montplex.com/console" target="_blank"> Waiting List </a>
+			<div class="table-item hv-none" style="border-radius: 0 0 16px 16px">
+				<a @click.prevent class="ck-button"> Waiting List </a>
+				<!-- <a class="ck-button" href="https://dev.montplex.com/console" target="_blank"> Waiting List </a> -->
 			</div>
 
-			<div class="table-item">
-				<a class="ck-button" href="https://docs.upstash.com/docs/help/support" target="_blank"> Contact Us </a>
+			<div class="table-item hv-none">
+				<a @click.prevent class="ck-button"> Coming Soon </a>
+				<!-- <a @click.prevent class="ck-button" href="https://docs.upstash.com/docs/help/support" target="_blank"> Coming Soon </a> -->
 			</div>
 		</div>
 	</div>
@@ -322,6 +326,14 @@ import VectorsWrapper from "./vectors-wrapper.vue";
 		&:hover {
 			background-image: linear-gradient(90deg, #2ab5fb, #f926e1);
 		}
+	}
+}
+
+.hv-none {
+	a:hover {
+		background: rgba(255, 255, 255, 0.11);
+		// cursor-not-allowed
+		cursor: not-allowed;
 	}
 }
 </style>
