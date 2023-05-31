@@ -1095,23 +1095,90 @@
           </g> -->
 
 				<g fill="none" fill-rule="evenodd">
+					<circle id="circle" cx="764" cy="453" r="1">
+						<animate
+							attributeName="r"
+							begin="-0.9s"
+							dur="1.8s"
+							values="1; 13"
+							calcMode="spline"
+							keyTimes="0; 1"
+							keySplines="0.165, 0.84, 0.44, 1"
+							repeatCount="indefinite"
+						/>
+						<animate
+							attributeName="fill-opacity"
+							begin="-0.9s"
+							dur="1.8s"
+							values="1; 0"
+							calcMode="spline"
+							keyTimes="0; 1"
+							keySplines="0.3, 0.61, 0.355, 1"
+							repeatCount="indefinite"
+						/>
+					</circle>
+
 					<circle id="circle" cx="764" cy="453" r="7" />
-					<text id="mark-title" x="778" y="459">aws-ap-southeast-1</text>
+					<!-- <text x="776" y="457" fill="#fff" text-anchor="start" font-family="Verdana" font-size="14">aws-ap-southeast-1</text> -->
 				</g>
 
 				<g fill="none" fill-rule="evenodd">
+					<circle id="circle" cx="785" cy="405" r="1">
+						<animate
+							attributeName="r"
+							begin="-0.9s"
+							dur="1.8s"
+							values="1; 13"
+							calcMode="spline"
+							keyTimes="0; 1"
+							keySplines="0.165, 0.84, 0.44, 1"
+							repeatCount="indefinite"
+						/>
+						<animate
+							attributeName="fill-opacity"
+							begin="-0.9s"
+							dur="1.8s"
+							values="1; 0"
+							calcMode="spline"
+							keyTimes="0; 1"
+							keySplines="0.3, 0.61, 0.355, 1"
+							repeatCount="indefinite"
+						/>
+					</circle>
 					<circle id="circle" cx="785" cy="405" r="7" />
-					<text id="mark-title" x="799" y="411">aws-ap-east-1</text>
+					<!-- <text id="mark-title" x="799" y="411">aws-ap-east-1</text> -->
 				</g>
 
 				<g fill="none" fill-rule="evenodd">
+					<circle id="circle" cx="248" cy="347" r="1">
+						<animate
+							attributeName="r"
+							begin="-0.9s"
+							dur="1.8s"
+							values="1; 13"
+							calcMode="spline"
+							keyTimes="0; 1"
+							keySplines="0.165, 0.84, 0.44, 1"
+							repeatCount="indefinite"
+						/>
+						<animate
+							attributeName="fill-opacity"
+							begin="-0.9s"
+							dur="1.8s"
+							values="1; 0"
+							calcMode="spline"
+							keyTimes="0; 1"
+							keySplines="0.3, 0.61, 0.355, 1"
+							repeatCount="indefinite"
+						/>
+					</circle>
 					<circle id="circle" cx="248" cy="347" r="7" />
-					<text id="mark-title" x="262" y="353">aws-us-east-1</text>
+					<!-- <text id="mark-title" x="262" y="353">aws-us-east-1</text> -->
 				</g>
 
 				<g fill="none" fill-rule="evenodd">
-					<circle xmlns="http://www.w3.org/2000/svg" cx="42%" cy="700" r="7" fill="#00e9a3" stroke="#00e9a3" stroke-width="2" />
-					<text id="mark-title" x="43.5%" y="706">AWS Web Service</text>
+					<circle xmlns="http://www.w3.org/2000/svg" cx="86%" cy="3%" r="9" fill="#00e9a3" stroke="#00e9a3" stroke-width="2" />
+					<text id="mark-title" x="88%" y="4%">Amazon Web Services</text>
 				</g>
 			</svg>
 		</div>
@@ -1154,8 +1221,8 @@
 		}
 		#circle {
 			fill: #00e9a3;
-			stroke: white;
-			stroke-width: 2;
+			// stroke: #00e9a3;
+			// stroke-width: 2;
 		}
 		#mark-title {
 			// fill="#fff" text-anchor="start" font-family="Verdana" font-size="14"

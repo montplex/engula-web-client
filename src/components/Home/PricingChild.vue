@@ -135,7 +135,7 @@
 			</div>
 
 			<div class="table-item hv-none" style="border-radius: 0 0 16px 16px">
-				<a @click.prevent class="ck-button"> Waiting List </a>
+				<a @click.prevent class="ck-button"> Coming Soon </a>
 				<!-- <a class="ck-button" href="https://dev.montplex.com/console" target="_blank"> Waiting List </a> -->
 			</div>
 
@@ -237,7 +237,7 @@
 					</div>
 					<div class="px-8 w-full flex justify-center hv-none">
 						<!-- href="https://dev.montplex.com/console" target="_blank" -->
-						<a class="ck-button w-full" @click.prevent> Waiting List </a>
+						<a class="ck-button w-full" @click.prevent> Coming Soon </a>
 					</div>
 				</div>
 			</div>

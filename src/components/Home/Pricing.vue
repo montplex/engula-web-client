@@ -36,7 +36,7 @@
 						class="inline-flex items-center text-[#41a5f8] cursor-pointer hover:underline"
 						href="https://dev.montplex.com/docs/docs/overall/Pricing"
 					>
-						Limits page
+						Limits
 					</a>
 					for more information.
 				</p>
