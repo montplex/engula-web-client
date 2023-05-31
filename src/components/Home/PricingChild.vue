@@ -192,7 +192,7 @@
 					<!-- <div class="table-item">Free</div> -->
 					<div class="table-item">Free</div>
 					<div class="px-8 w-full flex justify-center">
-						<a class="ck-button w-full" href="https://dev.montplex.com/console" target="_blank"> Start for free </a>
+						<a class="ck-button w-full login" href="https://dev.montplex.com/console" target="_blank"> Start for free </a>
 					</div>
 				</div>
 			</div>
@@ -233,13 +233,11 @@
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 					</div>
 					<div class="table-item">
-						<p class="text-center">GB / Hour</p>
+						<!-- <p class="text-center">GB / Hour</p> -->
 					</div>
-					<div class="px-8 w-full flex justify-center">
-						<a class="ck-button w-full login" href="https://dev.montplex.com/console" target="_blank">
-							<!-- {{ $t("home.login") }} -->
-							Waiting List
-						</a>
+					<div class="px-8 w-full flex justify-center hv-none">
+						<!-- href="https://dev.montplex.com/console" target="_blank" -->
+						<a class="ck-button w-full" @click.prevent> Waiting List </a>
 					</div>
 				</div>
 			</div>
@@ -278,9 +276,13 @@
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 					</div>
-					<div class="table-item">Custom</div>
-					<div class="px-8 w-full flex justify-center">
-						<a class="ck-button w-full" href="https://dev.montplex.com/console" target="_blank"> {{ $t("home.contact") }}</a>
+					<div class="table-item">
+						<!-- Custom -->
+					</div>
+					<div class="px-8 w-full flex justify-center hv-none">
+						<!-- href="https://dev.montplex.com/console" target="_blank" -->
+						<!-- <a class="ck-button w-full" @click.prevent> {{ $t("home.contact") }}</a> -->
+						<a class="ck-button w-full" @click.prevent> Coming Soon</a>
 					</div>
 				</div>
 			</div>
