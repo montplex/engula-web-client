@@ -154,7 +154,7 @@
 			<div class="cardItem gradient-border">
 				<div class="cardBox text-white !px-0">
 					<div class="px-7 pt-10 text-center">
-						<h3 class="text-block text-[26px] font-medium">Start</h3>
+						<h3 class="text-block text-[26px] font-medium">Free</h3>
 						<VectorsWrapper class="mt-4 mx-auto" />
 					</div>
 					<div class="grid grid-cols-2 w-full px-8">
@@ -188,10 +188,8 @@
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 					</div>
-					<!-- <div class="table-item">Free</div> -->
-					<div class="table-item">Free</div>
 					<div class="px-8 w-full flex justify-center">
-						<a class="ck-button w-full login" href="https://dev.montplex.com/console" target="_blank"> Start for free </a>
+						<a class="ck-button w-full login" href="https://dev.montplex.com/console" target="_blank"> Start </a>
 					</div>
 				</div>
 			</div>
