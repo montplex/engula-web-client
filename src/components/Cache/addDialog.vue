@@ -47,7 +47,12 @@
 					class="w-full"
 					@change="addForm.primaryZone = ''"
 				>
-					<el-option v-for="(item, index) in region[addForm.cloudProvider]" :key="index" :label="item" :value="item" />
+					<el-option
+						v-for="(item, index) in region[addForm.cloudProvider]"
+						:key="index"
+						:label="(cloud_provider_map as any)?.[item] ?? item"
+						:value="item"
+					/>
 				</el-select>
 			</el-form-item>
 
@@ -83,6 +88,17 @@ import { createCacheRules, resetForm, submit } from "@/utils/rules";
 import { ElMessage, FormInstance } from "element-plus";
 import { useIntervalFn } from "@vueuse/core";
 import { useI18n } from "vue-i18n";
+
+const cloud_provider_map = {
+	"ap-east-1": "Asia Pacific (Hong Kong)",
+	"ap-southeast-1": "Asia Pacific (Sydney)",
+	"us-east-1": "US East (N. Virginia)"
+};
+
+const cloud_provider_list = computed(() => {
+	// cloud_provider_map
+	return 0;
+});
 
 defineProps({ modelValue: { type: Boolean, default: false } });
 
