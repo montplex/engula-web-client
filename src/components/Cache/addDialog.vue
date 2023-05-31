@@ -91,7 +91,7 @@ import { useI18n } from "vue-i18n";
 
 const cloud_provider_map = {
 	"ap-east-1": "Asia Pacific (Hong Kong)",
-	"ap-southeast-1": "Asia Pacific (Sydney)",
+	"ap-southeast-1": "Asia Pacific (Singapore)",
 	"us-east-1": "US East (N. Virginia)"
 };
 
