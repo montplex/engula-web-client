@@ -1177,8 +1177,8 @@
 				</g>
 
 				<g fill="none" fill-rule="evenodd">
-					<circle xmlns="http://www.w3.org/2000/svg" cx="86%" cy="3%" r="9" fill="#00e9a3" stroke="#00e9a3" stroke-width="2" />
-					<text id="mark-title" x="88%" y="4%">Amazon Web Services</text>
+					<circle xmlns="http://www.w3.org/2000/svg" cx="80%" cy="3%" r="7" fill="#00e9a3" stroke="#00e9a3" stroke-width="2" />
+					<text id="mark-title" x="82%" y="3.7%">Amazon Web Services</text>
 				</g>
 			</svg>
 		</div>

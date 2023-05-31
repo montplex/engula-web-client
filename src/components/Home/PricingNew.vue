@@ -14,7 +14,7 @@
 								<ul class="p-cell-item left">
 									<li><span>Commands Limit</span></li>
 									<li><span>Encryption (TLS)</span></li>
-									<li><span>High Availablity</span></li>
+									<li><span>High Availability</span></li>
 									<li><span>Professional Support</span></li>
 									<li><span>BYOC(Bring Your Own Cloud)</span></li>
 									<li></li>

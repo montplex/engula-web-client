@@ -61,7 +61,7 @@
 			<!-- 第五行 -->
 			<div class="table-item text-left !text-lable-70">
 				<span class="w-full">
-					High Availablity
+					High Availability
 					<svgIcon icon="info-line" class="!inline ml-2 text-xl" />
 				</span>
 			</div>
@@ -170,8 +170,7 @@
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !text-lable-70">High Availablity</div>
-						<!-- <div class="table-item !text-lable-70">Multi-AZ High Availablity</div> -->
+						<div class="table-item !text-lable-70">High Availability</div>
 						<div class="table-item">
 							<svgIcon icon="none" class="!h-5 !w-5" />
 						</div>
@@ -214,7 +213,7 @@
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !text-lable-70">High Availablity</div>
+						<div class="table-item !text-lable-70">High Availability</div>
 						<div class="table-item">
 							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>
@@ -258,7 +257,7 @@
 						</div>
 						<div class="col-span-2"><div class="h-[1px] bg-ly-line"></div></div>
 
-						<div class="table-item !text-lable-70">High Availablity</div>
+						<div class="table-item !text-lable-70">High Availability</div>
 						<div class="table-item">
 							<svgIcon icon="true" class="!h-5 !w-5" />
 						</div>
