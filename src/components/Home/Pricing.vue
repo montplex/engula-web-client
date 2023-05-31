@@ -40,7 +40,7 @@
 					</a>
 					for more information.
 				</p>
-				<p>
+				<!-- <p>
 					Talk to
 					<a
 						target="_blank"
@@ -51,7 +51,7 @@
 						us
 					</a>
 					for advanced needs.
-				</p>
+				</p> -->
 			</div>
 		</div>
 	</section>

@@ -19,7 +19,7 @@
 			<div class="table-item text-left !text-lable-70 group">
 				<span class="w-full relative z-10">
 					Commands Limit
-					<svgIcon icon="info-line" class="!inline ml-2 text-xl" />
+					<!-- <svgIcon icon="info-line" class="!inline ml-2 text-xl" /> -->
 					<!-- <div
 						style="left: 0px; bottom: 30px"
 						class="text-[#171923] bg-[#cbd5e0] text-sm px-3 py-4 min-w-[200px] z-40 absolute rounded-sm text-center animate-[fadeIn] transition-all duration-300 opacity-0 group-hover:opacity-100"
@@ -44,7 +44,7 @@
 			<div class="table-item text-left !text-lable-70">
 				<span class="w-full">
 					Encryption (TLS)
-					<svgIcon icon="info-line" class="!inline ml-2 text-xl" />
+					<!-- <svgIcon icon="info-line" class="!inline ml-2 text-xl" /> -->
 				</span>
 			</div>
 			<div class="table-item bg-ly-check">
@@ -62,7 +62,7 @@
 			<div class="table-item text-left !text-lable-70">
 				<span class="w-full">
 					High Availability
-					<svgIcon icon="info-line" class="!inline ml-2 text-xl" />
+					<!-- <svgIcon icon="info-line" class="!inline ml-2 text-xl" /> -->
 				</span>
 			</div>
 			<div class="table-item bg-ly-check">
@@ -81,7 +81,7 @@
 			<div class="table-item text-left !text-lable-70">
 				<span class="w-full">
 					Professional Support
-					<svgIcon icon="info-line" class="!inline ml-2 text-xl" />
+					<!-- <svgIcon icon="info-line" class="!inline ml-2 text-xl" /> -->
 				</span>
 			</div>
 			<div class="table-item bg-ly-check">
@@ -98,7 +98,7 @@
 			<div class="table-item text-left !text-lable-70">
 				<span class="w-full flex items-center">
 					BYOC （Bring Your Own Cloud）
-					<svgIcon icon="info-line" class="!inline ml-2 text-xl" />
+					<!-- <svgIcon icon="info-line" class="!inline ml-2 text-xl" /> -->
 				</span>
 			</div>
 			<div class="table-item bg-ly-check">
