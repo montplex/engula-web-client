@@ -54,7 +54,7 @@
 		<div class="mt-6 sm:mt-10" v-if="store.filterList && store.filterList.length">
 			<div cy-id="redis-db-list" class="grid gap-6 sm:grid-cols-2 sm:gap-8">
 				<div
-					v-for="item in rStatusChange(selectVal)"
+					v-for="item in store.filterList"
 					:key="item.id"
 					:id="'cache' + item.id"
 					class="flex flex-col rounded-lg border border-gray-200 shadow-sm"
@@ -118,7 +118,7 @@
 	</div>
 
 	<!-- 新增缓存实例 -->
-	<addDialog v-model="addVisible" ref="addDialogRef" @add-btn-click="pause" />
+	<addDialog v-model="addVisible" ref="addDialogRef" />
 	<!-- cache 数量超出限制 -->
 	<CrossDialog v-model="cross" />
 	<HasCreate v-model="hasCreate" />
@@ -176,7 +176,7 @@ const isRefresh = ref(false); // 刷新按钮 laoding
 const addVisible = ref(false); // 新建弹窗
 const searchVal = ref(""); // 搜索
 const selectVal = ref<string | number>(1);
-const counDown = ref(150);
+// const counDown = ref(150);
 
 const user = userStore();
 
@@ -266,7 +266,7 @@ function rStatusChange(val: any) {
 	return list;
 }
 
-const { pause, resume } = useIntervalFn(
+/* const { pause, resume } = useIntervalFn(
 	async () => {
 		if (!store.serviceList?.length || counDown.value <= 0) {
 			pause();
@@ -285,7 +285,7 @@ const { pause, resume } = useIntervalFn(
 
 onMounted(() => {
 	resume();
-});
+}); */
 </script>
 
 <style lang="scss">

@@ -97,6 +97,8 @@ const cloud_provider_map = {
 
 defineProps({ modelValue: { type: Boolean, default: false } });
 
+const counDown = ref(180);
+
 const addFormRef = ref<FormInstance>(),
 	store = cacheStore(),
 	addLoading = ref(false),
@@ -119,10 +121,11 @@ const region = computed(() => {
 
 const { pause, resume } = useIntervalFn(
 	async () => {
-		if (!store.serviceList.length) {
+		if (!store.serviceList.length || counDown.value <= 0) {
 			pause();
 			return;
 		}
+		counDown.value -= 3;
 		const runing_list = store.serviceList.filter((item) => item.status === 1);
 		if (!runing_list.length) pause();
 		else {
