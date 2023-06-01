@@ -1,21 +1,30 @@
 <template>
 	<div class="mt-6 sm:mt-10">
-		<el-empty class="rounded-lg bg-gray-50 !p-14" v-if="!store.filterList?.length && !user.info?.canCreateCacheService">
+		<el-empty class="rounded-lg bg-gray-50 !p-14">
 			<template #image>
-				<svgIcon icon="cache-error" style="width: 100%; height: 90px" />
+				<svgIcon :icon="empty_info.icon" style="width: 100%; height: 90px" />
 			</template>
 			<template #description>
-				<div class="mx-auto my-4 max-w-screen-sm text-gray-600">
-					<h3>Network service interruption.</h3>
-					<div>
-						<p>Service maintenance in progress, please be patient and wait...</p>
+				<div class="mx-auto my-4 max-w-screen-md text-gray-600">
+					<h3>{{ empty_info.title }}</h3>
+					<div v-if="empty_info.msg" class="py-1">
+						<p>{{ empty_info.msg }}</p>
 					</div>
 				</div>
-				<el-button @click="$router.push('/')" type="success">Back Home</el-button>
+				<el-button
+					v-if="empty_info.btn"
+					@click="
+						() => {
+							empty_info.cb;
+						}
+					"
+					type="success"
+					>{{ empty_info.btn }}</el-button
+				>
 			</template>
 		</el-empty>
 
-		<el-empty class="rounded-lg bg-gray-50 !p-14" v-else>
+		<!-- <el-empty class="rounded-lg bg-gray-50 !p-14" v-else>
 			<template #image>
 				<svgIcon icon="empty-cache" style="width: 100%; height: 90px" />
 			</template>
@@ -29,24 +38,52 @@
 				<el-button v-if="select == 1" @click="$emit('btnClick')" type="success">Create cache service</el-button>
 			</template>
 		</el-empty>
-	</div>
+		--></div>
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import { cacheStore } from "@/stores/cache";
 import { userStore } from "@/stores/user";
+import { useRouter } from "vue-router";
 
-defineProps({
+const store = cacheStore();
+const user = userStore();
+
+const props = defineProps({
 	select: {
 		type: [Number, String],
 		default: 1
 	}
 });
+const router = useRouter();
+const emits = defineEmits(["btnClick"]);
 
-const store = cacheStore();
-const user = userStore();
-
-defineEmits(["btnClick"]);
+const empty_info: any = computed(() => {
+	let info = {};
+	if (!user.info?.isVerified) {
+		info = {
+			icon: "email-verification",
+			title: "Need Verify In Your Email",
+			msg: "We have detected that your account has not passed email verification. Please check your email inbox.",
+			cb: () => router.push("/")
+		};
+	} else {
+		if (!store.filterList?.length && props.select != 1) {
+			info = {
+				icon: "empty-cache",
+				msg: "Data Not Found"
+			};
+		} else {
+			info = {
+				icon: "empty-cache",
+				title: "Create a Cache Service",
+				msg: "We manage the cache service for you and you only pay what you use.",
+				btn: "Create cache service",
+				cb: () => emits("btnClick")
+			};
+		}
+	}
+	return info;
+});
 </script>
-
-<style lang="scss"></style>

@@ -32,7 +32,9 @@
 										</clipPath>
 									</defs>
 								</svg>
-								<div class="text-block-22">support@montplex.com</div>
+								<a href="mailto:support@montplex.com" target="_blank" rel="noopener noreferrer" class="text-block-22"
+									>support@montplex.com</a
+								>
 							</span>
 						</div>
 					</div>

@@ -10,8 +10,8 @@
 					</div>
 				</div>
 				<!-- v-show="seletShow?.length" -->
-				<div class="ml-9">
-					<el-select v-model="selectVal" placeholder="Filter..." @change="rStatusChange">
+				<div class="md:ml-9" v-show="store.serviceList?.length">
+					<el-select v-model="selectVal" @change="rStatusChange">
 						<template #prefix>
 							<span class="w-2 h-2 rounded-full" :style="{ background: selectVal == 1 ? '#00b173' : '#f16538' }"></span>
 						</template>
@@ -44,9 +44,7 @@
 						</el-icon>
 					</el-button>
 				</el-tooltip>
-				<el-button type="success" :disabled="!user.info?.canCreateCacheService" @click="createCache">{{
-					$t("redis.cache.new")
-				}}</el-button>
+				<el-button type="success" :disabled="!user.info?.isVerified" @click="createCache">{{ $t("redis.cache.new") }}</el-button>
 				<!-- <el-button type="success" @click.prevent.stop="guide('#cache15')">提示</el-button> -->
 			</div>
 		</div>
@@ -115,7 +113,7 @@
 	</div>
 
 	<!-- 新增缓存实例 -->
-	<addDialog v-model="addVisible" ref="addDialogRef" />
+	<addDialog v-model="addVisible" ref="addDialogRef" @add-btn-click="pause" />
 	<!-- cache 数量超出限制 -->
 	<CrossDialog v-model="cross" />
 	<HasCreate v-model="hasCreate" />
@@ -127,13 +125,15 @@ import addDialog from "./addDialog.vue";
 import cacheEmpty from "./cacheEmpty.vue";
 import StatusIcon from "@/components/Cache/StatusIcon.vue";
 import HasCreate from "./HasCreate.vue";
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, h } from "vue";
 import { useRouter } from "vue-router";
 import { cacheStore } from "@/stores/cache";
 import { ElMessage } from "element-plus";
 import { statusMap, statusStyle } from "#/consts";
 import { useI18n } from "vue-i18n";
 import { userStore } from "@/stores/user";
+import { useIntervalFn } from "@vueuse/core";
+import { ElMessageBox } from "element-plus";
 
 /* import Driver from "driver.js";
 import "driver.js/dist/driver.min.css";
@@ -161,10 +161,6 @@ const { t, locale } = useI18n();
 // @ts-expect-error
 const statusObj = computed(() => statusMap[locale.value]);
 
-const seletShow = computed(() => {
-	return store.serviceList.filter((item) => item.status == "-10" || item.status == "-1");
-});
-
 const store = cacheStore();
 const router = useRouter();
 const addDialogRef = ref();
@@ -175,20 +171,52 @@ const isRefresh = ref(false); // 刷新按钮 laoding
 const addVisible = ref(false); // 新建弹窗
 const searchVal = ref(""); // 搜索
 const selectVal = ref<string | number>(1);
+const counDown = ref(150);
 
 const user = userStore();
 
 // TODO 接口更新，暂时不用前端判断缓存数组的长度
 /* 新建 Cache  */
 const createCache = async () => {
+	if (!user.info?.canCreateCacheService) {
+		ElMessageBox({
+			title: "Limit Reached",
+			message: h("p", {}, [
+				h(
+					"a",
+					{
+						style: "color: #67c23a; cursor: pointer;",
+						herf: "mailto:support@montplex.com",
+						target: "_blank",
+						rel: "noopener noreferrer",
+						onclick: () => {
+							window.open(`mailto:support@montplex.com`);
+						}
+					},
+					"Contact Us"
+				)
+			])
+		});
+		return;
+	}
+
+	/* if (!user.info?.canCreateCacheService) {
+		ElMessageBox.alert(
+			'<a herf="www.baidu.com" onClick="" target="_blank" rel="noopener noreferrer">Contact Us</a>',
+			"Limit Reached",
+			{
+				dangerouslyUseHTMLString: true
+			}
+		);
+		return;
+	} */
+
+	// target="_blank"
 	/* 如果是免费用户，且已经创建了一个正在运行的 cache */
 	if (store.serviceList?.length > 5 && user.info?.feeType === 0) {
 		cross.value = true;
 		return;
 	}
-	/* 最多只能创建五个正在运行的 cache */
-	// const isCreate = store.serviceList.reduce((sum, item) => (item.status === 1 ? sum + 1 : sum + 0), 0);
-	// if (isCreate >= 5) cross.value = true;
 	addDialogRef.value.reset();
 	store.setCloudProviderList();
 	addVisible.value = true;
@@ -229,9 +257,29 @@ function rStatusChange(val: any) {
 		const stop = item.status == "-10" || item.status == "-1";
 		return val == 1 ? run : stop;
 	});
-
 	store.filterList = list;
 }
+
+const { pause, resume } = useIntervalFn(
+	async () => {
+		if (!store.serviceList?.length || counDown.value <= 0) {
+			pause();
+			return;
+		}
+		counDown.value -= 3;
+		const runing_list = store.serviceList.filter((item) => item.status === 1);
+		if (!runing_list.length) pause();
+		else {
+			await store.setCacheList(false);
+		}
+	},
+	2500,
+	{ immediate: false }
+);
+
+onMounted(() => {
+	resume();
+});
 </script>
 
 <style lang="scss">

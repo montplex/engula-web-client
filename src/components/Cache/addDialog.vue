@@ -95,16 +95,10 @@ const cloud_provider_map = {
 	"us-east-1": "US East (N. Virginia)"
 };
 
-const cloud_provider_list = computed(() => {
-	// cloud_provider_map
-	return 0;
-});
-
 defineProps({ modelValue: { type: Boolean, default: false } });
 
 const addFormRef = ref<FormInstance>(),
 	store = cacheStore(),
-	counDown = ref(0),
 	addLoading = ref(false),
 	addForm = ref<AddCacheParams>({
 		cloudProvider: "",
@@ -125,25 +119,26 @@ const region = computed(() => {
 
 const { pause, resume } = useIntervalFn(
 	async () => {
-		if (counDown.value <= 0) pause();
+		if (!store.serviceList.length) {
+			pause();
+			return;
+		}
+		const runing_list = store.serviceList.filter((item) => item.status === 1);
+		if (!runing_list.length) pause();
 		else {
-			counDown.value -= 3;
 			await store.setCacheList(false);
-			if (store.serviceList.length > 0) {
-				const cache = store.serviceList.find((item) => item.name === addForm.value.name);
-
-				if (cache!.status == 1) {
-					pause();
-					ElMessage.success(t("msg.creationSuccess"));
-				}
+			const cache = store.serviceList.find((item) => item.name === addForm.value.name);
+			if (cache && cache.status == 1) {
+				pause();
+				ElMessage.success(t("msg.creationSuccess"));
 			}
 		}
 	},
-	3000,
+	2000,
 	{ immediate: false }
 );
 
-const emits = defineEmits(["update:modelValue"]);
+const emits = defineEmits(["update:modelValue", "add-btn-click"]);
 
 function addCallback() {
 	addLoading.value = true;
@@ -151,9 +146,9 @@ function addCallback() {
 		.then((res) => {
 			if (res.id) {
 				ElMessage.success(t("msg.creating"));
-				counDown.value = 36;
 				store.setCacheList(false);
 				resume();
+				emits("add-btn-click");
 			}
 		})
 		.catch(() => ElMessage.error(t("msg.err")))

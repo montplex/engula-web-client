@@ -3,8 +3,8 @@
 		<h2 class="text-5xl inline-block font-bold text-block leading-normal">Global Availability</h2>
 		<VectorsWrapper class="mt-4 mx-auto" />
 
-		<div class="absolute hidden md:flex right-8 md:right-2 text-white text-xs md:text-lg font-bold items-center mt-10">
-			<span class="bg-[#00e9a3] h-2 w-2 md:h-5 md:w-5 rounded-full block mr-2"> </span>
+		<div class="absolute hidden md:flex right-2 text-white text-lg font-bold items-center mt-10">
+			<span class="bg-[#00e9a3] h-5 w-5 xl:h-6 xl:w-6 rounded-full block mr-2" style="border: 3px solid #00e9a3"> </span>
 			Amazon Web Services
 		</div>
 		<div id="mapsvg" class="pt-20 md:pt-10">
@@ -16,8 +16,6 @@
 				viewBox="0 0 1000 700"
 				width="800"
 				height="600"
-				id="svg-replaced-0"
-				class="style-svg replaced-svg svg-replaced-0"
 			>
 				<g id="regions">
 					<path
@@ -1183,8 +1181,8 @@
 			</svg>
 		</div>
 
-		<div class="flex md:hidden text-white text-xs md:text-lg font-bold items-center justify-center">
-			<span class="bg-[#00e9a3] h-2 w-2 md:h-5 md:w-5 rounded-full block mr-2"> </span>
+		<div class="flex md:hidden text-white text-xs font-bold items-center justify-center">
+			<span class="bg-[#00e9a3] h-2 w-2 rounded-full block mr-2"> </span>
 			Amazon Web Services
 		</div>
 	</div>

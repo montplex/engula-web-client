@@ -1,6 +1,7 @@
 import { http } from "@/plugins/axios";
 
 export interface IUserInfo {
+	isVerified: boolean; // 注册时email验证
 	canCreateCacheService: boolean; // 是否可以创建缓存服务
 	feeType: number; // 0/1/2 free/pro/enterprise
 	id: number;
