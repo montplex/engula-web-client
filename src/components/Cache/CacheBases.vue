@@ -54,15 +54,20 @@
 		<div class="mt-6 sm:mt-10" v-if="store.filterList && store.filterList.length">
 			<div cy-id="redis-db-list" class="grid gap-6 sm:grid-cols-2 sm:gap-8">
 				<div
-					v-for="item in store.filterList"
+					v-for="item in rStatusChange(selectVal)"
 					:key="item.id"
 					:id="'cache' + item.id"
 					class="flex flex-col rounded-lg border border-gray-200 shadow-sm"
 					:class="{ 'cursor-not-allowed': item.status == '-10' }"
 				>
 					<header class="p-4 sm:p-6 sm:pt-6 sm:pb-6" :class="{ 'pointer-events-none  opacity-70': item.status == '-10' }">
-						<h3 class="text-lg cursor-pointer" @click="goDetail(item)">
-							{{ item.name }}
+						<h3 class="text-lg cursor-pointer flex items-center justify-between" @click="goDetail(item)">
+							<span>{{ item.name }}</span>
+							<span>
+								<el-icon size="18" color="#67c23a" v-if="item.status === 1">
+									<svg-icon icon="right-c" />
+								</el-icon>
+							</span>
 						</h3>
 						<span class="mt-1.5 flex items-center gap-1.5 opacity-50">
 							<span>{{ $t("redis.regional") }}</span> {{ item.cloudProvider }} <span></span>{{ item.region }}
@@ -258,6 +263,7 @@ function rStatusChange(val: any) {
 		return val == 1 ? run : stop;
 	});
 	store.filterList = list;
+	return list;
 }
 
 const { pause, resume } = useIntervalFn(
