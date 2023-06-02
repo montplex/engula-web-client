@@ -126,7 +126,7 @@ const { pause, resume } = useIntervalFn(
 			return;
 		}
 		counDown.value -= 3;
-		const runing_list = store.serviceList.filter((item) => item.status === 1);
+		const runing_list = store.serviceList.filter((item) => item.status === 0);
 		if (!runing_list.length) pause();
 		else {
 			await store.setCacheList(false);

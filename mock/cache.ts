@@ -27,7 +27,7 @@ export default [
 						orgId: 2,
 						name: "DBTEST-2001",
 						des: "desc",
-						status: 1,
+						status: 0,
 						cloudProvider: "aws",
 						region: "ap-northeast-1",
 						createdDate: 1678695874000,

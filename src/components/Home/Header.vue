@@ -53,6 +53,10 @@
 						<div class="group nav-link" @click="$router.push('/careers')">
 							<span>{{ t("home.nav.careers") }}</span>
 						</div>
+
+						<a href="https://dev.montplex.com/docs/docs/support/contact-us" target="_blank" class="group nav-link">
+							<span>Contact Us</span>
+						</a>
 					</nav>
 					<div class="conlose">
 						<div class="cos-btn-home">
@@ -84,10 +88,6 @@
 
 								<a href="https://dev.montplex.com/docs/docs/overall/create" target="_blank" class="group nav-link">
 									<span>{{ t("home.nav.docs") }}</span>
-									<span class="ml-2">
-										<svgIcon icon="right45-write" class="!h-5 !w-5 ml-2 -rotate-45 group-hover:hidden" />
-										<svgIcon icon="right45" class="hidden !h-5 !w-5 ml-2 -rotate-45 group-hover:block" />
-									</span>
 								</a>
 
 								<div class="group nav-link" @click="$router.push('/about')">
@@ -96,8 +96,16 @@
 								<a @click.prevent="$router.push('/careers')" class="group nav-link">
 									<span>{{ t("home.nav.careers") }}</span>
 								</a>
+
+								<a href="https://dev.montplex.com/docs/docs/overall/create" target="_blank" class="group nav-link">
+									<span>Contact Us</span>
+									<!-- <span class="ml-2">
+										<svgIcon icon="right45-write" class="!h-5 !w-5 ml-2 -rotate-45 group-hover:hidden" />
+										<svgIcon icon="right45" class="hidden !h-5 !w-5 ml-2 -rotate-45 group-hover:block" />
+									</span> -->
+								</a>
 							</nav>
-							<div class="cos-btn-home">
+							<div class="cos-btn-home py-4">
 								<div class="button-space items-center justify-center">
 									<div class="text-block" @click="handleConsole">Console</div>
 									<svgIcon icon="btn-right" class="!h-5 !w-5" />

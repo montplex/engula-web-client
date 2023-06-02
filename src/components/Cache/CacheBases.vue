@@ -118,7 +118,7 @@
 	</div>
 
 	<!-- 新增缓存实例 -->
-	<addDialog v-model="addVisible" ref="addDialogRef" />
+	<addDialog v-model="addVisible" ref="addDialogRef" @add-btn-click="pause" />
 	<!-- cache 数量超出限制 -->
 	<CrossDialog v-model="cross" />
 	<HasCreate v-model="hasCreate" />
@@ -130,7 +130,7 @@ import addDialog from "./addDialog.vue";
 import cacheEmpty from "./cacheEmpty.vue";
 import StatusIcon from "@/components/Cache/StatusIcon.vue";
 import HasCreate from "./HasCreate.vue";
-import { ref, computed, onMounted, h } from "vue";
+import { ref, computed, h, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { cacheStore } from "@/stores/cache";
 import { ElMessage } from "element-plus";
@@ -138,7 +138,7 @@ import { statusMap, statusStyle } from "#/consts";
 import { useI18n } from "vue-i18n";
 import { userStore } from "@/stores/user";
 import { ElMessageBox } from "element-plus";
-// import { useIntervalFn } from "@vueuse/core";
+import { useIntervalFn } from "@vueuse/core";
 const { t, locale } = useI18n();
 
 // @ts-expect-error
@@ -154,8 +154,7 @@ const isRefresh = ref(false); // 刷新按钮 laoding
 const addVisible = ref(false); // 新建弹窗
 const searchVal = ref(""); // 搜索
 const selectVal = ref<string | number>(1);
-// const counDown = ref(150);
-
+const counDown = ref(120);
 const user = userStore();
 
 /* 新建 Cache  */
@@ -242,26 +241,27 @@ function rStatusChange(val: any) {
 	return list;
 }
 
-/* const { pause, resume } = useIntervalFn(
+const { pause, resume } = useIntervalFn(
 	async () => {
 		if (!store.serviceList?.length || counDown.value <= 0) {
 			pause();
 			return;
 		}
-		counDown.value -= 3;
-		const runing_list = store.serviceList.filter((item) => item.status === 1);
+		counDown.value -= 2;
+		selectVal.value = 1;
+		const runing_list = store.serviceList.filter((item) => item.status === 0);
 		if (!runing_list.length) pause();
 		else {
 			await store.setCacheList(false);
 		}
 	},
-	2500,
+	2000,
 	{ immediate: false }
 );
 
 onMounted(() => {
 	resume();
-}); */
+});
 </script>
 
 <style lang="scss">

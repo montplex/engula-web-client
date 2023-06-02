@@ -2,12 +2,20 @@
 	<div class="py-6 shadow border-b-0 bg-[#fafafa]" style="position: sticky; top: 0; z-index: 99" v-if="cache">
 		<div class="container mx-auto !max-w-screen-xl px-4">
 			<div class="flex items-center">
+				<button type="button" class="flex h-10 w-8 items-center mr-4" @click="$router.push('/console')">
+					<el-tooltip effect="dark" content="Back" placement="top-start">
+						<el-icon size="26" color="#d1d5db" class="hover:text-[#67c23a]">
+							<i-ep:arrow-left-bold />
+						</el-icon>
+					</el-tooltip>
+				</button>
+
 				<div>
 					<h1 class="m-0 flex items-center text-2xl leading-none">
 						<span>{{ cache.name }}</span>
-						<el-tooltip effect="dark" :content="$t('redis.renameTips')" placement="top-start">
+						<el-tooltip effect="dark" :content="$t('redis.renameTips')" placement="bottom">
 							<button type="button" @click="editName(cache.name)" class="ml-3 inline-flex h-auto items-center !p-0">
-								<svgIcon icon="edit" class="text-gray-300" />
+								<svgIcon icon="edit" style="color: #d1d5db" />
 							</button>
 						</el-tooltip>
 					</h1>
