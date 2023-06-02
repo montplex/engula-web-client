@@ -10,7 +10,7 @@
 				xmlns:xlink="http://www.w3.org/1999/xlink"
 				version="1.1"
 				viewBox="0 0 1000 700"
-				width="800"
+				width="810"
 				height="600"
 			>
 				<g id="regions">
@@ -1118,7 +1118,7 @@
 					</circle>
 
 					<circle id="circle" cx="764" cy="453" r="5" />
-					<text x="776" id="mark-title" y="459">AWS US East (N. Virginia)</text>
+					<text x="776" id="mark-title" y="459">AWS Asia Pacific (Singapore)</text>
 				</g>
 
 				<g fill="none" fill-rule="evenodd">
@@ -1145,7 +1145,7 @@
 						/>
 					</circle>
 					<circle id="circle" cx="785" cy="405" r="5" />
-					<text id="mark-title" x="799" y="411">AWS Asia Pacific (Singapore)</text>
+					<text id="mark-title" x="799" y="411">AWS Asia Pacific (HongKong)</text>
 				</g>
 
 				<g fill="none" fill-rule="evenodd">
@@ -1172,7 +1172,7 @@
 						/>
 					</circle>
 					<circle id="circle" cx="248" cy="347" r="5" />
-					<text id="mark-title" x="262" y="353">AWS Asia Pacific (Hong Kong)</text>
+					<text id="mark-title" x="262" y="353">AWS US East (N. Virginia)</text>
 				</g>
 			</svg>
 		</div>
