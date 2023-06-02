@@ -65,7 +65,7 @@ const empty_info: any = computed(() => {
 		info = {
 			icon: "email-verification",
 			title: "Need Verify In Your Email",
-			msg: "We have detected that your account has not passed email verification. Please check your email inbox.",
+			msg: "We have noticed that your account requires email verification. Please check your email inbox for further instructions on how to complete the verification process.",
 			cb: () => router.push("/")
 		};
 	} else {

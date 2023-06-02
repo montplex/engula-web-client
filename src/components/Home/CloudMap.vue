@@ -3,10 +3,6 @@
 		<h2 class="text-5xl inline-block font-bold text-block leading-normal">Global Availability</h2>
 		<VectorsWrapper class="mt-4 mx-auto" />
 
-		<div class="absolute hidden md:flex right-2 text-white text-lg font-bold items-center mt-10">
-			<span class="bg-[#00e9a3] h-5 w-5 xl:h-6 xl:w-6 rounded-full block mr-2" style="border: 3px solid #00e9a3"> </span>
-			Amazon Web Services
-		</div>
 		<div id="mapsvg" class="pt-20 md:pt-10">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -1102,8 +1098,8 @@
 						<animate
 							attributeName="r"
 							begin="-0.9s"
-							dur="1.8s"
-							values="1; 15"
+							dur="1.6s"
+							values="1; 13"
 							calcMode="spline"
 							keyTimes="0; 1"
 							keySplines="0.165, 0.84, 0.44, 1"
@@ -1112,7 +1108,7 @@
 						<animate
 							attributeName="fill-opacity"
 							begin="-0.9s"
-							dur="1.8s"
+							dur="1.6s"
 							values="1; 0"
 							calcMode="spline"
 							keyTimes="0; 1"
@@ -1121,8 +1117,8 @@
 						/>
 					</circle>
 
-					<circle id="circle" cx="764" cy="453" r="9" />
-					<!-- <text x="776" y="457" fill="#fff" text-anchor="start" font-family="Verdana" font-size="14">aws-ap-southeast-1</text> -->
+					<circle id="circle" cx="764" cy="453" r="5" />
+					<text x="776" id="mark-title" y="459">AWS US East (N. Virginia)</text>
 				</g>
 
 				<g fill="none" fill-rule="evenodd">
@@ -1130,8 +1126,8 @@
 						<animate
 							attributeName="r"
 							begin="-0.9s"
-							dur="1.8s"
-							values="1; 15"
+							dur="1.6s"
+							values="1; 13"
 							calcMode="spline"
 							keyTimes="0; 1"
 							keySplines="0.165, 0.84, 0.44, 1"
@@ -1140,7 +1136,7 @@
 						<animate
 							attributeName="fill-opacity"
 							begin="-0.9s"
-							dur="1.8s"
+							dur="1.6s"
 							values="1; 0"
 							calcMode="spline"
 							keyTimes="0; 1"
@@ -1148,8 +1144,8 @@
 							repeatCount="indefinite"
 						/>
 					</circle>
-					<circle id="circle" cx="785" cy="405" r="9" />
-					<!-- <text id="mark-title" x="799" y="411">aws-ap-east-1</text> -->
+					<circle id="circle" cx="785" cy="405" r="5" />
+					<text id="mark-title" x="799" y="411">AWS Asia Pacific (Singapore)</text>
 				</g>
 
 				<g fill="none" fill-rule="evenodd">
@@ -1157,8 +1153,8 @@
 						<animate
 							attributeName="r"
 							begin="-0.9s"
-							dur="1.8s"
-							values="1; 15"
+							dur="1.6s"
+							values="1; 13"
 							calcMode="spline"
 							keyTimes="0; 1"
 							keySplines="0.165, 0.84, 0.44, 1"
@@ -1167,7 +1163,7 @@
 						<animate
 							attributeName="fill-opacity"
 							begin="-0.9s"
-							dur="1.8s"
+							dur="1.6s"
 							values="1; 0"
 							calcMode="spline"
 							keyTimes="0; 1"
@@ -1175,15 +1171,10 @@
 							repeatCount="indefinite"
 						/>
 					</circle>
-					<circle id="circle" cx="248" cy="347" r="9" />
-					<!-- <text id="mark-title" x="262" y="353">aws-us-east-1</text> -->
+					<circle id="circle" cx="248" cy="347" r="5" />
+					<text id="mark-title" x="262" y="353">AWS Asia Pacific (Hong Kong)</text>
 				</g>
 			</svg>
-		</div>
-
-		<div class="flex md:hidden text-white text-xs font-bold items-center justify-center">
-			<span class="bg-[#00e9a3] h-2 w-2 rounded-full block mr-2"> </span>
-			Amazon Web Services
 		</div>
 	</div>
 </template>
@@ -1232,7 +1223,7 @@
 			fill: #fff;
 			text-anchor: start;
 			font-family: Inter, sans-serif;
-			font-size: 16px;
+			font-size: 14px;
 			font-weight: 700;
 		}
 	}

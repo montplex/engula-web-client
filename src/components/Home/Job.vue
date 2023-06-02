@@ -67,8 +67,8 @@
 
 <script setup lang="ts">
 const jobsList = [
-	{ team: "Product Marketing Manager", position: "Engineering", path: "product-marketing-manager" },
-	{ team: "Operations Engineer", position: "Engineering", path: "operations-engineer" }
+	{ team: "Product Marketing Manager", position: "Engineering", path: "product-marketing-manager" }
+	// { team: "Operations Engineer", position: "Engineering", path: "operations-engineer" }
 ];
 
 const benefits = [

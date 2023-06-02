@@ -137,30 +137,8 @@ import { ElMessage } from "element-plus";
 import { statusMap, statusStyle } from "#/consts";
 import { useI18n } from "vue-i18n";
 import { userStore } from "@/stores/user";
-import { useIntervalFn } from "@vueuse/core";
 import { ElMessageBox } from "element-plus";
-
-/* import Driver from "driver.js";
-import "driver.js/dist/driver.min.css";
-const guide = (id: any) => {
-	const driver = new Driver({
-		allowClose: true,
-		doneBtnText: "结束",
-		closeBtnText: "关闭",
-		nextBtnText: "下一步",
-		prevBtnText: "上一步"
-	});
-	driver.highlight({
-		element: id,
-		popover: {
-			title: "开始使用",
-			description: "点击下一步开始使用",
-			position: "right"
-		}
-	});
-	// driver.start();
-}; */
-
+// import { useIntervalFn } from "@vueuse/core";
 const { t, locale } = useI18n();
 
 // @ts-expect-error
@@ -180,7 +158,6 @@ const selectVal = ref<string | number>(1);
 
 const user = userStore();
 
-// TODO 接口更新，暂时不用前端判断缓存数组的长度
 /* 新建 Cache  */
 const createCache = async () => {
 	if (!user.info?.canCreateCacheService) {
@@ -216,8 +193,7 @@ const createCache = async () => {
 		return;
 	} */
 
-	// target="_blank"
-	/* 如果是免费用户，且已经创建了一个正在运行的 cache */
+	/* 如果是免费用户，且已经创建了5个cache */
 	if (store.serviceList?.length > 5 && user.info?.feeType === 0) {
 		cross.value = true;
 		return;
