@@ -4,7 +4,7 @@
 		<div class="container mx-auto !max-w-screen-xl px-4">
 			<h3 class="m-0 text-base">{{ $t("redis.countTitle") }}</h3>
 
-			<div class="mt-4 flex gap-8">
+			<div class="mt-4 flex gap-8 flex-col md:flex-row">
 				<div class="m-chart rounded-lg bg-white min-h-[100px] flex-1">
 					<Echarts width="100%" height="100px" :options="chartVal" />
 					<div class="position w-full h-full" ref="refEcharts"></div>
@@ -37,7 +37,7 @@ getFeeListByDay({}).then((res) => {
 
 <style lang="scss" scoped>
 .cu-items {
-	@apply rounded-lg px-5 pt-4 pb-4 shadow-sm bg-white text-center flex flex-col justify-center items-center;
+	@apply rounded-lg px-5 pt-4 pb-4 shadow-sm bg-white md:text-center flex flex-col md:justify-center md:items-center;
 	min-width: 180px;
 	.title {
 		@apply text-[#606266] mb-1 leading-5 opacity-70;

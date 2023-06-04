@@ -13,12 +13,13 @@
 				<div class="md:ml-9" v-show="store.serviceList?.length">
 					<el-select v-model="selectVal" @change="rStatusChange">
 						<template #prefix>
-							<span class="w-2 h-2 rounded-full" :style="{ background: selectVal == 1 ? '#00b173' : '#f16538' }"></span>
+							<!-- # -->
+							<span class="w-2 h-2 rounded-full" :style="{ background: selectVal == 1 ? '#67c23a' : '#f16538' }"></span>
 						</template>
 
 						<el-option :value="1" :label="$t('redis.cache.select.running')">
 							<div class="flex items-center">
-								<span class="w-2 h-2 block rounded-full bg-[#00b173] mr-2"></span>
+								<span class="w-2 h-2 block rounded-full bg-[#67c23a] mr-2"></span>
 								{{ $t("redis.cache.select.running") }}
 							</div>
 						</el-option>
@@ -104,7 +105,7 @@
 					<!-- Buttom Chart-->
 					<!-- hidden sm:block -->
 					<footer class="cb-tip">
-						<div class="cb-tip bg-[#34d399eb]" v-if="item.status === 0">
+						<div class="cb-tip bg-main" v-if="item.status === 0">
 							<el-progress :percentage="100" :stroke-width="6" :text-inside="true" :indeterminate="true" :duration="10">
 								<span></span>
 							</el-progress>
@@ -277,7 +278,7 @@ onMounted(() => {
 		background-color: transparent;
 	}
 	.el-progress-bar__inner {
-		background-image: linear-gradient(to right, rgb(167, 243, 208) 0%, rgb(5, 150, 105) 100%);
+		background-image: linear-gradient(to right, #afd79b 0%, #67c23a 100%);
 	}
 }
 

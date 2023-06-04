@@ -5,7 +5,8 @@ module.exports = {
 	theme: {
 		extend: {
 			textColor: {
-				info: "#303133",
+				"main": "#303133",
+				"primary": "#67c23a",
 				"info-4": "rgba(0, 0, 0, 0.45)",
 				"info-8": "rgba(0, 0, 0, 0.8)",
 				"info-88": "rgba(0, 0, 0, 0.88)",
@@ -40,6 +41,7 @@ module.exports = {
 				"25r": "25rem"
 			},
 			backgroundColor: {
+				"main": "#67c23a",
 				"ly-mian": "#050505",
 				"ly-check": "rgba(255, 255, 255, 0.03)",
 				"ly-info-70": "rgba(255, 255, 255, 0.064)",

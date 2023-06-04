@@ -14,7 +14,7 @@
 							version="1.1"
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 32 32"
-							class="w-16 md:w-24 text-[#00e9a3] m-inline-auto block"
+							class="w-16 md:w-24 text-[#67c23a] m-inline-auto block"
 						>
 							<linearGradient id="linear_a" x1="4.90015" y1="11.4162" x2="20.4851" y2="11.4921" gradientUnits="userSpaceOnUse">
 								<stop stop-color="#F926E1" />
@@ -34,7 +34,7 @@
 							version="1.1"
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 32 32"
-							class="w-16 md:w-24 text-[#00e9a3] m-inline-auto block"
+							class="w-16 md:w-24 text-[#67c23a] m-inline-auto block"
 						>
 							<path
 								fill="url(#linear_a)"
@@ -50,7 +50,7 @@
 							version="1.1"
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 32 32"
-							class="w-16 md:w-24 text-[#00e9a3] m-inline-auto block"
+							class="w-16 md:w-24 text-[#67c23a] m-inline-auto block"
 						>
 							<path
 								fill="url(#linear_a)"

@@ -1,9 +1,7 @@
 <template>
 	<section className="pt-10 3xl:py-14 bg-ly-mian">
 		<div class="container mx-auto md:px-4 3xl:mt-[9rem]">
-			<div
-				class="flex mt-14 justify-center flex-col gap-3 font-bold text-center text-7xl 3xl:text-8xl"
-			>
+			<div class="flex mt-14 justify-center flex-col gap-3 font-bold text-center text-7xl 3xl:text-8xl">
 				<div class="flex justify-center flex-col md:flex-row">
 					<div>
 						<span class="text-block">
@@ -13,31 +11,21 @@
 				</div>
 
 				<div class="mb-8">
-					<span
-						class="text-block"
-						style="background-image: linear-gradient(-120deg, #f926e1, #2ab5fb)"
-					>
+					<span class="text-block" style="background-image: linear-gradient(-120deg, #f926e1, #2ab5fb)">
 						{{ $t("home.banner.subTitle") }}
 					</span>
 				</div>
 			</div>
 
 			<div class="3xl:mt-16 mt-4 mx-auto text-center">
-				<a
-					class="play-btn"
-					href="https://dev.montplex.com/console"
-					target="_blank"
-					>{{ $t("home.banner.button") }}</a
-				>
+				<a class="play-btn" href="https://dev.montplex.com/console" target="_blank">{{ $t("home.banner.button") }}</a>
 			</div>
 		</div>
 		<div class="users 3xl:max-w-4xl max-w-2xl 3xl:pt-20 pt-12">
 			<div class="grid_box grid-cols-1 md:grid-cols-2">
 				<div class="grid_item py-6 3xl:py-10">
 					<p class="font-semibold 3xl:text-5xl text-4xl">
-						<span class="text-block">{{
-							store?.usersNum?.userNumber ?? 173
-						}}</span>
+						<span class="text-block">{{ store?.usersNum?.userNumber ?? 173 }}</span>
 					</p>
 					<p class="s-title text-xl">
 						<span class="dbi1" style="width: 10px; height: 10px"></span>
@@ -94,12 +82,8 @@ store.usersNumber();
 				inset: 0px;
 				border-radius: inherit;
 				padding: 1px;
-				background: linear-gradient(
-					rgba(255, 255, 255, 0.1),
-					rgba(255, 255, 255, 0.07)
-				);
-				-webkit-mask: linear-gradient(black, black) content-box content-box,
-					linear-gradient(black, black);
+				background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.07));
+				-webkit-mask: linear-gradient(black, black) content-box content-box, linear-gradient(black, black);
 				-webkit-mask-composite: xor;
 			}
 
