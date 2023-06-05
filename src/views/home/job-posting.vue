@@ -2,7 +2,11 @@
 	<main class="bg-white pt-24">
 		<div class="w-full max-w-[1000px] mb-0 mx-auto pb-24 px-28 text-[#1a1a1a]" style="font-family: Airbnbcereal, sans-serif">
 			<h1 class="max-w-[790px] text-center mx-auto text-[40px] font-bold leading-[1.2]">{{ JobName }}</h1>
-			<a href="https://forms.gle/roCJo6Fq1GAjvKF1A" class="main-button-job-page w-button" target="_blank">Apply Now</a>
+			<!-- <a  class="text-block-22"
+									>support@montplex.com</a> -->
+			<a href="mailto:support@montplex.com" class="main-button-job-page w-button" target="_blank" rel="noopener noreferrer">
+				Apply Now
+			</a>
 
 			<div class="w-richtext">
 				<p><strong>About the company</strong></p>
@@ -96,7 +100,10 @@
 				<p>‍</p>
 			</div>
 			<div class="w-richtext"></div>
-			<a href="https://forms.gle/roCJo6Fq1GAjvKF1A" class="main-button-job-page w-button" target="_blank">Apply Now</a>
+
+			<a href="mailto:support@montplex.com" class="main-button-job-page w-button" target="_blank" rel="noopener noreferrer">
+				Apply Now
+			</a>
 		</div>
 	</main>
 </template>
