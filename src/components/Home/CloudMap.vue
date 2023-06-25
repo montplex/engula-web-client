@@ -1120,6 +1120,38 @@
 					<circle id="circle" cx="764" cy="453" r="5" />
 					<text x="776" id="mark-title" y="459">AWS Asia Pacific (Singapore)</text>
 				</g>
+				<!-- 
+
+						fill: #fda830;
+			stroke: white;
+			stroke-width: 3;
+					 -->
+				<g fill="none" fill-rule="evenodd">
+					<circle cx="808" cy="336" r="1" fill="#fda830">
+						<animate
+							attributeName="r"
+							begin="-0.9s"
+							dur="1.6s"
+							values="1; 13"
+							calcMode="spline"
+							keyTimes="0; 1"
+							keySplines="0.165, 0.84, 0.44, 1"
+							repeatCount="indefinite"
+						/>
+						<animate
+							attributeName="fill-opacity"
+							begin="-0.9s"
+							dur="1.6s"
+							values="1; 0"
+							calcMode="spline"
+							keyTimes="0; 1"
+							keySplines="0.3, 0.61, 0.355, 1"
+							repeatCount="indefinite"
+						/>
+					</circle>
+					<circle fill="#fda830" cx="808" cy="336" r="5" />
+					<text id="mark-title" x="820" y="342">Alibab Cloud (BeiJing)</text>
+				</g>
 
 				<g fill="none" fill-rule="evenodd">
 					<circle id="circle" cx="785" cy="405" r="1">
