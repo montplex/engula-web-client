@@ -3,14 +3,18 @@
 		<div class="relative bg-ly-mian home-nav">
 			<div class="navbar-pc">
 				<div class="nav-box">
-					<div class="logo">
+					<!-- <div class="logo">
 						<a href="/" class="flex items-center">
 							<span class="sr-only">MontPlex</span>
 							<div class="flex items-center pl-2 font-semibold text-2xl text-block">
 								<span>Mont</span>
 								<span>plex</span>
-							</div>
+							</div> 
 						</a>
+					</div> -->
+					<div class="logo">
+						<span class="sr-only">MontPlex</span>
+						<img src="/logo.svg" alt="Montplex" class="!h-9" />
 					</div>
 
 					<div class="check-menu md:hidden">
@@ -76,7 +80,6 @@
 						enter-from-class="duration-200 ease-out"
 						enter-active-class="opacity-0 scale-95"
 						enter-to-class="opacity-200 scale-100"
-						leave-class="duration-200 ease-in"
 						leave-to-class="opacity-200 scale-100"
 						leave-active-class="opacity-0 scale-95"
 					>
