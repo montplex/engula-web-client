@@ -12,10 +12,10 @@
 							</div> 
 						</a>
 					</div> -->
-					<div class="logo">
+					<a href="/" class="logo">
 						<span class="sr-only">MontPlex</span>
 						<img src="/logo.svg" alt="Montplex" class="!h-9" />
-					</div>
+					</a>
 
 					<div class="check-menu md:hidden">
 						<button @click="open = !open" type="button">

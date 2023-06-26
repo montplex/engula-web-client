@@ -6,10 +6,10 @@
 				<div class="flex-1">
 					<div class="max-w-xs">
 						<!-- <span class="text-block text-4xl">Montplex</span> -->
-						<div>
+						<a href="/" class="logo">
 							<span class="sr-only">MontPlex</span>
 							<img src="/logo.svg" alt="Montplex" class="!h-9" />
-						</div>
+						</a>
 						<div class="pt-8">
 							<span class="flex items-start gap-3">
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
