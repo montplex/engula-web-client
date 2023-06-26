@@ -8,7 +8,7 @@
 						<!-- <span class="text-block text-4xl">Montplex</span> -->
 						<a href="/" class="logo">
 							<span class="sr-only">MontPlex</span>
-							<img src="/logo.svg" alt="Montplex" class="!h-9" />
+							<img src="/montplex.svg" alt="Montplex" class="!h-9" />
 						</a>
 						<div class="pt-8">
 							<span class="flex items-start gap-3">

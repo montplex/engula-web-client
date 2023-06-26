@@ -14,7 +14,7 @@
 					</div> -->
 					<a href="/" class="logo">
 						<span class="sr-only">MontPlex</span>
-						<img src="/logo.svg" alt="Montplex" class="!h-9" />
+						<img src="/montplex.svg" alt="Montplex" class="!h-9" />
 					</a>
 
 					<div class="check-menu md:hidden">
