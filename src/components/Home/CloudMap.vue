@@ -1,5 +1,5 @@
 <template>
-	<div class="container mx-auto px-8 text-center relative pb-[120px] md:pb-[140px]">
+	<div class="container mx-auto px-8 text-center relative pb-[80px] md:pb-[100px]">
 		<h2 class="text-5xl inline-block font-bold text-block leading-normal">Global Availability</h2>
 		<VectorsWrapper class="mt-4 mx-auto" />
 
@@ -10,7 +10,7 @@
 				xmlns:xlink="http://www.w3.org/1999/xlink"
 				version="1.1"
 				viewBox="0 0 1000 700"
-				width="810"
+				width="990"
 				height="600"
 			>
 				<g id="regions">
@@ -1150,7 +1150,7 @@
 						/>
 					</circle>
 					<circle fill="#fda830" cx="808" cy="336" r="5" />
-					<text id="mark-title" x="820" y="342">Alibab Cloud (BeiJing)</text>
+					<text id="mark-title" x="820" y="342">Alibaba Cloud North China 2 (Beijing)</text>
 				</g>
 
 				<g fill="none" fill-rule="evenodd">
@@ -1222,7 +1222,7 @@
 		margin: 0 auto;
 		object-fit: contain;
 		display: block;
-		width: 80%;
+		width: 96%;
 		height: auto;
 		.land {
 			fill: #494848;
