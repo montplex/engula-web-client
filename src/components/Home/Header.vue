@@ -58,7 +58,7 @@
 							<span>{{ t("home.nav.careers") }}</span>
 						</div>
 
-						<a href="https://dev.montplex.com/docs/docs/contact-us" target="_blank" class="group nav-link">
+						<a href="https://dev.montplex.com/docs/docs/contact" target="_blank" class="group nav-link">
 							<span>Contact Us</span>
 						</a>
 					</nav>
@@ -100,7 +100,7 @@
 									<span>{{ t("home.nav.careers") }}</span>
 								</a>
 
-								<a href="https://dev.montplex.com/docs/docs/contact-us" target="_blank" class="group nav-link">
+								<a href="https://dev.montplex.com/docs/docs/contact" target="_blank" class="group nav-link">
 									<span>Contact Us</span>
 									<!-- <span class="ml-2">
 										<svgIcon icon="right45-write" class="!h-5 !w-5 ml-2 -rotate-45 group-hover:hidden" />
