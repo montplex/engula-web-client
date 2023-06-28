@@ -265,7 +265,7 @@
 
 	<el-dialog v-model="question" :title="$t('redis.more.title')" class="br-8 sm:!w-[520px]">
 		<div class="more-dialog">
-			<a href="#" target="_blank" class="more-link is-link">
+			<a href="https://dev.montplex.com/docs/docs/overall/create" target="_blank" class="more-link is-link">
 				<svgIcon icon="description" class="!text-[20px]" />
 				<div class="lable">
 					<h5>{{ $t("redis.more.docs") }}</h5>
@@ -273,15 +273,7 @@
 				<svgIcon icon="right" class="!text-[20px] opacity-50" />
 			</a>
 
-			<a href="#" target="_blank" class="more-link is-link">
-				<svgIcon icon="cloud" class="!text-[20px]" />
-				<div class="lable">
-					<h5>{{ $t("redis.more.api") }}</h5>
-				</div>
-				<svgIcon icon="right" class="!text-[20px] opacity-50" />
-			</a>
-
-			<a href="#" target="_blank" class="more-link is-link">
+			<a href="https://dev.montplex.com/docs/docs/contact/" target="_blank" class="more-link is-link">
 				<svgIcon icon="bug" class="!text-[20px]" />
 				<div class="lable">
 					<h5>{{ $t("redis.more.bug") }}</h5>
@@ -289,7 +281,7 @@
 				<svgIcon icon="right" class="!text-[20px] opacity-50" />
 			</a>
 
-			<a href="#" target="_blank" class="more-link is-link">
+			<a href="mailto:support@montplex.com" target="_blank" rel="noopener noreferrer" class="more-link is-link">
 				<svgIcon icon="base-email" class="!text-[20px]" />
 				<div class="lable">
 					<h5>{{ $t("redis.more.contact") }}</h5>
@@ -297,7 +289,7 @@
 				<svgIcon icon="right" class="!text-[20px] opacity-50" />
 			</a>
 
-			<a href="#" target="_blank" class="more-link is-link">
+			<a href="https://discord.gg/Z7AeCwVn" target="_blank" class="more-link is-link">
 				<svgIcon icon="discord" class="!text-[20px]" />
 				<div class="lable">
 					<h5>{{ $t("redis.more.discord") }}</h5>
@@ -305,7 +297,7 @@
 				<svgIcon icon="right" class="!text-[20px] opacity-50" />
 			</a>
 
-			<a href="#" target="_blank" class="more-link is-link">
+			<a href="https://twitter.com/MontplexDB" target="_blank" class="more-link is-link">
 				<svgIcon icon="twitter" class="!text-[20px]" />
 				<div class="lable">
 					<h5>{{ $t("redis.more.twitter") }}</h5>
@@ -355,10 +347,9 @@ const handleMineCommand = (command: string) => {
 			router.push({ path: "/account" });
 			break;
 		case "home":
-			router.push({ path: "/" });
+			window.open("https://www.montplex.com/");
 			break;
 		case "pdfview":
-			// addTeamVisible.value = true;
 			router.push({ path: "/pdf" });
 			break;
 		default:
@@ -386,7 +377,6 @@ function handleLang(val: "zh_CN" | "en") {
 	font-size: 14px;
 	display: flex;
 	gap: 4px;
-
 	border-radius: 8px;
 	padding: 6px;
 	&:hover {

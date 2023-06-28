@@ -14,12 +14,13 @@ const router = createVueRouter({
 });
 
 router.beforeEach((to, from) => {
+	const cookie = Cookies.get(CacheEnum.COOKIE);
+	const isLogin = cookie ? true : false;
+	console.log("全局导航守卫------>isLogin", isLogin);
 	if (import.meta.env.VITE_NODE_ENV !== "development") {
 		const cookie = Cookies.get(CacheEnum.COOKIE);
 		if (to.meta.auth && !cookie) {
-			window.location.replace(
-				import.meta.env.VITE_API_URL + "/engula/auth0/login"
-			);
+			window.location.replace(import.meta.env.VITE_API_URL + "/engula/auth0/login");
 		}
 	}
 });

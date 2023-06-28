@@ -2,14 +2,13 @@
 	<div class="py-6 shadow border-b-0 bg-[#fafafa]" style="position: sticky; top: 0; z-index: 99" v-if="cache">
 		<div class="container mx-auto !max-w-screen-xl px-4">
 			<div class="flex items-center">
-				<button type="button" class="flex h-10 w-8 items-center mr-4" @click="$router.push('/console')">
+				<button type="button" class="flex h-10 w-8 items-center mr-4" @click="$router.push('/')">
 					<el-tooltip effect="dark" content="Back" placement="top-start">
 						<el-icon size="26" color="#d1d5db" class="hover:text-[#67c23a]">
 							<i-ep:arrow-left-bold />
 						</el-icon>
 					</el-tooltip>
 				</button>
-
 				<div>
 					<h1 class="m-0 flex items-center text-2xl leading-none">
 						<span>{{ cache.name }}</span>
@@ -69,18 +68,16 @@
 		</div>
 		<div class="help-icons">
 			<div class="box">
-				<!-- mailto:support@upstash.com -->
-				<a class="item" href="#" target="_blank">
+				<a class="item" href="mailto:support@montplex.com" target="_blank" rel="noopener noreferrer">
 					<svgIcon icon="emailat" class="inline text-xl" />
 					<span class="mt-1">Contact Us</span></a
 				>
-				<!-- https://github.com/upstash/issues/issues/new -->
-				<a class="item" href="#" target="_blank">
+
+				<a class="item" href="https://dev.montplex.com/docs/docs/contact/" target="_blank">
 					<svgIcon icon="bug-report" class="inline text-2xl" />
 					<span>Report a Bug</span></a
 				>
-				<!-- https://discord.gg/w9SenAtbme -->
-				<a class="item" href="#" target="_blank">
+				<a class="item" href="https://discord.gg/Z7AeCwVn" target="_blank">
 					<svgIcon icon="discord" class="inline text-xl" />
 					<span class="mt-1">Discord</span></a
 				>

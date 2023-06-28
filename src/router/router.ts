@@ -1,92 +1,18 @@
 import { RouteRecordRaw } from "vue-router";
-import Home from "@/views/home/index.vue";
-import Cache from "@/views/cache/cache.vue";
-// import { CacheEnum } from "#/enum";
-// import Cookies from "js-cookie";
+import Console from "@/views/cache/index.vue";
 
 const routes = [
 	{
 		path: "/",
-		name: "Home",
-		component: Home,
-		children: [
-			{
-				path: "/",
-				name: "Home",
-				component: () => import("@/views/home/home.vue")
-			},
-			{
-				path: "about",
-				name: "About",
-				component: () => import("@/views/home/about.vue")
-			},
-			{
-				path: "careers",
-				name: "Careers",
-				component: () => import("@/views/home/careers.vue")
-			},
-			{
-				path: "careers/:jobName",
-				name: "Jobs",
-				component: () => import("@/views/home/job-posting.vue")
-			}
-		]
-	},
-
-	{
-		path: "/login",
-		name: "Login",
-		component: () => import("@/views/login/index.vue")
-	},
-	{
-		path: "/payment",
-		name: "Payment",
-		component: () => import("@/views/payment/index.vue")
-	},
-	{
-		path: "/pdf",
-		name: "PdfView",
-		component: () => import("@/views/Pdf/index.vue")
-	},
-	{
-		path: "/account",
-		name: "Account",
-		component: () => import("@/views/account/index.vue"),
-		redirect: { name: "Billing" },
-		children: [
-			{
-				path: "teams",
-				name: "Teams",
-				component: () => import("@/views/account/teams.vue")
-			},
-			{
-				path: "billing",
-				name: "Billing",
-				component: () => import("@/views/account/billing.vue")
-			},
-			{
-				path: "cost-explorer",
-				name: "CostExplorer",
-				component: () => import("@/views/account/cost-explorer.vue")
-			},
-			{
-				path: "settings",
-				name: "Settings",
-				component: () => import("@/views/account/settings.vue")
-			}
-		]
-	},
-	{
-		path: "/console",
 		name: "Console",
 		meta: { auth: true },
-		component: () => import("@/views/cache/index.vue")
+		component: Console
 	},
 	{
 		path: "/cache/:id",
 		name: "Cache",
 		meta: { auth: true },
-		component: Cache,
+		component: () => import("@/views/cache/cache.vue"),
 		redirect: { name: "Details" },
 		children: [
 			{
@@ -113,6 +39,34 @@ const routes = [
 				path: "token",
 				name: "Token",
 				component: () => import("@/views/cache/tabs/token.vue")
+			}
+		]
+	},
+	{
+		path: "/account",
+		name: "Account",
+		component: () => import("@/views/account/index.vue"),
+		redirect: { name: "Billing" },
+		children: [
+			{
+				path: "teams",
+				name: "Teams",
+				component: () => import("@/views/account/teams.vue")
+			},
+			{
+				path: "billing",
+				name: "Billing",
+				component: () => import("@/views/account/billing.vue")
+			},
+			{
+				path: "cost-explorer",
+				name: "CostExplorer",
+				component: () => import("@/views/account/cost-explorer.vue")
+			},
+			{
+				path: "settings",
+				name: "Settings",
+				component: () => import("@/views/account/settings.vue")
 			}
 		]
 	},
