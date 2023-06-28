@@ -2,7 +2,7 @@
 	<header class="hidden bg-black py-4 text-white shadow sm:block">
 		<div class="container mx-auto !max-w-screen-xl px-4">
 			<div class="flex items-center gap-6">
-				<h3 class="flex items-center gap-1 text-white cursor-pointer h-8 text-xl font-semibold" @click="$router.push('/console')">
+				<h3 class="flex items-center gap-1 text-white cursor-pointer h-8 text-xl font-semibold" @click="$router.push('/')">
 					<!-- <img src="@/assets/images/main-logo.png" alt="logo" class="h-[30px]" /> -->
 					<span class="text-block">Montplex</span>
 				</h3>
@@ -265,7 +265,7 @@
 
 	<el-dialog v-model="question" :title="$t('redis.more.title')" class="br-8 sm:!w-[520px]">
 		<div class="more-dialog">
-			<a href="https://dev.montplex.com/docs/docs/overall/create" target="_blank" class="more-link is-link">
+			<a href="https://www.montplex.com/docs/overall/create" target="_blank" class="more-link is-link">
 				<svgIcon icon="description" class="!text-[20px]" />
 				<div class="lable">
 					<h5>{{ $t("redis.more.docs") }}</h5>
@@ -273,7 +273,7 @@
 				<svgIcon icon="right" class="!text-[20px] opacity-50" />
 			</a>
 
-			<a href="https://dev.montplex.com/docs/docs/contact/" target="_blank" class="more-link is-link">
+			<a href="https://www.montplex.com/docs/contact/" target="_blank" class="more-link is-link">
 				<svgIcon icon="bug" class="!text-[20px]" />
 				<div class="lable">
 					<h5>{{ $t("redis.more.bug") }}</h5>
