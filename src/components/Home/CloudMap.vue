@@ -1120,12 +1120,7 @@
 					<circle id="circle" cx="764" cy="453" r="5" />
 					<text x="776" id="mark-title" y="459">AWS Asia Pacific (Singapore)</text>
 				</g>
-				<!-- 
 
-						fill: #fda830;
-			stroke: white;
-			stroke-width: 3;
-					 -->
 				<g fill="none" fill-rule="evenodd">
 					<circle cx="808" cy="336" r="1" fill="#fda830">
 						<animate
