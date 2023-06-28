@@ -265,7 +265,7 @@
 
 	<el-dialog v-model="question" :title="$t('redis.more.title')" class="br-8 sm:!w-[520px]">
 		<div class="more-dialog">
-			<a href="https://www.montplex.com/docs/overall/create" target="_blank" class="more-link is-link">
+			<a href="https://www.montplex.com/docs/docs/overall/create/" target="_blank" class="more-link is-link">
 				<svgIcon icon="description" class="!text-[20px]" />
 				<div class="lable">
 					<h5>{{ $t("redis.more.docs") }}</h5>
@@ -273,7 +273,7 @@
 				<svgIcon icon="right" class="!text-[20px] opacity-50" />
 			</a>
 
-			<a href="https://www.montplex.com/docs/contact/" target="_blank" class="more-link is-link">
+			<a href="https://www.montplex.com/docs/docs/contact/" target="_blank" class="more-link is-link">
 				<svgIcon icon="bug" class="!text-[20px]" />
 				<div class="lable">
 					<h5>{{ $t("redis.more.bug") }}</h5>

@@ -73,7 +73,7 @@
 					<span class="mt-1">Contact Us</span></a
 				>
 
-				<a class="item" href="https://www.montplex.com//docs/contact/" target="_blank">
+				<a class="item" href="https://www.montplex.com/docs/docs/contact/" target="_blank">
 					<svgIcon icon="bug-report" class="inline text-2xl" />
 					<span>Report a Bug</span></a
 				>
