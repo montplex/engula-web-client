@@ -11,7 +11,7 @@ export default defineConfig(({ mode, command }: ConfigEnv) => {
 	const env = parseEnv(loadEnv(mode, root));
 	return {
 		// base: env.NODE_ENV === "production" ? "./" : "./",
-		base: "",
+		base: "./",
 		resolve: { alias },
 		css,
 		server: getServer(env),
